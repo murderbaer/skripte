@@ -1,0 +1,109 @@
+Grundlagen 1
+
+Netzwerk:
+ in Netzwerke (Fach) werden Rechnernetze behandelt: zusammenschluss von Rechnern und Netzkomponenten
+ was zum Netzwerk gehört:
+  Kbale
+  NIC
+  Switch
+  Router
+  Protokolle
+
+DNS (Domain Name System):
+ Server, welcher eine Anfrage bekommt ob er die Ip adresse eines Hostnames(z.B. facebook.com hat IPv6:2a03:2880:f1ff:83:face:b00c:0:25de) 
+ in 2 Gruppen unterteilt:
+  1) allgemeine TLSD (gentericTLDs gTLDs) wird wieder in 2 Gruppen unterteilt:
+   a)sponsoredTLDs (sTLDS): werden nur vergeben wenn Seitenbetreiber bestimmte Vorgaben erfüllt
+   b)unspunorredTLDS (uTLDs -> ICANN) allgemeinere TLDs die beliebig gnutzt werden können
+  2)länderspezifische TLDs: country-codeTLDs (ccTLDs)
+
+ Außerdem kann man weiter SUbdomäne einführen wenn gebraucht, "s1.www.website.com als Beispiel"
+ Ganz rechts ist die top level domän ".de"
+ eins weiter links die second level domain  ".website"
+ eins weiter links die third level domain/subdomain  ".www"
+ ganz links die lowest lelvel domain "s1" meistens aber ist lld "www"
+ DNS server ist zuständig für bestimmten bereich von namen, wird nach einem Namen gefragt und nichr´t gefunden, fragt ein DNS server einen anderen, bis der 
+ name gefunden wird un d dann die IP adress zurückgeschickt
+ FulliQualiefiedDomainNames (FQDN) enden mit einem punkt s1.www.website.com.
+
+LAN (Local Area Network)
+ Lan vernetzt rechenr auf einem bestimmten Bereich wie ein Haus ióder Campus, 
+ kein Transportnetz (Telekom)
+ Geräte sind ständig miteineander verbunden
+ verschiedene Geschwindigkeiten
+ verschiedene Zugriffsverafahren (Half/Full duplex, Buszugriffsverfahren)
+ gleichverechtigter Zugriff auf Ressourcen
+ ausdehnung beschränkt
+
+Etherent
+ aus der LAN Profuktfamilie
+ nutzt CSMA/CD (Carrier Sense Multiple Access / Collision Detection) wird später erklärt
+WLaN:
+ verschiede modi:
+  Infrastrukturmodus: wird verwendet wenn ein Acces Point verwendet wird. Gibt wrirless gerärten eine anbindung an kabelgebundenes Lan. AP wandelt wireless daten und 
+   wandelt diese in Lan daten um, ist deswegen ein vermittler
+  Ad-Hoc: Nutzer verbinden sich direkt miteineander, um ein daten austauschen zu können
+ (E)SSID (Extended) Service Set Identifcation: 
+  zwei arten:
+   BSSID (Basic Service Set Identifcation): wird genutzt, wenn keine AP (Vermittler) vernwendet werden,
+   ESSID: wenn AP verwndet werden 
+ verschiede Standards nach IEEE: Die standards benutzen veschiedene Frenquenzen und nutzen diese anders um bestimmte Übertragunfsraten zu ereichen
+  außerdem dürfen je nach land Frequenzen anders "stark" (Watt) senden  
+ Verschlüsselung:
+  WEP: https://www.elektronik-kompendium.de/sites/net/0905251.htm
+   Schlüssel wird genutzt für Sicherheit, je länger (gemessen in Bit) desto sicherer , üblich sich 64. 128 und 232 Bit(davon 24 Bit Initialisierungsvektor)
+   heutzutage unüblich
+  WPA: https://www.security-insider.de/was-ist-wpa-a-742206/ 
+   implemtiert größtenteils den Sicherheitsstandard IEEE 802.11i (hat zu lange gedauert bis fertig)
+   basiert auf TKIP (Schlüssel sind dynamisch)
+  VPN: Tuneel wird zwischen Client und Server eingerichtet, welcher wiederum verschlüsselt ist, weshalb nur Client/Server wissen was gesendet wird
+
+WAN (Wide Area Network)
+DSL – Digital Subscriber Line Erhält und sendet Daten and ISP  um interet zu haben
+DSLAM – Digital Subscriber Line Access Multiplexer: bündelt DSL Leintungen und schickt sie zu BRAS, bis zu96 Ports
+BRAS – Broadband Remote Access Server: empfängt daten von DSLAM und 
+ADSL (Asymmetric Digital Subscriber Line)
+VDSL – Very High Speed DSL 
+1. VDSL1 – 52 Mbit/s UPS, 11 Mbit/s DOS
+2. VDSL2 – 100 Mbit/s UPS, 100 Mbit/s DOS
+
+Netzwerkvermittlungstechniken
+Rechner tausschen Information in Form von Bytes aus, die bei Ethernet in Frames (Datenrahmen) gebündelt werden
+Aufbau eines Frames
+Preamble (7 Byte)
+SFD (1 Byte)
+DestinationAdreess (6 Byte, MAC-Adresse)
+Sourceadress (6 Byte, Mac-Adresse)
+Type (2 Byte)
+Date (46-1500 Byte)
+FCS (4 Byte) 
+
+Bei IP (Internet Protokoll) heißen die EInheiiten Ip-Packeete, IP-Datenpackete werden durchs Internet MIttels Packetvermittlung geleitet
+
+Netzwerk vermittteln nicht nur speicher()denke das heißt mal daten sondern auch Leitungen selber, weshalb Rechner nicht unbedingt direkt eine dfirekte Verbindung zueinander haben müssen
+
+Leitungsvermittlung
+ dedizierter kanal zwischen Partnern
+ keine Speicherung von daten, nur vermittlung
+Speichervermittlung
+ Daten werden in den Vermittlingsknoten zwischengespeichert
+ Nachrichtenvermittlung:
+  Nachricht wird als ganzes vermittlelt, zwischengespeichert und weitergesendet. Nachricht ist lang (kb) weshalb oft auf festplatte gespecihert wird
+ Paketvermittlung
+  Nachricht wird vom sender in pakete aufgetielt (länge variable aber hat eine maximale größe). 
+  empfänger setzt pakete wieder zusammen.
+  es klnnen mehrere pakete auf der leitung sein, was wiederum die bandbreite erhöht (wird multiplexen genannt; Internet benutzt das)
+
+Protokolle
+Legen regeln fest zum austausch von Datenpaketen, aufbau von daten paketen und Bedeutung der datenfelder
+Verbindungslose Protokolle (z.b. UDP)
+ Datengramme werden versendet 
+  Datenpaket wird gesendet ohen vorheige Absprache
+  empfänger weiß0 auch nicht ob Datenpakete überhaupt ankommen
+  datenpakete haben keinen bezug zueinander
+  quell- und zieladresse werden versendetgeringer protokoll-overhead beim senden
+Verbindungsorientierte Protokolle 
+ vor der Übertragung, wird erst eine logische verbindung aufgebaut, welche erst bei fehlerfreier Übertragung beendet wird
+ daten kommen so unverfälscht beim empfänger an
+ vermitlung geschieht zwischen Vermittlungsknoten zu Vermittlungsknoten und Endsystem
+ keine Zielaresse sondern kennzeichnung zu zugeörigeng
