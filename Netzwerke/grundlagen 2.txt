@@ -1,1 +1,117 @@
-test 123
+Ethernet / IEEE 802.3
+ beschreibt eine reihe von systemen die CSMA/CD Systemen
+ gehört zu "random access" Verfahren
+ wenn ein Kanal belegt ist, darf niemand senden (Störung treten auf) aber jeder kann zuhören
+
+10Base5 
+ koaxial (heute twisted pair)
+ Dropcable(AUI Atachmant Unit Interface) Kabel zwischen NIC und Transreceiver 
+ Tranreciever müssen min. 2.5 Meter Abstand haben
+ Specs: 
+  Datenrate: 10 MBit/s
+  Maximale Länge des gesamten Netzes: 2500 m
+  Maximale Segmentlänge3 500m
+  Maximale Zahl der Knoten: 1024
+  Übertragungsmedium: Koaxialkabel (50Ω )
+  Zugriffsverfahren: CSMA/CD
+  Datenpakete: Datenrahmen variabler Größe
+
+5-4-3(-2-1)-Regel für "Legacy Ethernet":
+ Pfad zwischen 2 Stationen verläuft durch 
+ maximal 5 Segmente mit 4-Repeatern
+ es dürfen an nur 3 Segmente Endgeräte sein,
+ die restlichen 2 Segemnte sind Linksegmente (Segemnte die Repeater angeschlossen haben)
+ alles zusammen ist ein Kollisionsdomäne
+
+10BaseT (10 Mbit twisted Pair Kabel)
+ Zwei von vier Leitungspaaren werden genutzt (half duplex), wobei 
+ ein paar sendet und das andere empfängt (es gibt auch ein efull dublex variante)
+ 4 paare = 8 pins
+  pin 1 & 2 senden, pin 3 & 6 empfangen bei NICS, bei hub und switch sind paare umgekehrt 
+  (Paare sind jeweils verdrillt) 
+ Crossover kabel verbinden glecihartige geräte direkt miteinander, indem der sende pin an einem ende das signal
+ auf dem empfangspin auf der andere seite leitet (und umgekehrt)
+
+Damit mehr als 2 Rechner miteinander kommunizieren können müssen diese an eine aktive Netkomponente vai Patch-Kabel angeschlossen werden
+
+HUB
+ Schicht 1 auf OSI 
+ maximale Kabellänge 100m (10BaseT), danach muss regeneriert werden was ein HUB machen kann
+ HUBS empfangen pc über MDIX Anschluss, kommunizieren mit anderen HUBS über MDI Anschluss
+ Auto-MDI erkennt automatisch was benötigt wird
+ HUBS bilden BUS-Topologie
+ Wenn einer Sendet darf kein anderer senden aber jeder kann zuhören, heißt wenn 5
+ Rechner angeschlossen sind und zwei Rechner reden können alle zuhören aber die 3 restlichen müssen warten
+ wenn sie reden wollen
+ Man spricht auch von Rundsendenetzen (broadcast-net)
+
+ALOHA:
+ 1. ist kanal frei, wenn ja dann senden, wenn nein dann warten
+ 2. bei senden wird Kanal abgehört, ist Signal verfälscht sendet eine andere Station auf selben Kanal
+ 3. Sendung wird abgebrochen und JAM (zufälliges Datenmuster min. 32 Bit) gesendet
+ 4. nach Kollision wird eine Zufallszahl ermittelt "i" (i <= 2^k - 1, k anzahl der Kollision && k <= 10).
+    diese Zahl wird dann mit der Slottime (Dauer die ein Signal braucht um 2 Kollisionsdomäne zu durchlaufen) multipliziert
+    W = i*T (W ist Wartezeit, T ist slottime 52,2 Mikrosekunden)
+    Nach 16 Kollisionen wird abgebrochen
+
+CSMA / CD (Carrier Sense Multiple Access / Collision Detection)
+ A, B und C sind Rechner im selben Netzwerk
+ A und C senden zum selben Zeitpunkt, das sie merken der Kanal ist frei
+ Es kommt zur Kollision die erkannt wird, da beide Rechner den kanal abhören merken sie
+ das Signal ist verfälscht, brechen ab, senden Jam und nutzen (truncated binary exponetnial backoff ist der shit der bei ALOHA besprochen wurde) um
+ nicht direkt wieder eine Kollision zu verursachen
+ Logische 0 darf nicht 0V sein,da ansonsten andere Rechnerdenken könnten der Kanal wäre frei
+ es wird der Manchester Code benutzt der 0 als  Takt anzeigt /*muss im internet mal genauer nachschauen*/
+ und nicht als Signal
+ Daten werden in Ethernet zu einem Datenpaket zusammengefasst, wird auch Datenrahmen (data frame) zusammengefasst. Dieser besitzt eine Prüfsumme und Mindestlänge.
+ Die Mindestlänge ist wichtig, da sich das Paket über das Kabel komplett ausbreiten muss. Am ende des kabels ist ein Widerstand, der das Paket vernichtet
+ Kommt kein signal zurück, ist die Übertragung gelungen, kommt ein Signal zurück muss ein anderer Rechner gesendet haben => Kollision ist augetreten
+ist A mit senden fertig, warten andere Rechner eine zeit, bevor sie mit dem senden anfangen (interframe gap) 
+
+Ethernet II IEEE 802.3
+ Ethernet II ist der standard der von der Spezifikation von IEEE abweicht
+ Ethernet ist auf bustopologie aufgebaut weshalb noch Zieladresse benötigt wird 
+ damit man weiß an wen das Paket geht. Ethernet adresse wird auch als MAC Adresse bezeichnet (6 Bytes und einzigartig)
+ Im frame wird destination (Zieladresse) und sourceadress(eigene Adresse) angegeben, wenn andere Rechner sehen dass das Paket
+ nicht für sie bestimmt ist wirds von der NIC verworfen (CPU nicht involviert), ist Paket an Rechner adressiert
+ wirds an höhere Schicht geleitet (Unicast)
+ Will Rechner alles anderen Rechner erreichen ist destination adress nur "1" (FF:FF:FF:FF), wird broadcast genannt
+ Multicast: destination adress entählt gruppe /*internet muss helfen*/ an Rechner an die Paket geschickt wird
+ Unicast ist wenn macadresse gerade ist LSB = 0
+ Multi und Unicast LSB = 1 
+ preamble und byte iwas wird verschoben /*internet muss helfen*/ bytes rechts werden nach links geschoben
+ nach dem Verschieben schauen om höchstes byte gerade ist wenn ja dann Unicast
+ wenn nein und ganze mac adress FF:FF:FF:FF ist broadcast ansonsten Multicast 
+
+ Frame:
+  Preamble (7 Byte)
+  SFD (1 Byte)
+   sind für taktsynchronisation verantwortlich, werden verschluckt
+  DestinationAdreess (6 Byte, MAC-Adresse)
+  Sourceadress (6 Byte, Mac-Adresse)
+   wie schon beschrieben
+  Type (2 Byte)
+   was für Daten werden versendet (WElches Protokoll)
+  Data (46-1500 Byte)
+   Daten die an höhere Schicht (3) überliefert werden 46-1500Byte
+  FCS (4 Byte) 
+   (Frame check sum? wird berechnet und überprüft um zu ermitteln ob das Paket beschädigt ist)
+
+ Types:
+  im Feld types handelt es sich IEEE 802.3 Datenrahmen wenn type < 0x0600 ist ansonsten Etherent Datenrahmen
+  
+ Unterschied zwischen Datenrahmen
+  Preamble, SFD dest.- sourceadress und FCS gleich 
+  IEEE hat PAD anstatt einer Mindesgröße in Data, also wenn data < 46 Byte ist wird PAD ausgefüllt
+  außerdem length anstatt type, length sagt wie viel Nutzbytes in Data tatsächlich versendet werden
+  
+  Um in Schicht 2b kommunizieren zu können wird in IEEE im Data Feld noch DSAP(Destination Service Access Point) und einem Controlbyte 
+  SSAP  (Source SAP) erweitert welche den Typ angeben (IEEE 802.2). Diese sind jedoch nur jeweils ein Byte lang weshalb  
+  diese startk eingeschränkt sind. Deshalb gibt es auch den IEEE 802-SNAP Datenrahmen (erkennbar wenn DSAP & SSAP 0xAA gesetzt sind)  und Control = 0x03
+  SNAP erweiter mit 3 OUI und 2 Ehertype bytes 802.2. OUI kann firmenkennung eingertagen werden. Ethertype ist kennung für Type was Schicht 3 dann braucht
+  Werte stimmen mit Etherent Standard überein 
+
+ IEEE 802.3 Raw Frame (brauche ich nicht wirklich xd lol)
+  keine Typkennung, erkennbar daurch das DSAP UND SSAP auf 0xFF gesetzt sind (in Data)
+  
+Ethernet Brücke

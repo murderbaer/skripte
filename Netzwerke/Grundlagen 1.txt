@@ -12,7 +12,7 @@ Netzwerk:
 DNS (Domain Name System):
  Server, welcher eine Anfrage bekommt ob er die Ip adresse eines Hostnames(z.B. facebook.com hat IPv6:2a03:2880:f1ff:83:face:b00c:0:25de) 
  in 2 Gruppen unterteilt:
-  1) allgemeine TLSD (gentericTLDs gTLDs) wird wieder in 2 Gruppen unterteilt:
+  1) allgemeine TLDs (gentericTLDs gTLDs) wird wieder in 2 Gruppen unterteilt:
    a)sponsoredTLDs (sTLDS): werden nur vergeben wenn Seitenbetreiber bestimmte Vorgaben erfüllt
    b)unspunorredTLDS (uTLDs -> ICANN) allgemeinere TLDs die beliebig gnutzt werden können
   2)länderspezifische TLDs: country-codeTLDs (ccTLDs)
@@ -27,7 +27,7 @@ DNS (Domain Name System):
  FulliQualiefiedDomainNames (FQDN) enden mit einem punkt s1.www.website.com.
 
 LAN (Local Area Network)
- Lan vernetzt rechenr auf einem bestimmten Bereich wie ein Haus ióder Campus, 
+ Lan vernetzt Rechner auf einem bestimmten Bereich wie ein Haus ióder Campus, 
  kein Transportnetz (Telekom)
  Geräte sind ständig miteineander verbunden
  verschiedene Geschwindigkeiten
