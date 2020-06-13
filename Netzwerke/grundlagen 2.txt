@@ -115,3 +115,35 @@ Ethernet II IEEE 802.3
   keine Typkennung, erkennbar daurch das DSAP UND SSAP auf 0xFF gesetzt sind (in Data)
   
 Ethernet Brücke
+ Hubs erstellen eine Kollisionsdomäne, Bandbreite wird hier geteilt. transparent Bridges entkoppeln Kollisionsdomänen
+ und scahffen so mehr Bandbreite da sie mehrere Kollisionsdomänen schafft, es entsteht 
+ eine sogenannte Broadcast domäne. Bridge interpretiert Frame um zu sehen in welche Kollisionsdomäne der Frame geschickt werden
+ muss (bzw. ob überhaupt geschickt werden muss). Heute werden switches anstatt transparent bridges genutzt.
+ Arbeitsweise: 
+  1. Frame wird empfangen.
+  2. Source mac wird in Porttabbelle geschireben. Aging timer wird gesetzt
+  3. Destination mac wird gesucht in anderer Kollisionsdomäne und an paket wird an entsprechenden port geleitet Forwarding.
+  4. ist Destination mac unbekannt, wird an alle ports (außer source port) gesendet (flooding) 
+  5. bei broad/multicast wird geflooded
+  6. max DA in selber Kollisionsdomäne  wird gefilter, paket bleibt in Kollisionsdomäne
+  /*Folie 35 anschaue*/
+
+Switching
+ Der Pisser hat nur Aufgaben ohne Erklärung im Skript
+
+Spanning Tree 
+ Um schleifen beim weiterleiten von Paketen (forwarding) bzw. bei broad/multicast zu vermeiden beherrschen bridges das Spanning Tree Protokoll (STP)
+ hier wird ausgehend von einer root bridge eine Baum Topologie erschaffen, um schleifen zu vermeiden (Pfad zu einem Netzsegment is dadurch immer eindeutig)
+ bridges die schleifen verursachen werden in StandBy Modus geschalten, sei leiten Pakete nicht weiter, erwarten aber Hello-Signale von root bridge (werden vo aktiven 
+ Bridges weitergeleitet), kommen keine Hello Signale an wird von einem Fehler in der Struktur gerechnet weshalb erzwungen wird das neue Topologie(schleifenfrei) aufgebaut wird
+ STP aktive Bridges nutzen BPDU (Bridge Protocoll Data Units) um root bridge zu ermitteln und um Infos von anderen STP aktiven bridges zu bekommen
+
+ Bridge Identifier legt fest welche priorität eine Bridge hat. 2 Byte sind für Priorität (je geringer die zahl, desto höher die Prio) und 6 Byte für MAC Adresse
+ Briges geht beim einschalten davon aus, dass sie root ist und sendet BPDUs aus um zu sagen dass sie jetzt root ist (gesendet wird bridge Identifier und root Identifier)
+ andere Bridge vergleciht empfangenen root Identifier mit eigen bridge Identifier. ist eigene Priorität geringer als root , hört die bridge auf eigene zu BPDUs zu senden
+ bpdu von root wird weitergeleitet und port von root bridge wird als root port markiert.
+ Ist die root priorität höher als Bridge die gesendet hat: empfangee BPDU wirdverändert, als root identifier eigener bridge identifier eingetragfgen (nicht mehr sender identifier).
+ BPDUs werden weiter aktiv gesendet vom 
+ BPDU (Folie 51)
+
+ Aufbau des Baums
