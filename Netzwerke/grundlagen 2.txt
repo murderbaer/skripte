@@ -131,6 +131,8 @@ Ethernet Brücke
 Switching
  Der Pisser hat nur Aufgaben ohne Erklärung im Skript
 
+
+
 Spanning Tree 
  Um schleifen beim weiterleiten von Paketen (forwarding) bzw. bei broad/multicast zu vermeiden beherrschen bridges das Spanning Tree Protokoll (STP)
  hier wird ausgehend von einer root bridge eine Baum Topologie erschaffen, um schleifen zu vermeiden (Pfad zu einem Netzsegment is dadurch immer eindeutig)
@@ -146,4 +148,96 @@ Spanning Tree
  BPDUs werden weiter aktiv gesendet vom 
  BPDU (Folie 51)
 
- Aufbau des Baums
+ Aufbau BPDU: 
+  Protocol Identifier : 0:SpanningTree
+  Protocol Version Identifier : 0
+  BPDU (Bridge Protocol Data Unit) Type:
+  0 : Configuration
+  Flags : z.B. wird hier angezeigt, ob sich die Topologie geändert hat.
+  Root Identifier: Bridge Identifier der Root-Bridge
+  Root Path Cost : Summe der Kosten des Pfades von der Root -Bridge an
+   gemessen.
+  Bridge Identifier: Identifier der Bridge, die diesen Datenrahmen ausgesen-
+   det hat.
+  Port Identifier: Kennzeichnung des Ports über das dieser Datenrahmen
+   gesendet wurde.
+  Message Age: Geschätzte Zeit in 1/256 Sekunde ab dem Absenden der
+   BPDU durch die Root Bridge
+  Max Age: Zeiteinheit in 1/256 Sekunde nach der Protokoll- Informationen,
+   die über ein Port empfangen wurden, von der Bridge gelöscht werden sollen.
+  Hello Time: Zeitdauer zwischen dem Absenden von 2 aufeinander folgen-
+   den Hello- Nachrichten (besondere BPDUs) durch die Root- Bridge
+  Forward Delay : Zeitdauer, die ein Bridgeport in den Zuständen listening
+   und learning verweilt, bevor dieser Port in den Zustand forwarding über-
+   geht.
+
+ Aufbauen von einem Spanning Tree:
+  Root Bridge wird ermittelt. Danach wir mit Hilfe des Root Path Cost feld in den BPDU emittlett, welcher Pfad zur root brige der günstigste ist.
+  Die Kosten werden durch die Geschwindigkeit(Bandbreite) ermittelt, desto höher die Geschwindkeit desto niedriger die Kosten.
+  Root bridge hat 0 Im Kosten Feld. Es werden BPDUs abwärts geschickt (immer da wo Bridge ihren root port hat) und jede Bridge addiert 
+  ihre root path cost zu dem in der BPDU stehenden RPC. Bei einer SChleife empfangen 2 verschueden Bridges gleiche RPC. Einer der beide bridges wird in 
+  StandBy geschickt (wenn RPC unterschiedlich, dann die mit der niedrigeren RPC, bei gleicher RPC, die mit niedrigerem Bridge Identifier)
+  
+ Weiter Zustaände:
+  WErden bridges während dem Betrieb ausgewächselt oder entfernt (topologie change), könnte es zu schleifen kommen wenn Bridge direkt von blokicng Zusatand
+  in forwarding Zustand geht. Deshalb gibt es zwischenzustände die zsischen blocking und forwarding liegen: 
+   Nach dem Einschalten in den Zustand blocking
+   Aus dem Zustand blocking in einen der Zustände disabled oder listening
+   Aus dem Zustand listening in einen der Zustände disabled oder learning
+   Aus dem Zustand learning in einen der Zustände disabled oder forwarding
+   Aus dem Zustand forwarding in den Zustand disabled
+  bei korrekter Konfiguration ist am ende Bridge entweder in blocking oder Forawarding
+  Zustand listening:
+   Protokollinformation werden ausgewertet (kann sein dass port hier in StandBy gesetzt wird wenn SChleife auftacuht).
+   Port wartet auf ablaufen des dforward Delay timer und wechselt in listenign Zustand. Es werden keine Frames weitergeleitet
+   forward delay timer wird zurückggesetzt
+  Zustand learning:
+   Es werden immernoch keine Frames weitergeleitet aber Bridge merkt sich source mac vom Paket un am welchem Port der Frame empfagen wurde
+   bei ablauf vom forward delay timer wird in Zustand forwarding gesetzt
+   /*schauen ob bridges eigentlich ports heißen soll, Folie 57*/
+
+ Kenngröße von Brifges
+  Filter Rate: wie viele frames können pro Zeiteinheit gefiltert werde. Höher als bei Forwarding, da frames nur geprüft und berworfen werden
+  Forawarding Rate: Anzahl der frames die pro Zeiteinheit weitergeleitet werden können. ist höchstanzahl erreicht arbeitet Brige in "full wired speed"
+  Anzahl der Adresstabelleneinträge: wie viele MAC-Adressen können in Porttabelle gespeichert WErden
+
+
+
+Switches 
+ Wie brige nimmt ein switch frames und leitet sie bei bedarf weiter. Hat auch Porttabellen. Lernt MAC auch wie bridge indem source mac ausgewertet wird
+ Switches haben jedoch idR mehr als 2 ports weshalb mehrere segmente angeschlossen werden können. Jedes segment bildet Kollisionsdomäne
+
+ Pufferung:
+  Bei switches können mehrere Rechner miteinander kommunizieren da ein Switch pakete zwischenspeicher (puffer) kann. Ist das Zielsegmetn belegt 
+  speichert der switch in den pufferspeicher. Hier gibt es 2 arten:
+   port-base memor: jeder port hat eigenen Speicher und
+   shared memory buffering: alle ports haben gemeinsamen speicher. Hier ist der Vorteil dass jeder Port sich einfach so viel speicher nimmt wir 
+    gebraucht wird. Dies ist besonder nützlich wenn switch mit verschieden Geschwindigkeiten arbeitet (100Mbit bzw Gigabit), da wenn ein Gerät nur 100Mbit+
+    braucht nicht 900 verschwendet werde /*(denk ich mal)*/ 
+
+ Symmetric Switching: alle Ports haben gleich Übertragungsgeschwindkeit
+ Asymetric switching: Segmente werden mit unterschiedlichen Geschwindigkeiten verbindet /*wahrscheinlich wieder 100Mbit/ Gigibait*/
+
+ Switching Methoden:
+  Store adn Forward: 
+   wie bei bridge. frame FCS wird überprüft, ist diese falsch wird paket vwerorfen
+  Cut trough:
+   fast forwarding: 
+    sobald Ziel MAC bekannt, wird frame weitergeleitet. niedrige latenz aber fehlhafte pakete werden weitergeleitet
+   fragment-free-switching:
+    wenn 64 Byte ohne Kollision empfagen wird paket erst weitergeleitet, da ab 64 Byte keine reguläre Kollsion entstehen kann
+  Manchmal werden beide Methoden verwendet, wenn z.B. cut trough zu viele fehlerhafte frames sendet wird auf store and forward geswitcht(wird intelligent switching genannt) 
+
+
+VLAN
+ Switch lässt sich per Software in logische switches aufteilen. Logischer switch entspricht VLAn. rechner könne an verschiedenen physikalischen switches sein aber im selben
+ logischen VLAN. Nur rechner im selben VLAN könne direkt /*direkt wahrscheinlich = ohne Forwarding*/ kommunizieren, gilt auch für broad / multicast.
+ 
+ Tagging:
+  Switch hat eine Datenbank, in der VLAN intern gespeichert werden. Damit aber auch Rechner von anderen switches im selben VLAN sind, wird das Tagging-Verfahren 
+  verwendet. Hierführ wird einen Datenrahmen nach IEEE802.1Q (4Byte lange ausprägun) verwendet (wird im Typefeld als 0x8100 bezeichnet) /*viel bullschit, muss googeln. Seite 64 Folie 66 pdf*/
+  VLANS kommunizieren durch router, deshalb ist vlan schicht 2 und 3 in OSI. Netzsegmente von VLANs können auhc als subnetzte intepretiert werden.
+
+ VLAN und STP
+  2 VLANS führen zwei mla STP durch (2 rooot bridges etc.)
+  /*FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK*/
