@@ -13,20 +13,57 @@ IP
  IPs werden in 5 Klassen unterteilt:
 
   /*Bits Umrechnen*/
-  Klasse A: 1. Bit(links) im höchsten byte = 0 (=> 1.0.0.0 bis 127.255.255.255 00000001.00000000.00000000.0000000 bis 0111111.11111111.....)
+  Klasse A: 1. Bit(links) im höchsten byte = 0 (=> 1.0.0.0 bis 127.255.255.255 00000001.00000000.00000000.0000000 bis 0111111.11111111.11111111.11111111)
             7Bit Netzanteil; 24 Host
-            10.0.0.0 reserviert für nicht registrietrte Netze
+            10.0.0.0 - 10.255.255.255 reserviert für nicht registrietrte Netze
 
-  Klasse B: 1-2. Bit (links) im höchsten byte = 10 (=> 128.0.0.0 bis 191.255.255.255 0000000.00000000.00000000.0000000 bis 0111111.11111111.....)
+  Klasse B: 1-2. Bit (links) im höchsten byte = 10 (=> 128.0.0.0 bis 191.255.255.255 1000000.00000000.00000000.0000000 bis 10111111.11111111.11111111.11111111)
             14 Bit Netzanteil; 16 Host
-            172.16.0.0 - 172.31.0.0 reserviert für nicht registrietrte Netze
+            172.16.0.0 - 172.31.255.255 reserviert für nicht registrietrte Netze
 
-  Klasse C: 1-3. Bit (links) im höchsten byte = 110 (=> 192.0.0.0 bis 223.255.255.255 1100000.00000000.00000000.0000000 bis 111.11111111.....)
+  Klasse C: 1-3. Bit (links) im höchsten byte = 110 (=> 192.0.0.0 bis 223.255.255.255 1100000.00000000.00000000.0000000 bis 10111111.11111111.11111111.11111111)
             21 Bit Netzanteil; 8 Host
-            192.168.0.0 - 192.168.255.0 reserviert für nicht registrietrte Netze
+            192.168.0.0 - 192.168.255.255 reserviert für nicht registrietrte Netze
 
-  Klasse D: 1-4. Bit (links) im höchsten byte = 1110 (=> 244.0.0.0 bis 239.255.255.255 00000001.00000000.00000000.0000000 bis 0111111.11111111.....)
+  Klasse D: 1-4. Bit (links) im höchsten byte = 1110 (=> 224.0.0.0 bis 239.255.255.255 11100000.00000000.00000000.0000000 bis 11101111.11111111.11111111.11111111)
             wird für Multicast genutzt; 24 Bit für Gruppenadresse 
 
-  Klasse E: 1-4. Bit (links) im höchsten byte = 1111 (=> 240.0.0.0 bis 239.255.255.255 00000001.00000000.00000000.0000000 bis 0111111.11111111.....)
+  Klasse E: 1-4. Bit (links) im höchsten byte = 1111 (=> 240.0.0.0 bis 255.255.255.255 11110000.00000000.00000000.0000000 bis 1111111.11111111.11111111.11111111)
             Für Forschungszwecke reserviert
+
+ Wird eine IP-Adresse beantragt, erhält ma in der Regel nur die netID (man erhält ein Netz). Mit dem Host Anteil, kann mna entweder nur Rechner anschließen oder auch 
+  Subnetzte erstellen (Subnetting). Umm wissen zu können, welcher Anteil an den host geht und welcher an das Subnetz wird die Subnetzmaske verwendet. Die maske sieht aus wie eine IP
+  Adresse nur dürfen die Bits von links nach rechts nicht gemixt werden (also 1111000 ist okay aber 1001110 nicht), fängt auch mit einer 1 an (wird meist umgerechnet in Dezimal bzw. mit "\X" wobei X die Anzahl der einen ist)
+  Möchte man einen Broadcast in einem Subnet durchfüren müssen alle host bits der Netzadresse auf 1 gesetzt werden (directed Broadcast)
+
+
+ Um Ipadressen zu sparen, hat man sich entschieden jedem Netz im Internet nur eine IP-Adress zu geben (wird meistens jeden Tag vom ISP neu gesetzt)
+ Wie oben schon gesagt gibt es nicht registrietrte IP-Adressen, das sind ip adressen die nicht übers Internet(WAN) erreichbar sindsondern nur lokal (LAN) und acu nur dann wenn ein Computer die IP im Netz Netz
+ Wenn ein Router jetzt Pakete von einem Rechner ins Internet schicken will, ersetzt der Router die source IP adresse mit seiner wodurch Antorten wieder möglich sind
+ /*Jeder PC der an der selben FritzBox angeschlossen ist hat die selbe IP wenn man aus dem Internet drauf schaut, lokal hat sie aber 192.168... oper 10.1...,Router ersetz die source IP
+ wenn Pakete nicht ins selbe Netz verschickt werden soll, (Internet)router bekommt seine öffentliche IP vom ISP*/
+
+ Schleifenadresse (Loopback Adress): 127.0.0.1, ist der "interne IP Stack" heit eigentlcih wenn ein PC and diese Adresse Pakete schickt, dass sie Pakete den Pc nicht verlaseen werden 
+ directed Broadcast: Broadcast, bei dem Der Hostanteil maximal ist (überall 1), router kann das weiterleiten (je nach Konfiguration)
+ flooded Broadcast: Broadcast der über alle subnetze geht, router leitet den aber nciht weiter
+
+ Multicast /*Tablle, im Internet mal nachschauen*/
+
+ APIPA: Wenn DHCP aktiviert ist aber kein Server zu erreichen ist, setzt der Rechenrs eine IP auf (169.254.0.0 -169.254.255.255) Router verwirft Pakete mit so einer IP
+
+ IP Paket
+  IP PAket ist im Data Feld von Ethernet Frame. Ethernet kennzeichnet das mit 0x800 im Type-Feld. Wird das Paket an den "WAN Router" geschickt, wandelt dieser das Etherent Palet
+  in ein WAN Datenrahmen /*gutes Bild auf Folie 21 und auf 22 sind Erklärungen*/
+
+ TOS-Feld (Type of Service): Poritrität vom Paket
+ Fragmentation Control: gibt an ob und wie ein IP Paket fragmentiert wird
+  Wenn ein Router Pakete empfängt die größer sind, als dass er sei als ganzes weiterleiten kann muss das Paket framentiert werden.
+  Identifaction : eindeutige Zuordnung der Fragmente.
+  Flag: für MF = kommen noch weitere Fragmente? (0,1); für DF = darf fragmentiert werden (0,1)
+  Fragment Offset: Anzahl der Fragmente die entstanden sind (Zahl ist durch 8 teilbar)
+
+ IP Options:
+  IP header minimal 20 Byte lang, kann aber mit "Option bytes" erweitert werden
+  /*iwas mit Bit Wörtern...internet anschauen, Kopf wird matsch*/
+  Beispiele für options ins "ping -r". Hier wird auch die route des ping befehls in options augeszeichnet
+  
