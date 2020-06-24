@@ -66,4 +66,27 @@ IP
   IP header minimal 20 Byte lang, kann aber mit "Option bytes" erweitert werden
   /*iwas mit Bit Wörtern...internet anschauen, Kopf wird matsch*/
   Beispiele für options ins "ping -r". Hier wird auch die route des ping befehls in options augeszeichnet
-  
+ 
+ Routing von IP-Adressen
+  Rechner im selben Subnetz können sich gegenseitig direkt erreichen (direct routing)
+  Ist ein Rechner in einem anderen Subnetz muss man über Router gehen. Dies macht man indem man Im Etherent Frame die Destination Adress vom Router nummt, aber die 
+  Die Destination ADress im IP Frame ist die vom Zielrechner. Router empfängt nun den Frame und endtscheidet wohin Der Frame geschickt werden muss 
+  (wenn im selben Subnetz dann an Rechenr, wenn nicht dann an nächsten Router)
+  Router werden auch als Gateways bezeichnet(Interent Sprachgebrauch)
+  Routing wird sowohl bei Routern als auch bei Host Rechnern angewendet
+
+  Routingtabelle: 
+   Router hat eine Tabelle in der drinsteht wie Netze(idR Router) oder Rechner zu erreichen sind
+   Werden Routen ind Routingtabellen manuell angelegt nennt man die Routen statische Routen.
+   Router können auch durch Routingprotokolle untereinander kommunizieren um Routen zu erstellen (dynamic routing). Router können durchs
+   dynamic routing Ausfälle untereinander erkennen und können ggf alternatice routen setzen
+   
+   Default Route:
+    Eintrag in der Routing Tablle der gewählt wird wenn keine andere Route "funktioniert"
+   Beim Roouting wird zudem ncoh zwischen Net-Specific routes (Routen für Netze) und Host Specific routes (routen zu Hostrechnern, Root DNS als Beispiel)
+   Wenn zwei routen (also eine route zum Host und eine zum netz indem der Hsot steht ) exisitiern muss erst durch den 
+   IP-Routingalgorithmus (Folie 39 ist der Verlauf)
+
+ ARP (Adress Resolution Protocol)
+  Rechner will Etherent Framee an Rechner schicken kennt aber nur die IP
+  arp request, response & trace cache /*Internet, wir in den Folien nur anhanf von Beispielen erklärt*/
