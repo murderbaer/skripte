@@ -135,8 +135,15 @@ pdftitle={Analysis 1}
     $\lim$ kann auch gegen $-\infty$ oder auch gegen einen Punkt gehen.
 
     \subsection{Stetigkeit einer Funktion}
+        Eine Funktion heißt stetig im Punkt $x_0$:
+        \begin{description}
+            \item $f(x_0)$ ist definiert: Beispielsweiße ist $\cfrac{1}{x}$ nicht stetig in $\mathbb{R}$ jedoch in $\mathbb{R} \setminus 0$ da hier $x_0 = 0$ nicht definiert ist (nicht definierte Werte werden bei der Überprüfung der Stetigkeit nicht berücksichtigt)
+            \item $lim_{x \to x_0}: f(x) existiert$: An allen derfinierten Punkten muss ein Grenzwert nach $x_0$ vorliegen. Es dürfen sozusagen keine Lücken vorhanden sein ($\cfrac{1}{x}$ mit $\mathbb{R}$ hat z.B. eine "Lücke" für $x_0 = 0$). Sprü
+            \item $lim_{x \to x_0}: f(x) = f(x_0)$: Der Grenzwert an Stelle $x_0$ muss glecih dem Funktionswert an Stelle $x_0$ sein.
+        \end{description}
+        Ist eine Funktion in jedem Punkt stetig, heißt die komplette Funktion stetig.
 
-    \newpage
+
     \subsection{Tabelle mit Funktionen und deren Eigenschaften}
         \subsubsection{Polynomfunktion}        
         \begin{description}
@@ -182,7 +189,20 @@ pdftitle={Analysis 1}
                    \item Ist n ungerade dann so ist auch $f(x)$ ungerade
                \end{itemize} 
            \end{description}       
-    \newpage
+    
+
+           \subsection{Kurvendiskussion}
+                \begin{description}
+                    \item[Extrema] \(f'(x) = 0 \wedge f''(x) \neq 0\)
+                    \begin{description}
+                        \item[Maximum] \(f''(x) < 0\)
+                        \item[Minimum]  \(f''(x) > 0\)
+                    \end{description}
+                    \item[Wendepunkt] \( f'(x) \neq 0 \wedge f''(x) = 0, \)
+                    \item[Sattelpunkt] \(f'(x) = f''(x) = 0\) 
+                \end{description}
+
+
 
     \section{Differntialrechnung}
         \subsection{Ableitungregeln Funktion}
@@ -262,15 +282,6 @@ pdftitle={Analysis 1}
                     \hline
                 \end{tabular}
                 
-                \section{Kurvendiskussion}
-                \begin{description}
-                    \item[Extrema] \(f'(x) = 0 \wedge f''(x) \neq 0\)
-                    \begin{description}
-                        \item[Maximum] \(f''(x) < 0\)
-                        \item[Minimum]  \(f''(x) > 0\)
-                    \end{description}
-                    \item[Wendepunkt] \( f'(x) \neq 0 \wedge f''(x) = 0, \)
-                    \item[Sattelpunkt] \(f'(x) = f''(x) = 0\) 
-                \end{description}
-                \section{Integralrechnung}
+    \section{Integralrechnung}
+
 \end{document}
