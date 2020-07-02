@@ -1,24 +1,26 @@
 \babel@toc {german}{}
-\contentsline {section}{\numberline {1}Komplexe Zahlen}{}{section.1}% 
-\contentsline {subsection}{\numberline {1.1}Definitionen}{}{subsection.1.1}% 
-\contentsline {subsubsection}{\numberline {1.1.1}Definitionen}{}{subsubsection.1.1.1}% 
-\contentsline {subsubsection}{\numberline {1.1.2}Formen}{}{subsubsection.1.1.2}% 
-\contentsline {subsubsection}{\numberline {1.1.3}Grundrechenarten}{}{subsubsection.1.1.3}% 
-\contentsline {subsubsection}{\numberline {1.1.4}Radiezieren}{}{subsubsection.1.1.4}% 
-\contentsline {section}{\numberline {2}Funktionen}{}{section.2}% 
-\contentsline {subsection}{\numberline {2.1}Nulstellen}{}{subsection.2.1}% 
-\contentsline {subsection}{\numberline {2.2}Symmetrie}{}{subsection.2.2}% 
-\contentsline {subsection}{\numberline {2.3}Monotonoie}{}{subsection.2.3}% 
-\contentsline {subsection}{\numberline {2.4}Periodizät}{}{subsection.2.4}% 
-\contentsline {subsection}{\numberline {2.5}Umkehrfunktion}{}{subsection.2.5}% 
-\contentsline {subsection}{\numberline {2.6}Grenzwert einer Funktion}{}{subsection.2.6}% 
-\contentsline {subsection}{\numberline {2.7}Stetigkeit einer Funktion}{}{subsection.2.7}% 
-\contentsline {subsection}{\numberline {2.8}Tabelle mit Funktionen und deren Eigenschaften}{}{subsection.2.8}% 
-\contentsline {subsubsection}{\numberline {2.8.1}Polynomfunktion}{}{subsubsection.2.8.1}% 
-\contentsline {subsubsection}{\numberline {2.8.2}Gebrochenrationale Funktion}{}{subsubsection.2.8.2}% 
-\contentsline {subsubsection}{\numberline {2.8.3}Potenzfunktion}{}{subsubsection.2.8.3}% 
-\contentsline {subsection}{\numberline {2.9}Kurvendiskussion}{}{subsection.2.9}% 
-\contentsline {section}{\numberline {3}Differntialrechnung}{}{section.3}% 
-\contentsline {subsection}{\numberline {3.1}Ableitungregeln Funktion}{}{subsection.3.1}% 
-\contentsline {subsection}{\numberline {3.2}Ableitungsregeln Arithmetik}{}{subsection.3.2}% 
-\contentsline {section}{\numberline {4}Integralrechnung}{}{section.4}% 
+\contentsline {section}{\numberline {1}Komplexe Zahlen}{}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Definitionen}{}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Definitionen}{}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Formen}{}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}Grundrechenarten}{}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}Radiezieren}{}{subsubsection.1.1.4}%
+\contentsline {section}{\numberline {2}Funktionen}{}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Nulstellen}{}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Symmetrie}{}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Monotonoie}{}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Periodizät}{}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Umkehrfunktion}{}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Grenzwert einer Funktion}{}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Stetigkeit einer Funktion}{}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Tabelle mit Funktionen und deren Eigenschaften}{}{subsection.2.8}%
+\contentsline {subsubsection}{\numberline {2.8.1}Polynomfunktion}{}{subsubsection.2.8.1}%
+\contentsline {subsubsection}{\numberline {2.8.2}Gebrochenrationale Funktion}{}{subsubsection.2.8.2}%
+\contentsline {subsubsection}{\numberline {2.8.3}Potenzfunktion}{}{subsubsection.2.8.3}%
+\contentsline {subsection}{\numberline {2.9}Kurvendiskussion}{}{subsection.2.9}%
+\contentsline {section}{\numberline {3}Differntialrechnung}{}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Ableitungregeln Funktion}{}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Ableitungsregeln Arithmetik}{}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Integralrechnung}{}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Rechenregeln}{}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Integrationsmethoden}{}{subsection.4.2}%

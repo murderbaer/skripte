@@ -53,7 +53,8 @@ pdftitle={Analysis 1}
                         \item[Herleitung:]  Es gilt: \(x = r * \cos\varphi, \, y = r * \sin\varphi \\
                         z = x + i*y = r * cos\varphi + i * r* sin\varphi = r(cos\varphi + i*sin\varphi) \), 
                         \\ $r = |z|$ 
-                        \item[Berechnung von $\varphi$:] Je nachdem, in welchem Quadranten sich $z$ befindet, ändert sich die Formel leicht um $\varphi$ zu bestimmen.
+                        \item[Berechnung von $\varphi$:] Je nachdem, in welchem Quadranten sich $z$ befindet, ändert sich die Formel leicht um $\varphi$ zu bestimmen.\\
+                            Allgemein gilt $sin \varphi = \cfrac{y}{|z|} \rightarrow \varphi = arcsin(\cfrac{y}{|z|})$
                         \begin{itemize}
                             \item Quadrant 1: $\varphi = \varphi_{Rechenr}$
                             \item Quadrant 2 : $\varphi = \pi - \varphi_{Rechner}$
@@ -86,9 +87,9 @@ pdftitle={Analysis 1}
             Wenn aus einer Komplexen Zahl z die n-te Wurzel gezogen wird, entstehen somit auch n verschieden Wurzeln.
             die allgemeine Formel dafür lautet 
             \begin{equation*}
-                z^{\frac{1}{n}} = |z|^{\frac{1}{n}} * e^{i(\frac{\varphi}{n} + \frac{m}{n})* 2\pi}
+                z^{\frac{1}{n}} = |z|^{\frac{1}{n}} * e^{i(\frac{\varphi}{n} + \frac{m}{n}* 2\pi)}
             \end{equation*}
-            Das $n$ bleibt immer konstant und $m$ startet bei 0 und wird bis $m = n-1$ hochgeählt wodurch man die $n$ Wurzel herbekommt,
+            Das $n$ bleibt immer konstant und $m$ startet bei 0 und wird bis $m = n-1$ hochgezählt wodurch man die $n$ Wurzel herbekommt,
             ledigliche $\varphi$ und $|z|$ müssen wie oben beschrieben berechnet werden und ggf. muss $z$ in die Exponentialform gebracht werden, um die Berechnungen zu erleichtern.  
         \newpage
     \section{Funktionen}
@@ -283,5 +284,27 @@ pdftitle={Analysis 1}
                 \end{tabular}
                 
     \section{Integralrechnung}
-
+        Die Integralrechnung ist die Umkehrung zur Differntialrechnung, weshalb man die Tabelle von der Differntialrechnung nutzen kann indem man sie von rechts nach links lesen kann.
+        Wird eine Funktion $f$ integriert erhält man die Stammfunktion $F$. Man schreibt auch:
+        \begin{description}
+            \item[unbestimmtes Integral] $\int f(x) dx = F(x)$
+            \item[bestimmtes Integral] $\int_{a}^{b} f(x) dx = F(b) - F(a)$  wobei $a$ und $b$ das Intervall angeben in dem man integrieren möchte. 
+        \end{description}
+        \subsection{Rechenregeln}
+            \begin{description}
+                \item[Faktorregel] $\int c * f(x) dx = c * \int f(x) dx$ 
+                \item[Summenregel] $\int f(x) + g(x) dx = F(x) + G(x)$  
+            \end{description}
+        \newpage
+        \subsection{Integrationsmethoden}
+        \begin{description}
+            \item[partielle Integration] $\int f(x) * g(x) dx = F(x) * g(x) - \int F(x) * g'(x) dx$ \\
+             Hier sollte man schauen, dass man (wenn möglich) die Funktionen zum integrieren und differenzieren so wählt, dass sie im nächsten Schritt 'einfacher' werden.  
+             Teilweise hilft es auch wenn nur $f(x)$ vorhanden ist, $g(x) = 1$ zu setzen da ja $1 * f(x) = f(x)$ ergibt.
+             \item[Integration durch Substitution] $\int f(x)\, * \,g(x)\, dx = \,\int d(F(x) \,+ \,C) \,* \,g(x) \,dx$ 
+             \\Sei nun $F(x) + C = u$  und $F(x) + C$ so gewählt dass man $u = g(x)$, 
+            bzw. $u$ möglichst ähnlich zu $g(x)$ ist. Dann gilt wiedereum: $\int 1 * u \,du $ 
+            \\Hier wurde jetzt $F(x)$ substituiert. Jetzt kann man, je nach Form der Gleichung schauen welche Regeln man anwednen kann, bzw. ob man in der Ableitungstabelle nachschauen ob direkt integriert werden kann.
+            In diesem Fall kann man einfach integrieren: \\$\cfrac{1}{2}u^2$ jetzt wird noch rücksubstituiert und man komtt auf das Ergebnis: $\cfrac{1}{2}(F(x) + c)^2$
+        \end{description}
 \end{document}

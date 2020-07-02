@@ -45,7 +45,7 @@ IP
 
  Schleifenadresse (Loopback Adress): 127.0.0.1, ist der "interne IP Stack" heit eigentlcih wenn ein PC and diese Adresse Pakete schickt, dass sie Pakete den Pc nicht verlaseen werden 
  directed Broadcast: Broadcast, bei dem Der Hostanteil maximal ist (überall 1), router kann das weiterleiten (je nach Konfiguration)
- flooded Broadcast: Broadcast der über alle subnetze geht, router leitet den aber nciht weiter
+ flooded Broadcast: Broadcast der über alle subnetze geht, router leitet den aber nicht weiter
 
  Multicast /*Tablle, im Internet mal nachschauen*/
 
@@ -89,4 +89,60 @@ IP
 
  ARP (Adress Resolution Protocol)
   Rechner will Etherent Framee an Rechner schicken kennt aber nur die IP
-  arp request, response & trace cache /*Internet, wir in den Folien nur anhanf von Beispielen erklärt*/
+  arp request, response & trace cache /*Internet, wird in den Folien nur anhanf von Beispielen erklärt*/
+
+ ICMP
+  erweitert das Ip Protokoll und hat mehrere Funktionen
+   - erkennt Netzwekfehler wenn Subnetz, Rechner nicht erreichbar ist oder ein Dienst auf dem Rechner nicht verfügbar ist
+   - Meldete wenn ein Netzwerk überlastet ist indem es erkennt wenn zu vile Pakete zwischengespeichert werden (ICMP source quench) sender kann dann reagieren indem er die
+      die Senderate verlangsamt
+   - kennt Echo Pakete, wenn ein Rechner ein Echo palet bekommt muss er diesen mit 'ICMP echo reply' beantworten (ping funktioniert so) womit getestet werden kann ob ein Rechner erreichbar ist
+   - wenn TTL = 0 ist kümmert sich ICMP darum den Sender zu benachriten
+  ICMP besteht aus Type, Code und checksum
+   Type gibt an wie oben beschrieben um was für eine Art von ICMP es sich handelt
+   Code gibt genaueres über den Tyen an, wenn z.B. Destination Unreachable als Type angegeben ist, gibt code angaben warum das Ziel nicht erreicht wurde
+   checksum /*online anschauen*/
+  /*Es folgen Definitionen des Type/code felds, die direkt in latex  abschreiben*/
+
+Schicht 4/Transport Layer (TCP/IP)
+ Stellte  eine  eine End to End Verbindung her (durch mehrere Punkt zu Punkt verbindungen aus Schicht 2)
+ Es gibt 2 Protokolle 
+ TCP (verebindungsorientiert) baut vor dem Senden ein Virtuelle Verbindung zwischen beiden Enden her
+ und UDP (Datengramm) wirft die Daten einfach zum adneren Ende ohne zu schauenob diese auch ankommen
+ 
+ Außerdem gibt es bei TCP und UDP noch Port im Header (source und destination Port), wodurch angegeben wird welcher Dienst gerade mit den Rechenr kommuniziert
+ 'well known ports' sind portnummern die bestimmten diensten zugeordnet wurden (es können aber auch andere portnummern gewählt werde) http hat 80, ssh 22, etc.
+  Diese ports werden benötigt wenn man beispielsweise einen WebServer ansprechen will, man schickt zwar seinen Port als source mit aber kann ohne die well known ports nicht wissen 
+  wie man den Webserver ansprechen soll
+  drei 'Gruppen' von ports:
+   well known Port von 0 - 1023, registered ports von 1023 - 49151, dynamic/private ports 49152 - 65353 
+
+ UDP (User Datagram Protocol)
+  kann nicht erkenn ob Daten ankommen oder nicht, wird von Broadcast und multicast genutzt, source port muss nicht angegeben werden (source port = 0) 
+  /* Header mit Feldern folgen*/
+  UDO Pseudoheader, wird nur verwendet für die checksum /*header folgt*/
+  weiter anwendungsbereiche 
+   Trivial File Transfer Protocol ( TFTP ) – Port 69 (UDP)
+   Domain Name Services (DNS) – Port 53 (UDP)
+   Simple Network Management Protocol (SNMP) – Port 161/162 (UDP)
+   Routing Information Protocol (RIP) – Port 520 (UDP)
+
+ TCP (Transmission Control Protocol)
+  Datenstrom bestetht aus Segmente welche sich weiderum aus bytes zusammensetzen, segemtne wrden an ip weitergegeben
+  wir ein Segment fehlerfrei gesendet, wird eine quittung erstellt. bemerkt der Sender dass eine quittung ausbleibt, sendet er das segment nach einem 
+   timeout erneut, segmente werde nummeriert (sequenznummer) wodurch sender weiß, was nochmal gesndet werden muss
+  Sammelquittung: wird aus einer reihe von segmenten eines quittiert, gelten auch alle anderen als quittiert, kommt ein Fehler wird das letzte fehlerfreie segment quittiert
+  und alle andere (fehlerhafte) segmente neu gesendet
+
+  Sliding Window
+   drei Zeiger merken sich
+    wie viele bytes gesendet und quittiert wurden
+    wie viele bytes gesendet und nichtquittiert wurden
+    wie viele bytes man ncoh senden darf bis man auf Quittung warten muss
+  
+  Sequenznummern und Quittungen
+   beide Rechner speichern welche sequenznummer sie noch senden müssen (seq = sequenz) nun wird eine anzahl von sequenzen gesendet (von A), diese werden dann vom anderen Rechner (B)
+   quittiert und die neue sequenznummer wird in einem Feld ACK (acknolowadge)(B) gespeichert. ACK wird nun an den rechenr (A) zurückgesenet und im Feld SEQ (von A) gespeichert, Rechner A kann aber
+   wenn er daten zum senden hat auch währendessen nach dem selben Prinzip senden /* folie 97 vielleiht einfügen */
+
+  /*TCP Header und options folgen*/
