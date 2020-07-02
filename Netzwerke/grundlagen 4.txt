@@ -20,5 +20,32 @@ Routing Information Protocol (RIP)
   Router die direkt verbunden sind haben die metric 0, Router können ihre Routen an andere Router weiterleiten und der Empfänger Router erhöht dann einfach die metric für jede route um eins 
   bekommt ein Router eine bessere Route als eingespeichert, so ersetzt er diese mit der besserern, bekommt ein Router eine Route die gleich gut ist, werden die neue gesepiechrt und die alte bleibt auch bestehen  
  Arbeitsweise:
-  Alle 30 Sekunden senden Router ihre Routen weiter als flooded broadcast (IP = 255.255.255.255, MAC = FF:FF:FF:FF:FF:FF) und bekommt den UDP port 520_dec (sowohl Source als auch Destination)
-  Dabei hat jeder Router seinen eigenen Timer => asynchron, wenn ein Router die Routeninforamtion erhält veränderr er wenn nötig seine 
+  Alle 30 Sekunden (Update Timer)senden Router ihre Routen weiter als flooded broadcast (IP = 255.255.255.255, MAC = FF:FF:FF:FF:FF:FF) und bekommt den UDP port 520_dec (sowohl Source als auch Destination)
+  Dabei hat jeder Router seinen eigenen Timer => asynchron, wenn ein Router die Routeninforamtion erhält verändert er wenn nötig seine eigene Routingtabelle
+
+  Routen haben aber auch eigene Timer um zu sehen ob dies noch aktiv sind, Router senden die ganze Zeit ihre Routen an andere Router, fällt jetzt eine Route weg 
+  (Rechner) wird diese auch nicht mehr gesendet, fällt einem anderem router auf das 180 Sekunden (Invalid Timer)diese router nicht mehr empfangen wurde wird dies
+   als unnerreichbar makiert (metric = 16) Ausßerdem wird wieder ein Routing update gesendet (außerhalb des 30 Sekunden Zeitfenster), das sogennante triggered Update, dies wird allgemein ausgelöst wenn sich in einer Route die 
+   metric ändert und es werden hier nur die geänderten Routen gesendet
+
+  wird nach weiteren 120 (Bei Cisco 240) Sekunden (Flush Timer) immernoch nicht die Route empfangen wird diese dann gelöscht (garbage collection)  
+ 
+  Da jetzt noch die anderen Router von der falschen route erfahren müssen gibt es noch den Holddown Tiemr (180 Sekunden), er erhält die falsche route in dieser Zeit
+  damit es nicth zu schleifen kommt
+  /*RIP Header folgt*/
+  RIP request: Router wird auffgefordert sofort einen RIP response zu senden, enthält Routen vom sender und fordert auf die Routen an Nachbarrouter zu senden
+  RIP response: RIP Routenankündigun entweder zyklisch alle 30 Sekunden oder als triggered update
+
+  Wie oben beschireben kann es lange dauern bis alle Router erfahren dass eine Route falsch ist da dies nur durch metric = 16 angedeutet wird, 
+  Router  A hat eine Route zu einem Netz, nun ist das Netz nicht erreichbar aber die Tabelle ist noch vorhanden. Der Router meldet nun dem Router (N) an dem das Netz angeschlossen war dass es eine
+  Route zum Netzt hat, Router B speichert die route mit erhöhter metric dieser meldet nach 30 Sekunden Router A dass er eine Route zum totem Netz hat, A speichert die Route wieder mit erhöhter metric
+  dass geschieht solange bis die metric = 16 ist was bedeutet dass das netz nicht erreichbar ist,
+  Da es jedes RIP-Update 30 sekunden braucht ist es sehr Zeitaufwändig bis alle Router die Topologie-Änderung mitbekommen, man spricht auch von einer hohen Konvergenzzeit, um die Konvergenzzeit möglichst nidrig zu halten 
+  wurden folgenden Methoden entwickelt
+
+  Split Horizon
+   Wenn Router A Routen vom Router B lernt, sendet er diese Routen nicht mehr zurück (an Router B), Hat Router A aber auch Routen von einem Router C sendet A die Routen von C an den Router B 
+  Split Horizon with poisoned revers
+   Wie split Horizion nur dass antatt Routen die eigentlich nciht gesendet werden mit einer metric = 16 gesendet (Router A sendet die Routen von Router B an den ROuten B zurück mit metric = 16)
+  Triggered Updates
+   Bei Topologie Änderung (metric ändert sich) wird sofort ein RIP-Update an die Nachbarn gesendet
