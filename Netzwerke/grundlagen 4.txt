@@ -1,0 +1,24 @@
+Router
+ Router bettreibt routing, Er empängt schicht drei Frames (IP) und shacut in seiner lokal vorhandenen Routing Tabelle nach, wohin das Paket geschickt werden muss, damit es
+ an sein Ziel kommt
+ beim Router enden kollisions und broadcastdomaine, kann aber konfiguriert werden um broadcast weiterzuleiten, ist für DHCP z.b. wichtig
+
+ CISCO Router sind Rechner mit spezieller Hard und Software 
+  Hardware: 
+   RAM/DRAM:   speichert Routing-Tabellen, enthält ARP-Speicher, schnellen Switching- undPaketzwi- schenspeicher (gemeinsam genutztes RAM) sowie Warteschlangenspeicher zum Halten
+    von Paketen. Verliert Daten bei unterbrochener Stromversorgung
+   NVRAM: speichert BackUp/Startkonigzrationsdateien von Router, Daten überleben Stromunterbrechung
+   Flash: programmierbarer ROM welche idR das Betriebssytem enthält, dadurch muss nicht gelötet werden für ein Softwarupdate, bzw mehrere Versionen von können IOS gespeichert werden
+   ROM: enthält Einschaltdiagnosefunktionen, ein Bootstrap-Programm und Betriebssystemsoftware
+  Software: IOS (Internetwork Operating System) Betriebssystem von Cisco Routern, Router kann über Telnet konfiguriert (Routen setzen etc.) werden bzw. Informationen weitergeben die beispielsweise für Fehlersuche wichtig sein könnten
+   
+Routing Information Protocol (RIP)
+ RIP dient zur dynamischen Erstellung von routing Tabellen
+ Distanzvektor Algorithmus
+  Ein Algorithmus der berechnet wie "schnell" eine Route ist um zu einem Ziel zu gelangen. Hierführ zählt man bei RIP wie viele Router ein Datenpaket durchlaufen muss
+  um ans Ziel zu gelangen (hop count), weniger hop counts = besserer Route 
+  Router die direkt verbunden sind haben die metric 0, Router können ihre Routen an andere Router weiterleiten und der Empfänger Router erhöht dann einfach die metric für jede route um eins 
+  bekommt ein Router eine bessere Route als eingespeichert, so ersetzt er diese mit der besserern, bekommt ein Router eine Route die gleich gut ist, werden die neue gesepiechrt und die alte bleibt auch bestehen  
+ Arbeitsweise:
+  Alle 30 Sekunden senden Router ihre Routen weiter als flooded broadcast (IP = 255.255.255.255, MAC = FF:FF:FF:FF:FF:FF) und bekommt den UDP port 520_dec (sowohl Source als auch Destination)
+  Dabei hat jeder Router seinen eigenen Timer => asynchron, wenn ein Router die Routeninforamtion erhält veränderr er wenn nötig seine 
