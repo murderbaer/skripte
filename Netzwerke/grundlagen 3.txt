@@ -13,22 +13,22 @@ IP
  IPs werden in 5 Klassen unterteilt:
 
   /*Bits Umrechnen*/
-  Klasse A: 1. Bit(links) im höchsten byte = 0 (=> 1.0.0.0 bis 127.255.255.255 00000001.00000000.00000000.0000000 bis 0111111.11111111.11111111.11111111)
+  Klasse A: 1. Bit(links) im höchsten byte = 0 (=> 1.0.0.0 bis 127.255.255.255)
             7Bit Netzanteil; 24 Host
             10.0.0.0 - 10.255.255.255 reserviert für nicht registrietrte Netze
 
-  Klasse B: 1-2. Bit (links) im höchsten byte = 10 (=> 128.0.0.0 bis 191.255.255.255 1000000.00000000.00000000.0000000 bis 10111111.11111111.11111111.11111111)
+  Klasse B: 1-2. Bit (links) im höchsten byte = 10 (=> 128.0.0.0 bis 191.255.255.255)
             14 Bit Netzanteil; 16 Host
             172.16.0.0 - 172.31.255.255 reserviert für nicht registrietrte Netze
 
-  Klasse C: 1-3. Bit (links) im höchsten byte = 110 (=> 192.0.0.0 bis 223.255.255.255 1100000.00000000.00000000.0000000 bis 10111111.11111111.11111111.11111111)
+  Klasse C: 1-3. Bit (links) im höchsten byte = 110 (=> 192.0.0.0 bis 223.255.255.255) 
             21 Bit Netzanteil; 8 Host
             192.168.0.0 - 192.168.255.255 reserviert für nicht registrietrte Netze
 
-  Klasse D: 1-4. Bit (links) im höchsten byte = 1110 (=> 224.0.0.0 bis 239.255.255.255 11100000.00000000.00000000.0000000 bis 11101111.11111111.11111111.11111111)
+  Klasse D: 1-4. Bit (links) im höchsten byte = 1110 (=> 224.0.0.0 bis 239.255.255.255) 
             wird für Multicast genutzt; 24 Bit für Gruppenadresse 
 
-  Klasse E: 1-4. Bit (links) im höchsten byte = 1111 (=> 240.0.0.0 bis 255.255.255.255 11110000.00000000.00000000.0000000 bis 1111111.11111111.11111111.11111111)
+  Klasse E: 1-4. Bit (links) im höchsten byte = 1111 (=> 240.0.0.0 bis 255.255.255.255) 
             Für Forschungszwecke reserviert
 
  Wird eine IP-Adresse beantragt, erhält ma in der Regel nur die netID (man erhält ein Netz). Mit dem Host Anteil, kann mna entweder nur Rechner anschließen oder auch 
@@ -53,7 +53,7 @@ IP
 
  IP Paket
   IP PAket ist im Data Feld von Ethernet Frame. Ethernet kennzeichnet das mit 0x800 im Type-Feld. Wird das Paket an den "WAN Router" geschickt, wandelt dieser das Etherent Palet
-  in ein WAN Datenrahmen /*gutes Bild auf Folie 21 und auf 22 sind Erklärungen*/
+  in ein WAN Datenrahmen /*IP-Header einfügen*/
 
  TOS-Feld (Type of Service): Poritrität vom Paket
  Fragmentation Control: gibt an ob und wie ein IP Paket fragmentiert wird
@@ -63,10 +63,11 @@ IP
   Fragment Offset: Anzahl der Fragmente die entstanden sind (Zahl ist durch 8 teilbar)
 
  IP Options:
-  IP header minimal 20 Byte lang, kann aber mit "Option bytes" erweitert werden
-  /*iwas mit Bit Wörtern...internet anschauen, Kopf wird matsch*/
+  Ist IHL > 5 heißt es dass Options vorhanden sind 
   Beispiele für options ins "ping -r". Hier wird auch die route des ping befehls in options augeszeichnet
- 
+  Da Die länge des ip headers ein vielfaches von 32 Bit sein muss (IHL ist das vielfache) man aber nicht immer die ganzen 32 Bit benötigt
+  weredn dies dann durchs Padding aufgefüllt
+
  Routing von IP-Adressen
   Rechner im selben Subnetz können sich gegenseitig direkt erreichen (direct routing)
   Ist ein Rechner in einem anderen Subnetz muss man über Router gehen. Dies macht man indem man Im Etherent Frame die Destination Adress vom Router nummt, aber die 
@@ -146,3 +147,4 @@ Schicht 4/Transport Layer (TCP/IP)
    wenn er daten zum senden hat auch währendessen nach dem selben Prinzip senden /* folie 97 vielleiht einfügen */
 
   /*TCP Header und options folgen*/
+
