@@ -1,0 +1,71 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[german]{babel}
+\usepackage[utf8]{inputenc}
+
+\title{Lineare Algebra Skript}
+\author{Arif Hasanic}
+
+\begin{document}
+    \maketitle
+    \newpage
+    \tableofcontents
+    \newpage
+
+    \section{Einleitung}
+        \subsection{Logik}
+        \subsubsection{Aussagenlogik}
+        Die Aussagenlogik beschreibt einen Sachverherhalt, dem man eindeutig einen 
+        Wahrheitswert (wahr, falsch) zuordnen kann. Weiter kann man diese Ausdrücke verknüpfen. 
+        z = x $\wedge$ y,   x und y müssen beide wahr sein damit z wahr ist.\footnote{x bzw. y sind Platzhalter. Beispielsweise könnte für x: 1 > 2 stehen} \\
+        Die Erfüllungsmenge eines aussagenlogischen Ausdrucks besteht aus allen Variablen $x_i$ für die der gesamte Ausdrucke wahr ist
+        \begin{description}
+            \item[$z_1 \Rightarrow z_2$]
+            \item $z_2$ ist notwendig für $z_1$ 
+            \item $z_1$ ist hinreichend für $z_2$
+        \end{description}
+
+        \subsubsection{Prädikatenlogik}
+        Bei der Prädikatenlogik wird eine Aussage in Subjekt und Prädikt aufgeteilt. Das Subjekt dient als Platzhalter. Der Vorteil ist, dass nun 
+        allgemeinere Aussagen erstellt werden können. Beispiel: "s studiert Maschinenbau", wobei s $\epsilon$ Studenten. \\
+        Die Ergebnismenge besteht dann aus den Aussagen die zutreffen. Prädikate können wie in der Aussagenlogik verknüpft werden und außerdem werden noch sogenannte
+        Quantoren eingführt:
+        \begin{description}
+            \item $\forall$: Der Allqunator sagt aus dass  Prädikate für alle Elemte der einer Menger gelten \\($\forall$ s $\epsilon$ Studenten)
+            \item $\exists$: Der Existenzquantor Prädikat für mindestens ein Element der Menge wahr ist.
+            \item $!\exists$: Dieser Qunator bedeutet, dass das Prädikat für genau ein Subjekt (Element aus Menge) gilt.
+        \end{description} 
+        \subsection{Mengen}
+        \subsection{Realtionen}
+        \subsection{Induktion}
+
+    \section{Lineare Gleichungssysteme}
+        \subsection{Einführung}
+        \subsection{LGS lösen}
+        \subsection{LGS aufstellen}
+        \subsection{Determinanten}
+        \subsection{Matrizen}
+    
+    \section{Vektoren}
+        \subsection{Koordinatensysteme}
+        \subsection{Rechenoperationen}
+        \subsection{Gerade, Ebene}
+        \subsection{Skalarprodukt}
+        \subsection{Vektorprodukt}
+    
+    \section{Gruppen, Körper, Vektorräume}
+        \subsection{Gruppen}
+        \subsection{Körper}
+        \subsection{Vektorraum}
+        \subsection{Basis}
+
+    \section{Lineare Abbildungen}
+        \subsection{Definition}
+        \subsection{Darstellung durch Matrix}
+        \subsection{Rechenoperationen}
+        \subsection{Eigenvektor und Eigenwert}
+    
+\end{document}
+    
