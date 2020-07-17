@@ -4,6 +4,12 @@
 \usepackage{hyperref}
 \usepackage[german]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{lipsum}
+
+
+
+
 
 \title{Lineare Algebra Skript}
 \author{Arif Hasanic}
@@ -16,6 +22,7 @@
 
     \section{Einleitung}
         \subsection{Logik}
+
         \subsubsection{Aussagenlogik}
         Die Aussagenlogik beschreibt einen Sachverherhalt, dem man eindeutig einen 
         Wahrheitswert (wahr, falsch) zuordnen kann. Weiter kann man diese Ausdrücke verknüpfen. 
@@ -37,17 +44,225 @@
             \item $\exists$: Der Existenzquantor Prädikat für mindestens ein Element der Menge wahr ist.
             \item $!\exists$: Dieser Qunator bedeutet, dass das Prädikat für genau ein Subjekt (Element aus Menge) gilt.
         \end{description} 
+
+
         \subsection{Mengen}
+        Eine Menge besteht aus eindeutig bestimmbaren Objekten die real (z.B. Stifte) oder auch gedacht (z.B. Zahlen) sein können. Eindeutig bestimmbar heißt auch,
+        dass Objekte nicht mehrmals auftauchen können so ist M = {1,2,2,3} = {1,2,3}\\
+        Mengen könenn auf verschiden beschrieben werden:
+        \begin{description}
+            \item Als Aufzählung: M = \{1; 7; 12; 836 \} 
+            \item durch Prädikat: M = \{x $\epsilon$ G : P(x)\} \\ 
+                Beispiel: M = \{x $\epsilon$ $\mathbb{N}$ : x > 5 ∧ x < 10\} = \{6, 7, 8, 9\}
+            \item verbal: „Menge aller Personen, die sich um 11:02 Uhr am 10.03.2020 im H004 befinden“
+        \end{description}
+        Außerdem können Mengen in in Beziehung zu einander stehen:
+        \begin{description}
+            \item A $\subset$ B: Hier ist A eine Teilmenge (Untermenge) von B, d.h. B hat alle Objekte aus A aber auch noch welche die A nicht hat ($\subseteq$ heißt B kann gleich A sein, muss aber nicht)
+            \item A = B: Die Mengen haben die glecihen Objekte
+            \item A $\supset$ B: Hier ist A die Obermenge von B (gleich wie oben, wird nur anders gelesen)
+        \end{description}
+
+        \subsubsection{Kardinalität}
+        Die Kardinalität einer Menge beschreibt die Mächtigkeit einer Menge bzw. die Anzahl der Elemte in einer Menge. Ist die Menge endlich so kommt eine endliche Zahl raus.
+        Bei unendlichen Mengen wird die Mächtigkeit mit $\aleph$ (aleph) angegeben. Um zu zeigen, dass man die Mächtigkeit einer Menge haben will, werden zwei Querstriche
+        neben der Menge Gescrieben. Beispiele: 
+        \begin{description}
+            \item |$\emptyset$| = |\{\}| = 0
+            \item |M| = |\{1; 2; 3; 1\}| = 3
+            \item |$\mathbb{N}$| = $\aleph_0$
+            \item |$\mathbb{R}$| = $\aleph_1$ 
+        \end{description}
+        $\mathbb{N}$ und $\mathbb{Q}$ sind gleichmächtig weil sie als abzählbar gelten, d.h. man kann jder zahl in $\mathbb{N}$ und $\mathbb{Q}$ einen Index zuorden, 
+        da man $\mathbb{Q}$ als Bruch $\cfrac{p}{q}$, wobei $p \epsilon \mathbb{N}$, $q \epsilon \mathbb{Z}$, darstellen kann. $\pi$ ist jedoch eine Zahl, die man nicht durch einen Bruch
+        darstellen kann, weshalb die Zahl auch keine rationale Zahl ist, sondern eine reele Zahl ($\pi \epsilon \mathbb{R}$), oder auch die eulersche Zahl. Da man diesen Zahl keinen Index zuordnen kann
+        (Beweis im Skript vom Prof) gilt $\mathbb{R}$ mächtiger $\mathbb{N,Z,Q}$
+
+        \subsubsection{Verknüpfungen von Mengen}
+        Bei der Verknüpfung von Mengen erhält man je nach Verknüpfung wieder eine neue Menge. Verknüpfungen für Mengen sind:
+        \begin{description}
+            \item Schnittmenge:
+                   A $\cup$ B liefert eine Menge mit allen Objekten die A und B gemeinsam haebn. Gibt es keine Gemeinsamen Objekte so entsteht die leere Menge. 
+            \item Vereinigungsmenge: 
+                   A $\cap$ B Liefert eine Menge die Alle Objekte aus A und B in eine neue Menge vereinigt. Sind A und B glecih so ist die Ergebnismenge glecih A und B. 
+            \item Differenzmenge :
+                   A $\setminus$ B Liefert eine Menge mit Objekten die A und B unterschiedlich haben.
+            \item Kartesisches Produkt\footnote{wird auch Produktmenge genannt}:
+                   A $\times$ B Liefert eine Menge welche die Objekte aus A mit den Objekten aus B paart.\\
+                   Beispiel: A = \{1; 2; 3\} und B = \{2; 4\} $\rightarrow$ A $\times$ B = \{(1,2); (1,4); (2,1); (2,4); (3,1); (3,4)\}\footnote{
+                   Man sieht hier das A $\times$ B $\neq$ B $\times$ A}
+        \end{description}
         \subsection{Realtionen}
+        Eine zweistellige Relation ist eine Teilmenge zwischen A und B (REL $\subseteq$ A $\times$ B), wobei A der Vorbereich von REL und B der Nachbereich von REL ist.\\
+        Beispiel: A = Menge aller Dozenten an der RWU \\
+        B = Menge aller Studenten an der RWU \\
+        a REL b : Dozent a unterrichtet Student b, wobei a $\epsilon$ A, b $\epsilon$ B
+
+        \subsubsection{Bestimmte Eigenschaften von Relationen}
+        $\sim$ ersetzt REL weil schreibfaul \\
+            \begin{tabular}{|c|c|}
+                \hline
+                \textbf{Eigenschaft}  & \textbf{Bedingung} \\
+                \hline
+                \hline
+                \text{Symmetrie} & a $\sim$ b $\Rightarrow$ b $\sim$ a \\
+                \hline
+                \text{Asymmetrie} & a $\sim$ b $\Rightarrow$ $\lnot b$ $\sim$ a \\
+                \hline
+                \text{Antisymmetrie} & a $\sim$ b $\Rightarrow$ $\lnot b$ $\sim$ a $\vee$ a = b \\
+                \hline
+                \text{Reflexivität} & a $\sim$ a \\
+                \hline
+                \text{Irreflexivität} & $\lnot a$ $\sim$ a \\
+                \hline
+                \text{Transitivität} & a $\sim$ b $\wedge$ b $\sim$ c $\Rightarrow$ a $\sim$ c \\
+                \hline
+            \end{tabular}\\
+        Relationen die reflexiv, symmetrisch und transitiv sind, heißen auch Äquivalenzrelationen. Außerdem kann man auch oft Klassen bilden. \\
+        Beispielsweise kann man die Reste beim teilen von zwei natürlichen Zahlen in Klassen packen. So kann bei x mod 3 immer nur 0, 1 oder 2 rauskommen. Jetzt
+        packt man einfach alle x die das Ergebnis 0 produzieren in die Restklasse $\tilde 0$ bzw. für 1 in $\tilde 1$ und 2 in $\tilde 2$. Mit Restklasse kann auch "normal" gerchnet
+        werden. So ist $\tilde 2$ + $\tilde 2$ = $\tilde 1$ für x mod 3
+        \subsubsection{Funktion, Abbildung}
+            Eine Funktion ist eine spezielle Relation. Damit $f$ eine Funktion von A nach B ist, muss folgendes gelten:\\
+            Zu jedem x $\epsilon$ A darf es nur ein einziges y $\epsilon$ B geben, also jedem x muss min. ein y Wert zugeordnet werde.
+            Bei einer Funktion muss auch noch gelten, dass ein beliebiger x Wert nur einem y Wert zugeordnet wird. ((x, y) $\epsilon$ f $\wedge$ (x, z) $\epsilon$ f $\rightarrow$ (y = z)) \\
+            A heißt auch Definitionsmenge und B heißt Zielmenge. der nachbereich (also die y Werte die von x in B "getroffen" werden) heißt auch Wertevorrat. Bei einer Funktion müssen also noch 
+            Mengen angegeben werden, damit diese richtig aufgestellt ist.  \\
+            Schreibweise: A $\rightarrow$ B, x $\mapsto$ f(x)\footnote{f(x) = 3x als Beispiel } \\
+            Möchte man Funktionen hintereinander ausführe spricht man von der Komposition von Funktionen. Man schreibt f $\circ$ g oder (f $\circ$ g)(x) oder f(g(x)).
+            \\ Beispiel: f(x) = $x^2$ und g(x) = x + 2 $\Rightarrow$ f(g(x)) = f(x+2) = $(x + 2)^2$ \\
+            Weiter Eigenschaften on Funktionen sind Injektivität ($\forall x_1,x_2$: f($x_1$) = f($x_2$) $\Rightarrow$ $x_1 = x_2$, also jedem y Wert darf wurde nur ein x-Wert zugeordnet werden)
+            und Surjektivität ($\forall$ y $\epsilon$ B: $\exists$ x $\epsilon$ A: f(x) = y, also jedem y Wert wurde ein x zugeordnet). Ist eine Funktion injektiv und surjekitv nennt man
+            die Funktion auch bijektiv. Funktionen können umgekehrt werden, also eine FUnktion wird nach x aufgelöst. Im normalfall bekommt man wieder eine Realtion bei der Umkehrung, ist eine Funktion 
+            aber nijektiv so ist die Umkehrung der Funktion auch eine Funktion.
         \subsection{Induktion}
+  
 
     \section{Lineare Gleichungssysteme}
         \subsection{Einführung}
+        Ein lineares Gleichungssystem hat m Gleichungen und n Unbekannte. Die Schreibweise ist:
+        
+        $\begin{array}{c}
+            a_{11}x_1 + a_{12}x_2 + ... a_{1n}x_n = b_1 \\
+            a_{21}x_1 + a_{22}x_2 + ... a_{2n}x_n = b_2 \\
+                        . \\ . \\ . \\
+            a_{m1}x_1 + a_{m2}x_2 + ... a_{mn}x_n = b_m
+        \end{array}$
+        \\Dabei sind $a_{mn}$ die Koeffizienten und $x_n$ die Unbekannten. Eine Weitere Schreibweise ist die Matrixschreibweise: \\
+        
+        $\begin{array}{c}
+            \begin{pmatrix}
+                a_{11} & a_{12} & a_{13}\\
+                a_{21} & a_{22} & a_{23} \\
+                 & . &  \\
+                 & . & \\
+                 & . & \\ 
+                a_{m1} & a_{m2} & a_{m3}
+                \end{pmatrix}
+                \cdot
+            \begin{pmatrix}
+                x_1 \\
+                x_2 \\
+                . \\
+                .\\
+                .\\
+                x_n
+            \end{pmatrix}
+                =
+            \begin{pmatrix}
+                b_1 \\
+                b_2 \\
+                . \\
+                .\\
+                .\\
+                b_n
+            \end{pmatrix}
+        \end{array}$ 
+        \\$\vec{x}$ ist der gesuchte Lösungsvektor.
+
         \subsection{LGS lösen}
+            Um ein LGS zu lösen bietet sich der Gaus Algorithmus an. Allgemein gesagt versucht man das LGS in eine Treppenform zu bringen, also das man im unteren linken Beriech nur Nullen stehen hat.
+            Dann kan man die Werte rücksubstituieren und bekommt das Ergebnis für das LGS.
         \subsection{LGS aufstellen}
+            Beim Aufstellen von einem LGS gibt es keine genaue Regel. Man schaut einfach welche Größen variabel und welche konstant sind und schaut dann wie die Größen zusammenspielen und 
+            bringt sie dann zusammen.
         \subsection{Determinanten}
+        Eine Determinante sagt aus ob ein LGS lösbar ist oder nicht. Der einfachtse Fall ist wenn es 2 Gleichungen und 2 Unbekannte gibt. \\
+        $\begin{array}{c}
+            \begin{pmatrix}
+                a_{11} & a_{12} \\
+                a_{21} & a_{22}
+            \end{pmatrix}
+            \cdot
+            \begin{pmatrix}
+                x_{1}  \\
+                x_{2} 
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                b_{1}  \\
+                b_{2} 
+            \end{pmatrix}
+        \end{array}$\\
+        Um die Determinate zu berechnen werden die x Werte nicht gebraucht. Die Determinante ist definiert durch D = $a_{11}a_{22} - a_{12}a_{21}$. ist D $\neq$ 0 dann gibt es genau eine Lösung.
+        Ist D = 0 können noch zwei Fälle auftreten. Wenn $a_{11}b_2 - a_{21}b_1 = 0 \wedge a_{22}b_1 - a_{12}b_2 = 0 $ dann gibt es undendlich viele Lösungen . Ist einer der Terme $\neq$ 0 dann gibt es keine Lösung.
+        Die Schreibweise lautet 
+
+        D = det(A) = 
+        $\begin{vmatrix}
+            a_{11} & a_{12} \\
+            a_{21} & a_{22}
+        \end{vmatrix}$
+        = $a_{11}a_{22} - a_{12}a_{21}$ \\
+        Weiter ist $D_1$ definiert als $D_1$ = 
+        $\begin{vmatrix}
+            b_{1} & a_{12} \\
+            b_{2} & a_{22}
+        \end{vmatrix}$
+        = $a_{22}b_1 - a_{12}b_2$ \\
+        und $D_2$ ist definiert als: $D_2$ = 
+        $\begin{vmatrix}
+            a_{11} & b_{1} \\
+            a_{21} & b_{2}
+        \end{vmatrix}$
+        = $a_{11}b_2 - a_{21}b_1$ \\
+        Nach der Cramerschen Regel kann man $x_1$ und $x_2$ wie folgt berechnen: \\
+        \begin{tabular}{c}
+            $x_1 = \cfrac{D}{D_1}$ und $x_2 = \cfrac{D}{D_2}$
+        \end{tabular}
+        Laplace Entwicklung: \\
+        Formel von Sarrus: \\
+        Das Transponieren der Matrix ändert nicht die Determinante. Wird eine Reihe einer Matrix mit einem Faktor multipliziert, so wird auch der Wert der Determinatne mit dem selben 
+        Wert multipliziert. 
+        \newpage
         \subsection{Matrizen}
-    
+            Addition: Matrizen werden addiert indem man die positionsgleichen Werte miteinander addiert. \\
+            Faktormultiplikation: Eine Matrix kann mit einem Faktor multipliziert werden, indem jedes Element der Matrix mit dem Faktor multipliziert wird. \\
+            Multiplikation: Matrizen können nur miteinander multipliziert werden, wenn die erste Matrix so viele Spalten hat wie die zweite Matrix Zeilen. \footnote{(n $\times$ m) * (m $\times$ k) = (n $\times$ k)} \\
+            Es entsthet eine neue Matrix C. Indem man jeweils das i-te Elemte aus der Zeile Von der Matrix A mit dem i-ten Element der Matrix B multipliziert und diese Produkte dann miteinander addiert. \\
+            $\begin{pmatrix}
+                3 & 2 & 1 \\
+                1 & 0 & 2
+            \end{pmatrix}$
+            $\cdot$
+            $\begin{pmatrix}
+                1 & 2 \\
+                0 & 1 \\
+                4 & 0
+            \end{pmatrix}$
+            = 
+            $\begin{pmatrix}
+                3 \cdot 1 + 2 \cdot 0 + 1 \cdot 4 & 3 \cdot 2 + 2 \cdot 1 + 1 \cdot 0  \\
+                1 \cdot 1 + 0 \cdot 0 + 2 \cdot 4 & 1 \cdot 2 + 0 \cdot 1 + 2 \cdot 0 \\
+                
+            \end{pmatrix}$
+            = $\begin{pmatrix}
+                7 & 8 \\
+                9 & 2 \\
+            \end{pmatrix}$ \\
+            Bei der Matrixinversion wird die Matrix A hingeschreiben (A muss quadratisch sein). Um jetzt $A^{-1}$ zu bekommen scchreibt man noch die Einheitsmatrix (muss gleciher Typ sein).
+            nebdran. Nun wandelt man die matrix mithifle vom Gaus Algorithmus in die Einheitsmatirx um. dabei wendet man jeden Rechenschritt um die zu bewirken auch an der Einheitsmatrix an. 
+            Die 'alte' Einheitsmatrix ist jetzt $A^{-1}$.
     \section{Vektoren}
         \subsection{Koordinatensysteme}
         \subsection{Rechenoperationen}
