@@ -148,7 +148,7 @@
                         . \\ . \\ . \\
             a_{m1}x_1 + a_{m2}x_2 + ... a_{mn}x_n = b_m
         \end{array}$
-        \\Dabei sind $a_{mn}$ die Koeffizienten und $x_n$ die Unbekannten. Eine Weitere Schreibweise ist die Matrixschreibweise: \\
+        \\Dabei sind $a_{mn}$ die Koeffizienten und $x_n$ die Unbekannten. Eine Weitere Schreibweise ist die Matrixschreibweise: 
         
         $\begin{array}{c}
             \begin{pmatrix}
@@ -178,7 +178,7 @@
                 b_n
             \end{pmatrix}
         \end{array}$ 
-        \\$\vec{x}$ ist der gesuchte Lösungsvektor.
+        $\vec{x}$ ist der gesuchte Lösungsvektor.
 
         \subsection{LGS lösen}
             Um ein LGS zu lösen bietet sich der Gaus Algorithmus an. Allgemein gesagt versucht man das LGS in eine Treppenform zu bringen, also das man im unteren linken Beriech nur Nullen stehen hat.
@@ -253,8 +253,7 @@
             = 
             $\begin{pmatrix}
                 3 \cdot 1 + 2 \cdot 0 + 1 \cdot 4 & 3 \cdot 2 + 2 \cdot 1 + 1 \cdot 0  \\
-                1 \cdot 1 + 0 \cdot 0 + 2 \cdot 4 & 1 \cdot 2 + 0 \cdot 1 + 2 \cdot 0 \\
-                
+                1 \cdot 1 + 0 \cdot 0 + 2 \cdot 4 & 1 \cdot 2 + 0 \cdot 1 + 2 \cdot 0 
             \end{pmatrix}$
             = $\begin{pmatrix}
                 7 & 8 \\
@@ -263,12 +262,87 @@
             Bei der Matrixinversion wird die Matrix A hingeschreiben (A muss quadratisch sein). Um jetzt $A^{-1}$ zu bekommen scchreibt man noch die Einheitsmatrix (muss gleciher Typ sein).
             nebdran. Nun wandelt man die matrix mithifle vom Gaus Algorithmus in die Einheitsmatirx um. dabei wendet man jeden Rechenschritt um die zu bewirken auch an der Einheitsmatrix an. 
             Die 'alte' Einheitsmatrix ist jetzt $A^{-1}$.
+            \newpage
     \section{Vektoren}
+        Einen Vektor kann man entwder als Punkt darstellen oder als eine Strecke die vom Ursprung ausgeht. Wird ein Vektor als Strecke dargestellt wird auch deutlich das ein Vektor eine Länge und eine 
+        Richtung hat. 
         \subsection{Koordinatensysteme}
+            Unter gewissen Umständen möchte man ein anderes Koordinatensystem benutzen, um einen Vektor darzustellen.
+            \subsubsection{Polarkoordinaten}
+                Ein Vektor kann auch anstatt durch $p_x$ und $p_y$ durch einen Winkel und eine Länge beschrieben werden.  Es gilt:\\
+                $\begin{array}{l}
+                    p_x = r \cdot \cos \alpha \\
+                    p_y = r \cdot \sin \alpha \\
+                    r = |\vec p| = \sqrt{{p_x}^2 + {p_y}^2} \\
+                    \alpha = \arctan \cfrac{p_y}{p_x}
+                \end{array}$\\
+                Für den Wert von $\alpha$ muss aber darauf gechtet werden in welchen Quadranten sich der Vektor befindet. Die Strecke die $\cfrac{p_y}{p_x}$ liefert in einem Kreis 
+                mehrmals auftauchen kann und $\arctan$ immer nur den kleinsten Winkel liefert. \\
+                \begin{tabular}[h]{|l|l|}
+                    \hline
+                    Quadrant & Winkel \\
+                    \hline
+                    Erster und Vierter Quadrant & $\alpha = \arctan \cfrac{p_y}{p_x}$ \\
+                    Zweiter Quadrant & $\alpha = \arctan \cfrac{p_y}{p_x} + \pi$ \\
+                    Dritter Quadrant & $\alpha = \arctan \cfrac{p_y}{p_x} - \pi$ \\
+                    \hline
+                \end{tabular}  
+            \subsubsection{Richtungscosinus}
+                Bei dreidimensinalen Vektoren gilt: \\
+                $\begin{array}{l}
+                    p_x = r \cdot \cos \alpha \\
+                    p_y = r \cdot \cos \alpha \\
+                    p_z = r \cdot \cos \alpha \\
+                    r = |\vec p| = \sqrt{{p_x}^2 + {p_y}^2} \\
+                    \alpha = \arctan \cfrac{p_y}{p_x}
+                \end{array}$
+            \subsubsection{Geokoordinaten}
+            \subsubsection{Zylinderkoordinaten}
         \subsection{Rechenoperationen}
+            Addition: zwei Vektoren werden Komponentenweise addiert, also $\vec a + \vec b = 
+            \begin{pmatrix}
+                a_1 + b_1\\
+                a_2 + b_2\\
+                .\\
+                .\\.\\
+                a_n + b_n    
+            \end{pmatrix} $\\
+            Strecke: will man die Strecke zweischen zwei Punkten A und B muss man A komponentenweise von B subtrahieren uund bekomm einen Vektor. $\vec {AB} = 
+            \begin{pmatrix}
+                B_1 - A_1 \\
+                B_2 - A_2\\
+                .\\
+                .\\.\\
+                B_n - A_n  
+            \end{pmatrix}$
         \subsection{Gerade, Ebene}
+            Punkt-Richtungsform: Möchte man mit einem Vektor eine Gerade erstellen braucht man zuerst einen Punkt auf den die Gerade liegen kann. Einen Vektor der die Richtung angibt 
+            und einen Fakor ($k \epsilon \mathbb{R}$) für den Vektor. Um einen bestimmten Punkt auf der Gerade anzugeben kann man dann 'k' so wählen da,it eben dieser Punkt erreicht wird.\\
+            Um eine Ebene darstellen zu können kommt noch ein weiter Vekor mit eigenm Fakotr dazu.  
+
         \subsection{Skalarprodukt}
+            Das Skalarprodukt wird auch inneres Produkt genannt und wird wie folgt berechnet: \\
+            $\vec{u} \cdot \vec{v} = |\vec{u}| \cdot |\vec{v}| \cdot \cos(\angle \vec{u} \vec{v})$ \\
+            Um den Winkel zeischen u und v zu finden kann man folgende Formel nehmen: $\arccos \cfrac{u_xv_x + u_yv_y + u_zv_z}{|\vec{u}|\cdot|\vec{v}|}$ \\
+            Der Einheitsvektor eines Vektor berecnet sich durch: $\vec{u}_0 = \cfrac{\vec{u}}{|\vec{u}|}$
         \subsection{Vektorprodukt}
+            Durch das Vektorprodukt (Kreuzprodukt) erhält man einen Vektor der rechtwinklig auf zwei anderen Vektoren liegt:\\
+            $\vec{a} \times \vec{v} = 
+            \begin{pmatrix}
+                a_x\\
+                a_y\\
+                a_z
+            \end{pmatrix} \cdot
+            \begin{pmatrix}
+                b_x\\
+                b_y\\
+                b_z
+            \end{pmatrix}
+            = \begin{pmatrix}
+                a_yb_z - a_zb_y\\
+                a_zb_x - a_xb_z\\
+                a_xb_y - a_yb_x
+            \end{pmatrix}$
     
     \section{Gruppen, Körper, Vektorräume}
         \subsection{Gruppen}
