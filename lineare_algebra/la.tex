@@ -2,8 +2,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[german]{babel}
-\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
 \usepackage{amsfonts}
 \usepackage{lipsum}
 
@@ -326,32 +325,138 @@
             Um den Winkel zeischen u und v zu finden kann man folgende Formel nehmen: $\arccos \cfrac{u_xv_x + u_yv_y + u_zv_z}{|\vec{u}|\cdot|\vec{v}|}$ \\
             Der Einheitsvektor eines Vektor berecnet sich durch: $\vec{u}_0 = \cfrac{\vec{u}}{|\vec{u}|}$
         \subsection{Vektorprodukt}
-            Durch das Vektorprodukt (Kreuzprodukt) erhält man einen Vektor der rechtwinklig auf zwei anderen Vektoren liegt:\\
-            $\vec{a} \times \vec{v} = 
-            \begin{pmatrix}
-                a_x\\
-                a_y\\
-                a_z
-            \end{pmatrix} \cdot
-            \begin{pmatrix}
-                b_x\\
-                b_y\\
-                b_z
-            \end{pmatrix}
-            = \begin{pmatrix}
-                a_yb_z - a_zb_y\\
-                a_zb_x - a_xb_z\\
-                a_xb_y - a_yb_x
-            \end{pmatrix}$
+            Durch das Vektorprodukt (Kreuzprodukt) erhält man einen Vektor der rechtwinklig auf zwei anderen Vektoren liegt:
+            \[
+                vec{a} \times \vec{v} = 
+                \begin{pmatrix}
+                    a_x\\
+                    a_y\\
+                    a_z
+                \end{pmatrix} \cdot
+                \begin{pmatrix}
+                    b_x\\
+                    b_y\\
+                    b_z
+                \end{pmatrix}
+                = 
+                \begin{pmatrix}
+                    a_yb_z - a_zb_y\\
+                    a_zb_x - a_xb_z\\
+                    a_xb_y - a_yb_x
+                \end{pmatrix} 
+            \]
     
     \section{Gruppen, Körper, Vektorräume}
         \subsection{Gruppen}
+            Eine Gruppe ist eine algebraische Struktur und wird als Tupel von einer Gruppe und einer Verknüpfung angegeben (Beispiel (G,$\otimes$)). Eine Gruppe muss 
+            besonder Anforderungen erfüllen: 
+            \begin{description}
+                \item $\otimes$ muss eine innere Verknüpfung sein: $\otimes$: G $\times$ G $\rightarrow$ G 
+                \item $G_1$: $\forall$ a,b,c $\epsilon$ G: (a $\otimes$ b) $\otimes$ c= a $\otimes$ (b $\otimes$) c (Assoziativgesetz)
+                \item $G_2$: Es gibt ein Element $e$ $\epsilon$ G, dass für alle $a$ $\epsilon$ G gilt:\\ $a \otimes e = e \otimes a = a$ \\ e ist das neutrale Element bezüglich der Verknüpfung
+                \item $G_3$: Zu jedem a $\epsilon$ G gibt es ein Element $a^{-1}$ sodass gilt: \\ $a \otimes a^{-1} = a^{-1} \otimes a = e$ \\ $a^{-1}$ ist das inverse Element bezüglich der Verknüpfung
+                \item $G_4$: (optional) \\ gilt $a \otimes b = b \otimes a$ gilt das Kummutativgesetz. \\Wenn diese Regel (und alle davor auch) heißt die Gruppe kummutative oder auch abelsche Gruppe
+            \end{description}
+            \subsubsection{Homomorphismus}
+                Es sind zwei Gruppen A und B mit den Verknüpfungen $\otimes$ und $\cdot$ gegeben. \\
+                Außerdem ist eine Abbildung $\alpha: A \rightarrow B$ geben. Wenn jetzt für alle x,y $\epsilon$ A gilt:\\
+                $\alpha(x \otimes y) = \alpha(x) \cdot \alpha(y)$\\
+                dann nennt man $\alpha$ einen Homomorphismus. Ist $\alpha$ außderdem noch bijekt, so ist $\alpha$ ein Isomorphismus.  
         \subsection{Körper}
+            Ein Korper ist ähnlich zu einer Gruppe nur dass es hier 2 Verknüpfungen gibt. Die Menge K mit den inneren Verknüpfungen + und $\cdot$ heißt Körper, wenn gilt:
+            \begin{description}
+                \item (K,+) ist eine kommutative Gruppe ($e$ = 0)
+                \item (K $\setminus$ \{0\},$\cdot$) ist auch eine kommutative Gruppe ($e$ = 1)
+                \item Distributivgesetz muss gelten: $\forall a,b,c$ $\epsilon$ K: $a(b + c) = a \cdot b + a \cdot c$
+            \end{description}
+            \newpage
         \subsection{Vektorraum}
+            Man hat einen Vektorraum über dem Körper (K,+,$\cdot$)(K ist meistens $\mathbb{R}$ oder $\mathbb{C}$) 
+            wenn für alle k,l $\epsilon$ K und für alle u,v,w $\epsilon$ V folgendes gilt:
+            \begin{description}
+                \item $V_1$: V $\neq$ $\emptyset$
+                \item $V_2$: + ist eine innere Verknüpfung (u + v  $\epsilon$ V)
+                \item $V_3$: (u + v) + w = u + (v + w) (Assoziativgesetz)
+                \item $V_4$: es existiert ein nuetrales Element\footnote{heißt hier auch Nullvektor} bezüglich '+' (meistens als 0 beueichnet)
+                \item $V_5$: es existiert ein inverses Element bezühlich '+' 
+                \item $V_6$: u + v = v + u (Kummutativgesetz)
+                \item $V_7$: $\cdot$ ist eine äußere Verknüpfungvon V mit K (k $\cdot$ v $\epsilon$ V)
+                \item $V_8$: k $\cdot$ (l $\cdot$ v) = (k $\cdot$ l) $\cdot$ v (Assoziativgesetz für $\cdot$)
+                \item $V_9$: (k + l) $\cdot$ v = k $\cdot$ v + k $\cdot$ l (Distributivgesetz 1)
+                \item $V_{10}$: k $\cdot$ (u + v) = k $\cdot$ u + k $\cdot$ v
+                \item $V_{11}$: 1 $\cdot$ v = v, wobei 1 das neutrale Element der Verknüpfung $\cdot$ in K ist.
+            \end{description} 
         \subsection{Basis}
-
+            \subsubsection{Linearkombination}
+                Eine Linearkombination von Vektoren erhält man wenn jedem Vektor $v_n$ $\epsilon$ V ein \\ k $\epsilon$ $\mathbb{R}$ zuordnet und so 
+                \(\sum \limits_{i=1}^n k_i \cdot v_i \) erhält.\\
+                Vektoren heißen linear unabhängig wenn ihre Linearkombination nur durch die triviale lösung (alle $k_n$ = 0) gelcih 0 wird. Anderenfalls sind die Vektoren linear abhängig
+            \newpage
+                \subsubsection{Basis}
+                Die Menge $B = \{ \vec{b_1}, \vec{b_2}, ... ,\vec{b_n}\}$ $\subset$ V heit Basis von V wenn
+                \begin{description}
+                    \item[1.] sich jeder Vektor aus V als Linearkombination von den Vektoren aus B darstellen lässt und 
+                    \item[2.] die Vektoren in B linear unabhängig sind.
+                \end{description}
+                Die Mächtigkeit einer der Basen eine Vektorraums nennt man auch die Dimension des Vektorraums \\
+                Der Rang einer Matrix lässt sich berechnen indem man die Zeilen bzw. Spalten als Vekotren betrachtet. Die Anzahl der linear unabhängigen Zeilen/spaltenvktoren ist der Rang.
+            \subsubsection{Basisumrechnung}
+            \subsubsection*{Lösen durch LGS}
+                Möchte man einen Vektor $\vec v$ (Basis A) in eine andere Basis (Basis B) umrechen braucht man zuerst Die Basis von $\vec{v}$ und dessen Wert ($v_1,v_2$...) und die Basis in die man $\vec{v}$ umrechenen möchte.
+                Gesucht wird dann $\vec{x}$ (Mit der anderen Basis). Da $\vec{v}$ und $\vec{x}$ die selben Vektoren abbilden können, kann man auch  $\vec{v}$ als Linearkombination von der Basisi B angeben. Die 
+                Koeffizienten der Vektoren sind dann die Komponente von $\vec{x}$. Beispiel: 
+                \[\vec{v} = x_1 \cdot \vec{b_1} + x_2 \cdot \vec{b_2} + \cdots + x_n \cdot \vec{b_n}\footnote{Wobei n die Mächtigkeit der Basis A bzw. B ist.}\]
+                Will man jetzt nun den Vektor $\vec{x}$ ausrechen, schreibt man die Vektoren aus und hat dann ein LGS welches man nach den einzelnen x-Werten auflöst.
+            \subsubsection*{Rücktransforamtion einer Basis in die Standardbasis}
+                Ein besonder einfacher Fall für die Basistransformation ist, wenn man eine Basis B in die Standardbasis S Rücktransformieren will. Dafür stellt man eine Matrix auf, welche als Spalten
+                die Vektoren der transfomierten Matix benutzt.
+                \[Tr \cdot \vec{b}_{1B} = \vec{b}_{1S}\]
+                \[
+                    \begin{pmatrix}
+                        t_{11} & t_{12} \\
+                        t_{21} & t_{22}
+                    \end{pmatrix} 
+                    \cdot 
+                    \begin{pmatrix}
+                        1 \\ 0
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                        t_{11} \\
+                        t_{21} 
+                    \end{pmatrix}
+                    =  \vec{b}_{1S}
+                \] 
+                \[Tr \cdot \vec{b}_{2B} = \vec{b}_{2S}\]
+                \[
+                    \begin{pmatrix}
+                        t_{11} & t_{12} \\
+                        t_{21} & t_{22}
+                    \end{pmatrix} 
+                    \cdot 
+                    \begin{pmatrix}
+                        0 \\ 1
+                    \end{pmatrix}
+                    =
+                    \begin{pmatrix}
+                        t_{12} \\
+                        t_{22} 
+                    \end{pmatrix}
+                    =  \vec{b}_{2S} 
+                    \footnote{Beachte: $\vec{b}_{1B}$ und $\vec{b}_{1S}$ sind die Basisvektoren von B dargestellt in den beiden Basen B und der Standardbasis}
+                \] 
+            \subsubsection*{Lösen durch Matrix}
+            Hat man die Rücktransformationsmatrix Tr (von der Basis B) kann man diese inventieren und erhält die Transformationsmatrix T:
+            \[
+                Tr^{-1} \cdot \vec{v}_S = T \cdot \vec{v}_S = \vec{v}_B
+            \]
+                
     \section{Lineare Abbildungen}
         \subsection{Definition}
+            $\alpha: \mathbb{R}^n \rightarrow \mathbb{R}^m$ heißt lineare Abbildung (oder auch Homomorphismus) wenn für alle \\$\vec{x}$,$\vec{y}$ $\epsilon$ $\mathbb{R}^n$ und
+            für alle k $\epsilon$ $\mathbb{R}$ gilt:
+            \[1: \alpha(\vec{x} + \vec{y}) = \alpha(\vec{x}) + \alpha(\vec{y})\]
+            \[2: \alpha(k \cdot \vec{x}) = k \cdot \alpha(\vec{x})\]
         \subsection{Darstellung durch Matrix}
         \subsection{Rechenoperationen}
         \subsection{Eigenvektor und Eigenwert}
