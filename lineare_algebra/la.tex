@@ -4,14 +4,19 @@
 \usepackage{hyperref}
 \usepackage[ngerman]{babel}
 \usepackage{amsfonts}
+\usepackage{amssymb}
 \usepackage{lipsum}
+\usepackage{graphicx}
+
+
+\graphicspath{.}
 
 
 
 
 
-\title{Lineare Algebra Skript}
-\author{Arif Hasanic}
+\title{Lineare Algebra Zusammenfassung}
+\author{}
 
 \begin{document}
     \maketitle
@@ -25,8 +30,8 @@
         \subsubsection{Aussagenlogik}
         Die Aussagenlogik beschreibt einen Sachverherhalt, dem man eindeutig einen 
         Wahrheitswert (wahr, falsch) zuordnen kann. Weiter kann man diese Ausdrücke verknüpfen. 
-        z = x $\wedge$ y,   x und y müssen beide wahr sein damit z wahr ist.\footnote{x bzw. y sind Platzhalter. Beispielsweise könnte für x: 1 > 2 stehen} \\
-        Die Erfüllungsmenge eines aussagenlogischen Ausdrucks besteht aus allen Variablen $x_i$ für die der gesamte Ausdrucke wahr ist
+        z = x $\wedge$ y, x und y müssen beide wahr sein damit z wahr ist.\footnote{x bzw. y sind Platzhalter. Beispielsweise könnte für x: 1 > 2 stehen} \\
+        Die Erfüllungsmenge eines aussagenlogischen Ausdrucks besteht aus allen Variablen $x_i$ für die der gesamte Ausdruck wahr ist
         \begin{description}
             \item[$z_1 \Rightarrow z_2$]
             \item $z_2$ ist notwendig für $z_1$ 
@@ -36,7 +41,7 @@
         \subsubsection{Prädikatenlogik}
         Bei der Prädikatenlogik wird eine Aussage in Subjekt und Prädikt aufgeteilt. Das Subjekt dient als Platzhalter. Der Vorteil ist, dass nun 
         allgemeinere Aussagen erstellt werden können. Beispiel: "s studiert Maschinenbau", wobei s $\epsilon$ Studenten. \\
-        Die Ergebnismenge besteht dann aus den Aussagen die zutreffen. Prädikate können wie in der Aussagenlogik verknüpft werden und außerdem werden noch sogenannte
+        Die Ergebnismenge besteht dann aus den Aussagen die zutreffen. Prädikate können wie in der Aussagenlogik verknüpft werden. Außerdem werden noch sogenannte
         Quantoren eingführt:
         \begin{description}
             \item $\forall$: Der Allqunator sagt aus dass  Prädikate für alle Elemte der einer Menger gelten \\($\forall$ s $\epsilon$ Studenten)
@@ -48,7 +53,7 @@
         \subsection{Mengen}
         Eine Menge besteht aus eindeutig bestimmbaren Objekten die real (z.B. Stifte) oder auch gedacht (z.B. Zahlen) sein können. Eindeutig bestimmbar heißt auch,
         dass Objekte nicht mehrmals auftauchen können so ist M = {1,2,2,3} = {1,2,3}\\
-        Mengen könenn auf verschiden beschrieben werden:
+        Mengen können auf verschidene Weisen beschrieben werden:
         \begin{description}
             \item Als Aufzählung: M = \{1; 7; 12; 836 \} 
             \item durch Prädikat: M = \{x $\epsilon$ G : P(x)\} \\ 
@@ -72,7 +77,7 @@
             \item |$\mathbb{N}$| = $\aleph_0$
             \item |$\mathbb{R}$| = $\aleph_1$ 
         \end{description}
-        $\mathbb{N}$ und $\mathbb{Q}$ sind gleichmächtig weil sie als abzählbar gelten, d.h. man kann jder zahl in $\mathbb{N}$ und $\mathbb{Q}$ einen Index zuorden, 
+        $\mathbb{N}$ und $\mathbb{Q}$ sind gleichmächtig weil sie als abzählbar gelten, d.h. man kann jeder Zahl in $\mathbb{N}$ und $\mathbb{Q}$ einen Index zuorden, 
         da man $\mathbb{Q}$ als Bruch $\cfrac{p}{q}$, wobei $p \epsilon \mathbb{N}$, $q \epsilon \mathbb{Z}$, darstellen kann. $\pi$ ist jedoch eine Zahl, die man nicht durch einen Bruch
         darstellen kann, weshalb die Zahl auch keine rationale Zahl ist, sondern eine reele Zahl ($\pi \epsilon \mathbb{R}$), oder auch die eulersche Zahl. Da man diesen Zahl keinen Index zuordnen kann
         (Beweis im Skript vom Prof) gilt $\mathbb{R}$ mächtiger $\mathbb{N,Z,Q}$
@@ -81,15 +86,15 @@
         Bei der Verknüpfung von Mengen erhält man je nach Verknüpfung wieder eine neue Menge. Verknüpfungen für Mengen sind:
         \begin{description}
             \item Schnittmenge:
-                   A $\cup$ B liefert eine Menge mit allen Objekten die A und B gemeinsam haebn. Gibt es keine Gemeinsamen Objekte so entsteht die leere Menge. 
+                   A $\cup$ B liefert eine Menge mit allen Objekten die A und B gemeinsam haben. Gibt es keine gemeinsamen Objekte so entsteht die leere Menge. 
             \item Vereinigungsmenge: 
-                   A $\cap$ B Liefert eine Menge die Alle Objekte aus A und B in eine neue Menge vereinigt. Sind A und B glecih so ist die Ergebnismenge glecih A und B. 
+                   A $\cap$ B Liefert eine Menge die alle Objekte aus A und B in eine neue Menge vereinigt. Sind A und B gleich so ist die Ergebnismenge gleich A und B. 
             \item Differenzmenge :
                    A $\setminus$ B Liefert eine Menge mit Objekten die A und B unterschiedlich haben.
             \item Kartesisches Produkt\footnote{wird auch Produktmenge genannt}:
                    A $\times$ B Liefert eine Menge welche die Objekte aus A mit den Objekten aus B paart.\\
-                   Beispiel: A = \{1; 2; 3\} und B = \{2; 4\} $\rightarrow$ A $\times$ B = \{(1,2); (1,4); (2,1); (2,4); (3,1); (3,4)\}\footnote{
-                   Man sieht hier das A $\times$ B $\neq$ B $\times$ A}
+                   Beispiel: A = \{1; 2; 3\} und B = \{2; 4\} $\rightarrow$ A $\times$ B = \{(1,2); (1,4); (2,1); (2,4); (3,1); (3,4)\}
+                   \footnote{Man sieht hier das A $\times$ B $\neq$ B $\times$ A}
         \end{description}
         \subsection{Realtionen}
         Eine zweistellige Relation ist eine Teilmenge zwischen A und B (REL $\subseteq$ A $\times$ B), wobei A der Vorbereich von REL und B der Nachbereich von REL ist.\\
@@ -123,33 +128,31 @@
         werden. So ist $\tilde 2$ + $\tilde 2$ = $\tilde 1$ für x mod 3
         \subsubsection{Funktion, Abbildung}
             Eine Funktion ist eine spezielle Relation. Damit $f$ eine Funktion von A nach B ist, muss folgendes gelten:\\
-            Zu jedem x $\epsilon$ A darf es nur ein einziges y $\epsilon$ B geben, also jedem x muss min. ein y Wert zugeordnet werde.
+            Zu jedem x $\epsilon$ A darf es nur ein einziges y $\epsilon$ B geben.
             Bei einer Funktion muss auch noch gelten, dass ein beliebiger x Wert nur einem y Wert zugeordnet wird. ((x, y) $\epsilon$ f $\wedge$ (x, z) $\epsilon$ f $\rightarrow$ (y = z)) \\
-            A heißt auch Definitionsmenge und B heißt Zielmenge. der nachbereich (also die y Werte die von x in B "getroffen" werden) heißt auch Wertevorrat. Bei einer Funktion müssen also noch 
+            A heißt auch Definitionsmenge und B heißt Zielmenge. der Nachbereich (also die y Werte die von x in B "getroffen" werden) heißt auch Wertevorrat. Bei einer Funktion müssen also noch 
             Mengen angegeben werden, damit diese richtig aufgestellt ist.  \\
             Schreibweise: A $\rightarrow$ B, x $\mapsto$ f(x)\footnote{f(x) = 3x als Beispiel } \\
             Möchte man Funktionen hintereinander ausführe spricht man von der Komposition von Funktionen. Man schreibt f $\circ$ g oder (f $\circ$ g)(x) oder f(g(x)).
             \\ Beispiel: f(x) = $x^2$ und g(x) = x + 2 $\Rightarrow$ f(g(x)) = f(x+2) = $(x + 2)^2$ \\
             Weiter Eigenschaften on Funktionen sind Injektivität ($\forall x_1,x_2$: f($x_1$) = f($x_2$) $\Rightarrow$ $x_1 = x_2$, also jedem y Wert darf wurde nur ein x-Wert zugeordnet werden)
             und Surjektivität ($\forall$ y $\epsilon$ B: $\exists$ x $\epsilon$ A: f(x) = y, also jedem y Wert wurde ein x zugeordnet). Ist eine Funktion injektiv und surjekitv nennt man
-            die Funktion auch bijektiv. Funktionen können umgekehrt werden, also eine FUnktion wird nach x aufgelöst. Im normalfall bekommt man wieder eine Realtion bei der Umkehrung, ist eine Funktion 
-            aber nijektiv so ist die Umkehrung der Funktion auch eine Funktion.
-        \subsection{Induktion}
-  
+            die Funktion auch bijektiv. Funktionen können umgekehrt werden, also eine Funktion wird nach x aufgelöst. Im Normalfall bekommt man wieder eine Realtion bei der Umkehrung, ist eine Funktion 
+            aber bijektiv so ist die Umkehrung der Funktion auch eine Funktion.  
 
     \section{Lineare Gleichungssysteme}
         \subsection{Einführung}
         Ein lineares Gleichungssystem hat m Gleichungen und n Unbekannte. Die Schreibweise ist:
         
-        $\begin{array}{c}
+        \[\begin{array}{c}
             a_{11}x_1 + a_{12}x_2 + ... a_{1n}x_n = b_1 \\
             a_{21}x_1 + a_{22}x_2 + ... a_{2n}x_n = b_2 \\
                         . \\ . \\ . \\
             a_{m1}x_1 + a_{m2}x_2 + ... a_{mn}x_n = b_m
-        \end{array}$
-        \\Dabei sind $a_{mn}$ die Koeffizienten und $x_n$ die Unbekannten. Eine Weitere Schreibweise ist die Matrixschreibweise: 
+        \end{array}\]
+        Dabei sind $a_{mn}$ die Koeffizienten und $x_n$ die Unbekannten. Eine Weitere Schreibweise ist die Matrixschreibweise: 
         
-        $\begin{array}{c}
+        \[
             \begin{pmatrix}
                 a_{11} & a_{12} & a_{13}\\
                 a_{21} & a_{22} & a_{23} \\
@@ -176,7 +179,7 @@
                 .\\
                 b_n
             \end{pmatrix}
-        \end{array}$ 
+        \] 
         $\vec{x}$ ist der gesuchte Lösungsvektor.
 
         \subsection{LGS lösen}
@@ -186,8 +189,8 @@
             Beim Aufstellen von einem LGS gibt es keine genaue Regel. Man schaut einfach welche Größen variabel und welche konstant sind und schaut dann wie die Größen zusammenspielen und 
             bringt sie dann zusammen.
         \subsection{Determinanten}
-        Eine Determinante sagt aus ob ein LGS lösbar ist oder nicht. Der einfachtse Fall ist wenn es 2 Gleichungen und 2 Unbekannte gibt. \\
-        $\begin{array}{c}
+        Eine Determinante sagt aus ob ein LGS lösbar ist oder nicht. Der einfachtse Fall ist wenn es 2 Gleichungen und 2 Unbekannte gibt. 
+        \[
             \begin{pmatrix}
                 a_{11} & a_{12} \\
                 a_{21} & a_{22}
@@ -202,38 +205,90 @@
                 b_{1}  \\
                 b_{2} 
             \end{pmatrix}
-        \end{array}$\\
+        \]
         Um die Determinate zu berechnen werden die x Werte nicht gebraucht. Die Determinante ist definiert durch D = $a_{11}a_{22} - a_{12}a_{21}$. ist D $\neq$ 0 dann gibt es genau eine Lösung.
         Ist D = 0 können noch zwei Fälle auftreten. Wenn $a_{11}b_2 - a_{21}b_1 = 0 \wedge a_{22}b_1 - a_{12}b_2 = 0 $ dann gibt es undendlich viele Lösungen . Ist einer der Terme $\neq$ 0 dann gibt es keine Lösung.
         Die Schreibweise lautet 
-
-        D = det(A) = 
-        $\begin{vmatrix}
-            a_{11} & a_{12} \\
-            a_{21} & a_{22}
-        \end{vmatrix}$
-        = $a_{11}a_{22} - a_{12}a_{21}$ \\
-        Weiter ist $D_1$ definiert als $D_1$ = 
-        $\begin{vmatrix}
-            b_{1} & a_{12} \\
-            b_{2} & a_{22}
-        \end{vmatrix}$
-        = $a_{22}b_1 - a_{12}b_2$ \\
-        und $D_2$ ist definiert als: $D_2$ = 
-        $\begin{vmatrix}
-            a_{11} & b_{1} \\
-            a_{21} & b_{2}
-        \end{vmatrix}$
-        = $a_{11}b_2 - a_{21}b_1$ \\
-        Nach der Cramerschen Regel kann man $x_1$ und $x_2$ wie folgt berechnen: \\
-        \begin{tabular}{c}
-            $x_1 = \cfrac{D}{D_1}$ und $x_2 = \cfrac{D}{D_2}$
-        \end{tabular}
-        Laplace Entwicklung: \\
-        Formel von Sarrus: \\
+        
+        \[
+            D = det(A) = 
+            \begin{vmatrix}
+                a_{11} & a_{12} \\
+                a_{21} & a_{22}
+            \end{vmatrix}
+            = a_{11}a_{22} - a_{12}a_{21}
+        \]
+        \[
+            \text{Weiter ist $D_1$ definiert als $D_1$} = 
+            \begin{vmatrix}
+                b_{1} & a_{12} \\
+                b_{2} & a_{22}
+            \end{vmatrix}
+            = a_{22}b_1 - a_{12}b_2 
+        \]
+        \[
+            \text{und $D_2$ ist definiert als: $D_2$ =} 
+            \begin{vmatrix}
+                a_{11} & b_{1} \\
+                a_{21} & b_{2}
+            \end{vmatrix}
+            = a_{11}b_2 - a_{21}b_1
+        \]
+        Nach der Cramerschen Regel kann man $x_1$ und $x_2$ wie folgt berechnen: 
+        \[
+            x_1 = \cfrac{D}{D_1} \text{ und } x_2 = \cfrac{D}{D_2}
+        \]
         Das Transponieren der Matrix ändert nicht die Determinante. Wird eine Reihe einer Matrix mit einem Faktor multipliziert, so wird auch der Wert der Determinatne mit dem selben 
         Wert multipliziert. 
         \newpage
+        \subsubsection*{Laplace Entwicklung:} 
+            Mit der Laplace Entwicklung kann man Determinanten beliebig großer n $\times$ n Matrizen berechnen. Man entscheidet sich zuerst ob man nach einer Zeile oder 
+            Spalte entwickeln will. Wenn man nach einer Zeile entwickeln will multipliziert man die Adjunkten der Spalte mit der dazugehörigen Unterdetemniante und mit $(-1)^{ij}$.
+            Wobei i die Zeile und j die Spalte ist. Die Unterdeterminante erhält man indem man
+            die Zeile, in der sich Adjunkte befindet wegstreicht. Man erhält eine Matrix mit Rang = n - 1. Wenn man alle Unterdeterminante addiert, erhält man die Determinaten der eigentlichen Matrix. Beispiel:
+            \[
+                \begin{vmatrix}
+                    1 & 2 & 3 \\
+                    4 & 5 & 6 \\ 
+                    7 & 8 & 9
+                \end{vmatrix} 
+                =
+                -4 \cdot
+                \begin{vmatrix}
+                    2 & 3 \\
+                    8 & 9
+                \end{vmatrix} 
+                + 5 \cdot
+                \begin{vmatrix}
+                    1 & 3 \\
+                    7 & 9
+                \end{vmatrix}
+                - 6 \cdot
+                \begin{vmatrix}
+                    1 & 2 \\
+                    7 & 8
+                \end{vmatrix}
+                =  24 - 60 + 36 = 0 \footnote{Es wird nach der 2. Zeile entwickelt, wobei man eigetnlich jede Zeile Spalte zum entwickeln benutzen kann.}
+            \]  
+        \subsubsection*{Regel von Sarrus:}
+            Die Regel von Sarrus ist auf alle 3 $\times$ 3 Matrizen anwendbar. Es gilt:
+            \[
+                \begin{vmatrix}
+                    a_{11} & a_{12} & a_{13} \\
+                    a_{21} & a_{22} & a_{23} \\
+                    a_{31} & a_{32} & a_{33} 
+                \end{vmatrix}  
+                \begin{matrix}
+                    a_{11} & a_{12} \\
+                    a_{21} & a_{22} \\
+                    a_{31} & a_{32} 
+                \end{matrix}
+            \]
+            \[
+                det(A) = a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{31}a_{22}a_{13} - a_{32}a_{23}a_{11} - a_{33}a_{21}a_{12}
+            \]
+        Wobei man Diagonale Elemente multipliziert und die Diagoneln dann zusammen addiert. Die Werte die 'unten' anfangen werden dann von den Werten die 'oben' anfangen subtrahiert
+        
         \subsection{Matrizen}
             Addition: Matrizen werden addiert indem man die positionsgleichen Werte miteinander addiert. \\
             Faktormultiplikation: Eine Matrix kann mit einem Faktor multipliziert werden, indem jedes Element der Matrix mit dem Faktor multipliziert wird. \\
@@ -258,10 +313,9 @@
                 7 & 8 \\
                 9 & 2 \\
             \end{pmatrix}$ \\
-            Bei der Matrixinversion wird die Matrix A hingeschreiben (A muss quadratisch sein). Um jetzt $A^{-1}$ zu bekommen scchreibt man noch die Einheitsmatrix (muss gleciher Typ sein).
-            nebdran. Nun wandelt man die matrix mithifle vom Gaus Algorithmus in die Einheitsmatirx um. dabei wendet man jeden Rechenschritt um die zu bewirken auch an der Einheitsmatrix an. 
+            Bei der Matrixinversion wird die Matrix A hingeschreiben (A muss quadratisch sein). Um jetzt $A^{-1}$ zu bekommen scchreibt man noch die Einheitsmatrix nebenhin.
+            Nun wandelt man die Matrix A mithifle vom Gaus Algorithmus in die Einheitsmatirx um. Dabei wendet man jeden Rechenschritt auch an der Einheitsmatrix an. 
             Die 'alte' Einheitsmatrix ist jetzt $A^{-1}$.
-            \newpage
     \section{Vektoren}
         Einen Vektor kann man entwder als Punkt darstellen oder als eine Strecke die vom Ursprung ausgeht. Wird ein Vektor als Strecke dargestellt wird auch deutlich das ein Vektor eine Länge und eine 
         Richtung hat. 
@@ -287,7 +341,7 @@
                     \hline
                 \end{tabular}  
             \subsubsection{Richtungscosinus}
-                Bei dreidimensinalen Vektoren gilt: \\
+                Bei dreidimensionalen Vektoren gilt: \\
                 $\begin{array}{l}
                     p_x = r \cdot \cos \alpha \\
                     p_y = r \cdot \cos \alpha \\
@@ -295,44 +349,79 @@
                     r = |\vec p| = \sqrt{{p_x}^2 + {p_y}^2} \\
                     \alpha = \arctan \cfrac{p_y}{p_x}
                 \end{array}$
-            \subsubsection{Geokoordinaten}
+            \subsubsection{Kugel- Geokoordinaten}
+            Die Kugelkoordinaten sind bestimmt für drei dimensionale Vektoren. Sie besteht aus eine Länge r (Radius) und den Winkel $\varphi$ und $\theta$. Hat man ein Drei dimensionales
+            Koordinatensystem ist $\phi$ der Winkel zu positiven x-Achse (bei den Geokoordinaten der Winkel zum Nullmeridian) und $\theta$ der Winkel zur Positiven x-Achse 
+            (Bei Geokoordinaten der Winkel zur Äquatorebene (90 - $\theta$)). Umrechenen der Koordinaten:
+            \[
+                \begin{array}{l|l}
+                    x = r \sin \theta \cos \varphi & r = \sqrt{x^2 + y^2 + z^2} \\
+                    y = r \sin \theta \sin \varphi & \theta = \arccos \cfrac{z}{r} \\
+                    z = r \cos \theta & \varphi = \arctan \cfrac{y}{x}
+                \end{array}
+            \]
             \subsubsection{Zylinderkoordinaten}
-        \subsection{Rechenoperationen}
-            Addition: zwei Vektoren werden Komponentenweise addiert, also $\vec a + \vec b = 
+            Die Zylinderkoordinaten Bestehen aus eiem Winkel $\varphi$ zur positiven x-Achse, dem Radius r und der Höhe z. Umrechnung:
+
+            \[
+                \begin{array}{l|l}
+                    p_z = z & z = p_z \\
+                    p_x = r \cdot \cos \varphi &  \varphi = \arctan \cfrac{p_y}{p_x} \\
+                    p_y = r \cdot \sin \varphi & r = \sqrt{{p_x}^2 + {p_y}^2}  
+                \end{array}
+            \]
+            \newpage
+            \subsection{Rechenoperationen}
+            Addition: zwei Vektoren werden Komponentenweise addiert, also \(\vec a + \vec b = 
             \begin{pmatrix}
                 a_1 + b_1\\
                 a_2 + b_2\\
                 .\\
                 .\\.\\
                 a_n + b_n    
-            \end{pmatrix} $\\
-            Strecke: will man die Strecke zweischen zwei Punkten A und B muss man A komponentenweise von B subtrahieren uund bekomm einen Vektor. $\vec {AB} = 
+            \end{pmatrix} \)\\
+            Strecke: will man die Strecke zweischen zwei Punkten A und B muss man A komponentenweise von B subtrahieren uund bekomm einen Vektor. \[\vec {AB} = 
             \begin{pmatrix}
                 B_1 - A_1 \\
                 B_2 - A_2\\
                 .\\
                 .\\.\\
                 B_n - A_n  
-            \end{pmatrix}$
+            \end{pmatrix}\]
+            Betrag:
+            \(
+                |\vec{v}| = 
+                |\begin{pmatrix}
+                    v_1 \\ v_2 \\ . \\ . \\. v_n    
+                \end{pmatrix}|
+                = \sqrt{{v_1}^2 + {v_2}^2, \hdots, {v_n}^2}
+            \)  
         \subsection{Gerade, Ebene}
             Punkt-Richtungsform: Möchte man mit einem Vektor eine Gerade erstellen braucht man zuerst einen Punkt auf den die Gerade liegen kann. Einen Vektor der die Richtung angibt 
-            und einen Fakor ($k \epsilon \mathbb{R}$) für den Vektor. Um einen bestimmten Punkt auf der Gerade anzugeben kann man dann 'k' so wählen da,it eben dieser Punkt erreicht wird.\\
+            und einen Fakor ($k \epsilon \mathbb{R}$) für den Vektor. Um einen bestimmten Punkt auf der Gerade anzugeben kann man dann 'k' so wählen damit eben dieser Punkt erreicht wird.\\
             Um eine Ebene darstellen zu können kommt noch ein weiter Vekor mit eigenm Fakotr dazu.  
+            \footnote{\(
+                \text{g: } \vec{p} + t \cdot \vec{h} \text{ ,als Beispiel für eine Gerade}  
+            \)}
+            \footnote{\(
+                \text{E: } \vec{u} + t \cdot \vec{v} + s \cdot \vec{w}  \text{ ,als Beispiel für eine Ebene}  
+            \)}
 
         \subsection{Skalarprodukt}
-            Das Skalarprodukt wird auch inneres Produkt genannt und wird wie folgt berechnet: \\
-            $\vec{u} \cdot \vec{v} = |\vec{u}| \cdot |\vec{v}| \cdot \cos(\angle \vec{u} \vec{v})$ \\
-            Um den Winkel zeischen u und v zu finden kann man folgende Formel nehmen: $\arccos \cfrac{u_xv_x + u_yv_y + u_zv_z}{|\vec{u}|\cdot|\vec{v}|}$ \\
-            Der Einheitsvektor eines Vektor berecnet sich durch: $\vec{u}_0 = \cfrac{\vec{u}}{|\vec{u}|}$
+            Das Skalarprodukt wird auch inneres Produkt genannt und wird wie folgt berechnet: 
+            \[\vec{u} \cdot \vec{v} = |\vec{u}| \cdot |\vec{v}| \cdot \cos(\angle \vec{u} \vec{v})\]
+            Um den Winkel zeischen u und v zu finden kann man folgende Formel nehmen: \[\arccos \cfrac{u_xv_x + u_yv_y + u_zv_z}{|\vec{u}|\cdot|\vec{v}|}\]
+            Der Einheitsvektor eines Vektor berecnet sich durch:  \[\vec{u}_0 = \cfrac{\vec{u}}{|\vec{u}|}\]
         \subsection{Vektorprodukt}
             Durch das Vektorprodukt (Kreuzprodukt) erhält man einen Vektor der rechtwinklig auf zwei anderen Vektoren liegt:
             \[
-                vec{a} \times \vec{v} = 
+                \vec{a} \times \vec{b} 
+                =
                 \begin{pmatrix}
                     a_x\\
                     a_y\\
                     a_z
-                \end{pmatrix} \cdot
+                \end{pmatrix} \times
                 \begin{pmatrix}
                     b_x\\
                     b_y\\
@@ -345,10 +434,25 @@
                     a_xb_y - a_yb_x
                 \end{pmatrix} 
             \]
-    
+        \subsection{Anwendung}
+            \subsubsection{Ray-Tracing}
+                Ray Tracing wird dazu verwendet um Beispielsweise einen reflektierenden Lichtstrahl auszurechnen. Dafür braucht man einen zuerst einen Lichtstrahl $\vec{v}$ und eine Ebene die den 
+                Lichtstrahl reflektieren kann.  Man nimmt aber zur Berechnung den Winkel zum Normalevektor der Ebene. Den erhält man aus dem Kreuzprodukt der Richtungsvekotren der Ebene. 
+                Der Ergbnissvektor durch seinen Betrag geteilt (normalisiert) und man erhält den Vektor $\vec{n}_0$. Um den reflektierenden Vektor $\vec{a}$ zu berechnen gilt folgende Formel:
+                \[
+                    \vec{a} = 2 \cdot (-\vec{v} * \vec{n}_0) \vec{n}_0 + \vec{v}
+                \]   
+            \subsubsection{Lorenzkraft}
+            Die Lorenzkraft kraft ist definert als
+            \[\vec{F}_L = q \cdot (\vec{v} \times \vec{B})\] 
+            wobei q die Ladung ist, $\vec{v}$ die Geschwindigkeit des Ladungsträgers und
+            $\vec{B}$ die Flussdichte vom Magnetfeld ist. Betrachtet man jetzt nicht nur einen Ladungsträger, sondern einen kompletten Stromfluss gilt folgendes 
+            \[\vec{F}_L = I  \cdot (\vec{l} \times \vec{B})\]
+            wobei hier I die Stromstärke ist und l die Länge und Richtung des Drahtstück ist.
+    \newpage
     \section{Gruppen, Körper, Vektorräume}
         \subsection{Gruppen}
-            Eine Gruppe ist eine algebraische Struktur und wird als Tupel von einer Gruppe und einer Verknüpfung angegeben (Beispiel (G,$\otimes$)). Eine Gruppe muss 
+            Eine Gruppe ist eine algebraische Struktur und wird als Tupel von einer Menge und einer Verknüpfung angegeben (Beispiel (G,$\otimes$)). Eine Gruppe muss 
             besonder Anforderungen erfüllen: 
             \begin{description}
                 \item $\otimes$ muss eine innere Verknüpfung sein: $\otimes$: G $\times$ G $\rightarrow$ G 
@@ -377,10 +481,10 @@
                 \item $V_1$: V $\neq$ $\emptyset$
                 \item $V_2$: + ist eine innere Verknüpfung (u + v  $\epsilon$ V)
                 \item $V_3$: (u + v) + w = u + (v + w) (Assoziativgesetz)
-                \item $V_4$: es existiert ein nuetrales Element\footnote{heißt hier auch Nullvektor} bezüglich '+' (meistens als 0 beueichnet)
+                \item $V_4$: es existiert ein neutrales Element\footnote{heißt hier auch Nullvektor} bezüglich '+' (meistens als 0 bezeichnet)
                 \item $V_5$: es existiert ein inverses Element bezühlich '+' 
                 \item $V_6$: u + v = v + u (Kummutativgesetz)
-                \item $V_7$: $\cdot$ ist eine äußere Verknüpfungvon V mit K (k $\cdot$ v $\epsilon$ V)
+                \item $V_7$: $\cdot$ ist eine äußere Verknüpfung von V mit K (k $\cdot$ v $\epsilon$ V)
                 \item $V_8$: k $\cdot$ (l $\cdot$ v) = (k $\cdot$ l) $\cdot$ v (Assoziativgesetz für $\cdot$)
                 \item $V_9$: (k + l) $\cdot$ v = k $\cdot$ v + k $\cdot$ l (Distributivgesetz 1)
                 \item $V_{10}$: k $\cdot$ (u + v) = k $\cdot$ u + k $\cdot$ v
@@ -390,7 +494,7 @@
             \subsubsection{Linearkombination}
                 Eine Linearkombination von Vektoren erhält man wenn jedem Vektor $v_n$ $\epsilon$ V ein \\ k $\epsilon$ $\mathbb{R}$ zuordnet und so 
                 \(\sum \limits_{i=1}^n k_i \cdot v_i \) erhält.\\
-                Vektoren heißen linear unabhängig wenn ihre Linearkombination nur durch die triviale lösung (alle $k_n$ = 0) gelcih 0 wird. Anderenfalls sind die Vektoren linear abhängig
+                Vektoren heißen linear unabhängig wenn ihre Linearkombination nur durch die triviale lösung (alle $k_n$ = 0) gleich 0 wird. Andernfalls sind die Vektoren linear abhängig
             \newpage
                 \subsubsection{Basis}
                 Die Menge $B = \{ \vec{b_1}, \vec{b_2}, ... ,\vec{b_n}\}$ $\subset$ V heit Basis von V wenn
@@ -399,7 +503,7 @@
                     \item[2.] die Vektoren in B linear unabhängig sind.
                 \end{description}
                 Die Mächtigkeit einer der Basen eine Vektorraums nennt man auch die Dimension des Vektorraums \\
-                Der Rang einer Matrix lässt sich berechnen indem man die Zeilen bzw. Spalten als Vekotren betrachtet. Die Anzahl der linear unabhängigen Zeilen/spaltenvktoren ist der Rang.
+                Der Rang einer Matrix lässt sich berechnen indem man die Zeilen bzw. Spalten als Vekotren betrachtet. Die Anzahl der linear unabhängigen Zeilen/Spaltenvktoren ist der Rang.
             \subsubsection{Basisumrechnung}
             \subsubsection*{Lösen durch LGS}
                 Möchte man einen Vektor $\vec v$ (Basis A) in eine andere Basis (Basis B) umrechen braucht man zuerst Die Basis von $\vec{v}$ und dessen Wert ($v_1,v_2$...) und die Basis in die man $\vec{v}$ umrechenen möchte.
@@ -458,8 +562,164 @@
             \[1: \alpha(\vec{x} + \vec{y}) = \alpha(\vec{x}) + \alpha(\vec{y})\]
             \[2: \alpha(k \cdot \vec{x}) = k \cdot \alpha(\vec{x})\]
         \subsection{Darstellung durch Matrix}
+            Hat man als Abbildungsvorschrift("Input" von $\alpha$) die vektoren der Standardbasis, sind die Ergebnisvektoren jeweils die Spalten der Abbildungsmatrix A. Beispiel:
+            \[
+                \alpha(
+                    \begin{pmatrix}
+                        1 \\ 0 \\ 0
+                    \end{pmatrix}
+                ) = 
+                \begin{pmatrix}
+                    1 \\ 1
+                \end{pmatrix},
+                \alpha(
+                    \begin{pmatrix}
+                        0 \\ 1 \\ 0
+                    \end{pmatrix}
+                ) = 
+                \begin{pmatrix}
+                    2 \\ 1
+                \end{pmatrix},
+                \alpha(
+                    \begin{pmatrix}
+                        0 \\ 0 \\ 1
+                    \end{pmatrix}
+                ) = 
+                \begin{pmatrix}
+                    0 \\ 2
+                \end{pmatrix}
+            \]
+            \[
+                \Rightarrow A = 
+                \begin{pmatrix}
+                    1 & 2 & 0\\
+                    1 & 1 & 2
+                \end{pmatrix}
+            \]
+            \[
+                \text{Es gilt also: }\alpha(\vec{x}) = \alpha(\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}) 
+                = A \cdot \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix} 
+            \] 
+            bzw. allgemein: $\alpha(\vec{x}) = \vec{y} = A \cdot \vec{x}$ 
+            
+            \newpage
+            Hat $\alpha$ als Input jetzt nicht die Vektoren der Standardbasis kann man die Abbildungsmatrix nun erstmal mit Unbekannten belegen, aber alle gegeben $\vec{x}$ und $\vec{y}$
+            einsetzen. Führt man jetzt die Matrixmultiplikation durch kann man ein LGS (vielleicht auch merhere kleine) aufstellen und lösen und erhält die Abbildungsmatrix A. Beispiel: \\
+            % Definiton der Werte fürs Beispiel
+            $
+            \alpha(\begin{pmatrix}
+                2 \\ -1
+            \end{pmatrix}) = 
+            \begin{pmatrix}
+                1 \\ 5
+            \end{pmatrix}$ ;
+            $\alpha(
+                \begin{pmatrix}
+                -3 \\ 0
+            \end{pmatrix}) = \begin{pmatrix}
+                -2 \\ 4
+            \end{pmatrix}$ 
+
+
+            % Matrix mal Vektor 2, -1 
+            \begin{description}
+                \item 
+                $\begin{pmatrix}
+                    a & b \\ c & d
+                \end{pmatrix}
+                \begin{pmatrix}
+                    2 \\ -1
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    1 \\ 5
+                \end{pmatrix};
+                % Matrix mal Vektor -3, 0
+                \begin{pmatrix}
+                    a & b \\ c & d
+                \end{pmatrix}
+                \begin{pmatrix}
+                    -3 \\ 0
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    -2 \\ 4
+                \end{pmatrix}
+                $    
+                \item Durch Matrixmultiplikation erhält man folgende Terme
+                \item 2a - b = 1 || -3a = 2
+                \item 2c - d = 5 || -3c = 4
+            \end{description}
+            Jetzt kann man die einezelnen Werte für A berechenn und erhält A =
+            $\cfrac{1}{3}
+            \begin{pmatrix}
+                2 & 1 \\ {-4} & {-23}
+            \end{pmatrix}$
         \subsection{Rechenoperationen}
-        \subsection{Eigenvektor und Eigenwert}
-    
+            \subsubsection{Addition}
+                Hat man zwei Lineare Abiildungen $\alpha$ und $\beta$ definert, Welche beide den selbe Definitions- und Bildvektorraum haben gilt folgendes für die Addition:
+                \[
+                    \vec{x} \mapsto (\alpha + \beta)(\vec{x}) = \alpha(\vec{x}) + \beta(\vec{x}) = A\vec{x} + B\vec{x} = (A + B) \vec{x} \footnote{Ähnlcihes gilt auch für die Multiplikation von $\alpha$ mit k}
+                \]
+            \subsubsection{Umkehrabbildung}
+                Damit eine lineare Abbildung umkehrbar ist, müssen Definitions- und Bildvektorraum gleich sein. Ähnlich zu normalen Funktionen erhält man die Umkehrabbildung indem man die Gleichung
+                nach x (hier: $\vec{x}$) auflöst: 
+                \[
+                    \vec{y} = A\vec{x} \Rightarrow A^{-1} \cdot \vec{y} = A^{-1} \cdot A \cdot \vec{x} \Rightarrow \vec{x} = A^{-1} \cdot \vec{y}    
+                \]
+            \subsubsection{Komposition}
+                Seien $\alpha$ und $\beta$ zwei lineare Abbildungen mit ihren Abbildungsmatrizen A und B. Außerdem ist der Bildvektorraum von $\alpha$ der Definitionsvektorraum
+                von $\beta$. Jetzt ist $\gamma$ definiert als die Komposition von $\alpha$ und $\beta$. Es gilt:
+                \[
+                    \gamma(\vec{x}) = (\beta \circ \alpha)(\vec{x}) = \beta(\alpha(\vec{x})) = \beta(A\vec{x}) = B(A\vec{x}) = (B \cdot A) \vec{x} \Rightarrow C = B \cdot A
+                \]
+            \newpage
+            \subsection{Eigenvektor und Eigenwert}
+                \subsubsection{Allgemeines}
+                Ein Vektor $\vec{v}$ ist ein Eigenvektor von $\alpha$ wenn $\vec{v} \neq \vec{0}$, Definitions- und Bildvektorraum gleich sind und wenn gilt 
+                dass $\alpha(\vec{v}) = \lambda \cdot \vec{v}$ \footnote{$\vec{v}$ ist ein Vektor der von $\alpha$ nur mit einem $\lambda$ verlängert bzw. verkürzt wird} 
+                $\lambda$ wird dann auch als Eigenwert von $\vec{v}$ bezeichnet. Die Formel kann man auch in umformen:
+                \[
+                    \alpha(\vec{v}) = \lambda\vec{v} \Rightarrow (A - \lambda E) \cdot \vec{v} = \vec{0}   
+                \]
+                \subsubsection{Eigenraum}
+                    Ist U Teilmenge von V und ist U wiederum ein Vektorraum so nennt man U einen Unterraum von V. wenn jetz noch gilt 
+                    $\alpha(\vec{x}) \epsilon U$ für alle $\vec{x} \epsilon U$ dann ist U der Eigenraum von $\alpha$
+                \subsubsection{Berechnung}
+                Dadurch kann man ein homogenes LGS\footnote{Ein LGS bei dem "rechts" nur Nullen stehen} bilden.
+                Damit das LGS erfüllt wird, muss entweder $\vec{v} = \vec{0}$, was nach Definition verboten
+                ist. Andernfalls schaut man welches $\lambda$ eingetzt werden muss damit $det(A - \lambda E) = 0$ ergibt. Beispiel
+                
+                \[ det(
+                    \begin{pmatrix}
+                        6 & -2 & 3 \\
+                        8 & -2 & 15 \\
+                        2 & -1 & 8
+                    \end{pmatrix} 
+                    - \lambda \cdot E) = 
+                    \chi(\lambda)\footnote{$\chi(\lambda) = det(A - \lambda \cdot E)$ heißt charackteristisches Polynom und $det(A - \lambda \cdot E) = 0$ heißt charackteristische Gleichung} 
+                    = 
+                    \begin{vmatrix}
+                        6 - \lambda & -2 & 3 \\
+                        8 & -2 - \lambda & 15 \\
+                        2 & -1 & 8 - \lambda
+                    \end{vmatrix}
+                \]
+                Hier kann man die Regel von Saurus anwenden und kommt durch kürzen und zusammenfassen auf $(\lambda - 2)(\lambda - 5)^2$. Man hat jetzt 2 und 5 als Eigenwerte. Jetzt setzt
+                man die Werte in das LGS ein und schaut ob die Eigenwerte auch Eigenvektoren produzieren.
+                \subsubsection{algebraische und geometrische Vielfachheit}
+                    Wie im obigen Beipiel gesehen kann das charackteristische Polynom mehrere Nullstellen haebn. Man spticht hier von der algebraischen Vielfachheit $\kappa$ vom Eigenwert
+                    $\lambda$. Die Dimension eines Eigenraums zu einem Eigenwert $\lambda$ heißt geometrische Vielfachheit $\gamma$ von $\lambda$. Dabei ist $\gamma$ mindestens kleiner oder 
+                    gleich der algebraischen Vielfachheit aber mindestens 1.\\
+                    Außerdem gilt: $\gamma = n - Rang(A - \lambda E)$, wobei n die Anzahl der linear unabhängigen Eigenvektoren sind,
+                \subsubsection{Jordanmatrix}
+                    Hat man eine Basis, welche aus Eigenvektoren besteht kann eine Abbildungsmatrix J aus den Bildern der Vektoren erstellen. Die Abbildungsmatrix 
+                    ist dann eine Diagonalmatrix. 
+                    \[
+                        \begin{matrix}
+                            \vec{x}_S & \underrightarrow{A} & \alpha(\vec{x}_S) \\
+                            \downarrow T & & \uparrow T^{-1} \\
+                            \vec{x}_B & \underrightarrow{J} & \alpha(\vec{x}_B)
+                        \end{matrix}
+                    \]
 \end{document}
-    
