@@ -1,0 +1,243 @@
+Ethernet / IEEE 802.3
+ beschreibt eine reihe von systemen die CSMA/CD Systemen
+ gehört zu "random access" Verfahren
+ wenn ein Kanal belegt ist, darf niemand senden (Störung treten auf) aber jeder kann zuhören
+
+10Base5 
+ koaxial (heute twisted pair)
+ Dropcable(AUI Atachmant Unit Interface) Kabel zwischen NIC und Transreceiver 
+ Tranreciever müssen min. 2.5 Meter Abstand haben
+ Specs: 
+  Datenrate: 10 MBit/s
+  Maximale Länge des gesamten Netzes: 2500 m
+  Maximale Segmentlänge3 500m
+  Maximale Zahl der Knoten: 1024
+  Übertragungsmedium: Koaxialkabel (50Ω )
+  Zugriffsverfahren: CSMA/CD
+  Datenpakete: Datenrahmen variabler Größe
+
+5-4-3(-2-1)-Regel für "Legacy Ethernet":
+ Pfad zwischen 2 Stationen verläuft durch 
+ maximal 5 Segmente mit 4-Repeatern
+ es dürfen an nur 3 Segmente Endgeräte sein,
+ die restlichen 2 Segemnte sind Linksegmente (Segemnte die Repeater angeschlossen haben)
+ alles zusammen ist ein Kollisionsdomäne
+
+10BaseT (10 Mbit twisted Pair Kabel)
+ Zwei von vier Leitungspaaren werden genutzt (half duplex), wobei 
+ ein paar sendet und das andere empfängt (es gibt auch ein efull dublex variante)
+ 4 paare = 8 pins
+  pin 1 & 2 senden, pin 3 & 6 empfangen bei NICS, bei hub und switch sind paare umgekehrt 
+  (Paare sind jeweils verdrillt) 
+ Crossover kabel verbinden glecihartige geräte direkt miteinander, indem der sende pin an einem ende das signal
+ auf dem empfangspin auf der andere seite leitet (und umgekehrt)
+
+Damit mehr als 2 Rechner miteinander kommunizieren können müssen diese an eine aktive Netkomponente vai Patch-Kabel angeschlossen werden
+
+HUB
+ Schicht 1 auf OSI 
+ maximale Kabellänge 100m (10BaseT), danach muss regeneriert werden was ein HUB machen kann
+ HUBS empfangen pc über MDIX Anschluss, kommunizieren mit anderen HUBS über MDI Anschluss
+ Auto-MDI erkennt automatisch was benötigt wird
+ HUBS bilden BUS-Topologie
+ Wenn einer Sendet darf kein anderer senden aber jeder kann zuhören, heißt wenn 5
+ Rechner angeschlossen sind und zwei Rechner reden können alle zuhören aber die 3 restlichen müssen warten
+ wenn sie reden wollen
+ Man spricht auch von Rundsendenetzen (broadcast-net)
+
+ALOHA:
+ 1. ist kanal frei, wenn ja dann senden, wenn nein dann warten
+ 2. bei senden wird Kanal abgehört, ist Signal verfälscht sendet eine andere Station auf selben Kanal
+ 3. Sendung wird abgebrochen und JAM (zufälliges Datenmuster min. 32 Bit) gesendet
+ 4. nach Kollision wird eine Zufallszahl ermittelt "i" (i <= 2^k - 1, k anzahl der Kollision && k <= 10).
+    diese Zahl wird dann mit der Slottime (Dauer die ein Signal braucht um 2 Kollisionsdomäne zu durchlaufen) multipliziert
+    W = i*T (W ist Wartezeit, T ist slottime 52,2 Mikrosekunden)
+    Nach 16 Kollisionen wird abgebrochen
+
+CSMA / CD (Carrier Sense Multiple Access / Collision Detection)
+ A, B und C sind Rechner im selben Netzwerk
+ A und C senden zum selben Zeitpunkt, das sie merken der Kanal ist frei
+ Es kommt zur Kollision die erkannt wird, da beide Rechner den kanal abhören merken sie
+ das Signal ist verfälscht, brechen ab, senden Jam und nutzen (truncated binary exponetnial backoff ist der shit der bei ALOHA besprochen wurde) um
+ nicht direkt wieder eine Kollision zu verursachen
+ Logische 0 darf nicht 0V sein,da ansonsten andere Rechnerdenken könnten der Kanal wäre frei
+ es wird der Manchester Code benutzt der 0 als  Takt anzeigt /*muss im internet mal genauer nachschauen*/
+ und nicht als Signal
+ Daten werden in Ethernet zu einem Datenpaket zusammengefasst, wird auch Datenrahmen (data frame) zusammengefasst. Dieser besitzt eine Prüfsumme und Mindestlänge.
+ Die Mindestlänge ist wichtig, da sich das Paket über das Kabel komplett ausbreiten muss. Am ende des kabels ist ein Widerstand, der das Paket vernichtet
+ Kommt kein signal zurück, ist die Übertragung gelungen, kommt ein Signal zurück muss ein anderer Rechner gesendet haben => Kollision ist augetreten
+ist A mit senden fertig, warten andere Rechner eine zeit, bevor sie mit dem senden anfangen (interframe gap) 
+
+Ethernet II IEEE 802.3
+ Ethernet II ist der standard der von der Spezifikation von IEEE abweicht
+ Ethernet ist auf bustopologie aufgebaut weshalb noch Zieladresse benötigt wird 
+ damit man weiß an wen das Paket geht. Ethernet adresse wird auch als MAC Adresse bezeichnet (6 Bytes und einzigartig)
+ Im frame wird destination (Zieladresse) und sourceadress(eigene Adresse) angegeben, wenn andere Rechner sehen dass das Paket
+ nicht für sie bestimmt ist wirds von der NIC verworfen (CPU nicht involviert), ist Paket an Rechner adressiert
+ wirds an höhere Schicht geleitet (Unicast)
+ Will Rechner alles anderen Rechner erreichen ist destination adress nur "1" (FF:FF:FF:FF), wird broadcast genannt
+ Multicast: destination adress entählt gruppe /*internet muss helfen*/ an Rechner an die Paket geschickt wird
+ Unicast ist wenn macadresse gerade ist LSB = 0
+ Multi und Unicast LSB = 1 
+ preamble und byte iwas wird verschoben /*internet muss helfen*/ bytes rechts werden nach links geschoben
+ nach dem Verschieben schauen om höchstes byte gerade ist wenn ja dann Unicast
+ wenn nein und ganze mac adress FF:FF:FF:FF ist broadcast ansonsten Multicast 
+
+ Frame:
+  Preamble (7 Byte)
+  SFD (1 Byte)
+   sind für taktsynchronisation verantwortlich, werden verschluckt
+  DestinationAdreess (6 Byte, MAC-Adresse)
+  Sourceadress (6 Byte, Mac-Adresse)
+   wie schon beschrieben
+  Type (2 Byte)
+   was für Daten werden versendet (WElches Protokoll)
+  Data (46-1500 Byte)
+   Daten die an höhere Schicht (3) überliefert werden 46-1500Byte
+  FCS (4 Byte) 
+   (Frame check sum? wird berechnet und überprüft um zu ermitteln ob das Paket beschädigt ist)
+
+ Types:
+  im Feld types handelt es sich IEEE 802.3 Datenrahmen wenn type < 0x0600 ist ansonsten Etherent Datenrahmen
+  
+ Unterschied zwischen Datenrahmen
+  Preamble, SFD dest.- sourceadress und FCS gleich 
+  IEEE hat PAD anstatt einer Mindesgröße in Data, also wenn data < 46 Byte ist wird PAD ausgefüllt
+  außerdem length anstatt type, length sagt wie viel Nutzbytes in Data tatsächlich versendet werden
+  
+  Um in Schicht 2b kommunizieren zu können wird in IEEE im Data Feld noch DSAP(Destination Service Access Point) und einem Controlbyte 
+  SSAP  (Source SAP) erweitert welche den Typ angeben (IEEE 802.2). Diese sind jedoch nur jeweils ein Byte lang weshalb  
+  diese startk eingeschränkt sind. Deshalb gibt es auch den IEEE 802-SNAP Datenrahmen (erkennbar wenn DSAP & SSAP 0xAA gesetzt sind)  und Control = 0x03
+  SNAP erweiter mit 3 OUI und 2 Ehertype bytes 802.2. OUI kann firmenkennung eingertagen werden. Ethertype ist kennung für Type was Schicht 3 dann braucht
+  Werte stimmen mit Etherent Standard überein 
+
+ IEEE 802.3 Raw Frame (brauche ich nicht wirklich xd lol)
+  keine Typkennung, erkennbar daurch das DSAP UND SSAP auf 0xFF gesetzt sind (in Data)
+  
+Ethernet Brücke
+ Hubs erstellen eine Kollisionsdomäne, Bandbreite wird hier geteilt. transparent Bridges entkoppeln Kollisionsdomänen
+ und scahffen so mehr Bandbreite da sie mehrere Kollisionsdomänen schafft, es entsteht 
+ eine sogenannte Broadcast domäne. Bridge interpretiert Frame um zu sehen in welche Kollisionsdomäne der Frame geschickt werden
+ muss (bzw. ob überhaupt geschickt werden muss). Heute werden switches anstatt transparent bridges genutzt.
+ Arbeitsweise: 
+  1. Frame wird empfangen.
+  2. Source mac wird in Porttabbelle geschireben. Aging timer wird gesetzt
+  3. Destination mac wird gesucht in anderer Kollisionsdomäne und an paket wird an entsprechenden port geleitet Forwarding.
+  4. ist Destination mac unbekannt, wird an alle ports (außer source port) gesendet (flooding) 
+  5. bei broad/multicast wird geflooded
+  6. max DA in selber Kollisionsdomäne  wird gefilter, paket bleibt in Kollisionsdomäne
+  /*Folie 35 anschaue*/
+
+Switching
+ Der Pisser hat nur Aufgaben ohne Erklärung im Skript
+
+
+
+Spanning Tree 
+ Um schleifen beim weiterleiten von Paketen (forwarding) bzw. bei broad/multicast zu vermeiden beherrschen bridges das Spanning Tree Protokoll (STP)
+ hier wird ausgehend von einer root bridge eine Baum Topologie erschaffen, um schleifen zu vermeiden (Pfad zu einem Netzsegment is dadurch immer eindeutig)
+ bridges die schleifen verursachen werden in StandBy Modus geschalten, sei leiten Pakete nicht weiter, erwarten aber Hello-Signale von root bridge (werden vo aktiven 
+ Bridges weitergeleitet), kommen keine Hello Signale an wird von einem Fehler in der Struktur gerechnet weshalb erzwungen wird das neue Topologie(schleifenfrei) aufgebaut wird
+ STP aktive Bridges nutzen BPDU (Bridge Protocoll Data Units) um root bridge zu ermitteln und um Infos von anderen STP aktiven bridges zu bekommen
+
+ Bridge Identifier legt fest welche priorität eine Bridge hat. 2 Byte sind für Priorität (je geringer die zahl, desto höher die Prio) und 6 Byte für MAC Adresse
+ Briges geht beim einschalten davon aus, dass sie root ist und sendet BPDUs aus um zu sagen dass sie jetzt root ist (gesendet wird bridge Identifier und root Identifier)
+ andere Bridge vergleciht empfangenen root Identifier mit eigen bridge Identifier. ist eigene Priorität geringer als root , hört die bridge auf eigene zu BPDUs zu senden
+ bpdu von root wird weitergeleitet und port von root bridge wird als root port markiert.
+ Ist die root priorität höher als Bridge die gesendet hat: empfangee BPDU wirdverändert, als root identifier eigener bridge identifier eingetragfgen (nicht mehr sender identifier).
+ BPDUs werden weiter aktiv gesendet vom 
+ BPDU (Folie 51)
+
+ Aufbau BPDU: 
+  Protocol Identifier : 0:SpanningTree
+  Protocol Version Identifier : 0
+  BPDU (Bridge Protocol Data Unit) Type:
+  0 : Configuration
+  Flags : z.B. wird hier angezeigt, ob sich die Topologie geändert hat.
+  Root Identifier: Bridge Identifier der Root-Bridge
+  Root Path Cost : Summe der Kosten des Pfades von der Root -Bridge an
+   gemessen.
+  Bridge Identifier: Identifier der Bridge, die diesen Datenrahmen ausgesen-
+   det hat.
+  Port Identifier: Kennzeichnung des Ports über das dieser Datenrahmen
+   gesendet wurde.
+  Message Age: Geschätzte Zeit in 1/256 Sekunde ab dem Absenden der
+   BPDU durch die Root Bridge
+  Max Age: Zeiteinheit in 1/256 Sekunde nach der Protokoll- Informationen,
+   die über ein Port empfangen wurden, von der Bridge gelöscht werden sollen.
+  Hello Time: Zeitdauer zwischen dem Absenden von 2 aufeinander folgen-
+   den Hello- Nachrichten (besondere BPDUs) durch die Root- Bridge
+  Forward Delay : Zeitdauer, die ein Bridgeport in den Zuständen listening
+   und learning verweilt, bevor dieser Port in den Zustand forwarding über-
+   geht.
+
+ Aufbauen von einem Spanning Tree:
+  Root Bridge wird ermittelt. Danach wir mit Hilfe des Root Path Cost feld in den BPDU emittlett, welcher Pfad zur root brige der günstigste ist.
+  Die Kosten werden durch die Geschwindigkeit(Bandbreite) ermittelt, desto höher die Geschwindkeit desto niedriger die Kosten.
+  Root bridge hat 0 Im Kosten Feld. Es werden BPDUs abwärts geschickt (immer da wo Bridge ihren root port hat) und jede Bridge addiert 
+  ihre root path cost zu dem in der BPDU stehenden RPC. Bei einer SChleife empfangen 2 verschueden Bridges gleiche RPC. Einer der beide bridges wird in 
+  StandBy geschickt (wenn RPC unterschiedlich, dann die mit der niedrigeren RPC, bei gleicher RPC, die mit niedrigerem Bridge Identifier)
+  
+ Weiter Zustaände:
+  WErden bridges während dem Betrieb ausgewächselt oder entfernt (topologie change), könnte es zu schleifen kommen wenn Bridge direkt von blokicng Zusatand
+  in forwarding Zustand geht. Deshalb gibt es zwischenzustände die zsischen blocking und forwarding liegen: 
+   Nach dem Einschalten in den Zustand blocking
+   Aus dem Zustand blocking in einen der Zustände disabled oder listening
+   Aus dem Zustand listening in einen der Zustände disabled oder learning
+   Aus dem Zustand learning in einen der Zustände disabled oder forwarding
+   Aus dem Zustand forwarding in den Zustand disabled
+  bei korrekter Konfiguration ist am ende Bridge entweder in blocking oder Forawarding
+  Zustand listening:
+   Protokollinformation werden ausgewertet (kann sein dass port hier in StandBy gesetzt wird wenn SChleife auftacuht).
+   Port wartet auf ablaufen des dforward Delay timer und wechselt in listenign Zustand. Es werden keine Frames weitergeleitet
+   forward delay timer wird zurückggesetzt
+  Zustand learning:
+   Es werden immernoch keine Frames weitergeleitet aber Bridge merkt sich source mac vom Paket un am welchem Port der Frame empfagen wurde
+   bei ablauf vom forward delay timer wird in Zustand forwarding gesetzt
+   /*schauen ob bridges eigentlich ports heißen soll, Folie 57*/
+
+ Kenngröße von Brifges
+  Filter Rate: wie viele frames können pro Zeiteinheit gefiltert werde. Höher als bei Forwarding, da frames nur geprüft und berworfen werden
+  Forawarding Rate: Anzahl der frames die pro Zeiteinheit weitergeleitet werden können. ist höchstanzahl erreicht arbeitet Brige in "full wired speed"
+  Anzahl der Adresstabelleneinträge: wie viele MAC-Adressen können in Porttabelle gespeichert WErden
+
+
+
+Switches 
+ Wie brige nimmt ein switch frames und leitet sie bei bedarf weiter. Hat auch Porttabellen. Lernt MAC auch wie bridge indem source mac ausgewertet wird
+ Switches haben jedoch idR mehr als 2 ports weshalb mehrere segmente angeschlossen werden können. Jedes segment bildet Kollisionsdomäne
+
+ Pufferung:
+  Bei switches können mehrere Rechner miteinander kommunizieren da ein Switch pakete zwischenspeicher (puffer) kann. Ist das Zielsegmetn belegt 
+  speichert der switch in den pufferspeicher. Hier gibt es 2 arten:
+   port-base memor: jeder port hat eigenen Speicher und
+   shared memory buffering: alle ports haben gemeinsamen speicher. Hier ist der Vorteil dass jeder Port sich einfach so viel speicher nimmt wir 
+    gebraucht wird. Dies ist besonder nützlich wenn switch mit verschieden Geschwindigkeiten arbeitet (100Mbit bzw Gigabit), da wenn ein Gerät nur 100Mbit+
+    braucht nicht 900 verschwendet werde /*(denk ich mal)*/ 
+
+ Symmetric Switching: alle Ports haben gleich Übertragungsgeschwindkeit
+ Asymetric switching: Segmente werden mit unterschiedlichen Geschwindigkeiten verbindet /*wahrscheinlich wieder 100Mbit/ Gigibait*/
+
+ Switching Methoden:
+  Store adn Forward: 
+   wie bei bridge. frame FCS wird überprüft, ist diese falsch wird paket vwerorfen
+  Cut trough:
+   fast forwarding: 
+    sobald Ziel MAC bekannt, wird frame weitergeleitet. niedrige latenz aber fehlhafte pakete werden weitergeleitet
+   fragment-free-switching:
+    wenn 64 Byte ohne Kollision empfagen wird paket erst weitergeleitet, da ab 64 Byte keine reguläre Kollsion entstehen kann
+  Manchmal werden beide Methoden verwendet, wenn z.B. cut trough zu viele fehlerhafte frames sendet wird auf store and forward geswitcht(wird intelligent switching genannt) 
+
+
+VLAN
+ Switch lässt sich per Software in logische switches aufteilen. Logischer switch entspricht VLAn. rechner könne an verschiedenen physikalischen switches sein aber im selben
+ logischen VLAN. Nur rechner im selben VLAN könne direkt /*direkt wahrscheinlich = ohne Forwarding*/ kommunizieren, gilt auch für broad / multicast.
+ 
+ Tagging:
+  Switch hat eine Datenbank, in der VLAN intern gespeichert werden. Damit aber auch Rechner von anderen switches im selben VLAN sind, wird das Tagging-Verfahren 
+  verwendet. Hierführ wird einen Datenrahmen nach IEEE802.1Q (4Byte lange ausprägun) verwendet (wird im Typefeld als 0x8100 bezeichnet) /*viel bullschit, muss googeln. Seite 64 Folie 66 pdf*/
+  VLANS kommunizieren durch router, deshalb ist vlan schicht 2 und 3 in OSI. Netzsegmente von VLANs können auhc als subnetzte intepretiert werden.
+
+ VLAN und STP
+  2 VLANS führen zwei mla STP durch (2 rooot bridges etc.)
+  /*FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK*/
