@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
+\usepackage{booktabs}
 
 \title{Netzwerke}
 \author{}
@@ -34,5 +35,40 @@
 \section{Kapitel 2}
     \subsection{Ethernet}
         Jede Netzwerkkarte hat eine eigene MAC-Adresse, die benutzt wird damit Rechner sich gegenseitig Nachrichten schicken können. Die Nachrichten bei Etherent werden auch
-        Frames, Package und Header genannt   
+        Frames, Package und Header genannt
+\section{Kapitel 3}
+    \subsection{ARP - Address Resolution Protocol}
+        ARP wird verwendet, wenn ein Computer oder Router ein Paket an ein Gerät im eigenen Netz senden will, aber nur die Ziel-IP-Adresse kennt. Er schickt dann ein Ethernet II Frame mit dem Typ-Feld 0x608 an die Broadcast-Adresse FF-FF-FF-FF-FF-FF. Wenn der gesuchte Rechner das Paket empfängt, antwortet er mit seiner MAC-Adresse.
+        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+            \toprule 
+            1 & 2 & 3 & 4  \\
+            \midrule\midrule
+            \multicolumn{2}{|c|}{Hardware Type} & \multicolumn{2}{|c|}{Protocol Type} \\
+            \midrule
+            HLEN & PLEN & \multicolumn{2}{|c|}{Operation} \\
+            \midrule
+            \multicolumn{4}{|c|}{Sender Hardware Address Byte 0-3} \\
+            \midrule
+            \multicolumn{2}{|c|}{Sender Hardware Address Byte 4-5} & \multicolumn{2}{|c|}{Sender Internet Address Byte 0-1} \\
+            \midrule
+            \multicolumn{2}{|c|}{Sender Internet Address Byte 2-3} & \multicolumn{2}{|c|}{Target Hardware Address Byte 0-1}\\
+            \midrule
+            \multicolumn{4}{|c|}{Target Hardware Address Byte 2-5}\\
+            \midrule
+            \multicolumn{4}{|c|}{Target Internet Adress Byte 0-3}\\
+            \bottomrule
+        \end{tabular}
+        Die einzelnen Felder bedeuten dabei:
+        \begin{description}
+            \item[Hardware Type] beschreibt, über welches Mittel kommuniziert wird. Ethernet bedeutet dabei 1.
+            \item[Protocol Type] Mit welchem Protokoll soll später kommuniziert werden? Das gleiche wie bei Ethernet II, also 0x800 für IP.
+            \item[HLEN] beschreibt, wie lange eine Hardware-Adresse ist. Ist bei Ethernet immer 6.
+            \item[PLEN] beschreibt, wie lange eine Protokoll-Adresse ist. Ist bei IPv4 immer 4.
+            \item[Operation] Was wird gerade ausgeführt? 1 für Request, 2 für Response
+            \item[Sender Hardware Address] ist die MAC-Adresse des Senders
+            \item[Sender Internet Address] ist die IP-Adresse des Senders
+            \item[Target Hardware Address] ist die MAC-Adresse des Empfängers
+            \item[Target Internet Address] ist die IP-Adresse des Enpfängers.
+        \end{description}
+        Die gesuchten Felder werden mit Nullen gefüllt. Mit “reverse ARP” kann ein Computer, der über das Netzwerk gebootet wurde, die IP-Adresse zu seiner eigenen MAC-Adresse erfragen. Dazu ist allerdings ein Server nötig.
 \end{document}
