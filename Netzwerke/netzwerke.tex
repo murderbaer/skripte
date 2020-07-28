@@ -71,4 +71,27 @@
             \item[Target Internet Address] ist die IP-Adresse des Enpfängers.
         \end{description}
         Die gesuchten Felder werden mit Nullen gefüllt. Mit “reverse ARP” kann ein Computer, der über das Netzwerk gebootet wurde, die IP-Adresse zu seiner eigenen MAC-Adresse erfragen. Dazu ist allerdings ein Server nötig.
+    \subsection{ICMP - Internet Control Message Protocol}
+        ICMP-Pakete sind in IP-Pakete eingepackt (Protocol-Feld wird auf 1 gesetzt). Es wird unter anderem verwendet, um  die Erreichbarkeit von Systemen im Internet zu testen (ping), Netzwerkfehler zu erkennen und um bei Zeitüberschreitungen benachrichtigt zu werden.\\
+        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+            \toprule 
+            1 & 2 & 3 & 4  \\
+            \midrule\midrule
+            Type & Code & \multicolumn{2}{|c|}{Checksum}\\
+            \bottomrule
+        \end{tabular}
+        Die gültigen Werte für das Type-Feld sind:
+        \begin{description}
+            \item[0:] Echo Reply (bei ping)
+            \item[3:] Destination unreachable (der Sender wird benachrichtigt, wenn das Ziel nicht erreichbar ist)
+            \item[4:] Source Quench (der Empfänger bittet den Sender, weniger Pakete zu senden)
+            \item[5:] Redirect (Wird von Routern verwendet, um die Netzwerkroute zu beeinflussen)
+            \item[8:] Echo (bei ping)
+            \item[11:] Time exceeded (TTL wurde unterschritten)
+            \item[12:] Parameter Problem, ungültiger IP Header
+            \item[13:] Timestamp (für Zeit-Synchronisierung)
+            \item[14:] Timestamp Reply (für Zeit-Synchronisierung)
+        \end{description}
+        Durch das Code-Feld können zusätzliche Informationen mitgegeben werden, z.B. warum die Verbindung gescheitert ist.
+
 \end{document}
