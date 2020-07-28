@@ -462,15 +462,15 @@
             besonder Anforderungen erfüllen: 
             \begin{description}
                 \item $\otimes$ muss eine innere Verknüpfung sein: $\otimes$: G $\times$ G $\rightarrow$ G 
-                \item $G_1$: $\forall$ a,b,c $\epsilon$ G: (a $\otimes$ b) $\otimes$ c= a $\otimes$ (b $\otimes$) c (Assoziativgesetz)
+                \item $G_1$: $\forall$ a,b,c $\epsilon$ G: (a $\otimes$ b) $\otimes$ c= a $\otimes$ (b $\otimes$ c) (Assoziativgesetz)
                 \item $G_2$: Es gibt ein Element $e$ $\epsilon$ G, dass für alle $a$ $\epsilon$ G gilt:\\ $a \otimes e = e \otimes a = a$ \\ e ist das neutrale Element bezüglich der Verknüpfung
                 \item $G_3$: Zu jedem a $\epsilon$ G gibt es ein Element $a^{-1}$ sodass gilt: \\ $a \otimes a^{-1} = a^{-1} \otimes a = e$ \\ $a^{-1}$ ist das inverse Element bezüglich der Verknüpfung
-                \item $G_4$: (optional) \\ gilt $a \otimes b = b \otimes a$ gilt das Kummutativgesetz. \\Wenn diese Regel (und alle davor auch) heißt die Gruppe kummutative oder auch abelsche Gruppe
+                \item $G_4$: (optional) \\ gilt $a \otimes b = b \otimes a$ gilt das Kummutativgesetz. \\Wenn diese Regel (und alle davor auch) heißt die Gruppe kommutative oder auch abelsche Gruppe
             \end{description}
             \subsubsection{Homomorphismus}
                 Es sind zwei Gruppen A und B mit den Verknüpfungen $\otimes$ und $\cdot$ gegeben. \\
                 Außerdem ist eine Abbildung $\alpha: A \rightarrow B$ geben. Wenn jetzt für alle x,y $\epsilon$ A gilt:\\
-                $\alpha(x \otimes y) = \alpha(x) \cdot \alpha(y)$\\
+                $\alpha(x \otimes y) = \alpha(x) \otimes \alpha(y)$\\
                 dann nennt man $\alpha$ einen Homomorphismus. Ist $\alpha$ außderdem noch bijekt, so ist $\alpha$ ein Isomorphismus.  
         \subsection{Körper}
             Ein Korper ist ähnlich zu einer Gruppe nur dass es hier 2 Verknüpfungen gibt. Die Menge K mit den inneren Verknüpfungen + und $\cdot$ heißt Körper, wenn gilt:
@@ -488,8 +488,8 @@
                 \item $V_2$: + ist eine innere Verknüpfung (u + v  $\epsilon$ V)
                 \item $V_3$: (u + v) + w = u + (v + w) (Assoziativgesetz)
                 \item $V_4$: es existiert ein neutrales Element\footnote{heißt hier auch Nullvektor} bezüglich '+' (meistens als 0 bezeichnet)
-                \item $V_5$: es existiert ein inverses Element bezühlich '+' 
-                \item $V_6$: u + v = v + u (Kummutativgesetz)
+                \item $V_5$: es existiert ein inverses Element bezüglich '+' 
+                \item $V_6$: u + v = v + u (Kommutativgesetz)
                 \item $V_7$: $\cdot$ ist eine äußere Verknüpfung von V mit K (k $\cdot$ v $\epsilon$ V)
                 \item $V_8$: k $\cdot$ (l $\cdot$ v) = (k $\cdot$ l) $\cdot$ v (Assoziativgesetz für $\cdot$)
                 \item $V_9$: (k + l) $\cdot$ v = k $\cdot$ v + k $\cdot$ l (Distributivgesetz 1)
@@ -500,7 +500,7 @@
             \subsubsection{Linearkombination}
                 Eine Linearkombination von Vektoren erhält man wenn jedem Vektor $v_n$ $\epsilon$ V ein \\ k $\epsilon$ $\mathbb{R}$ zuordnet und so 
                 \(\sum \limits_{i=1}^n k_i \cdot v_i \) erhält.\\
-                Vektoren heißen linear unabhängig wenn ihre Linearkombination nur durch die triviale lösung (alle $k_n$ = 0) gleich 0 wird. Andernfalls sind die Vektoren linear abhängig
+                Vektoren heißen linear unabhängig wenn ihre Linearkombination nur durch die triviale Lösung (alle $k_n$ = 0) gleich 0 wird. Andernfalls sind die Vektoren linear abhängig
             \newpage
                 \subsubsection{Basis}
                 Die Menge $B = \{ \vec{b_1}, \vec{b_2}, ... ,\vec{b_n}\}$ $\subset$ V heit Basis von V wenn
@@ -508,17 +508,17 @@
                     \item[1.] sich jeder Vektor aus V als Linearkombination von den Vektoren aus B darstellen lässt und 
                     \item[2.] die Vektoren in B linear unabhängig sind.
                 \end{description}
-                Die Mächtigkeit einer der Basen eine Vektorraums nennt man auch die Dimension des Vektorraums \\
-                Der Rang einer Matrix lässt sich berechnen indem man die Zeilen bzw. Spalten als Vekotren betrachtet. Die Anzahl der linear unabhängigen Zeilen/Spaltenvktoren ist der Rang.
+                Die Mächtigkeit einer der Basen des Vektorraums nennt man auch die Dimension des Vektorraums \\
+                Der Rang einer Matrix lässt sich berechnen indem man die Zeilen bzw. Spalten als Vektoren betrachtet. Die Anzahl der linear unabhängigen Zeilen/Spaltenvektoren ist der Rang.
             \subsubsection{Basisumrechnung}
             \subsubsection*{Lösen durch LGS}
-                Möchte man einen Vektor $\vec v$ (Basis A) in eine andere Basis (Basis B) umrechen braucht man zuerst Die Basis von $\vec{v}$ und dessen Wert ($v_1,v_2$...) und die Basis in die man $\vec{v}$ umrechenen möchte.
+                Möchte man einen Vektor $\vec v$ (Basis A) in eine andere Basis (Basis B) umrechen braucht man zuerst die Basis von $\vec{v}$ und dessen Wert ($v_1,v_2$...) und die Basis in die man $\vec{v}$ umrechenen möchte.
                 Gesucht wird dann $\vec{x}$ (Mit der anderen Basis). Da $\vec{v}$ und $\vec{x}$ die selben Vektoren abbilden können, kann man auch  $\vec{v}$ als Linearkombination von der Basisi B angeben. Die 
                 Koeffizienten der Vektoren sind dann die Komponente von $\vec{x}$. Beispiel: 
                 \[\vec{v} = x_1 \cdot \vec{b_1} + x_2 \cdot \vec{b_2} + \cdots + x_n \cdot \vec{b_n}\footnote{Wobei n die Mächtigkeit der Basis A bzw. B ist.}\]
                 Will man jetzt nun den Vektor $\vec{x}$ ausrechen, schreibt man die Vektoren aus und hat dann ein LGS welches man nach den einzelnen x-Werten auflöst.
-            \subsubsection*{Rücktransforamtion einer Basis in die Standardbasis}
-                Ein besonder einfacher Fall für die Basistransformation ist, wenn man eine Basis B in die Standardbasis S Rücktransformieren will. Dafür stellt man eine Matrix auf, welche als Spalten
+            \subsubsection*{Rücktransformation einer Basis in die Standardbasis}
+                Ein besonder einfacher Fall für die Basistransformation ist, wenn man eine Basis B in die Standardbasis S rücktransformieren will. Dafür stellt man eine Matrix auf, welche als Spalten
                 die Vektoren der transfomierten Matix benutzt.
                 \[Tr \cdot \vec{b}_{1B} = \vec{b}_{1S}\]
                 \[
@@ -568,7 +568,7 @@
             \[1: \alpha(\vec{x} + \vec{y}) = \alpha(\vec{x}) + \alpha(\vec{y})\]
             \[2: \alpha(k \cdot \vec{x}) = k \cdot \alpha(\vec{x})\]
         \subsection{Darstellung durch Matrix}
-            Hat man als Abbildungsvorschrift("Input" von $\alpha$) die vektoren der Standardbasis, sind die Ergebnisvektoren jeweils die Spalten der Abbildungsmatrix A. Beispiel:
+            Hat man als Abbildungsvorschrift("Input" von $\alpha$) die Vektoren der Standardbasis, sind die Ergebnisvektoren jeweils die Spalten der Abbildungsmatrix A. Beispiel:
             \[
                 \alpha(
                     \begin{pmatrix}
@@ -655,14 +655,14 @@
                 \item 2a - b = 1 || -3a = 2
                 \item 2c - d = 5 || -3c = 4
             \end{description}
-            Jetzt kann man die einezelnen Werte für A berechenn und erhält A =
+            Jetzt kann man die einzelnen Werte für A berechen und erhält A =
             $\cfrac{1}{3}
             \begin{pmatrix}
                 2 & 1 \\ {-4} & {-23}
             \end{pmatrix}$
         \subsection{Rechenoperationen}
             \subsubsection{Addition}
-                Hat man zwei Lineare Abiildungen $\alpha$ und $\beta$ definert, Welche beide den selbe Definitions- und Bildvektorraum haben gilt folgendes für 
+                Hat man zwei lineare Abbildungen $\alpha$ und $\beta$ definert, welche beide den selben Definitions- und Bildvektorraum haben, gilt folgendes für 
                 die Addition:
                 \[
                     \vec{x} \mapsto (\alpha + \beta)(\vec{x}) = \alpha(\vec{x}) + \beta(\vec{x}) = A\vec{x} + B\vec{x} = (A + B) \vec{x} \footnote{Ähnlcihes gilt auch für die Multiplikation von $\alpha$ mit k}
@@ -713,8 +713,8 @@
                 \]
                 Hier kann man die Regel von Saurus anwenden und kommt durch kürzen und zusammenfassen auf $(\lambda - 2)(\lambda - 5)^2$. Man hat jetzt 2 und 5 als Eigenwerte. Jetzt setzt
                 man die Werte in das LGS ein und schaut ob die Eigenwerte auch Eigenvektoren produzieren.
-                \subsubsection{algebraische und geometrische Vielfachheit}
-                    Wie im obigen Beipiel gesehen kann das charackteristische Polynom mehrere Nullstellen haebn. Man spticht hier von der algebraischen Vielfachheit $\kappa$ vom Eigenwert
+                \subsubsection{Algebraische und geometrische Vielfachheit}
+                    Wie im obigen Beipiel gesehen kann das charakteristische Polynom mehrere Nullstellen haben. Man spricht hier von der algebraischen Vielfachheit $\kappa$ vom Eigenwert
                     $\lambda$. Die Dimension eines Eigenraums zu einem Eigenwert $\lambda$ heißt geometrische Vielfachheit $\gamma$ von $\lambda$. Dabei ist $\gamma$ mindestens kleiner oder 
                     gleich der algebraischen Vielfachheit aber mindestens 1.\\
                     Außerdem gilt: $\gamma = n - Rang(A - \lambda E)$, wobei n die Anzahl der linear unabhängigen Eigenvektoren sind,
