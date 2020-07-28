@@ -83,7 +83,15 @@
         Die gültigen Werte für das Type-Feld sind:
         \begin{description}
             \item[0:] Echo Reply (bei ping)
-            \item[3:] Destination unreachable (der Sender wird benachrichtigt, wenn das Ziel nicht erreichbar ist)
+            \item[3:] Destination unreachable (der Sender wird benachrichtigt, wenn das Ziel nicht erreichbar ist). Die Gründe dafür können im Code-Feld stehen
+            \begin{description}
+            \item[0:] net unreachable
+            \item[1:] host unreachable
+            \item[2:] protocol unreachable
+            \item[3:] port unreachable
+            \item[4:] Fragmentation needed and DF set
+            \item[5:] source route failed (der Sender hat eine Route im IP-Header angegeben, die nicht funktioniert hat)
+            \end{description}
             \item[4:] Source Quench (der Empfänger bittet den Sender, weniger Pakete zu senden)
             \item[5:] Redirect (Wird von Routern verwendet, um die Netzwerkroute zu beeinflussen)
             \item[8:] Echo (bei ping)
