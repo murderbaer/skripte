@@ -15,7 +15,7 @@
 
 
 
-\title{Lineare Algebra Zusammenfassung}
+\title{Lineare Algebra Zusammenfassung }
 \author{}
 
 \begin{document}
@@ -23,7 +23,6 @@
     \newpage
     \tableofcontents
     \newpage
-
     \section{Einleitung}
         \subsection{Logik}
 
@@ -236,7 +235,7 @@
         \]
         Nach der Cramerschen Regel kann man $x_1$ und $x_2$ wie folgt berechnen: 
         \[
-            x_1 = \cfrac{D}{D_1} \text{ und } x_2 = \cfrac{D}{D_2}
+            x_1 = \cfrac{D_1}{D} \text{ und } x_2 = \cfrac{D_2}{D}
         \]
         Das Transponieren der Matrix ändert nicht die Determinante. Wird eine Reihe einer Matrix mit einem Faktor multipliziert, so wird auch der Wert der Determinatne mit dem selben 
         Wert multipliziert. 
@@ -344,8 +343,8 @@
                 Bei dreidimensionalen Vektoren gilt: \\
                 $\begin{array}{l}
                     p_x = r \cdot \cos \alpha \\
-                    p_y = r \cdot \cos \alpha \\
-                    p_z = r \cdot \cos \alpha \\
+                    p_y = r \cdot \sin \cos \alpha \\
+                    p_z = z\\
                     r = |\vec p| = \sqrt{{p_x}^2 + {p_y}^2} \\
                     \alpha = \arctan \cfrac{p_y}{p_x}
                 \end{array}$
@@ -406,6 +405,13 @@
             \footnote{\(
                 \text{E: } \vec{u} + t \cdot \vec{v} + s \cdot \vec{w}  \text{ ,als Beispiel für eine Ebene}  
             \)}
+            
+            \subsubsection{Winkelbestimmung}
+            \begin{description}
+                \item Gerade-Gerade: $\cos(\alpha) = \cfrac{|\vec{u} \cdot \vec{v}|}{|\vec{u}|\cdot|\vec{v}|}$
+                \item Gerade-Ebene  $\sin(\alpha) = \cfrac{|\vec{n} \cdot \vec{v}|}{|\vec{n}|\cdot|\vec{v}|}$\footnote{Hier wird der Winekle zwische $\vec{v}$ und den Normalevektor der Ebene angegeben. Will man den Winkel zwischen $\vec{v}$ muss man $\alpha$ noch von 90 Grad abziehen, Also $\alpha_E = \alpha - 90$}
+                \item Ebene-Ebene $\cos(\alpha) = \cfrac{|\vec{n}_E \cdot \vec{n}_F|}{|\vec{n}_E|\cdot|\vec{n}_cccF|}$
+            \end{description} 
 
         \subsection{Skalarprodukt}
             Das Skalarprodukt wird auch inneres Produkt genannt und wird wie folgt berechnet: 
@@ -602,7 +608,6 @@
             \] 
             bzw. allgemein: $\alpha(\vec{x}) = \vec{y} = A \cdot \vec{x}$ 
             
-            \newpage
             Hat $\alpha$ als Input jetzt nicht die Vektoren der Standardbasis kann man die Abbildungsmatrix nun erstmal mit Unbekannten belegen, aber alle gegeben $\vec{x}$ und $\vec{y}$
             einsetzen. Führt man jetzt die Matrixmultiplikation durch kann man ein LGS (vielleicht auch merhere kleine) aufstellen und lösen und erhält die Abbildungsmatrix A. Beispiel: \\
             % Definiton der Werte fürs Beispiel
@@ -657,7 +662,8 @@
             \end{pmatrix}$
         \subsection{Rechenoperationen}
             \subsubsection{Addition}
-                Hat man zwei Lineare Abiildungen $\alpha$ und $\beta$ definert, Welche beide den selbe Definitions- und Bildvektorraum haben gilt folgendes für die Addition:
+                Hat man zwei Lineare Abiildungen $\alpha$ und $\beta$ definert, Welche beide den selbe Definitions- und Bildvektorraum haben gilt folgendes für 
+                die Addition:
                 \[
                     \vec{x} \mapsto (\alpha + \beta)(\vec{x}) = \alpha(\vec{x}) + \beta(\vec{x}) = A\vec{x} + B\vec{x} = (A + B) \vec{x} \footnote{Ähnlcihes gilt auch für die Multiplikation von $\alpha$ mit k}
                 \]
