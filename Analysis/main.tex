@@ -225,9 +225,9 @@ pdftitle={Analysis 1}
                         & f(x) = x^n & f'(x) = n*x^{n-1} \\
                         \hline
                     \text{Exponentialfunktion}
-                        & f(x) = a^x & f'(x) = \cfrac{1}{ln(a) * a^x} \\
-                        & f(x) = a^x = e^{xln(a)} & f'(x) = e^{ln(a)*x} * ln(a) \\
-                        & f(x) = x^x = e^{x*ln(x)} & f'(x) = e^{x*ln(x)} * (ln(x)+1) \\
+                        & f(x) = a^x & f'(x) = ln(a) \cdot e^{ln(a)\cdot x} \\
+                        & = e^{xln(a)} & f'(x) = ln(a) \cdot a^{x} \\
+                        & f(x) = x^x = e^{x*ln(x)} & f'(x) = x^{x} * (ln(x)+1) \\
                         \hline
                     \text{Logarithmusfunktion} 
                         & f(x) = ln(x) & f'(x) = \cfrac{1}{x} \\
@@ -236,25 +236,25 @@ pdftitle={Analysis 1}
                     \text{Trigonometrische Funktionen} 
                         & f(x) = sin(x) & f'(x) = cos(x) \\
                         & f(x) = cos(x) & f'(x) = -sin(x) \\
-                        & f(x) = tan(x) & f'(x) = \cfrac{1}{cos^2(x)} \\
-                        & f(x) = cotan(x) & f'(x) = -\cfrac{1}{sin^2(x)} \\
+                        & f(x) = tan(x) & f'(x) = \cfrac{1}{cos^2(x)} = 1 + tan^2(x) \\
+                        & f(x) = cotan(x) & f'(x) = -\cfrac{1}{sin^2(x)} = -1 - cotan^2(x) \\
                         \hline
                 
                     \text{Arkusfunktionen} 
-                        & f(x) = arsin(x) & f'(x) = \cfrac{1}{\sqrt{1-x^2}} \\
-                        & f(x) = arcos(x) & f'(x) = -\cfrac{1}{\sqrt{1-x^2}} \\
-                        & f(x) = artan(x) & f'(x) = \cfrac{1}{1+x^2} \\
-                        & f(x) = arcocotan(x) & f'(x) = -\cfrac{1}{1+x^2} \\
+                        & f(x) = arcsin(x) & f'(x) = \cfrac{1}{\sqrt{1-x^2}} \\
+                        & f(x) = arccos(x) & f'(x) = -\cfrac{1}{\sqrt{1-x^2}} \\
+                        & f(x) = arctan(x) & f'(x) = \cfrac{1}{1+x^2} \\
+                        & f(x) = arccotan(x) & f'(x) = -\cfrac{1}{1+x^2} \\
                         \hline
-                \text{Hyperbolfunktion}    
+                \text{Hyperbelfunktion}    
                         & f(x) = sinh(x) & f'(x) = cosh(x) \\
-                        & f(x) = cosh(x) & f'(x) = -sinh(x) \\
-                        & f(x) = tanh(x) & f'(x) = \cfrac{1}{cosh^2(x)} \\
-                        & f(x) = cotan(x) & f'(x) = -\cfrac{1}{sinh^2(x)} \\
+                        & f(x) = cosh(x) & f'(x) = sinh(x) \\
+                        & f(x) = tanh(x) & f'(x) = \cfrac{1}{cosh^2(x)} = 1-tanh^2(x) \\
+                        & f(x) = coth(x) & f'(x) = -\cfrac{1}{sinh^2(x)} = 1 - coth^2(x) \\
                         \hline
                 \text{Areafunktion} 
-                        & f(x) = arsinh(x) & f'(x) = \cfrac{1}{\sqrt{1+x^2}}) \\
-                        & f(x) = arcosh(x) & f'(x) = \cfrac{1}{\sqrt{1-x^2}} \\
+                        & f(x) = arsinh(x) & f'(x) = \cfrac{1}{\sqrt{1+x^2}} \\
+                        & f(x) = arcosh(x) & f'(x) = \cfrac{1}{\sqrt{x^2-1}} \\
                         & f(x) = artanh(x) & f'(x) = \cfrac{1}{1-x^2} \\
                         & f(x) = arcotan(x) & f'(x) = \cfrac{1}{1-x^2} \\
                         \hline
