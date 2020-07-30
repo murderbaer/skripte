@@ -18,7 +18,7 @@
 \section{Kapitel 1}
     \subsection{DNS - Domain Name System}
         Ein Domain Name System nimmt Internetadressen wie 'facebook.com' und liefert dessen IP-Adresse, 
-        damit Rechenr sich damit verbinden können. Wobei 'com'\footnote[1]{Eigentlich ist der Punkt rechts von der Domain. Bei der TTL wird der Punkt meistens weggelassen. Richtig heißt es beispielsweise 'com.'} eine TLD (Top Level Domain) ist. Man unterscheidet TLDs wie folgt:
+        damit Rechenr sich damit verbinden können. Wobei 'com'\footnote{Eigentlich ist der Punkt rechts von der Domain. Bei der TTL wird der Punkt meistens weggelassen. Richtig heißt es beispielsweise 'com.'} eine TLD (Top Level Domain) ist. Man unterscheidet TLDs wie folgt:
         \begin{description}
             \item [gTLD] (auch: genericTLDs, allgemeine TLD) Diese werden wieder in 2 Untergruppen aufgeteilt:
                 \begin{description}
@@ -33,14 +33,79 @@
     \subsection{LAN - Local Area Network}
         Das LAN vernetzt Geräte auf einen bestimmten (o.a. begrenzten Bereich) Normalerweise ein Haus im privaten Gebrauch oder ein Firmen-Campus etc. Dabei sind die Geräte 
         ständig miteinander verbunden. 
+
+
 \section{Kapitel 2}
     \subsection{Ethernet}
-        Jede Netzwerkkarte hat eine eigene MAC-Adresse, die benutzt wird damit Rechner sich gegenseitig Nachrichten schicken können. Die Nachrichten bei Etherent werden auch
+        Jede Netzwerkkarte hat eine eigene MAC-Adresse, die benutzt wird damit Rechner sich gegenseitig Nachrichten schicken können. Die Nachrichten bei Ethernet werden auch
         Frames, Package und Header genannt
+
+        \subsubsection{Kabelspezifikationen}
+            Das LAN-Kabel kann je nach Spezifikation verschiedene Eigenschaften. Eine sehr frühe Version ist das 10Base5 Kabel. Damals wurde noch ein Koaxialkabel als "physikalisches Medium"
+            benutzt. Außerdem musst man ein "Dropkabel" benutzen, welches dann einerseits an den Rechner angeschlossen wird und anderesiets an einen 'Transceiver', an welchem wiederum das Koaxialkabel
+            angeschlossen ist. Spezifikationen:
+            \[
+                \begin{tabular}{|l|c|}
+                    Übertragungsrate & 10Mbit \\
+                    Maximale Gesamtlänge des Netzes & 2500m \\
+                    Maximale Segmentlänge & 500m \\
+                    Maximale Anzahl an Knoten & 1024 \\
+                    Zugriffsverfahren & CSMA / CD                
+                \end{tabular}
+            \]
+            Ein weiterer Standard ist der 10BaseT Standard. Hier löst das Twisted Pair\footnote{Ein Kabel, welches aus mehreren Kabelpaaren besteht die miteinander verdrillt sind}
+            Es gibt 4 Paare im Kabel, also 8 Pins insgesamt. An einem NIC sind Pin 1 und 2 zum senden und Pin 3 und 6 zum empfangen verantwortlich. Bei Hubs und Switches ist genau das
+            umgekehrt da anonsten am Etherentplug beim Switch beide auf den selben Pins senden würden und beide auf den selben Pins zuhören (auf denen aber nichts gesendet wird).
+            Möchte man jetzt zwei Rechner diretk verbinden nutzt man ein Crossover Kabel welches das Sendepaar und Empfängerpaar an einem Ende des Kabels vertauscht. 
+        \subsubsection{5-4-3(-2-1)-Regel}
+            Wie schon erwähnt können Rechner direkt mit einem Crossover Kabel miteinander kommunizieren. Wenn das Netzt aber mehr als 2 Teilnehmer haben soll werden die Patch Kabel mit 
+            ihren Transceiver benötigit. Dabei hat sich die 5-4-3 oder auch die Repeater-Regel entwickelt. Sie gilt wenn sich Netzsegmente (10 Mbit) zu einer Baumtopologie verbinden. \\
+            Der Pfad zwischen 2 Rechnern verläuft durch maximal
+            \[
+                \begin{tabular}{ll}
+                    5 & Segemte mit \\
+                    4 & Repeatern verlaufen darf. Es dürfen nur an \\
+                    3 & Segmente aktive Endgeräte angeschlossen sein. \\
+                    2 & Segmente sind dabei Linksegmente (nur Repeater). Dies bildet \\
+                    1 & Kollisionsdomaine 
+                \end{tabular}
+            \]   
+
+        \subsubsection{Ethernet Brücke}
+        
+        \subsection{Aloha}
+        
+        \subsubsection{CSMA / CD (Carrier Sense Multiple Access / Collision Detection)}
+            A, B und C sind Rechner im selben Netzwerk
+            A und C senden zum selben Zeitpunkt, das sie merken der Kanal ist frei
+            Es kommt zur Kollision die erkannt wird. Da beide Rechner den Kanal abhören merken sie,
+            dass das Signal verfälschtist, brechen ab Pakete zu senden und senden JAM  und nutzen 'truncated binary exponential backoff' (Rechung wie bei Aloha) um
+            nicht wieder direkt eine Kollision zu verursachen. \\
+            Eine logische '0' darf nicht als 0V gesendet werden, da ein Rechner anonsten denken könnte das der Kanal frei ist obwohl gerade gesendet wird. Zur Codierung wird
+            der Manchester Code beutzt. \\
+            Daten werden in Ethernet zu einem Datenpaket zusammengefasst, auch 'data frame' genannt. Dieser besitzt u.a. eine Prüfsumme und Mindestlänge.
+            Die Mindestlänge ist wichtig, da sich das Paket über das Kabel komplett ausbreiten muss. Am ende des Kabels ist ein Widerstand, der das Paket vernichtet
+            Kommt kein signal zurück, ist die Übertragung gelungen, kommt ein Signal zurück muss ein anderer Rechner gesendet haben. Es kommt zur Kollision.
+            Sobald aber A mit senden fertig ist, warten die anderen Rechner eine gewisse Zeit, bevor sie mit dem senden anfangen (interframe gap), um sischerzustellen dass
+            A auch wirklich fertig ist. 
+        
+        \subsubsection{IEEE 802.3}
+
+        \subsubsection{Ethernet II}
+
+        \subsubsection{Spanning Tree}
+
+        \subsubsection{Switching}
+
+        \subsubsection{VLAN}
+        \newpage
 \section{Kapitel 3}
     \subsection{ARP - Address Resolution Protocol}
-        ARP wird verwendet, wenn ein Computer oder Router ein Paket an ein Gerät im eigenen Netz senden will, aber nur die Ziel-IP-Adresse kennt. Er schickt dann ein Ethernet II Frame mit dem Typ-Feld 0x608 an die Broadcast-Adresse FF-FF-FF-FF-FF-FF. Wenn der gesuchte Rechner das Paket empfängt, antwortet er mit seiner MAC-Adresse.
-        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+        ARP wird verwendet, wenn ein Computer oder Router ein Paket an ein Gerät im eigenen Netz senden will, aber nur die Ziel-IP-Adresse kennt. 
+        Er schickt dann ein Ethernet II Frame mit dem Typ-Feld 0x608 an die Broadcast-Adresse FF-FF-FF-FF-FF-FF. Wenn der gesuchte Rechner das Paket empfängt, 
+        antwortet er mit seiner MAC-Adresse. 
+        \[
+        \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
             \toprule 
             1 & 2 & 3 & 4  \\
             \midrule\midrule
@@ -59,6 +124,7 @@
             \multicolumn{4}{|c|}{Target Internet Adress Byte 0-3}\\
             \bottomrule
         \end{tabular}
+        \]
         Die einzelnen Felder bedeuten dabei:
         \begin{description}
             \item[Hardware Type] beschreibt, über welches Mittel kommuniziert wird. Ethernet bedeutet dabei 1.
@@ -74,13 +140,16 @@
         Die gesuchten Felder werden mit Nullen gefüllt. Mit “reverse ARP” kann ein Computer, der über das Netzwerk gebootet wurde, die IP-Adresse zu seiner eigenen MAC-Adresse erfragen. Dazu ist allerdings ein Server nötig.
     \subsection{ICMP - Internet Control Message Protocol}
         ICMP-Pakete sind in IP-Pakete eingepackt (Protocol-Feld wird auf 1 gesetzt). Es wird unter anderem verwendet, um  die Erreichbarkeit von Systemen im Internet zu testen (ping), Netzwerkfehler zu erkennen und um bei Zeitüberschreitungen benachrichtigt zu werden.\\
-        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+        
+        \[
+        \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}    
             \toprule 
             1 & 2 & 3 & 4  \\
             \midrule\midrule
             Type & Code & \multicolumn{2}{|c|}{Checksum}\\
             \bottomrule
         \end{tabular}
+        \]
         Die gültigen Werte für das Type-Feld sind:
         \begin{description}
             \item[0:] Echo Reply (bei ping)
