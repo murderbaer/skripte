@@ -1,30 +1,23 @@
 \documentclass[a4paper]{scrartcl}
-\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
-\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
 \usepackage[german]{babel}  % german hyphenation, quotes, etc
 \usepackage{hyperref}       % detailed hyperlink/pdf configuration
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \usepackage{array} % for "\newcolumntype" macro
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.8}
-\usepackage{pst-plot}
-\usepackage{pst-eucl}
 \newcolumntype{L}{>{\centering\arraybackslash}m{2.8cm}}
-
 \newcolumntype{M}{>{\centering\arraybackslash}m{5.7cm}}
-\usepackage{amsmath}
 \graphicspath{ {.} }
 
 \pagestyle{headings}
 \pagenumbering{gobble}
-
 \hypersetup{                % ‘texdoc hyperref‘ for options
 pdftitle={Analysis 1}
 }
+\author{}
 \usepackage{graphicx}       % provides comman ds for including figures
-\usepackage{csquotes}       % provides \enquote{} macro for "quotes"
-\usepackage[nonumberlist]{glossaries}     % provides glossary commands
-\usepackage{enumitem}
+\usepackage{csquotes}       % provides \enquote{} macro
 
 \title{Analysis Formelsammlung}
 
@@ -39,19 +32,19 @@ pdftitle={Analysis 1}
             \subsubsection{Definitionen}
                 Die Menge der Komplexen Zahlen werden mit dem Symbol \(\mathbb{C}\) beschrieben.\\
                 Sei \(z\) ein Element aus \(\mathbb{C}\) so gilt:
-                \begin{equation*}
+                \begin{equation}
                     z \, \epsilon \, \mathbb{C} : (z = x + iy \,|\, x,y \,\epsilon \, \mathbb{R})
-                \end{equation*}
+                \end{equation}
                 Wobei \(x\) der reelle Anteil und \(y\) der imaginäre Anteil der komplexen Zahl ist. \\
                 \includegraphics{c}
             
             \subsubsection{Formen}    
                 \begin{description}
-                    \item[Kartesische Form] $z = x + y*i$
-                    \item[Trigonometrische Form]   $r(cos\varphi + i*sin\varphi)$
+                    \item[Kartesische Form] $z = x + y \cdot i$
+                    \item[Trigonometrische Form]   $r(cos\varphi + i \cdot sin\varphi)$
                     \begin{description}
-                        \item[Herleitung:]  Es gilt: \(x = r * \cos\varphi, \, y = r * \sin\varphi \\
-                        z = x + i*y = r * cos\varphi + i * r* sin\varphi = r(cos\varphi + i*sin\varphi) \), 
+                        \item[Herleitung:]  Es gilt: \(x = r  \cdot  \cos\varphi, \, y = r  \cdot  \sin\varphi \\
+                        z = x + i \cdot y = r  \cdot  cos\varphi + i  \cdot  r \cdot  sin\varphi = r(cos\varphi + i \cdot sin\varphi) \), 
                         \\ $r = |z|$ 
                         \item[Berechnung von $\varphi$:] Je nachdem, in welchem Quadranten sich $z$ befindet, ändert sich die Formel leicht um $\varphi$ zu bestimmen.\\
                             Allgemein gilt $sin \varphi = \cfrac{y}{|z|} \rightarrow \varphi = arcsin(\cfrac{y}{|z|})$
@@ -63,31 +56,31 @@ pdftitle={Analysis 1}
                         \end{itemize}
                     \end{description}
                     \newpage
-                    \item[Exponentialform] $r * e^{i\varphi}$ 
+                    \item[Exponentialform] $r  \cdot  e^{i\varphi}$ 
                     \begin{description}
-                        \item[Herleitung:] Es gilt:\(e^{i\varphi} = cos\varphi + i * sin\varphi \) \\ \(z = r * (e^{i\varphi} = cos\varphi + i * sin\varphi) = r * e^{i\varphi} \), $\varphi$ wird wie oben berechnet.
+                        \item[Herleitung:] Es gilt:\(e^{i\varphi} = cos\varphi + i  \cdot  sin\varphi \) \\ \(z = r  \cdot  (e^{i\varphi} = cos\varphi + i  \cdot  sin\varphi) = r  \cdot  e^{i\varphi} \), $\varphi$ wird wie oben berechnet.
                     \end{description}
                 \end{description}          
 
             \subsubsection{Grundrechenarten}
                 \begin{description}
-                    \item[Addieren] $z_1 + z_2 = x_1 + x_2 + (y_1 + y_2)*i$ 
-                    \item[Subtrahieren] $z_1 - z_2 = x_1 - x_2 + (y_1 - y_2)*i$ 
+                    \item[Addieren] $z_1 + z_2 = x_1 + x_2 + (y_1 + y_2) \cdot i$ 
+                    \item[Subtrahieren] $z_1 - z_2 = x_1 - x_2 + (y_1 - y_2) \cdot i$ 
                     \item[Multiplizieren] beim Multiplizieren wird unterschieden ob mit einem konstanten Faktor oder einer weiteren komplexen Zahl multipliziert wird.
                     \begin{itemize}
-                        \item mit einem Faktor a: $a * z = a * x + a * y * i $
-                        \item mit einer Komplexen Zahl z_2: $z_1 * z_2 = x_1 * x_2 - y_1 * y_2 + (x_1 * y_2 + x_2 * y_1) * i $
+                        \item mit einem Faktor a: $a  \cdot  z = a  \cdot  x + a  \cdot  y  \cdot  i $
+                        \item mit einer Komplexen Zahl $z_2$: $z_1  \cdot  z_2 = x_1  \cdot  x_2 - y_1  \cdot  y_2 + (x_1  \cdot  y_2 + x_2  \cdot  y_1)  \cdot  i $
                     \end{itemize}  
-                    \item[Dividieren]  $\cfrac{z_1}{z_2} = \cfrac{x_1*x_2 + y_1*y_2 + (-x_1*y_2 + x_2*y_1)*i}{x_2^{\;\;2} + y_2^{\;\;2}}$
+                    \item[Dividieren]  $\cfrac{z_1}{z_2} = \cfrac{x_1 \cdot x_2 + y_1 \cdot y_2 + (-x_1 \cdot y_2 + x_2 \cdot y_1) \cdot i}{x_2^{\;\;2} + y_2^{\;\;2}}$
                     \item[Betrag] $|z| = (x^2 + y^2)^\frac{1}{2} = \sqrt{x^2 + y^2}$ 
-                    \item[Komplex Konjugiert] $z = x \pm y*i \rightarrow z^* = x \mp y*i$ 
+                    \item[Komplex Konjugiert] $z = x \pm y \cdot i \rightarrow z^ \cdot  = x \mp y \cdot i$ 
                 \end{description}
                 
             \subsubsection{Radizieren}
             Wenn aus einer Komplexen Zahl z die n-te Wurzel gezogen wird, entstehen somit auch n verschiedene Wurzeln.
             Die allgemeine Formel dafür lautet 
             \begin{equation*}
-                z^{\frac{1}{n}} = |z|^{\frac{1}{n}} * e^{i(\frac{\varphi}{n} + \frac{m}{n}* 2\pi)}
+                z^{\frac{1}{n}} = |z|^{\frac{1}{n}}  \cdot  e^{i(\frac{\varphi}{n} + \frac{m}{n} \cdot  2\pi)}
             \end{equation*}
             Das $n$ bleibt immer konstant und $m$ startet bei 0 und wird bis $m = n-1$ hochgezählt, wodurch man die $n$ Wurzel herbekommt,
             lediglich $\varphi$ und $|z|$ müssen wie oben beschrieben berechnet werden und ggf. muss $z$ in die Exponentialform gebracht werden, um die Berechnungen zu erleichtern.  
@@ -114,7 +107,7 @@ pdftitle={Analysis 1}
     
     \subsection{Periodizät}
     Wenn ein $p$ existiert für das gilt $f(x \pm p) = f(x)$ und $x \pm p$ ist im Definitionsbereich, ist $f$ periodisch mit der Periode $p$,\\
-    $p$ kann auch $\pm k \, * \,p$ sein, wobei $k \, \epsilon \, \mathbb{N}^*$. Kleinstes positives $p$ nennt man die primitive Periode
+    $p$ kann auch $\pm k \,  \cdot  \,p$ sein, wobei $k \, \epsilon \, \mathbb{N}^ \cdot $. Kleinstes positives $p$ nennt man die primitive Periode
     
     \subsection{Umkehrfunktion}
     Funktion f heißt umkehrbar wenn gilt:     
@@ -122,7 +115,7 @@ pdftitle={Analysis 1}
         \item $x_1 \neq x_2 \rightarrow f(x_1) \neq f(x_2)$ oder
         \item wenn f streng monoton ist.
         \end{description}
-    Definitions- und Wertebereich sind bei der Umkehrfunktion "vertauscht". \\  
+    Definitions- und Wertebereich sind bei der Umkehrfunktion "vertauscht". 
     \\ Um die Umkehrfunktion zu bestimmen, formt man $f(x)$ nach $x$ um und vertauscht danach $x$ und $y$ wodurch man $f^{-1}$ erhält.
     Oft muss der Definitionsbereich dabei eingeschränkt werden, da z.B. die Parabel nur für $x \geq 0$ monoton ist (bzw. $x \leq 0$). 
 
@@ -148,13 +141,13 @@ pdftitle={Analysis 1}
     \subsection{Tabelle mit Funktionen und deren Eigenschaften}
         \subsubsection{Polynomfunktion}        
         \begin{description}
-            \item[Definition] $f(x) = a_n*x^n...a_1*x + a_0$ wobei $n$ auch der Grad der Funktion ist
+            \item[Definition] $f(x) = a_n \cdot x^n...a_1 \cdot x + a_0$ wobei $n$ auch der Grad der Funktion ist
             \item[Symmetrie] Eine Polynomfunktion ist gerade, wenn alle Polynome eine gerade Potenz haben und ist ungerade, wenn alle Polynome ungerade Exponenten haben.
         \end{description}
 
         \subsubsection{Gebrochenrationale Funktion}
         \begin{description}
-            \item[Funktion] $f(x) = \cfrac{g(x)}{h(x)}= \cfrac{a_m*x^m...a_1*x + a_0}{b_n*x^n...b_1*x + b_0}$ $g(x)$ unf $h(x)$ sind wiederum Polynomfunktionen. Außerdem wird unterschieden zwischen:
+            \item[Funktion] $f(x) = \cfrac{g(x)}{h(x)}= \cfrac{a_m \cdot x^m...a_1 \cdot x + a_0}{b_n \cdot x^n...b_1 \cdot x + b_0}$ $g(x)$ unf $h(x)$ sind wiederum Polynomfunktionen. Außerdem wird unterschieden zwischen:
             \begin{itemize}
                 \item $n > m$: echt gebrochenrational und
                 \item $n \leq m$ unecht gebrochenrational
@@ -222,16 +215,16 @@ pdftitle={Analysis 1}
                         & f(x) = x & f'(x) = 1 \\
                         \hline
                     \text{Potenzfunktion}      
-                        & f(x) = x^n & f'(x) = n*x^{n-1} \\
+                        & f(x) = x^n & f'(x) = n \cdot x^{n-1} \\
                         \hline
                     \text{Exponentialfunktion}
                         & f(x) = a^x & f'(x) = ln(a) \cdot e^{ln(a)\cdot x} \\
                         & = e^{xln(a)} & f'(x) = ln(a) \cdot a^{x} \\
-                        & f(x) = x^x = e^{x*ln(x)} & f'(x) = x^{x} * (ln(x)+1) \\
+                        & f(x) = x^x = e^{x \cdot ln(x)} & f'(x) = x^{x}  \cdot  (ln(x)+1) \\
                         \hline
                     \text{Logarithmusfunktion} 
                         & f(x) = ln(x) & f'(x) = \cfrac{1}{x} \\
-                        & f(x) = log_a(x) & f'(x) = \cfrac{1}{ln(a)*x} \\
+                        & f(x) = log_a(x) & f'(x) = \cfrac{1}{ln(a) \cdot x} \\
                         \hline
                     \text{Trigonometrische Funktionen} 
                         & f(x) = sin(x) & f'(x) = cos(x) \\
@@ -270,16 +263,19 @@ pdftitle={Analysis 1}
                         & f(x) = u(x) + v(x) & f'(x) = u'(x) + v'(x) \\
                     \hline
                     \text{Faktorregel}              
-                        & f(x) = c * u(x) & f'(x) = c * u'(x) \\
+                        & f(x) = c  $\cdot$  u(x) & f'(x) = c  $\cdot$  u'(x) \\
                     \hline
                     \text{Produktregel}      
-                        & f(x) = u(x) * v(x) & f'(x) = u'(x) * v(x) + u(x) * v'(x) \\
+                        & f(x) = u(x)  $\cdot$  v(x) & f'(x) = u'(x)  $\cdot$  v(x) + u(x)  $\cdot$  v'(x) \\
                     \hline
                     \text{Quotientenregel}
-                        &  $f(x) = \cfrac{u(x)}{v(x)}$ & $f(x) = \cfrac{ u'(x) * v(x) - u(x) * v'(x)}{v(x)^2}$   \\
+                        &  $f(x) = \cfrac{u(x)}{v(x)}$ & $f(x) = \cfrac{ u'(x)  \cdot  v(x) - u(x)  \cdot  v'(x)}{v(x)^2}$   \\
                     \hline
                     \text{Kettenregel} 
-                        & f(x) = u(v(x)) & f = u'(v(x)) * v'(x) \\
+                        & f(x) = u(v(x)) & f = u'(v(x))  $\cdot$  v'(x) \\
+                    \hline
+                    \text{Kettenregel 2.} 
+                        & f(x) = u(v(w(x))) & f(x) = u'(v(w(x))) $\cdot$ v'(w(x)) $\cdot$ w'(x) \\
                     \hline
                 \end{tabular}
                 
@@ -292,18 +288,18 @@ pdftitle={Analysis 1}
         \end{description}
         \subsection{Rechenregeln}
             \begin{description}
-                \item[Faktorregel] $\int c * f(x) dx = c * \int f(x) dx$ 
+                \item[Faktorregel] $\int c  \cdot  f(x) dx = c  \cdot  \int f(x) dx$ 
                 \item[Summenregel] $\int f(x) + g(x) dx = F(x) + G(x)$  
             \end{description}
         \newpage
         \subsection{Integrationsmethoden}
         \begin{description}
-            \item[Partielle Integration] $\int f(x) * g(x) dx = F(x) * g(x) - \int F(x) * g'(x) dx$ \\
+            \item[Partielle Integration] $\int f(x)  \cdot  g(x) dx = F(x)  \cdot  g(x) - \int F(x)  \cdot  g'(x) dx$ \\
              Hier sollte man schauen, dass man (wenn möglich) die Funktionen zum integrieren und differenzieren so wählt, dass sie im nächsten Schritt 'einfacher' werden.  
-             Teilweise hilft es auch wenn nur $f(x)$ vorhanden ist, $g(x) = 1$ zu setzen da ja $1 * f(x) = f(x)$ ergibt.
-             \item[Integration durch Substitution] $\int f(x)\, * \,g(x)\, dx = \,\int d(F(x) \,+ \,C) \,* \,g(x) \,dx$ 
+             Teilweise hilft es auch wenn nur $f(x)$ vorhanden ist, $g(x) = 1$ zu setzen da ja $1  \cdot  f(x) = f(x)$ ergibt.
+             \item[Integration durch Substitution] $\int f(x)\,  \cdot  \,g(x)\, dx = \,\int d(F(x) \,+ \,C) \, \cdot  \,g(x) \,dx$ 
              \\Sei nun $F(x) + C = u$  und $F(x) + C$ so gewählt dass man $u = g(x)$, 
-            bzw. $u$ möglichst ähnlich zu $g(x)$ ist. Dann gilt wiedereum: $\int 1 * u \,du $ 
+            bzw. $u$ möglichst ähnlich zu $g(x)$ ist. Dann gilt wiedereum: $\int 1  \cdot  u \,du $ 
             \\Hier wurde jetzt $F(x)$ substituiert. Jetzt kann man, je nach Form der Gleichung schauen welche Regeln man anwenden kann, bzw. ob man in der Ableitungstabelle nachschauen ob direkt integriert werden kann.
             In diesem Fall kann man einfach integrieren: \\$\cfrac{1}{2}u^2$ jetzt wird noch rücksubstituiert und man kommt auf das Ergebnis: $\cfrac{1}{2}(F(x) + c)^2$
         \end{description}
