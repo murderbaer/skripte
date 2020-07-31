@@ -100,6 +100,32 @@
         \subsubsection{VLAN}
         \newpage
 \section{Kapitel 3}
+    \subsection{IPv4}
+    Jedes Gerät hat eine IPv4 Adresse, jeweils 4 Byte, dargestellt durch Dezimalzahlen durch Punkte getrennt. Beispiel 141.69.1.23. 
+    \subsubsection{Adressklassen}
+    \begin{description}
+        \item[Klasse A:] Erstes Bit ist 0, die nächsten 7 Bit dienen der Netzwerkadressierung und die restlichen 24 Bit zur Geräteadressierung. (erstes Byte 0-127). Maske 255.0.0.0
+        \item[Klasse B:] Erste beiden Bits sind 10, die nächsten 14 Bit sind zur Netzwekadressierung und die restlichen 16 Bit zur Geräteadressierung. (erstes Byte 128-191). Maske 255.255.0.0
+        \item[Klasse C:] Beginnt mit 110, dann 21 Bit zur Netzwerkadressierung und 8 Bit zur Geräteadressierung. (erstes Byte 192-223). Maske 255.255.255.0
+        \item[Klasse D:] Beginnt mit 1110 und dient dem Multicasting. Die restlichen 26 Bit dienen der Gruppenadresse
+        \item[Klasse E:] Beginnt mit 1111, ausschließlich für Forschungszwecke reserviert.
+    \end{description}
+    \subsubsection{APIPA-Adressen}
+        Falls ein Computer keine IP von einem DHCP-Server zugewiesen bekommt, vergibt er sich selbst eine IP von 169.254.0.0-169.254.255.255. Diese Adressen werden nie von einem Router weitergeleitet.
+    \subsubsection{Eigene Subnetze}
+        Mit einer Netzwekmaske kann die Host-ID zusätzlich in Subnetze unterteilt werden. So kann eine skalierbarere Netzwerkstruktur geschaffen werden.
+    \subsection{IP-Routing}
+        Die Routing-Tabelle eines Routers oder Computers enthält folgende Einträge:
+        \begin{description}
+        \item[Netzwerkziel:] Das Netzwerk, das über das das entsprechende Interface erreicht werden kann.
+        \item[Netzwerkmaske:] Zum Feststellen der Net-ID des Netzwerks
+        \item[Gateway:] Wohin soll geschickt werden, wenn kein direct Routing zum Ziel möglich ist?
+        \item[Schnittstelle:] Über welche Ausgang-Schnittstelle soll das Paket versendet werden?
+        \item[Metrik:] Bei mehreren zur Verfügung stehenden Pfaden wird der Weg mit der geringsten Metrik verwendet.
+        \end{description}
+        Wenn kein passender Eintrag in der Routing-Tabelle gefunden wird, wird automatisch die \textbf{Default Route} verwendet. Meistens 0.0.0.0 als Netzwerkziel und Netzwerkmaske\\ \\
+        \textbf{Net-Specific Routes:} Routingeinträge zu Netzen und Subnetzen. Wird automatisch für alle Netze eingetragen, in denen sich der Router selbst befindet.\\ \\
+        \textbf{Host-Specific Routes:} Routingeinträge zu einzelnen Hostrechnern, z.B. DNS-Rootservern
     \subsection{ARP - Address Resolution Protocol}
         ARP wird verwendet, wenn ein Computer oder Router ein Paket an ein Gerät im eigenen Netz senden will, aber nur die Ziel-IP-Adresse kennt. 
         Er schickt dann ein Ethernet II Frame mit dem Typ-Feld 0x608 an die Broadcast-Adresse FF-FF-FF-FF-FF-FF. Wenn der gesuchte Rechner das Paket empfängt, 
