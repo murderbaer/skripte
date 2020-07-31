@@ -59,7 +59,7 @@
             Möchte man jetzt zwei Rechner diretk verbinden nutzt man ein Crossover Kabel welches das Sendepaar und Empfängerpaar an einem Ende des Kabels vertauscht. 
         \subsubsection{5-4-3(-2-1)-Regel}
             Wie schon erwähnt können Rechner direkt mit einem Crossover Kabel miteinander kommunizieren. Wenn das Netzt aber mehr als 2 Teilnehmer haben soll werden die Patch Kabel mit 
-            ihren Transceiver benötigit. Dabei hat sich die 5-4-3 oder auch die Repeater-Regel entwickelt. Sie gilt wenn sich Netzsegmente (10 Mbit) zu einer Baumtopologie verbinden. \\
+            ihren Transceiver benötigt. Dabei hat sich die 5-4-3 oder auch die Repeater-Regel entwickelt. Sie gilt wenn sich Netzsegmente (10 Mbit) zu einer Baumtopologie verbinden. \\
             Der Pfad zwischen 2 Rechnern verläuft durch maximal
             \[
                 \begin{tabular}{ll}
@@ -72,9 +72,33 @@
             \]   
 
         \subsubsection{Ethernet Brücke}
-        
+            Ein Hub ist eine Netzkomponente welceh Rechner miteinander verbindet und erstellt dadurch eine Kollisionsdomaine. Die verfügbare Bandbreite wird dann von den Rechnern geteilt.
+            Eine transparent Bridge entkoppelt Kollisionsdomaine (erstellt aus einer großen, mehrere kleine Kollisionsdomaine) wodruch dann eine Broadcastdomaine entsteht. Will ein Rechner 
+            ein Paket an einen anderen Rechner senden, muss die Bridge das Paket anschauen um dann zu schauen ob das Paket in eine andere Kollisionsdomaine weitergeleitet werden muss, oder 
+            ob das Paket in der jetzigen Kollisionsdomaine bleibt. Arbeitweise von einer Bridge:
+            
+            \begin{description}
+                \item[1.] Bridge empfängt ein Paket
+                \item[2.] Die Source-Mac wird dann in die Porttabelle eingetragen.
+                \item[3.] Ist die Destination-Mac in der Porttablle bekannt wird das Paket dementsprechen weitergeleitet (forwarding) bzw. wenn die Source-Mac und die Destination-Mac in der
+                selben Kollisionsdomaine sind, wird gefiltert (Paket bleibt in der Kollisionsdomaine)
+                \item[4.] Wenn nicht, wird ein Broadcast an alle Ports (außer dem Source Port) gesendet und auf eine Antwort gewartet (flooding)
+                \item[5.] Sobald die Antwort eingetroffen ist, wird die Mac des Rechners in die Porttabelle eingetragen.
+                \item[6.] = Schritt 3 
+            \end{description}
+              
         \subsection{Aloha}
-        
+            Aloha ist ein Zugriffsverfahren für Ethernet. Aloha ist der Vorgänger von CSMA / CD. Zugriffsverfahren werden bei Etherent benötigt, damit mehrere Rechner nicht gleichzeitig
+            auf einem Kanal senden, da sie sonst ihre Nachrichten gegenseitig verfälschen. 
+            Aloha schaut zuerst ob der Kanal frei ist und sendet eben nur dann, wenn der Kanal frei ist. 
+            Dabei hört der Rechner die ganze Zeit den Kanal ab und vergleicht die Daten im Kanal mit seinen eigenen. Sind diese nicht identisch gibt es eine Störung auf dem Kanal. 
+            Es wird angenommen das ein anderer Rechner sendet, der ebenfalls merkt dass seine Daten verfälscht wurden. 
+            Beide Rechner sendet jetzt ein sogenanntes JAM-Signal (32-bit langes, zufälliges Datenmuster). Nach dem Senden muss noch herausgefunden werden, wer jetzt senden darf, damit es nicht wieder 
+            zu einer Kollision kommt. Das Verfahren wird 'truncated binary exponential backoff' genannt. Als erstes wird eine Zufallszahl 'i' ermittelt 
+            \footnote{wobei i $\leq$ $2^k$ und 'k' die Anzahl der registrierten Kollisionen ist, und k $\leq$ 10 ist}
+            'i' wird jetzt mit der Slottime 'T' (Die Zeit die ein Paket braucht um 2\footnote{'Hin- und Rückweg'} mal das ganze Segment zu durchlaufen). Die Formel lautet dann 
+            \[ W = i \cdot T \] 
+
         \subsubsection{CSMA / CD (Carrier Sense Multiple Access / Collision Detection)}
             A, B und C sind Rechner im selben Netzwerk
             A und C senden zum selben Zeitpunkt, das sie merken der Kanal ist frei
@@ -86,17 +110,73 @@
             Daten werden in Ethernet zu einem Datenpaket zusammengefasst, auch 'data frame' genannt. Dieser besitzt u.a. eine Prüfsumme und Mindestlänge.
             Die Mindestlänge ist wichtig, da sich das Paket über das Kabel komplett ausbreiten muss. Am ende des Kabels ist ein Widerstand, der das Paket vernichtet
             Kommt kein signal zurück, ist die Übertragung gelungen, kommt ein Signal zurück muss ein anderer Rechner gesendet haben. Es kommt zur Kollision.
-            Sobald aber A mit senden fertig ist, warten die anderen Rechner eine gewisse Zeit, bevor sie mit dem senden anfangen (interframe gap), um sischerzustellen dass
+            Sobald aber A mit senden fertig ist, warten die anderen Rechner eine gewisse Zeit, bevor sie mit dem senden anfangen (interframe gap), um sicherzustellen, dass
             A auch wirklich fertig ist. 
+        \subsubsection{Ethernet II}
+            \[
+                \begin{tabular}{|c|c|c|c|c|c|c|}
+                    \hline
+                        Preamble & SFD & Dest. MAC & Source MAC & Type & Data & FCS \\
+                    \hline
+                \end{tabular}
+            \]
+
+            \begin{description}
+                \item[Preamble] 7 $\times$ 01010101, wird zu Taktsynchronisation benutzt. Wird von der NIC gelöscht (7 Byte)
+                \item[SFD] 1 $\times$ 01010101, zeigt dass die Preamble fertig ist. Wird von der NIC gelöscht (1 Byte)
+                \item[Destination Mac] Die MAC Adresse an den der Frame gerichtet ist (6 Byte) 
+                \item[Source MAC] Die MAC Adresse vom Sender (6 Byte)
+                \item[Type] Gibt wie die Daten in 'Data' zu interpretieren ist. Ist oft an die nächst höhere Schicht wichtig. 
+                Außerdem gilt wenn 'Type' $\leq$ 0x600, handelt es sich um ein IEEE802.3 Frame (2 Byte)
+                \item[Data] Inhalt des Frame (min 46 Byte aber höchstens 1500)
+                \item[FCS] Frame Checks Sum, beim Senden wird die FCS berechnet und gesetzt. Beim Empfangen wird diese wieder berechnet und verglichen. Sind die Werte nicht identisch, wird der Frame verworfen (4 Byte) 
+            \end{description}
         
         \subsubsection{IEEE 802.3}
-
-        \subsubsection{Ethernet II}
-
+            \[
+                \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+                    \hline
+                        Preamble & SFD & Dest. MAC & Source MAC & Length & Data & PAD & FCS \\
+                    \hline
+                \end{tabular}
+            \]
+            \begin{description}
+                \item[Preamble] 7 $\times$ 01010101, wird zu Taktsynchronisation benutzt. Wird von der NIC gelöscht (7 Byte)
+                \item[SFD] 1 $\times$ 01010101, zeigt dass die Preamble fertig ist. Wird von der NIC gelöscht (1 Byte)
+                \item[Destination Mac] Die MAC Adresse an den der Frame gerichtet ist (6 Byte) 
+                \item[Source MAC] Die MAC Adresse vom Sender (6 Byte)
+                \item[Length] Länge der Bits Die 'Data' benötigt
+                \item[Data] Inhalt des Frame (0 - 1500 Byte)
+                \item[PAD] Abgesehen von Preamble und SFD muss ein Frame 64 Byte groß sein. Bei IEE wird deshalb das Feld 'PAD' mit Füllbytes belegt so dass 'Data' + 'Pad' $\geq$ 46.
+                Dabei schaut 'PAD' auf das 'Length' Feld (0 - 46 Byte)
+                \item[FCS] Frame Checks Sum, beim Senden wird die FCS berechnet und gesetzt. Beim Empfangen wird diese wieder berechnet und verglichen. Sind die Werte nicht identisch, wird der Frame verworfen (4 Byte) 
+            \end{description}
+            Da IEEE 802.3 kein Type-Feld explizit angegeben hat, wird dies in 
         \subsubsection{Spanning Tree}
 
         \subsubsection{Switching}
-
+            Ein Switch funktioniert wie eine Bridge, nur hat eine Bridge idR. nur 2 Ports, was heutzutage nicht mehr aussreicht. 
+            Pufferung:
+            Bei einem Switch können mehrere Rechner miteinander kommunizieren, da ein Switch Pakete zwischenspeichern (puffer) kann. Ist das Zielsegmetn belegt 
+            speichert der Switch das Paket in den Pufferspeicher. Hier gibt es 2 Arten:
+            \begin{description}
+                \item[port-base memory] jeder Port hat eigenen Speicher 
+                \item[shared memory buffering] alle Ports haben einen gemeinsamen Speicher
+            \end{description}         
+            Bei 'shared memory buffering' ist der Vorteil dass jeder Port sich einfach so viel Speicher belegt wie benötigt wird. Dies ist besonder nützlich wenn ein Switch mit
+            verschieden Geschwindigkeiten arbeitet (100Mbit und Gigabit), da wenn ein Gerät nur 100 Mbit braucht nicht 900 Mbit verschwendet werden. Hier muss der Switch aber 'asymmetric switching'
+            unterstüzen, da anonsten nur eine Geschwindigkeit für alle Ports benutzt werden kann (wird dann 'symmetric switching' genannt).\\
+            Desweiteren kann ein Switch auf verschiedene Arten arbeiten::
+            \begin{description}
+                \item[Store and Forward] Die Checksum wird vom Paket überprüft. Ist diese falsch wird das Paket verworfen, ansonsten wird dieser weitergeleitet (wie bei der Bridge)
+                \item[cut-trough] Hier gibt es noch 2 Abspaltungen:
+                    \begin{description}
+                        \item[fast-forwarding] Mac wird sofort weitergeleitet sobald diese "gefunden" wurde, keine Checksum Überprüfung was die Latenz verbessert aber die Fehlerqoute der Pakete erhöht. 
+                        \item[fragment-free-switching] Wenn 64 Byte ohne Kollision empfagen werden, wird  das Paket erst weitergeleitet, da ab 64 Byte keine reguläre Kollsion entstehen kann.
+                    \end{description}  
+            \end{description} 
+            Manchmal werden auch beide Methoden verwendet, wenn z.B. cut trough zu viele fehlerhafte Frames sendet wird auf store and forward geswitcht (wird intelligent switching genannt).
+            
         \subsubsection{VLAN}
         \newpage
 \section{Kapitel 3}
@@ -139,16 +219,15 @@
         \end{description}
         Die gesuchten Felder werden mit Nullen gefüllt. Mit “reverse ARP” kann ein Computer, der über das Netzwerk gebootet wurde, die IP-Adresse zu seiner eigenen MAC-Adresse erfragen. Dazu ist allerdings ein Server nötig.
     \subsection{ICMP - Internet Control Message Protocol}
-        ICMP-Pakete sind in IP-Pakete eingepackt (Protocol-Feld wird auf 1 gesetzt). Es wird unter anderem verwendet, um  die Erreichbarkeit von Systemen im Internet zu testen (ping), Netzwerkfehler zu erkennen und um bei Zeitüberschreitungen benachrichtigt zu werden.\\
-        
+        ICMP-Pakete sind in IP-Pakete eingepackt (Protocol-Feld wird auf 1 gesetzt). Es wird unter anderem verwendet, um  die Erreichbarkeit von Systemen im Internet zu testen (ping), Netzwerkfehler zu erkennen und um bei Zeitüberschreitungen benachrichtigt zu werden.
         \[
-        \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}    
-            \toprule 
-            1 & 2 & 3 & 4  \\
-            \midrule\midrule
-            Type & Code & \multicolumn{2}{|c|}{Checksum}\\
-            \bottomrule
-        \end{tabular}
+            \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}    
+                \toprule 
+                1 & 2 & 3 & 4  \\
+                \midrule\midrule
+                Type & Code & \multicolumn{2}{|c|}{Checksum}\\
+                \bottomrule
+            \end{tabular}
         \]
         Die gültigen Werte für das Type-Feld sind:
         \begin{description}

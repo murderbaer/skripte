@@ -111,7 +111,7 @@ Ethernet II IEEE 802.3
   SNAP erweiter mit 3 OUI und 2 Ehertype bytes 802.2. OUI kann firmenkennung eingertagen werden. Ethertype ist kennung für Type was Schicht 3 dann braucht
   Werte stimmen mit Etherent Standard überein 
 
- IEEE 802.3 Raw Frame (brauche ich nicht wirklich xd lol)
+ IEEE 802.3 Raw Frame (brauche ich nicht wirklich)
   keine Typkennung, erkennbar daurch das DSAP UND SSAP auf 0xFF gesetzt sind (in Data)
   
 Ethernet Brücke
@@ -127,9 +127,6 @@ Ethernet Brücke
   5. bei broad/multicast wird geflooded
   6. max DA in selber Kollisionsdomäne  wird gefilter, paket bleibt in Kollisionsdomäne
   /*Folie 35 anschaue*/
-
-Switching
- Der Pisser hat nur Aufgaben ohne Erklärung im Skript
 
 
 
