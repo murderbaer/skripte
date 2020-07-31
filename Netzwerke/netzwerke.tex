@@ -171,5 +171,104 @@
             \item[14:] Timestamp Reply (für Zeit-Synchronisierung)
         \end{description}
         Durch das Code-Feld können zusätzliche Informationen mitgegeben werden, z.B. warum die Verbindung gescheitert ist.
-
+    \subsection{TCP}
+        TCP stellt eine virtuelle Verbindung zwischen den Kommunikationspartnern her. Durch die Verbindung können Daten zuverlässig übermittelt werden. Bei TCP und UDP gibt es Ports, an die die Daten gesendet werden. \emph{Well known Ports} gehen von 0 bis 1023 sind u. a.:\\
+        \begin{tabular}{|c|c|}
+            \hline
+            Dienst & Portnummer \\
+            \hline
+            http & 80 \\
+            https & 443 \\
+            SMTP (E-Mail versenden) & 25\\
+            POP3 (E-Mail abholen) & 110\\
+            FTP & 20, 21 \\
+            ssh & 22 \\
+            \hline
+        \end{tabular}  \\ 
+        Damit der Server antworten kann, sendet der Client auch eine Portnummer als \emph{source port} mit, an die die Antwort geschickt werden soll. Weil sich diese Ports immer ändern können, heißen sie auch dynamische Ports. Sie gehen von Port 49152 bis 65535. Zwischen den Well known ports und den dynamic ports liegen die registered Ports von 1024 bis 49151.\\ \\
+        Eine TCP-Verbindung entsteht über einen \textbf{3way Handshake}.
+        \begin{description}
+        \item[1. (SYN)] Der Client sendet ein Paket, bei dem das SYN-Feld gesetzt ist und mit welcher Sequence Number er beginnen möchte.
+        \item[2. (ACK+SYN)] Der Server antwortet dem Client mit einem Paket, bei dem die SYN + ACK Felder gesetzt sind. Außerdem teilt er dem Client die eigene Sequence Number mit.
+        \item[3. (ACK)] Der Client bestätigt die Antwort und beide bauen eine sichere Verbindung zur Kommunikation auf.
+        \end{description}
+        Nun kann kommuniziert werden. Der Client sendet die Daten und zählt dabei die gesendeten Bytes mit der Sequence Number hoch. Die Sequence Number ist immer ein Pointer auf das erste Byte im aktuellen Paket. Er kann nur so viele Daten wie die Window size senden, ohne auf ein acknowledgen des Servers zu warten. Der Server acknowledged ein einzelnes oder mehrere Pakete mit einem ACK-Paket. Acknowledgement Number ist dabei die als nächstes erwartete Sequence-Number des Gegenübers.\\
+        Die TCP-Verbindung wird über einen \textbf{4way Handshake} geschlossen.
+        \begin{description}
+        \item[1. (FIN)] Der Client will die Verbindung trennen und sendet ein FIN-Paket.
+        \item[2. (ACK)] Der Server bestätigt den Erhalt des FIN-Pakets.
+        \item[3. (FIN)] Sobald das Programm auf dem Server bereit ist, die Verbindung zu schließen, wird ein FIN-Paket an den Client gesendet.
+        \item[4. (ACK)] Der Client bestätigt den Erhalt des Pakets. Die Verbindung wird beendet.
+        \end{description}
+        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+            \toprule 
+            1 & 2 & 3 & 4  \\
+            \midrule\midrule
+            \multicolumn{2}{|c|}{Source Port} & \multicolumn{2}{|c|}{Destination Port}\\
+            \midrule
+            \multicolumn{4}{|c|}{Sequence Number}\\
+            \midrule
+            \multicolumn{4}{|c|}{Acknowledgement Number}\\
+            \midrule
+            \begin{tabular}{p{12mm}|p{1cm}}
+             data offset &  reserved\\
+            \end{tabular} & flags &  \multicolumn{2}{|c|}{window}\\
+            \midrule
+            \multicolumn{2}{|c|}{checksum} & \multicolumn{2}{|c|}{urgent pointer}\\
+            \midrule
+            \multicolumn{4}{|c|}{options}\\
+            \multicolumn{4}{|c|}{0 oder mehr 32bit Wörter}\\
+            \midrule
+            \multicolumn{4}{|c|}{Daten...}\\
+            \bottomrule
+    \end{tabular}\\ 
+    Die Felder bedeuten dabei folgendes:
+    \begin{description}
+    \item[Source Port] Port, von dem aus das Paket geschickt wird.
+    \item[Destination Port] Port, an den das Paket gesendet wird.
+    \item[Sequence Number] Alle übertragenen Bytes sind durchnummeriert, beginnend bei einem zufälligen Wert.
+    \item[Acknowledgement Number] Nur gültig, wenn die ACK-Flag gesetzt ist. Quittiert alle Pakete vom Gegenüber mit einer Acknowledgement Number = Sequence Number+1.
+    \item[Data Offset] gibt die Zahl der 32bit-Wörter im TCP-Header an. Min 5, wenn keine Options verwendet werden.
+    \item[reserved] Bits werden nicht verwendet.
+    \item[Flags] Es gibt folgende Flags:
+    \begin{description}
+        \item[0: CWR] Für uns irrelevant
+        \item[1: ECE] Für uns irrelevant
+        \item[2: URG] Das Urgent Pointer Feld enthält gültige Daten
+        \item[3: ACK] Die Acknowledgement Nummer ist gültig
+        \item[4: PSH] Die Daten des TCP Nutzlasten-Feldes sofort an die nächsthöhere Schicht liefern. (z.B. Telnet)
+        \item[5: RST] Reset: Die Verbindung soll vom Rechner, der RST sendet, zurückgesetzt werden.
+        \item[6: SYN] Wird beim Verbindungsaufbau verwendet.
+        \item[7: FIN] Wird beim Schließen der Verbindung verwendet.
+    \end{description}
+    \item[window] Teilt dem Kommunikationspartner mit, wie viele Datenbytes er noch senden darf, bevor er auf eine Quittierung warten muss.
+    \item[checksum] Prüfsumme auf Fehler im Header
+    \item[urgent pointer] Pointer auf das letzte Byte, was zu den Vorrangsdaten (urgent data) gehört.
+    \item[options] Optionale Daten % Vllt noch genauer erklären
+    \end{description}
+    \subsection{UDP}
+        UDP bietet einen Datagramm-Dienst für die darüberliegende Schicht an. UDP ist unzuverlässig und verbindungslos. Wird oft verwendet, wenn die Ziel-Adresse Broadcast oder Multicast ist. Der UDP-Header sieht wie folgt aus:\\
+        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+            \toprule 
+            1 & 2 & 3 & 4  \\
+            \midrule\midrule
+            \multicolumn{2}{|c|}{Source Port} & \multicolumn{2}{|c|}{Destination Port}\\
+            \midrule
+            \multicolumn{2}{|c|}{Length} & \multicolumn{2}{|c|}{Checksum}\\
+            \midrule
+            \multicolumn{4}{|c|}{Daten...}\\
+            \bottomrule
+        \end{tabular}\\ \\
+        Das \textbf{Length}-Feld bezieht sich dabei auf die Länge von UDP-Header + Daten. \\
+        UDP wird u. a. verwendet für:\\ 
+        \begin{tabular}{|c|c|}
+            \hline
+            Dienst & Portnummer \\
+            \hline
+            Trivial File Transfer Protocol (TFTP) & 69 \\
+            Domain Name Services (DNS) & 53 \\
+            Simple Network Management Protocol (SNMP) & 161/162\\
+            Routing Information Protocol (RIP) & 520\\
+            \hline
+        \end{tabular}  \\ 
 \end{document}
