@@ -86,7 +86,14 @@
                 \item[5.] Sobald die Antwort eingetroffen ist, wird die Mac des Rechners in die Porttabelle eingetragen.
                 \item[6.] = Schritt 3 
             \end{description}
-              
+
+            Kenngrößen von Bridges:
+            \begin{description}
+                \item[Filter Rate] Wie viele Frames können pro Zeiteinheit gefiltert werde. Höher als bei Forwarding, da frames nur geprüft und ggf. verworfen werden
+                \item[Forwarding Rate] Anzahl der Frames, die pro Zeiteinheit weitergeleitet werden können. Ist Höchstanzahl erreicht, arbeitet diw Bridge in "full wired speed"
+                \item[Anzahl der Adresstabelleneinträge:] Wie viele MAC-Adressen in Porttabelle gespeichert werden können
+            \end{description}
+
         \subsection{Aloha}
             Aloha ist ein Zugriffsverfahren für Ethernet. Aloha ist der Vorgänger von CSMA / CD. Zugriffsverfahren werden bei Etherent benötigt, damit mehrere Rechner nicht gleichzeitig
             auf einem Kanal senden, da sie sonst ihre Nachrichten gegenseitig verfälschen. 
@@ -153,6 +160,73 @@
             \end{description}
             Da IEEE 802.3 kein Type-Feld explizit angegeben hat, wird dies in 
         \subsubsection{Spanning Tree}
+            Um Schleifen beim Weiterleiten von Paketen zu vermeiden wurde das Spanning Tree Protocol (STP) eingeführt. Dafür geht man von einer Root-Bridge, von der aus dann andere Bridges
+            durch eine Baumtopologie angesprochen werden können. Außerdem werden noch Pfade nach bestimmten Kriterien berechnet, die dann auch eindeutig bestimmt sind. Merkt die Route-bridge, dass eine
+            andere Bridge eine Schleife erzeugt, wird diese in Stand-By gesendet. Die Bridge erhält weiterhin Pakete, leitet diese aber nicht weiter. Außerdem erhält sie dauernd von der Root-Bridge sogenannte 
+            (BPDU) Pakete. Wenn diese nicht ankommen wird von einem Fehler im Netz ausgegangen und die komplette Baumstruktur wird neu erstellt.
+            \subsubsection*{BPDU}
+            Der Aufbau einer BPDU (Bridge Protocol Data Unit) ist wie folgt: 
+            \begin{description}
+                \item[Protocol Identifier] Wert = 0 da SPT (2 Byte)
+                \item[Protocol Version Identifier] Wert = 0 da SPT (1 Byte)
+                \item[BPDU] (Bridge Protocol Data Unit) Type: 0 : Configuration (1 Byte)
+                \item[Flags] z.B. wird hier angezeigt, ob sich die Topologie geändert hat (1 Byte)
+                \item[Root ID] Bridge Identifier der Root-Bridge (8 Byte)
+                \item[Root Path Cost] Summe der Kosten des Pfades von der Root-Bridge an gemessen (4 Byte)
+                \item[Bridge Identifier] Identifier der Bridge, die diesen Datenrahmen ausgesendet hat (8 Byte)
+                \item[Port Identifier] Kennzeichnung des Ports über das dieser Datenrahmen gesendet wurde (2 Byte)
+                \item[Message Age] Geschätzte Zeit in 1/256 Sekunde ab dem Absenden der BPDU durch die Root Bridge (2 Byte)
+                \item[Max Age] Zeiteinheit in 1/256 Sekunde nach der Protokoll- Informationen, die über ein Port empfangen wurden, von der Bridge gelöscht werden sollen (2 Byte)
+                \item[Hello Time] Zeitdauer zwischen dem Absenden von 2 aufeinander folgenden Hello- Nachrichten (besondere BPDUs) durch die Root- Bridge (2 Byte)
+                \item[Forward Delay] Zeitdauer, die ein Bridgeport in den Zuständen listening und learning verweilt, bevor dieser Port in den Zustand forwarding übergeht (2 Byte)
+            \end{description}
+            
+            Für das Flag-Byte gelten folgenden Werte:
+            \[
+                \begin{tabular}{c|c}
+                    bits & usage \\
+                    \hline
+                    1 & 0 or 1 for Topology Change \\
+                    2 & 0 (unused) or 1 for Proposal \\
+                    3-4 & 00 (unused) or \\
+                    & 01 for Port Role Alternate/Backup  \\
+                    & 10 for Port Role Root  \\
+                    & 11 for Port Role Designated  \\
+                    5 & 0 (unused) or 1 for Learning  \\
+                    6 & 0 (unused) or 1 for Forwarding  \\
+                    7 & 0 (unused) or 1 for Agreement  \\
+                    8 & 0 or 1 for Topology Change Acknowledgement
+                \end{tabular}
+            \]
+            \subsubsection*{Aufbau des Baums}
+            Zuerst wird die Root Bridge  ermittelt. Danach wird mit Hilfe des Root Path Cost (RPC) feld (in der BPDU) emittlett, welcher Pfad zur Root-Brige der Günstigste ist.
+            Die Kosten werden durch die Geschwindigkeit (Bandbreite) ermittelt, desto höher die Geschwindkeit desto niedriger die Kosten.
+            Die Root-Bridge hat 0 Im Kosten Feld. Es werden BPDUs abwärts geschickt (Bridge empfängt am Root Port die BPDU) und jede Bridge addiert 
+            ihre RPC zu dem in der BPDU stehenden RPC. Bei einer Schleife empfangen 2 verschieden Bridges gegenseitig ihre RPC. Einer der beide Bridges wird in 
+            StandBy geschickt (wenn RPC unterschiedlich, dann die mit der niedrigeren RPC, bei gleicher RPC, die mit niedrigerem Bridge Identifier).
+
+            \subsubsection*{Zustände}
+            Werden Bridges während dem Betrieb ausgewächselt oder entfernt (topologie change), könnte es zu Schleifen kommen wenn Bridge direkt vom blocking Zustand
+            in den forwarding Zustand gewchselt wird. Deshalb gibt es Zwischenzustände die eben zwischen blocking und forwarding liegen: 
+                
+            \begin{description}
+                \item[1.] Nach dem Einschalten in den Zustand blocking
+                \item[2.] Aus dem Zustand blocking in einen der Zustände disabled oder listening
+                \item[3.] Aus dem Zustand listening in einen der Zustände disabled oder learning
+                \item[4.] Aus dem Zustand learning in einen der Zustände disabled oder forwarding
+                \item[5.] Aus dem Zustand forwarding in den Zustand disabled
+            \end{description} 
+            Bei korrekter Konfiguration ist am Ende die Bridge entweder im blocking oder forwarding Zustand.
+
+            \begin{description}
+                \item[Zustand listening]
+                Protokollinformation werden ausgewertet (kann sein dass port hier in StandBy gesetzt wird wenn eine Schleife erkannt wurde).
+                Port wartet auf ablaufen des Forward Delay Timer und wechselt in listening Zustand. Es werden keine Frames weitergeleitet.
+                Der Forward delay timer wird zurückggesetzt.
+                \item[Zustand learning]
+                Es werden immernoch keine Frames weitergeleitet aber die Bridge merkt sich Dource MAC von Paketen und am welchem Port der Frame empfangen wurde.
+                Beim Ablauf vom Forward Delay Timer wird in Zustand forwarding gewechselt.
+            \end{description}
 
         \subsubsection{Switching}
             Ein Switch funktioniert wie eine Bridge, nur hat eine Bridge idR. nur 2 Ports, was heutzutage nicht mehr aussreicht. 
@@ -178,6 +252,7 @@
             Manchmal werden auch beide Methoden verwendet, wenn z.B. cut trough zu viele fehlerhafte Frames sendet wird auf store and forward geswitcht (wird intelligent switching genannt).
             
         \subsubsection{VLAN}
+            
         \newpage
 \section{Kapitel 3}
     \subsection{IPv4}
