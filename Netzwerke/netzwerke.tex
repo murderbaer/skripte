@@ -251,8 +251,16 @@
             Manchmal werden auch beide Methoden verwendet, wenn z.B. cut trough zu viele fehlerhafte Frames sendet wird auf store and forward geswitcht (wird intelligent switching genannt).
             
         \subsubsection{VLAN}
-            
-        \newpage
+            Switches lassen sich per Software in logische switches aufteilen. Ein logischer Switch  entspricht dann einem VLAN.
+            Rechner könne an verschiedenen physikalischen switches angeschlossen sein aber sich im selben logischen VLAN befinden.
+            Nur Rechner im selben VLAN können direkt kommunizieren. Broad/Multicast gelten dann auch nur im VLAN. \\
+            Damit Switches die verschiedenen VLAN berücksichtigen können, wird der IEEE802.1Q Datenrahmen benutzt, welcher 'tagging' unterstützt. Der 4 Byte lange 'tag' befindet
+            sich dann zwischen dem 'source mac' und dem 'type' Feld. Rechner mit selben Tag können untereinander kommunizieren, ansonsten muss ein Router verwendet werden wenn Rechenr aus 
+            2 verschiedenen VLANs kommunizieren möchten. \\
+            Da Spanning Tree die Mac Adressen vom Switch (Bridge) benutzt um die Topologie aufzubauen, wird die Bridge-ID modifiziert. Die Priority ist anstatt 2 Byte nur noch 4 Bit 
+            (halbes Byte) groß. Die restlichen 12 Bits ist die VLAN-ID. Ein Switch hat für alle VLANs die er in seiner Datenbank hat eine nicht eindeutige MAC-Adresse die dann eben den 
+            MAC-adress Anteil in der Bridge-ID ersetzt. Für jedes VLAN wird dann das STP ausgeführt.
+       \newpage
 \section{Kapitel 3}
     \subsection{IPv4}
     Jedes Gerät hat eine IPv4 Adresse, jeweils 4 Byte, dargestellt durch Dezimalzahlen durch Punkte getrennt. Beispiel 141.69.1.23. 
@@ -352,6 +360,7 @@
         Durch das Code-Feld können zusätzliche Informationen mitgegeben werden, z.B. warum die Verbindung gescheitert ist.
     \subsection{TCP}
         TCP stellt eine virtuelle Verbindung zwischen den Kommunikationspartnern her. Durch die Verbindung können Daten zuverlässig übermittelt werden. Bei TCP und UDP gibt es Ports, an die die Daten gesendet werden. \emph{Well known Ports} gehen von 0 bis 1023 sind u. a.:\\
+        \[
         \begin{tabular}{|c|c|}
             \hline
             Dienst & Portnummer \\
@@ -363,7 +372,8 @@
             FTP & 20, 21 \\
             ssh & 22 \\
             \hline
-        \end{tabular}  \\ 
+        \end{tabular}  \\
+        \]
         Damit der Server antworten kann, sendet der Client auch eine Portnummer als \emph{source port} mit, an die die Antwort geschickt werden soll. Weil sich diese Ports immer ändern können, heißen sie auch dynamische Ports. Sie gehen von Port 49152 bis 65535. Zwischen den Well known ports und den dynamic ports liegen die registered Ports von 1024 bis 49151.\\ \\
         Eine TCP-Verbindung entsteht über einen \textbf{3way Handshake}.
         \begin{description}
@@ -379,7 +389,8 @@
         \item[3. (FIN)] Sobald das Programm auf dem Server bereit ist, die Verbindung zu schließen, wird ein FIN-Paket an den Client gesendet.
         \item[4. (ACK)] Der Client bestätigt den Erhalt des Pakets. Die Verbindung wird beendet.
         \end{description}
-        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
+        \[
+        \begin{tabular}{|p{2.8cm}|p{2.8cm}|p{2.8cm}|p{2.8cm}|}
             \toprule 
             1 & 2 & 3 & 4  \\
             \midrule\midrule
@@ -389,8 +400,8 @@
             \midrule
             \multicolumn{4}{|c|}{Acknowledgement Number}\\
             \midrule
-            \begin{tabular}{p{12mm}|p{1cm}}
-             data offset &  reserved\\
+            \begin{tabular}{p{10mm}|p{1cm}}
+             data offset &  reserved \\
             \end{tabular} & flags &  \multicolumn{2}{|c|}{window}\\
             \midrule
             \multicolumn{2}{|c|}{checksum} & \multicolumn{2}{|c|}{urgent pointer}\\
@@ -400,7 +411,8 @@
             \midrule
             \multicolumn{4}{|c|}{Daten...}\\
             \bottomrule
-    \end{tabular}\\ 
+        \end{tabular}
+        \]
     Die Felder bedeuten dabei folgendes:
     \begin{description}
     \item[Source Port] Port, von dem aus das Paket geschickt wird.
@@ -427,6 +439,7 @@
     \end{description}
     \subsection{UDP}
         UDP bietet einen Datagramm-Dienst für die darüberliegende Schicht an. UDP ist unzuverlässig und verbindungslos. Wird oft verwendet, wenn die Ziel-Adresse Broadcast oder Multicast ist. Der UDP-Header sieht wie folgt aus:\\
+        \[
         \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|}
             \toprule 
             1 & 2 & 3 & 4  \\
@@ -438,6 +451,7 @@
             \multicolumn{4}{|c|}{Daten...}\\
             \bottomrule
         \end{tabular}\\ \\
+        \]
         Das \textbf{Length}-Feld bezieht sich dabei auf die Länge von UDP-Header + Daten. \\
         UDP wird u. a. verwendet für:\\ 
         \begin{tabular}{|c|c|}
