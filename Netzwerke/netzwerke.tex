@@ -2,7 +2,6 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage[utf8]{inputenc}
 \usepackage{booktabs}
 \usepackage[german]{babel}
 
@@ -18,7 +17,7 @@
 \section{Kapitel 1}
     \subsection{DNS - Domain Name System}
         Ein Domain Name System nimmt Internetadressen wie 'facebook.com' und liefert dessen IP-Adresse, 
-        damit Rechenr sich damit verbinden können. Wobei 'com'\footnote{Eigentlich ist der Punkt rechts von der Domain. Bei der TTL wird der Punkt meistens weggelassen. Richtig heißt es beispielsweise 'com.'} eine TLD (Top Level Domain) ist. Man unterscheidet TLDs wie folgt:
+        damit Rechner sich damit verbinden können. Wobei 'com'\footnote{Eigentlich ist der Punkt rechts von der Domain. Bei der TTL wird der Punkt meistens weggelassen. Richtig heißt es beispielsweise 'com.'} eine TLD (Top Level Domain) ist. Man unterscheidet TLDs wie folgt:
         \begin{description}
             \item [gTLD] (auch: genericTLDs, allgemeine TLD) Diese werden wieder in 2 Untergruppen aufgeteilt:
                 \begin{description}
@@ -451,4 +450,111 @@
             Routing Information Protocol (RIP) & 520\\
             \hline
         \end{tabular}  \\ 
+
+
+        \section{Kapitel 4}
+            \subsection{Router}
+                Ein Router empfängt Pakete der Schicht 3 (IP-Frame) und schaut in seiner Routing Tablle nach ob wohin das Paket geschickt werden muss. Kollisionsdomaine und Broadcastdomaine
+                enden bei einem Router. Es können aber Ausnahmen konfiguriert werden, die dann einen Broadcast weiterleiten, was beispielsweise für DHCP wichtig ist. \\
+                Cisco Router sind Rechner mit spezieller Software: 
+                \begin{description}
+                    \item[RAM/DRAM] speichert Routing-Tabellen, enthält ARP-Speicher, schnelles Switching und Paketzwischenspeicher (gemeinsam genutztes RAM) sowie Warteschlangenspeicher zum Halten
+                    von Paketen. Verliert Daten bei unterbrochener Stromversorgung
+                    \item[NVRAM] speichert BackUp/Startkonigzrationsdateien von Router, Daten überleben Stromunterbrechung
+                    \item[FLASH] programmierbarer ROM welche idR das Betriebssytem enthält, dadurch muss nicht gelötet werden für ein Softwarupdate, bzw mehrere Versionen von können IOS gespeichert werden
+                    \item[ROM] enthält Einschaltdiagnosefunktionen, ein Bootstrap-Programm und Betriebssystemsoftware
+                    \item[Software] IOS (Internetwork Operating System) Betriebssystem von Cisco Routern, Router kann über Telnet konfiguriert (Routen setzen etc.) werden bzw. 
+                        Informationen weitergeben die beispielsweise für Fehlersuche wichtig sein könnten
+                \end{description}
+
+            \subsection{RIP - Routing Information Protocol}
+                RIP dient zur dynamischen Erstellung von Routing Tabellen.
+                \subsubsection{Distanzvektoralgorithmus}
+                    RIP benutzt den Distanzvektoralgorithmus um die 'schnellste' Route von einem Router zum anderen anzugeben. Die 'Geschwindigkeit' wird hierbei mit den hop counts angegeben,
+                    weniger Router hops $\Leftrightarrow$ höhere 'Geschwindigkeit'. Router die direkt verbunden sind haben die metric 0, Router können ihre Routen an andere Router weiterleiten und
+                    der Empfänger Router erhöht dann einfach die metric\footnote{hop count $\Leftrightarrow$ metric} für jede Route um eins.
+                    Bekommt ein Router eine bessere Route als eingespeichert, so ersetzt er diese mit der besserern, bekommt ein Router eine Route die gleich gut ist, wird die neue gesepeichert, wobei die alte Route bestehen bleibt. 
+                \subsubsection{Arbeitsweise}
+                    \begin{description}
+                        \item Alle 30 Sekunden (Update Timer) senden Router ihre Routen weiter als flooded broadcast (IP = 255.255.255.255, MAC = FF:FF:FF:FF:FF:FF) und bekommt den UDP port $520_{dec}$ (sowohl Source als auch Destination)
+                        Dabei hat jeder Router seinen eigenen Timer $\Rightarrow$ asynchron. Wenn ein Router die Routeninforamtion erhält verändert er wenn nötig seine eigene Routingtabelle
+                    \end{description}
+                    Desweiteren haben Routen auch selbst einen eigenen Timer. Läuft dieser ab wird die Route dann an andere Router gesendet, bzw. Router erwarten, dass Routen gesendet werden.
+                    Empfängt ein Router 180 Sekunden lang kein Update der Route, wird diese als unerreichbar markiert (metrix wird auf 16 gesetzt). Ausßerdem wird wieder ein Routing update gesendet 
+                    (außerhalb des 30 Sekunden Zeitfenster), Das sogennante 'triggered update'. Dies wird allgemein ausgelöst, wenn sich in einer Route die 
+                    metric ändert und es werden hier auch nur die geänderten Routen an die Router gesendet.\\
+                    Wird nach weiteren 120 (Bei Cisco 240) Sekunden (Flush Timer) immernoch nicht die Route empfangen wird diese dann gelöscht (garbage collection). \\
+                    Da jetzt noch die anderen Router von der falschen Route erst noch erfahren müssen, gibt es noch Holddown Tiemr (180 Sekunden). Er erhält die falsche Route in dieser Zeit
+                    damit Schleifen nicht auftauchen können.
+                
+                \subsection{Aufbau einer RIP Nachricht}
+                    \[
+                    \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+                        \toprule 
+                        1 & 2 & 3 & 4  \\
+                        \midrule
+                        command & version & \multicolumn{2}{|c|}{must be zero} \\
+                        \bottomrule
+                    \end{tabular}
+                    \]
+
+                    \begin{description}
+                        \item[command] $\!$
+                            \begin{itemize}
+                                \item[1.] RIP-Request: Router wird auffgefordert sofort einen RIP response zu senden.
+                                    Enthält die Routen vom Sender und fordert auf die Routen an die Nachbarrouter zu senden.
+                                \item[2.] RIP-Response: RIP Routenankündigun. Entweder zyklisch alle 30 Sekunden oder als triggered update.
+                            \end{itemize}
+                        \item[version] Hier wird die RIP-Version angegeben. Dieses Feld enthält bei RIP 1 immer den Wert 1. 
+                        \item[must be zero] Die Bits werden nicht verwendet. Sie sind auf 0 gesetzt.
+                    \end{description} 
+
+                \subsubsection*{Routenangabe}
+                    \[
+                    \begin{tabular}{|p{2.5cm}|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+                        \toprule 
+                        1 & 2 & 3 & 4  \\
+                        \midrule
+                        \multicolumn{2}{|c|}{Adress Family Identifier} & \multicolumn{2}{|c|}{must be zero} \\
+                        \midrule
+                        \multicolumn{4}{|c|}{IP Adresss} \\
+                        \midrule
+                        \multicolumn{4}{|c|}{must be zero}\\
+                        \midrule
+                        \multicolumn{4}{|c|}{must be zero}\\
+                        \midrule
+                        \multicolumn{4}{|c|}{Metric} \\
+                        \bottomrule
+                    \end{tabular}
+                    \]
+
+                    \begin{description}
+                        \item[Adress Family Identifier] 
+                            Dieses Feld  gibt darüber Aufschluss, für welches Schicht 3–Protokoll die Routing-Informationen in der RIP-Nachricht gelten.
+                            Bei IP-Routing-Informationen wird dieses Feld auf den Wert 2 gesetzt. 
+                        \item[IP Adress]  In diesem Feld wird die IPv4-Adresse des Netzwerkziels angegeben. Dabei
+                            kann es sich um eine Route zu einem Netz, einem Subnetz oder zu einem
+                            einzelnen Rechner (host-specific route) handeln. Findet sich hier der
+                            Eintrag 0.0.0.0, so handelt es sich um die Ankündigung der default route.
+                        \item[Metric] In dieses Feld wird der hop count zum Netzwerkziel eingetragen. Der hop
+                            count gibt an, wie viele Router besucht werden müssen, um das betreffende
+                            Netzwerkziel zu erreichen. Der maximal erlaubte hop count liegt bei einer
+                            gültigen Route beim Wert 15. Der Wert 16 bedeutet, dass ein Netzwerkziel
+                            nicht erreichbar ist.
+                    \end{description}
+                \subsubsection*{Probleme bei Routenausfall}
+                    Ein Router A sendet an Router B die Route zum Router C. Jetzt fällt Router C aus aber Router B denkt er hat die Route zu C und sagt Router A bescheid. 
+                    Router A trägt jetzt eine Route zu C über B in sich ein. Router B merkt aber jetzt dass keine updates von der Route kommen und löscht diese Route. Router A
+                    sagt jetzt aber, dass er eine Route zu C hat und Router B trägt das auch in seine Routingtabelle ein. Das wiederholt sich bis die metric auf 16 gesetzt ist. Da dies
+                    aber einige Minuten dauern kann wurden vorgehensweisen etwickelt, um eben dies zu beschleunigen:
+                    \begin{description}
+                        \item[Split-Horizon] 
+                            Wenn Router A Routen vom Router B lernt, sendet er diese Routen nicht mehr zurück (an Router B).
+                            Hat Router A aber auch Routen von einem Router C sendet A die Routen von C an den Router B 
+                        \item[Split-Horizon with poison revers] Wie split Horizion nur dass antatt Routen die eigentlich nicht gesendet werden, die metric einfach auch 16 gesetzt wird. 
+                            (Router A sendet die Routen von Router B an den ROuten B zurück mit metric = 16)
+                        \item[triggered-update] 
+                            Bei Topologie Änderung (metric ändert sich) wird sofort ein RIP-Update an die Nachbarn gesendet
+                    \end{description}
+            
 \end{document}
