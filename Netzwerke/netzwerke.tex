@@ -557,10 +557,11 @@
                             nicht erreichbar ist.
                     \end{description}
                 \subsubsection*{Probleme bei Routenausfall}
+                    
                     Ein Router A sendet an Router B die Route zum Router C. Jetzt fällt Router C aus aber Router B denkt er hat die Route zu C und sagt Router A bescheid. 
                     Router A trägt jetzt eine Route zu C über B in sich ein. Router B merkt aber jetzt dass keine updates von der Route kommen und löscht diese Route. Router A
                     sagt jetzt aber, dass er eine Route zu C hat und Router B trägt das auch in seine Routingtabelle ein. Das wiederholt sich bis die metric auf 16 gesetzt ist. Da dies
-                    aber einige Minuten dauern kann wurden vorgehensweisen etwickelt, um eben dies zu beschleunigen:
+                    aber einige Minuten dauern kann wurden vorgehensweisen etwickelt, um eben dies zu beschleunigen\footnote{Muss noch korrigiert werden.}:
                     \begin{description}
                         \item[Split-Horizon] 
                             Wenn Router A Routen vom Router B lernt, sendet er diese Routen nicht mehr zurück (an Router B).
