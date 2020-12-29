@@ -1,0 +1,164 @@
+\documentclass[a4paper]{scrartcl}
+\author{Me}
+\title{Grundlagen der Informatik}
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+    \maketitle
+    \newpage
+    \tableofcontents
+    \newpage
+
+    \section{Lineare Optimierung}
+    Unter Linerare Optimierung versteht man, dass eine bestimmte Funktion durch einstellen bestimmter 'Parameter' möglichst groß (oft für Gewinn benutzt) oder möglichst klein (für Verluste) wird.
+    Dafür wird die öineare Zielfunktion: 
+    \begin{equation*}
+        g(\vec{x}) = g_0 + g_1x_1 \cdots g_nx_n
+    \end{equation*}
+    hergenommen. Zum Beispiel ist \(g_i\) dann der Preis für die Herstellung eines Produkts und \(x_i\) dann die Anzahl wie oft das Produkt hersgetellt werden soll und \(x_i\) sind eben die 
+    Parameter die eingestellt werden sollen. Dazu sind idR. Randbedingungen gegeben, wie '\(x_1\) darf höchstens doppelt so oft hergestellt werden wie \(x_2\)'. Dann gibt es noch triviale 
+    Randbedingungen. Da man nicht negativ produzieren kann gilt meistens auch \(x_i \ge 0\). Somit erhält man einige Ungleichungen und Gleichung. Zuerst schriebt man alle (Un)Hleichungen 
+    untereinander auf und drhet jedes Ungleichungszeichen (Multiplikation mit -1) um damit alle Ungleichungszeichen in die selbe Richtung zeigen. Nun versucht man Variablen zu eliminieren
+    indem man de GLeichungen die man hat nach einer Variable umstellt und dann diese Variable in den Ungleichungen ersetzt. Beispiel
+    \begin{equation*}
+        x_1 + x_2 = 0 \Rightarrow x_1 = -x_2    
+    \end{equation*}
+    \(x_1\) kan in diesem Beispiel mit \(-x_2\) in den Ungleichungen ersetzt werden. Wenn man die ganzen Gleichungen in ein Diagramm einzeichnet erhält man ein Vieleck mit Kanten die eben 
+    von den Ungleichungen darsgetellt werden. Man kann jetzt jeden Schnittpunkt anschauen, die Werte berechnen die herauskommen wenn man die x-Koordianten in die Gewinngleichung einsetzt und
+    vergleicht wie jeden Wert und sucht sich den höchsten/nidrigsten Wert als Lösung heraus. Bei vielen Parametern kann das schnell viele Berechnungen benötigen. Man kann auch das Diagramm wieder
+    hernehmen. Hier sucht man sich einen geigneten Startpunkt (eine Punkt an einer Kante) und schaut ob man ob die Kante ansteigt oder waagrecht verläuft und folgt dieser Kante bis man 
+    einen Schnittpunkt findet. Hier wird wiederum geschaut ob es eine Kante hǵibt die ansteigt oder waagrecht verläuft. Dies wird wiederholt bis das nicht mehr möglich ist. Der Letzt gefundene
+    Schnittpunkt, welcher noch das Vieleck umspannt, erhält dann die Parameter für die Lösung. 
+    \subsection{Simplexalgorihmus}
+    Da man schwer vier, fünf oder sechs Dimensionen zeichnen kann gibt es den Simplexalgorihmus welcher den Optimalwert rechnerisch ermitteln kann. Hier muss zuerst ein Tabloet erstellt werden.
+    Die Form des Tablots ist wie folgt:
+    \(
+        \begin{pmatrix}
+            \begin{matrix}
+                 &   & \\
+                 & A & \\
+                 &   & 
+            \end{matrix}
+            \begin{matrix}
+               & \\ & \vec{k} \\ &   
+            \end{matrix} \\
+
+            \hline
+            \begin{matrix}
+                &\vec{g} & &  G \\             
+            \end{matrix}   
+        \end{pmatrix}
+    \)
+    Wobei Die Matrix A Die Ungleichungen ind Marixform ist, \(\vec{g} = G\) eine Lösung ist von der man weiß, dass sie die Gewinnfunktion erfüllt und sich \(\vec{k} = A\vec{u} - \vec{b}\). Dabei ist
+    \(\vec{u}\) auch der Vektor der die Gewinnfunktion erfüllt. 
+
+    \section{Finanzmathematik}
+        \subsection{Folgen und Reihen}
+        Eine Zahlenfolge ist eine Abbildung, welche wie folgt defineiert ist:
+        \begin{equation*}
+            a = \mathbb{N} \rightarrow \mathbb{R}
+        \end{equation*}
+        Anstatt \(a(i)\) schriebt man \(a_i\) für jedes einzelne Glied der Folge. 
+        Eine Reihe ist eine Aufsummierung aller Folgeglieder und wird unendliche Reihe genannt wenn unendlich viele Glieder aufsummiert werden bzw. endliche Reihe genannt wenn bis zu einem 
+        bestimmten index aufsummiert wird. 
+        
+        \begin{equation*}
+            \text{arithmetische Zahlenfolge: } a_n = a_1 + (n - 1)d, d \epsilon \mathbb{R} \text{ fest} 
+        \end{equation*}
+        \begin{equation*}
+            \text{endliche arithmetische Reihe: } \frac{N(2a_1+(N+1)d)}{2}
+        \end{equation*}
+        \begin{equation*}
+            \text{geometrische Zahlenfolge: } a_n = a_1 \cdot q^{n-1}
+        \end{equation*}
+        \begin{equation*}
+            \text{geometrische Reihe: } a_1 \frac{q^N - 1}{q - 1}
+        \end{equation*}
+
+        \subsection{Einfache Verzinsung}
+        Sollen Zinsen nicht miteinander Verzinst werden (Zinsen werden auf ein anderes Konto ausgezahlt) spircht ma nvon einfacher Verzinsung. Es gilt folgenden Formel:
+        \begin{equation*}
+            K_n = K_0(1 + n \cdot i)
+        \end{equation*}
+        Wobei \(K_n\) das Kapitale nach \(n\) Zinsperioden dasrstellt. \(K_0\) ist dabei das Startkapital, \(i\) die Zinsrate\footnote{\(i \cdot 100 \equiv Zinsrate in Prozent\)} und \(n\)
+        eben die Laufzeit in Zinsperioden (meistens Monate oder Jahre).
+            \subsubsection{Verzinsung mit Zinseszins}
+            Hier werden die Zinsen mitverzinst (Zinsen werden aufs selbe Konto ausgezahlt). Die Formel lautet: 
+            \begin{equation*}
+                K_n = K_0(1+i)^n
+            \end{equation*} 
+
+            \subsubsection{Stetige Verzinsung}
+            Unter stetiger Verzinsung versteht man, dass die Zinsen nicht jeden Monat oder jeden Tag angerechnet werden sondern zu jedem Augenblick. Dafür wird folgende Fromel werwendet: 
+            \begin{equation*}
+                K_n = K_0 e^{i \cdot n}
+            \end{equation*}
+
+            \subsubsection{Gemischte Verzinsung}
+            Wenn man als Zisnperiode ein gnazes Jahr hat aber man die Verzinsung miiten in der Zinsperiode 'abbrechen' will wird folgende Formel benutzt:
+            \begin{equation*}
+                K_n = K_0(1 + i)^{\lfloor n \rfloor} 
+                \cdot (1 + i (n - \lfloor n \rfloor)\footnote{Die Klammern sind Gaussche Rundungsklammern. Sind sie wie hier nach unten gerichtet, wird abgerundet und wenn sie nach oben gerichtet sind, wird aufgerundet})
+            \end{equation*}
+
+            \subsubsection{Freigeld}
+            Die Idee hinter Freigeld ist dass Geld nicht wir Lebensmittel oä. verderben kann. Um das zu korrigieren kann man die Formel für einfache Verzinsung (wenn man Bargeld hat) bzw. 
+            die Formel für den Zinseszins hernehmen (Girokonto). Hier nimmt man als Zinsrate einfach den Negativwert. 
+        \subsection{Investitions- und Finanzrechnung}
+        Die Investionsrechnung wird verwendet um zu bestimmen ob sich eine Investions im Laufe der Zeit lohnen wird. Zuerst zieht man die Kosten der Investions vom Kapital ab.
+        Gegenfalls schaut man ob es periodische Zahlungen gibt die man leisten muss (Wartungsarbeiten, Kreditszinsen etc.) und zieht diese auch ab. Man schätz nun den Gewinn den die Investion im Monat/Jahr etc.
+        macht, zieht noch eventuelle Zahlungen ab und erhält den Monats/Jahresgewinn. Dies macht man für alle Monate für die eine Schätzung machbar ist, verzinst diese dementsprechend und vergleicht den 
+        Gesamtgewinn mit dem Gewinn den man erhält wenn man nicht investiert mit dem über dem selben verzinsten Kapital, das man hat wenn man nicht investiert.
+
+        \subsection{Rentenrechnung}
+        Unter einer Renter versteht man im Allgemeinem eine regelmäßige Ein- oder Auszahlung. Es wird zwischen auch noch eine Unterschiedung getroffen wenn die Zinsperiode der Rentenperiode gleicht
+        (man zahl jeden Monat einen gewissen Betrag aufs Sparbuch und bekommt jeden Monat auch Zinsen auf das Geld) und wenn die  Rentenperiode kleiner der Zinsperiode ist (man zahlt monatlich ein 
+        bekommt aber nur jährlich Zinsen).
+            \subsubsection{Zinsperiode = Ratenperiode}
+                Die allgemeine Formel lautet: 
+                \begin{equation*}
+                    R_n = r \cdot q \cdot \frac{q^n - 1}{q-1}
+                \end{equation*}
+                \(r\) ist die Ratenzahlung, \(n\) wieder die Anzhal der Ratenperioden, \(q\) berechnet sich durch \(q = 1 +i\), wobei \(i\) wieder der Zins ist. Die Formel gilt für vorschüssige Ratenzahlungen und nachschüssige Zinszahlungen.
+                Für die nachschüssige Ratenzahlung gilt: 
+                \begin{equation*}
+                    R_n = r \cdot \frac{q^n - 1}{q - 1}
+                \end{equation*}
+            %TODO umformungen in eine Tabelle schreiben
+            \subsubsection{Rentenperiode < Zinsperiode}
+                Wenn die Rentenperiode kleiner der Zinsperiode ist muss man nur die Ratenzahlung \(r\) aus der Formel für die nachschüssige Ratenzahlung ändern. Es gilt für das neue \(r_e\):
+                \begin{equation*}
+                    r_e = r \cdot (m + \frac{i}{2} \cdot (m + 1)) \Rightarrow R_n = r_e \frac{q^n-1}{q-1} = r \cdot (m + \frac{i}{2} \cdot (m + 1)) \cdot \frac{q^n-1}{q-1}
+                \end{equation*}
+                Wobei das \(m\) die Anzahl der Ratenzahlungen pro Zinsperiode ist.
+        
+        \subsection{Tilgungsrechnung}
+        Bei der Tilgunsrechnung geht es idR. umd die Rückzahlung eines Krdited (bzw. allgemein Schulden). Die Annuität bezeichnet damit den Betrag, der periodisch zurückgezahlt werden muss.
+        Die Annuität setzt sich wiederum aus der Tilgungsrate (Betrag der zurückgezahlt werden soll) und dem Zinsbestandteil (Zinsen die pro Periode von den Restschulden dazukommen).
+            \subsubsection{jährliche Ratentilgung}
+            Soll die Tilgunsrate jedes Jahr (Periode) gleich bleiben ergibt sich folgende Formel:
+            \begin{equation*}
+                T = \frac{S}{n}
+            \end{equation*}
+            Wobei \(T\) die Gesamtschuld ist und \(n\) die Anzahl der Jahre (perioden) der Kreditlaufzeit.\\
+            Will man die Zinsrate für ein bestimmtes Jahr (hier \(r\)) ausrechnen gilt folgende Formel: 
+            \begin{equation*}
+                Z_r = T \cdot (n - r + 1) \cdot i
+            \end{equation*} 
+            \(i\) ist dabei wieder der Zinsatz, n Die Kreditlaufzeit und \(T\) die Tilgungsrate. \\
+            Die Annuität ergibt sich dann wenn man die beiden speziellen Formeln nun in die allgemeine Formel von oben einsetzt und umforfmt: 
+            \begin{equation*}
+                A = T \cdot (1 + (n - r + 1)i)
+            \end{equation*}
+
+            \subsubsection{unterjährliche Ratentilgung}
+            Soll mehrmals im Jahr getilgt werden muss der jährliche Zinssatz durch die Anzahl der Tilgungen im Jahr geteilt werden. Weiter beschreibt das \(n\) nicht mehr das ahr sondern die Anzahl
+            der Zinsperioden.  
+    \section{Kombinatorik}
+    \section{Wahrscheinlichkeitstheorie}
+    \section{Zufallsvariable und statistische Verteilung}
+    \section{Induktive Statistik und statistische Tests}
+\end{document}

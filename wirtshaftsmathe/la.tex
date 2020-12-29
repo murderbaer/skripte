@@ -1,0 +1,122 @@
+\documentclass[a4paper]{scrartcl}
+\author{Me}
+\title{Grundlagen der Informatik}
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\begin{document}
+    \maketitle
+    \newpage
+    \tableofcontents
+    \newpage
+
+    
+
+
+    \section{Folgen und Reihen}
+    Folgen
+        werden durch index angegeben und nicht unbedingt durch funktionswert, oft auch rekursiv oder mit hilfe vom ersten wenn man a_n herausfinden will
+    Reihen,
+        Sind folgeglieder die bis zu n (oder auch undendlich für undendliche Reihen) auffaddiert werden
+
+    arithmetische Folgen
+        an+1 = an + d
+        an = a1 +(n-1)d, d e R fest
+        Reihe: N(2a_1 + (N-1)d)/2
+    geometrische Folge 
+        an+1 = an *q, q e R fest
+        an = a1 + q^(n-1)
+        Reihe = a1 * (q^N -1)/(q-1)
+    
+    \section{Zinsen}
+        Sollen Zinsen nicht mitverzinst werden glt die Formel 
+        d = k_0 + i; KN = K0(1+n*i)
+        K0 e R+ (Kapital)
+        n e R+ , Laufzeit 
+        kN Endpaital Kaptial + Zinsen
+        i Zinsrate
+        i* 100 Zinsrate in Prozent
+
+        Zinseszins
+        Kn = K0(1+i)^n
+
+        stetige Verzinsung
+        K0 +e ^(i*n)
+
+        gemischte Verszinsung
+        Kn = K0(1+i)^ [n](1+i*(n-[n]))
+        
+        Freigeld
+        Besitz von Geld wird verzinst (eher ein Wertverfall da niemand die Zinsgebühren erhält) damit es wie zB. Lebensmittel verdirbt. Dadruch wird der Umlauf erhöht.
+        hier Wird der Zinsatz dann nur abgezogen anstatt addiert 
+
+        Investitionsrechnung
+        Die Investionsrechnung wird verwendet um zu bestimmen ob sich eine Investions im Laufe der Zei tlohenen wird. Zuerst zieht man die Kosten der Investions vom Kapital ab.
+        Gegenfalls schaut man ob es periodische Zahlungen gibt die man leisten muss (Wartungsarbeiten, Kreditszinsen etc) und ziet diese auch ab. Man schätz nun den Gewinn den die Investion im Monat/Jahr etc
+        macht, zieht noch eventuelle Zhalungen ab und erhält den Monats/Jahresgewinn. DIes macht man fürr alle Monate für die man eine SChätzung machen kann, verzinst diese dementsprechend und vergleciht den 
+        Gesamtgewinn mit dem Gewinn den man erhält wenn man nciht investiert und sein Kapital einfachüber den selben Zeitraum verzinsen lässt.
+
+        Rentenrechnung
+        Rente = Regelmäßige Zahlung
+        dauer endlich rente, leib rente (rente endet mit tod), ewige rente (Pacht)
+        Periode mmonat jahr 
+        termin wann wird gezshlt davo
+        zinsperiode wann werden zinsen ausgezhalt (glecih mit rente oder wird rente im moant gezahlt aber zinsen im jahr)
+
+        Formel: Rn = r*q*(q^n -1)/(q-1)
+        r Ratenzahlung
+        n Ratenperioden
+        i Zinsatz, q = 1+i
+        Rn Enbetrag
+        Formel ist für vorschüssige Renten, für nachschüssige gilt:
+        r*(q^n -1)/(q-1)
+
+        R0 = Rn/q^n (barwert, also was wird gezahlt wenn alles am anfang direkt 'in Bar' gezahlt wird)
+
+        Ratenperiode < zinsperiode
+        Wenn die Ratenperioden ein quaratl beträgt, die Zinsperiode ein Jahr, dannrechnet man vier mal die Ratenperiode damit man auf ein Jahr kommt und rechnet dann auf diesen Wert (r_e genantn) 
+        die Zinsen
+
+        re = r+ (m+i/2 + (m+1))
+        Rn = re * (q^n -1) /(q-1)
+
+
+        Tilgungsrechnugn
+        Bezeichnungen 
+        n Anzahl Zinsperiode
+        i Zinsatz
+        Sk Schuldsumme nach k Zeiten
+        Tk Tilgunsrate  (schuldminderung)
+        Zk Zinsbetragh
+        Ak = Tk + Zk Annuität (Rückzahlung)
+
+        Fälligketien 
+            Tilgunsperiode  = Zindperiode
+            Tilgunsperiode  < Zindperiode
+            vorschüssig nachschüssig
+        Ratentilgun Tilgun kosntatn, Annuität variable
+        Annuitätentilgung Annuität konstant, Tilgunsrate variabel
+
+        Ratentilgun 
+            Tilgunsperiode  = Zindperiode
+            T = s0 / n
+            Zk = sk-1 +i
+            Tilgungsplan erstellen
+            Formel TK = t = s0/n
+
+            SK = s0-k+T = S0 + (1-k/n)
+            Zk = i+Sk-1 = i + S0 * (1-(k-1)/n)
+            Ak = t+ Zk = s0 / n + i + S0 * (1-(k-1)/n)
+        Annutitäentilgung
+            Frmel der Rentenrechnugn, R0 = S0, n und i bekannt , gesucht ist r (=A =Ak), bbekannter Barweer, nachschüssige Ratenzahlung
+            A = r = (S0+q^n+(q-1)) / (q^n - 1), q = 1+i
+
+
+        Tilgunsperiode < zinsperiode   
+            Ähnliches Vorgehen wie bei Rentenrechnung, Tilungzuahlung wird bis zu selben Periode hochgerechnet wie Zindperiode, dieser wert wird dann verzinst
+            re = r+ (m+i/2 + (m-1)) 
+
+            r = r / (m+i/2 + (m-1)) = A / (m+i/2 + (m-1))
+
+\end{document}
