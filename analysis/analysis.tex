@@ -1,0 +1,136 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[german]{babel}  % german hyphenation, quotes, etc
+\usepackage{hyperref}       % detailed hyperlink/pdf configuration
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{array} % for "\newcolumntype" macro
+\usepackage{pgfplots}
+\usepackage{afterpage}
+\usepackage{multirow}
+\renewcommand{\arraystretch}{1.3}
+
+\title{Analysis}
+\pagestyle{headings}
+\hypersetup{                % ‘texdoc hyperref‘ for options
+pdftitle={Analysis 1}
+}
+
+\author{Arif Hasanic}
+
+\begin{document}
+    \maketitle
+    \afterpage{\null\newpage}
+    \newpage
+    \tableofcontents
+    \newpage
+
+    \section{Differentialgelichungen allgemein}
+        Eine Differentialgleichung (DGL) ist eine Funktion in der Ableitung von genau dieser Funktion auftreten können und hat die Form: 
+        \begin{equation}
+            y' + a(x) \cdot y = b(x) 
+        \end{equation}
+        Ist \(b(x) = 0\) nennt man die DGL eine homgene DGL, ansonsten hat man eine inhomogene DGL. Die Ordnung einer DGL ist glecih der hächsten Aleitung,
+        welche in der DGL zu finden ist. \\
+        Löst man eine DGL nach der höchsten Ableitung auf\footnote{Falls überhaupt möglich} hat man die DGL in die implizite Form gebracht; ansonsten hat
+        man die implizite Form. \\
+        Eine DGL kann man entweder allgemein lösen oder man findet eine spezielle/partikuläre Lösung. bei der allgemeinen Lösung bleiben idR. \(n\) Integrationskonstanten
+        stehen, wenn \(n\) gleich der Ordnung der DGL ist. Möchte man die partikuläre Lösung, rechnet man zuerst die allgemein Lösung aus. Nun müssen bestimmte Werte 
+        vorgeben werden um die Werte der Integrationskonstanten errechnen zu können. Diese Werte heißen auch Anfangswerte und um eine spezielle Lösung zu finden werden
+        auch \(n\) Werte gebraucht. 
+
+    \section{Differentialgleichungen 1. Ordnung}
+        \subsection{Trennung der Variabeln}
+        Ein realtives einfaches Verfahren zum lösen von DGLs 1. Ordnung nennt sich "Trennung der Variablen". Damit man das Verfahren anwenden kann muss die DGL aber
+        seperabel sein, also alle \(x\)-Werte und alle \(y\)-Werte müssen jeweils auf einer Seite stehen können. \\
+        Da man ein DGL erster Ordnung hat ist die höchste vorkommende Ableitung \(y'\), was man aber auch als \(\frac{dy}{dx}\) schreiben kann. Wenn man jetzt sowohl alle 
+        \(x\)-Werte als auch alle \(y-Werte\) auf einer Seite stehen hat, kann man beide nach \(x\) bzw. \(y\) integrieren. Nach der Integration kann alles nach \(y\) umstellen
+        und hat die allgemeine Lösung der DGL gefunden. Beispiel:
+        \begin{equation}
+            \begin{aligned}  
+            & y' = \frac{x}{y} \Leftrightarrow y' = x \cdot \frac{1}{y} \Leftrightarrow \frac{dy}{dx} = x \cdot \frac{1}{y}  \Leftrightarrow \\
+            & y \; dy = x \; dx  \Leftrightarrow \int y \; dy = \int x \; dx \Leftrightarrow \frac{1}{2} y^2 = \frac{1}{2} x^2 + C \\
+            & y = \sqrt{x^2 + 2C}
+            \end{aligned}  
+        \end{equation}
+        
+        \subsection{Substitutionsmehtode}
+        Bei der Lösung durch Substitution muss man zuerst wider die Gleichung nach \(y'\) auflösen. Nun schauht man von welchen Typ die DGL ist.
+        Die zwei Typen sind \(y' = f(ax + bx + c)\) und \(y' = \frac{y}{x}\).
+        \subsubsection{Typ: linear}
+        Sei \(u\) die Variabel die zur Substitution genommen wird. Zuerst wird \(u\) der Gleichung gleichgesetzt: \(u = ax + by +c\). Wenn man \(u\) nun
+        differenziert erhält man \(u' = a + by'\). \(u\) ist von x abhängig, da \(u\) nur von den variabeln \(x\) und \(y\) abhängig ist und \(y\) wiederum 
+        nur von \(x\) abhängig ist. Daraus folgt, dass \(u' = \cfrac{du}{dx}\) gilt. 
+        \begin{equation}
+            u' = \frac{du}{dx} = a + b \cdot y'
+        \end{equation}
+        \(y'\) kann man wiederum durch \(f(u)\) ersezten, wodurch man eine DGL erhält, welche nur noch von \(u\) abhängig ist: 
+        \begin{equation}
+            u' = \frac{du}{dx} = a + b \cdot f(u)
+        \end{equation}
+        Diese DGL kann man dann durch Trennung der Variabeln lösen und rücksubstituiert das \(u\) mit den ursprünglichen Werten.
+        \subsubsection{Typ: quotient}
+        Es gilt dasselbe Prinzip wie bei der linearen Funktion. Man substitutiert nun \(\frac{y}{x} = u\). Dementsprechend gilt auch \(y = x \cdot u\). \\
+        Wird dies nun differenziert erhält man \(y' = u + x \cdot u'\). Dabei gilt wiederum\(y' = f(\frac{y}{x}) = f(u)\). Wird dies entsprechend eingesetzt gilt:
+        \begin{equation}
+            u' = \frac{du}{dx} = \frac{f(u) - u}{x}     
+        \end{equation} 
+
+        \subsection{lineare DGL mit Störfunktion}
+        Eine lineare Differentialgleichung hat die Form: 
+        \begin{equation}
+            y' + f(x) \cdot y = g(x)
+        \end{equation}
+        Hier wird \(g(x)\) acuh als Störfunktion bezeichnet. Ist \(g(x) = 0\) ist die DGL homgen, ansonten ist sie inhomogen. Eine homogene DGL lässt sich 
+        durch Trennung der Variabeln lösen. Dazu gibt es auch eine allgemein Lösungsform:
+        \begin{equation}    
+            \begin{aligned}
+                & y' + f(x) \cdot y = 0 \Rightarrow \frac{dy}{dx} = -f(x) \cdot y \Rightarrow \frac{dy}{y} = -f(x) \; dx\\
+                & \Rightarrow \int \frac{dy}{y} = - \int f(x) \; dx \Rightarrow ln|y| = - \int f(x) \; dx + ln|C| \\
+                & \Rightarrow ln |y| - ln|C| = - \int f(x) \; dx \Rightarrow ln|\frac{y}{C} = \int f(x) \; \Rightarrow y - C = \int f(x) \; dx \\
+                & \Rightarrow y = C \cdot e^{- \int f(x) \; dx}    
+            \end{aligned}
+        \end{equation}  
+        Tauchen in der DGL konstante Vorfaktoren auf muss die Lösungsformel noch leicht verändert werden:
+        \begin{equation}
+            y' + ay = 0 \Rightarrow y_h = C \cdot e^{-ax}
+        \end{equation}
+        \subsubsection{Variation der Konstanten}
+
+        \subsubsection{Aufsuchen der partikulären Lösung}
+        Inhomogene Differentialgleichungen (auch höherer Ordnung) können auch durchs Aufuschen der partikulären Lösung gelöst. Die Lösung einer DGL ist dann die
+        Summer zwischen der homogenen Lösung \(y_0\)/\(y_h\)  und der partikulären Lösung \(y_p\), also:
+        \begin{equation}
+            y = y_h + y_p
+        \end{equation}
+        Zuerst wird die homogene Lösung berechnent. Nun muss noch der richtige Ansatz gewählt werden um die partikuläre Lösung zu finden. \\
+        \begin{tabular}{|p{6cm}|p{6cm}|}
+            \hline
+            Störfunktion \(g(x)\) & Lösungsansatz \(y_p(x)\)  \\
+            \hline
+            \hline
+            1. Konstante Funktion & \(y_p = C_0\) \\
+            \hline
+            2. Lineare Funktion & \(y_p = C_1 x + C_0\) \\
+            \hline
+            3. Quadratische Funktion & \(y_p = C_2x^2 + C_1x + C_0\) \\
+            \hline
+            4. Polynom Funktion mit Grad n & \(y_p = C_nx^n + ... +  C_1x + C_0 \) \\
+            \hline
+            5. \(g(x) = C_1 \cdot \sin(\omega x)\) & 
+            \multirow{3}{6cm}{\(y_p = C_1 \cdot \sin (\omega x) + C_2 \cdot \cos (\omega x) \) \\ oder \\ \(y_p = C \cdot \sin (\omega x + \varphi)\)}  \\
+            6. \(g(x) = C_2 \cdot \cos(\omega x)\) \\ 
+            7. \(g(x) = C_1 \cdot \sin(\omega x) + C_2 \cdot \cos(\omega x) \) \\
+            \hline
+            \multirow{2}{6cm}{8. \(g(x) = A \cdot e^{bx} \) } & \multirow{2}{6cm}{\(y_p = C \cdot e^{bx} \text{ für } b \neq -a \) \\ \(y_p = Cx \cdot e^{bx} \text{ für } b = -a\) } \\ 
+            & \\
+            \hline
+        \end{tabular}\\
+        Um nun die partikulöre Lösung zu finden nimmt den gefundenen Ansatz her und leitet diesen ab. \(y_p'\) und \(y_p\) werden nun in die ursprüngliche, inhomogene
+        Gleichung eingesetzt. Nun muss man nur noch umformen und einen Koeffizientenvergleich vornehmen um die unbestimmeten Konstanten\footnote{Damit sind die \(C_n\) aus der Tabelle gemeint} zu finden. \\
+        Beim Koeffizientenvergleich schaut man auf beiden seiten, was als Vorfaktoren bei den \(x\)-Werten steht. Beispiel: 
+        \begin{equation*}
+            2C_1x^2 + (2C_1 + 2C_2)x + (C_2+ 3C_3) = 2x^2 + 0 \cdot x - 4 
+        \end{equation*}
+        Auf beiden Seiten steht ein \(x^2\). Hier sihet man auch dass \(C_1 = 1\) sein muss damit die Koeffizienten auf beiden Seiten übereinstimmen. Den "Vergleich" führt man 
+        nun mit allen \(C_n\) durchgeführt. Zum Schluss werden die \(C_n\)-Werte in den zuvor gewählten Ansatz eingefügt und man erhält die partikuläre Lösung.  
+\end{document}
