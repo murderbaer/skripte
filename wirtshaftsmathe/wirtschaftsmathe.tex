@@ -16,13 +16,13 @@
     Unter Linerare Optimierung versteht man, dass eine bestimmte Funktion durch einstellen bestimmter 'Parameter' möglichst groß (oft für Gewinn benutzt) oder möglichst klein (für Verluste) wird.
     Dafür wird die öineare Zielfunktion: 
     \begin{equation*}
-        g(\vec{x}) = g_0 + g_1x_1 \cdots g_nx_n
+        g(\vec{x}) = g_0 + g_1x_1 \ldots g_nx_n
     \end{equation*}
     hergenommen. Zum Beispiel ist \(g_i\) dann der Preis für die Herstellung eines Produkts und \(x_i\) dann die Anzahl wie oft das Produkt hersgetellt werden soll und \(x_i\) sind eben die 
     Parameter die eingestellt werden sollen. Dazu sind idR. Randbedingungen gegeben, wie '\(x_1\) darf höchstens doppelt so oft hergestellt werden wie \(x_2\)'. Dann gibt es noch triviale 
     Randbedingungen. Da man nicht negativ produzieren kann gilt meistens auch \(x_i \ge 0\). Somit erhält man einige Ungleichungen und Gleichung. Zuerst schriebt man alle (Un)Hleichungen 
     untereinander auf und drhet jedes Ungleichungszeichen (Multiplikation mit -1) um damit alle Ungleichungszeichen in die selbe Richtung zeigen. Nun versucht man Variablen zu eliminieren
-    indem man de GLeichungen die man hat nach einer Variable umstellt und dann diese Variable in den Ungleichungen ersetzt. Beispiel
+    indem man de GLeichungen die man hat nach einer Variable umstellt und dann diese Variable in den Ungleichungen ersetzt. Beispiel:
     \begin{equation*}
         x_1 + x_2 = 0 \Rightarrow x_1 = -x_2    
     \end{equation*}
@@ -149,7 +149,7 @@
                 Z_r = T \cdot (n - r + 1) \cdot i
             \end{equation*} 
             \(i\) ist dabei wieder der Zinsatz, n Die Kreditlaufzeit und \(T\) die Tilgungsrate. \\
-            Die Annuität ergibt sich dann wenn man die beiden speziellen Formeln nun in die allgemeine Formel von oben einsetzt und umforfmt: 
+            Die Annuität ergibt sich dann wenn man die beiden speziellen Formeln nun in die allgemeine Formel von oben einsetzt und umformt: 
             \begin{equation*}
                 A = T \cdot (1 + (n - r + 1)i)
             \end{equation*}
@@ -157,8 +157,170 @@
             \subsubsection{unterjährliche Ratentilgung}
             Soll mehrmals im Jahr getilgt werden muss der jährliche Zinssatz durch die Anzahl der Tilgungen im Jahr geteilt werden. Weiter beschreibt das \(n\) nicht mehr das ahr sondern die Anzahl
             der Zinsperioden.  
+    \section{Deskriptive Statistik}
+        \subsection{Stichproben}
+            Bei der Statistik versucht man allgemeine Aussagen über einen bestimmten Datensatz zu erheben. Bei Millionen von Daten ist es oft nicht sinnvoll alle 
+            Daten einzeln zu betrachten. Die Datenmenge wird auch als Beobachtungsmenge (B) bezeichnet. Jedem Element aus B wird dann ein bestimmtes Merkmal zugeordnet.
+            Die Merkmale können disktret\footnote{\(\mathbb{N}_0\) also alles was abzählbar ist wie Gehalt oder Anzahl von Besuchern etc.} oder stetig\footnote{Intervalle in \(\mathbb{R}\), beleibig genau ermittelbare Werte
+            wie Zeit Länge} sein. Weiter ist Urliste eine Teilmenge aus B mit den zugehörigen Merkmalswerten. Die Merkmalswerte aus der Urliste bilden dann die Stichprobe, welche 
+            geordnet oder ungeordnet sein kann. Der Stichprobenumganf (n) ist dann diue Kardinalität der Stichprobenmenge.
+        \subsection{Häufigkeiten, empirische Verteilungsfunktion}
+            Bei Häufigketien wird zwischen der absoluten und relativen Haüfigkeiten unterschieden. Dafür nimmt man die zuerst die Funktion \(g(x)\) her, welche zählt wie oft
+            ein Element \(x\) in der Stichprobe vorkommt. Dies ist dann die absolute Häufigkeit. Teilt man die absolute Häufigkeit durch \(n\)\footnote{Stichprobenumfang}.
+            \begin{equation*}
+                \begin{aligned}
+                    & \text{absolute Häufigkeit:} & g(x) \neq 0 \Leftrightarrow x \in \{ x_1,x_2,..., x_n\} \subset \mathbb{R} \; (\mathbb{N}) \\
+                    & \text{relative Häufigkeit:} & h(x) = \frac{1}{n} g(x) 
+                \end{aligned}
+            \end{equation*}    
+            Die Summenhäufigkeit (\(G(x)\) summiert alle Werte aus der Stichprobe bis einschließlich \(x\). Die relative Häufigkeit nimmt die Summenhäufigkeit und teilt
+            diese durch den Stichprobenumfang.
+            \begin{equation*}
+                \begin{aligned}
+                    & \text{Summenhäufigkeit} & G(x_i) = x_1 + x_2 + x_3 + \ldots x_i & | \; x_i < x_n  \\
+                    & \text{relative Summenhäufigkeit:} & H(x) = \frac{1}{n} G(x) &  
+                \end{aligned}
+            \end{equation*}  
+            Die realtive Summenhäufigkeit wird auch die empirische Verteilfunktion genannt. Durch die Summenhüfigkeit werden Häufigkeiten zusammengefasst und man kann
+            allgemeinere Aussagen für die zusammengefassten Häufigketien machen.
+        \subsection{Klasseneinteilung}
+            Oft ist es sinnvoll Stichporbenwerte in Klassen einzuteilen. Dafür wählt man zuerst die Anzahl an Klassen die man haben möchte (hie: \(l\)). Nun teilt man die
+            den Stichprobenumfang durch \(l\). Dadurch erhält man die Klassenbreite \(w\) (ggf. muss gerundet werden). Die Klassenbreite gibt an wie viele Einzelemenet zusammengefasst werden
+            soll (durch Addition). Hat man alle Klassen zusammengefasst kann man nun allgemeinere Aussagen über bestimmte Teile der Stichprobe machen (Aussagen über den Verdienst von 
+            Personen die weniger als 20h, zwischen 20h und 40h und mehr als 40h die Woche arbeiten als Beispiel). \\
+            Für die Klasseneinteilung sollte man sich an diese Regeln halten: 
+            \begin{itemize}
+                \item Möglichst gĺeich große Klassen
+                \item 5 \(\le\) \(l\) \footnote{Anzahl der Klassen} \(\le\) 25
+                \item l \(\approx\) \(\sqrt{n}\)
+                \item Klassengrenzen solten ganze Zahlen sein 
+                \item Klassen sollten den Wertebereich der Stichprobe möglichst gut abdecken
+            \end{itemize}  
+        \subsection{Statistische Parameter}
+            Desto allgemeiner man eine Stichprobe behandelt, desto übersichtlicher  aber auch desto ungenauer werden die Informationen.
+            Es gibt statistische Paramter welche die Stichprobe in eine einzelne Zahl zusammenfassen: 
+            \begin{equation*}
+                \begin{aligned}
+                    & \text{arithmetisches Mittel/Stichprobenmitte: } & \overline{x} = \frac{1}{n} \sum_{i=1}^n x_i \\
+                    & \text{Median für n = ungerade:} & \tilde{x} =  x_{(\frac{n+1}{2})}  \\
+                    & \text{Median für n = gerade: } & \tilde{x} = \frac{1}{2} (x_{\frac{n}{2}} + x_{\frac{n}{2} + 1}) \\
+                    & \text{Spannweite: } & v := x_{(n)} - x_{(1)} \\
+                    & \text{Varianz: } & s_x^2 = \frac{1}{n - 1} \sum_{i=1}^n(x_i - \overline{x})^2 \\
+                    & \text{Streuung/Standardabweichung: } & s_x = \sqrt{s_x^2} = \sqrt{\frac{1}{n - 1} \sum_{i=1}^n(x_i - \overline{x})^2 }  
+                \end{aligned}
+            \end{equation*}
+        \subsection{Zweidimensionale Stichproben}
+            Eine Zweidimensionale Stiichprobe ist wie eine normale Stichporbe nur dass da jetzt noch ein weiteres Merkmal auftritt, wodurch Zahlenpaare entstehen 
+            (zB. Antatt nur Einkommen als Mekrmal wird jetzt Einkommen und Steuern untersuch). Für zweidimensionale Stichproben gelten (mit kleinen Änderungen) die
+            selben Definitionen:
+            \begin{equation*}
+                \begin{aligned}
+                    & \text{Stichenprobenumfang: } & \text{n = Anzahl der (x,y) Zahlenpaare} \\
+                    & \text{absolute Häufigkeit: } & g(x,y) \neq 0 \Leftrightarrow x,y \in \{ (x_1,y_1),(x_2,y_2),..., (x_n,y_n)\} \\
+                    & \text{relative Häufigkeit: } & h(x,y) = \frac{1}{n} g(x,y) \\
+                    & \text{Summenhäufigkeit: } & G(x,y) = \sum_{\{ (a,b): a\leq x, b\leq y \}} g(a,b) \\
+                    & \text{empirische Vertielungsunktion: } & H(x,y) = \sum_{\{ (a,b): a\leq x, b\leq y \}} h(a,b) \\
+                    & \text{Klassenhäufigkeiten: } & \tilde{h_{ij}} = \sum_{x \in KX_i, y \in KY_j} = h(x,y) \\
+                    & \text{Randhäufikeiten für ein festes x/y: } & h_{x/y} (x/y) = \sum_{x/y \in \mathbb{R}} h(x,y) \footnote{Mit x/y ist x oder y gemeint} \\
+               \end{aligned}
+            \end{equation*}
+            
+            \subsection{Lineare Regression}
+                Zeichnet man die Stichprobenwerte in ein Diagramm ein erählt man eineige Punkt in einem Diagramm. Mit der linearen Regression sucht man eine Funtion, welche ungefähr
+                der Richtung der Punkten entspricht. Für die Funktion \(y = ax + b\) müssen \(a\) und \(b\) so gewählt werden, damit der Abstand von der Geraden zu den Punkten mäglichst klein wird.
+                Die einzelnen Abstände \(\Delta \) werden dann quadriert und danach zusammenaddiert. \(a\) und \(b\) sollen so gewählt werden, dass \(\Delta ^2\) möglichst klein wird.
+                Diese Methode zur Ermittlung der Regressionsgeraden heißt "Methode der kleinsten Quadrate". Die Kovarianz bei zweidimensionalen Stichproben wird wie folgt ermittelt:
+                \begin{equation*}
+                   s_{xy}= \frac{1}{n - 1} \sum_{i=1}^n (x_i - \overline{x})(y_i - \overline{y}) = \frac{1}{n - 1}\sum_{i=1}^n x_i y_i - n \overline{xy}
+                \end{equation*}
+                Teilt man die Kovarianz durch die Standardabweichung von jeweils \(x\) und \(y\) erhält man den empirischen Korrelationskoeffizienten:
+                \begin{equation*}
+                    r_{xy} = \frac{s_{xy}}{s_x \cdot s_x}
+                \end{equation*}
+                Weiter gilt für den Korrelationskoeffizienten \(r_{xy}\): 
+                \begin{itemize}
+                    \item \(-1 \leq r_{xy} \leq 1\)
+                    \item Wenn \(r_{xy} = 1\) oder \(r_{xy} = -1\) liegen die Messpunkte direkt auf einer Geraden
+                    \item Wenn \(r_{xy} = 0\) dann haben die Mekrmale \(X\) und \(Y\) keinen Zusammenhang
+                    \item Gibt es mehr als 2 Merkmale kann man selber Paare bilden und sieht dadurch wie stark Merkmale direkt miteinander zusammenhängen 
+                \end{itemize} 
+
     \section{Kombinatorik}
+        \subsection{Einführung}
+            Bei der Kombinatorik unterschiedet man zwischen der Permutation, Variation und Kombination und in diesen 3 Gruppen wird nochmals unterschieden ob Wiederholungen auftreten 
+            können oder nicht. 
+        \subsection{Permutation}
+            Eine Anordnung von n unterscheidbaren Objekten (es können nicht zwei oder mehr gleiche Objekte auftreten) heißt Permutation ohne Wiederholung (\(P_n\))
+            \begin{equation}
+                P_n = n!
+            \end{equation} 
+            Wobei \(n\) die Anzahl der ausgewählten Objekte ist. \\
+            Bei der Permutation mit Wiederholung können verschiedene Sorten auftreten (Sorten sind Mengen mit gleichen Objekten). Für \(n\) Objekte und \(k\) Sorten gilt:
+            \begin{equation*}
+                \begin{aligned}
+                    & n = n_1 + n_2 + \ldots + n_k & | \text{ \(n_1,n_2\), etc sind die Sorten} \\
+                    & P_n^{(n_1,n_2, \ldots ,n_k)} = \frac{n!}{n_1! \cdot n_2! \cdot ... \cdot n_k!}
+                \end{aligned}
+            \end{equation*} 
+        \subsection{Variation}
+            Die Variation is eine Anordnung von \(k\) Objekten aus einer Menge aus \(n\) Objekten. Wenn ein Objekt mehrfach vorkommen kann spricht man 
+            von Variation mit Wiederholung (\({V_{w_n}}^{(k)}\)) ansonsten spricht man von einer Variation ohne Wiederholung (\({V_{n}}^{(k)}\)). Es gilt:
+            \begin{equation*}
+                \begin{aligned}
+                    & {V_{n}}^{(k)} = n(n-1)(n-2) \ldots (n-k+1) = \frac{n!}{(n-k)!} \\
+                    & {V_{w_n}}^{(k)} = n^k 
+                \end{aligned}
+            \end{equation*}
+        \subsection{Kombinationen}
+            Bei der Kombination ist im Vergleich zu Variation die Reihenfolge der Objekte nicht wichtig. Sind alle Objekte verschieden spricht man 
+            von einer Kombination ohne Wiederholung (\({C_n}^{(k)}\)). Es gilt dann:
+            \begin{equation*}
+                {C_n}^{(k)} = \begin{pmatrix}
+                                n \\ k 
+                              \end{pmatrix}
+                                                  = \frac{{V_n}^{(k)}}{k!}
+            \end{equation*}
+            Wenn aus einer Menge von Objekten \(n\) Sorten existieren und \(k\) Objekte ausgewählt werden und man dazu noch die Reihenfolge nicht berücksichtigt 
+            spricht man von einer Kombination mit Wiederholung (\( {C_{w_n}}^{(k)} \)). Es gilt:
+            \begin{equation*}
+                {C_{w_n}}^{(k)} = \frac{(n-1+k)!}{k!(n-1)!} = \begin{pmatrix} n-1 + k \\ k  \end{pmatrix}
+            \end{equation*}
+
     \section{Wahrscheinlichkeitstheorie}
+        \subsection{Zufallsexperimente}
+            Ein Zufallsexperimente ist ein bleiebig wiederholbarer Verusch, bei dem eine bestimmte Menge als Ausgang möglich ist, die auch bei jeder Wiederholung gleich bleiben muss.
+            Der Ausgang kann dabei auch nicht vohergesagt werden.
+            \begin{itemize}
+                \item Jeder einezelene Ausgang heißt Ergebnis (oa. Elemtareignis) und wird mit \(\omega\) bezeichnet.
+                \item Die Menge aller Ereignise heißt \(\Omega\)
+                \item Eine Teilmenge von \(\Omega\) heißt Ereignis
+                \item Ist \(A\) eine Teilmenge von \(\Omega\) so ist \(\overline{A}\) das komplementäre Ereignis zu \(A\). \(\overline{A}\) beinhält alle Ergebnisse die nicht in \(A\)
+                    vorkommen \(\Rightarrow \overline{A} = \Omega \setminus A\)
+            \end{itemize}  
+            TODO: Ereignisalgebra
+        \subsection{Laplace Wahrscheinlichkeit}
+            Zufallsexperimente haben endlich viele Ereignisse. Um jetzt die Wahrscheinlichkeit eines bestimmten Ereignis mit anderen einfacher vergleichen zu können
+            teilt man die Wahrscheinlichkeit \(A\) durch die Anzahl der Elemente aus \(\Omega\)\footnote{Bei Laplace wird angenommen dass alle Ereignisse die selbe Wahrscheinlichkeit haben}.
+            Die Wahrscheinlichkeit ist jetzt in einem Intervall zwischen \(1\) und \(0\). Es gilt:
+            \begin{equation}
+                p(A) = \frac{|A|}{n} = \frac{\text{Anzahl der Elemente aus }A}{\text{Anzahl der Elemente aus } \Omega}
+            \end{equation}
+        \subsection{Axiome von Kolmogorow}
+        \subsection{Bedingte Wahrscheinlichkeit}
+        \subsection{Formel von Bayes}
+        \subsection{Unabhängigkeit von Ereignissen}
     \section{Zufallsvariable und statistische Verteilung}
+        \subsection{Zufallsvariable}
+            
+        \subsection{Diskrete Zufallsvariable}
+        \subsection{Diskrete Gleichverteilung und Bernoulli-Verteilung}
+        \subsection{Binomialverteilung}
+        \subsection{Geometrische Verteilung}
+        \subsection{Hypergeometrische Verteilung}
+        \subsection{Poisson-Verteilung}
+        \subsection{stetige Zufallsvariable}
+        \subsection{stetige Gleichverteilung}
+        \subsection{Normalverteilung}
+        \subsection{Exponentiallverteilung}
     \section{Induktive Statistik und statistische Tests}
-\end{document}
+\end{document}Stichproben

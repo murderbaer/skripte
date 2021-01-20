@@ -133,4 +133,112 @@ pdftitle={Analysis 1}
         \end{equation*}
         Auf beiden Seiten steht ein \(x^2\). Hier sihet man auch dass \(C_1 = 1\) sein muss damit die Koeffizienten auf beiden Seiten übereinstimmen. Den "Vergleich" führt man 
         nun mit allen \(C_n\) durchgeführt. Zum Schluss werden die \(C_n\)-Werte in den zuvor gewählten Ansatz eingefügt und man erhält die partikuläre Lösung.  
+    \section{Lineare Differentialgleichungen 2. Ordnung}
+        Eine DGL 2. Ordnung löst man weitesgehend wie eine eine DGL 1. Ordnung, indem man wieder die homgene und die partikuläre Lösung findet und aus diesen  die Summe bildet:
+        \begin{equation}
+            \begin{aligned}
+                & y'' + ay' + by = g(x) \\
+                & \Rightarrow y(x) = y_h(x) + y_p(x) 
+            \end{aligned}
+        \end{equation}   
+        \subsection*{Homogene Lösung}
+        Bei der homogenen Lösung wählt man vorerst den \(y = e^{\lambda x}\). Dies wird dann in die DGL eingesetzt und Entsprechend oft abgeleitet (2 Mal also).
+        \begin{equation}
+            \begin{aligned}
+                & y'' = a y' + by = 0 \\
+                & \Rightarrow e^{\lambda x} \;^{\prime \prime}  + a e^{\lambda x} \;^{\prime} + e^{\lambda x} = 0 \\
+                & \Rightarrow \lambda^2 e^{\lambda x}  + a\lambda e^{\lambda x} + be^{\lambda x} = 0 & |\text{Division durch \(e^{\lambda x}\) } \\
+                & \Rightarrow \lambda^2 + a \lambda + b = 0
+            \end{aligned}
+        \end{equation} 
+        Man erhält somit einer Formel die man durch die pq-Formel oder der Mitternachtsformel lösen kann. Je nachdem welche Werte \(\lambda_1\) und \(\lambda_2\) haben,
+        muss ein andere Ansatz gewählt werden. \\
+        \begin{tabular}{|p{3cm}|p{6cm}|}
+            \hline 
+            Fall & Allgemeine Lösung \\
+            \hline
+            1. \(\lambda_1 \neq \lambda_2\) & \(y = C_1 \cdot e^{\lambda_1 x} + C_2 \cdot e^{\lambda_2 x}\) \\
+            \hline
+            2. \(\lambda_1 = \lambda_2 = c\) & \(y = (C_1 + C_2x) e^{cx}\) \\
+            \hline
+            3. \(\lambda_{1/2} = a + bi \) & \(y = e^{ax}( C_1 \cdot \sin (bx) + C_2 \cdot \cos (bx) )\) \\
+            \hline
+        \end{tabular} \\
+        Die Werte die man für \(\lambda_{1/2}\) berechnet hat werden nun in den richtigen Ansatz einefügt, wodurch man die homogene Lösung bekommt.  
+        
+        \subsection*{Inhomogene Lösung}
+        Die inhomogene Lösung berechnet sich wie die inhomogene Lösung bei einer DGL 1. Ordnung, nur muss man noch u.U. die Werte von \(\lambda{1/2}\) berücksichtigen.
+        %TODO: Tabelle mit Störfunktionen 
+    
+        \section{Differentialgleichungen n-ter Ordnung}
+        \subsection*{Homgene Lösung}
+        Für die Lösung wird wieder das Prinzip aus der DGL 2. Ordnugn genommen. Bei der homogonen Lösung wird nu eine Linearkombination aus \(C_n \cdot \lambda^n \) und 
+        zwar aus allen \(n\) gebildet. Sind die Nullstellen geunden, werden diese dann in den Ansatz eingefügt. Mehrfache Nullstellen werden zusammengefasst: \\
+        Hat man eine \(r\)-Fache Nullstelle multipilieziert man den \(e^{\lambda x}\) Teil mit einem Polym (\(r-1\))-sten Grades. Beispiel: \\
+        Man hat eine DGL 5. Grades und eine 4-Fache Nullstelle. Somit ergibt sich der Ansatz: 
+        \begin{equation}
+            y = C_1 \cdot e^{\lambda_1} + (C_2 + C_3x + C_4x^2 + c_5x^3) \cdot e^{x \lambda_{2/3/4/5}}
+        \end{equation}   
+
+        \subsection*{Inhomgene Lösung}
+        %TODO: Tabelle
+
+        \section{Systeme linearer Differentialgleichungen}
+        Systeme von Differentialgleichung sind DGLen mit verschiedenen \(y\) (Es extistieren  \(y_1, y_2, y_3\) etc.), die aber miteiander verkoppelt sind.
+        \begin{equation*}
+            \begin{aligned}
+                & y_1' = a_{11}y_1 + a_{12}y_2 + g_1(x) \\
+                & y_2' = a_{21}y_2 + a_{22}y_1 + g_2(x)  
+            \end{aligned}
+        \end{equation*}
+        Für die Lösung von DGL Systemen gibt es 2 Lösungsansätze.
+
+        \subsection*{Homogene Lösung durch Matrix}
+            Mit dem Matrixverfahren kann die homogene Lösung gefunden werden. Beim Matrixverfahren werden aus
+            den Koeffizienten eine Matrix gebildet. Die Koeffizientenmatrix wird mit \(\lambda \cdot E\footnote{Einheitsmatrix}\) subtrahiert und daraus wird die Determinante gebildet.
+            \(\lambda\) wird so gewählt, dass \(\det (A - \lambda E) = 0\) ergibt. Die \(\lambda\)-Werte werden dann in den allgemeinen Lösungsansatz für homogene DGl n-ter Ordnung eingesetzt.
+            \begin{equation*}
+                \begin{aligned}
+                    & y_1' = a_{11}y_1 + a_{12}y_2 + g_1(x) \\
+                    & y_2' = a_{21}y_2 + a_{22}y_1 + g_2(x) \\
+                    & \Rightarrow
+                    \begin{pmatrix}
+                        y_1 \\ y_2
+                    \end{pmatrix} = 
+                    \begin{pmatrix}
+                        a_{11} & a_{12} \\
+                        a_{12} & a_{22} 
+                    \end{pmatrix} 
+                    \begin{pmatrix}
+                        y_1 \\ y_2
+                    \end{pmatrix} + 
+                    \begin{pmatrix}
+                        g_1(x) \\ g_2(x)
+                    \end{pmatrix} \\
+                    & \Rightarrow \det (A - \lambda E))
+                \end{aligned} \\
+            \end{equation*} 
+            Für DGL Systeme 2. Ordnung ergibt sich eine \(2x2\) Matrix und die Determinante lässt sich durch \(\det = \lambda^2 - (a_{11} + a_{22} + a_{11}a_{22} - a_{12}a_{21} = 0)\)
+            berechnen. Man erhält dann \(\lambda{1/2}\) und muss wieder eine Fallunterscheidung wie bei normalen DGLs durchführen.  
+
+        \subsection*{Inhomogene Lösung durch Eisnetzverfahren}
+            Ein weiteres Verafahren ist das Eisnetzverfahren. Man löst besipielsweise die Gleichung von \(y_1\) nach y
+            \(y_2\) auf und differenziert \(y_2\) nach \(x\). Die ergebnisse von \(y_2\) und \(y_2'\) kann man in die 2. Gleichung einsetzen.
+            Man erhält eine DGL die nur noch von \(y_1\) abghänging ist und löst diese DGL wie eine inhomogen DGL n-terOrdnung. Man 
+            erhält dann das Ergebnis für \(y_1\), und diese Ergebnis kann man dann in die andere DGL einsetzen und hat somit das ganze System gelöst.
+            
+            \begin{equation*}
+                \begin{aligned}
+                    & y_1' = a_{11}y_1 + a_{12}y_2 + g_1(x) &  (1)\\
+                    & y_2' = a_{21}y_2 + a_{22}y_1 + g_2(x) &  (2)\\
+                    & y_2 = \frac{1}{a_{12}} (y_1' - a_{11}y_1 - g_1(x)) & \text{(3) ((1) nach  \(y_2\)) } \\
+                    & \Rightarrow y_2' = \frac{1}{a_{12}} (y_1'' - a_{11}y_1' - g_1(x)') & (3') \\
+                \end{aligned}
+            \end{equation*}
+            (3) und (3') werden in (2) eingesetzt und (2) wird wie eine normale DGl behandet. Das Ergebnis vonn (2) wird dann in (1) eingesetzt.
+    
+    \section{Vektoralbegra}
+
+    \subsection{Partielle Differentation}
+
 \end{document}
