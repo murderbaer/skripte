@@ -174,7 +174,10 @@ pdftitle={Analysis 1}
         \subsection*{Homgene Lösung}
         Für die Lösung wird wieder das Prinzip aus der DGL 2. Ordnugn genommen. Bei der homogonen Lösung wird nu eine Linearkombination aus \(C_n \cdot \lambda^n \) und 
         zwar aus allen \(n\) gebildet. Sind die Nullstellen geunden, werden diese dann in den Ansatz eingefügt. Mehrfache Nullstellen werden zusammengefasst: \\
-        Hat man eine \(r\)-Fache Nullstelle multipilieziert man den \(e^{\lambda x}\) Teil mit einem Polym (\(r-1\))-sten Grades. Beispiel: \\
+        Hat man eine \(r\)-Fache Nullstelle multipliziert. Das Ergebnis ist dementscprechend ein Skalar. 
+        \begin{equation*}
+            \frac{\partial \phi}{\partial \vec{a}} = (grad \phi) \cdot \vec{e_a} = \frac{1}{|\vec{a}|} (grad \phi) \cdot \vec{a}
+        \end{equation*} man den \(e^{\lambda x}\) Teil mit einem Polym (\(r-1\))-sten Grades. Beispiel: \\
         Man hat eine DGL 5. Grades und eine 4-Fache Nullstelle. Somit ergibt sich der Ansatz: 
         \begin{equation}
             y = C_1 \cdot e^{\lambda_1} + (C_2 + C_3x + C_4x^2 + c_5x^3) \cdot e^{x \lambda_{2/3/4/5}}
@@ -221,7 +224,7 @@ pdftitle={Analysis 1}
             Für DGL Systeme 2. Ordnung ergibt sich eine \(2x2\) Matrix und die Determinante lässt sich durch \(\det = \lambda^2 - (a_{11} + a_{22} + a_{11}a_{22} - a_{12}a_{21} = 0)\)
             berechnen. Man erhält dann \(\lambda{1/2}\) und muss wieder eine Fallunterscheidung wie bei normalen DGLs durchführen.  
 
-        \subsection*{Inhomogene Lösung durch Eisnetzverfahren}
+        \subsection*{Inhomogene Lösung durch Einsetzverfahren}
             Ein weiteres Verafahren ist das Eisnetzverfahren. Man löst besipielsweise die Gleichung von \(y_1\) nach y
             \(y_2\) auf und differenziert \(y_2\) nach \(x\). Die ergebnisse von \(y_2\) und \(y_2'\) kann man in die 2. Gleichung einsetzen.
             Man erhält eine DGL die nur noch von \(y_1\) abghänging ist und löst diese DGL wie eine inhomogen DGL n-terOrdnung. Man 
@@ -238,7 +241,94 @@ pdftitle={Analysis 1}
             (3) und (3') werden in (2) eingesetzt und (2) wird wie eine normale DGl behandet. Das Ergebnis vonn (2) wird dann in (1) eingesetzt.
     
     \section{Vektoralbegra}
-
+        \subsection{Vektordastellung einer Kurve}
+        Kurven in einer Ebene können in der Form: 
+        \begin{equation*}
+            C: x = x(t); y = y(t)
+        \end{equation*}
+        Können durch den Kurvenpunkt P (bestimmt durch x(t), y(t)) und durch den Ortsvektor auch as Vektor darsgestellt werden:
+        \begin{equation*}
+            \vec{r} = x(t)\vec{e}_x + y(t)\vec{e}_y = \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}
+        \end{equation*}
+        Dies gilt für Kurven in der Ebene, für höhere Dimensionen muss der Vektor entsprechend angepasst werden. Vektoren werden Komponentenweiße abgeleitet;
+        es gelten die selben Produktregeln\footnote{sowohl Skalarprodukt als auch Vektorprodukt} und Summenregeln. 
+        Summenregeln .
+        \subsection*{Bogenlänge}
+        Die Bogenlänge einer Vektorkurve ist definiert durch das Integral des Betrages des abgeleiteten Vektor:
+        \begin{equation*}
+            s = {\int_{t2}}^{t2} | \vec{\dot{r}} | dt = {\int_{t2}}^{t2}  \sqrt{{\dot{x}^2} +{\dot{y}^2}} dt 
+        \end{equation*} 
+        Um den Tangentenvektor (\(T\)) von \(\vec{r}\) zu berechnen, muss dieser nur normaliesiert werden. Der Hauptnormaleinheitsvektor ist der der 
+        Vektor \(T\) nur wird dieser nochmals normaliesiert.
     \subsection{Partielle Differentation}
+        Bei der Partiellen Differentation liegt eine Funktion vor die von mehr als einer Variabeln abhängig ist. Man wählt nun eine Variable, nach der differenziert
+        werden soll, die adneren Variablen wie Konstanten behandelt. Ein wichtiger Operator ist der \(\nabla\) (Nabla) Operator. Wird dieser angewendet wird nach jeder 
+        Variabel abgeleitet.
+        \subsubsection{Gradient}
+        Der Gradient (kurz: grad) ist das Produkt aus \(\nabla\) und einem Skalar \(\phi\). Als Ergebnis erhält man einen Vektor, dessen Komponenten aus dem Differentialen 
+        von \(\phi\) nach \(x_1, x_2,\cdot,x_n\) besteht. 
+        \begin{equation*}
+            grad \phi = \vec{\nabla} \phi = \begin{pmatrix} \frac{\partial}{\partial x} \\ \frac{\partial}{\partial y} \\ \frac{\partial}{\partial z} \end{pmatrix} \phi = 
+            \begin{pmatrix} \frac{\partial \phi}{\partial x} \\ \frac{\partial \phi}{\partial y} \\ \frac{\partial \phi}{\partial z} \end{pmatrix} 
+        \end{equation*}
+
+        \subsubsection*{Rechenregeln}
+        \begin{equation*}
+            \begin{aligned}
+                & \text{(1) } grad c = 0 \\
+                & \text{(2) } grad (c\phi) = c grad(\phi) \\
+                & \text{(3) } grad (\phi + \psi) = grad \phi + grad \psi \\
+                & \text{(4) } grad (\phi c) = grad \phi \\
+                & \text{(5) } grad (\phi \cdot \psi)= \phi(grad \psi) + \psi(grad \phi) \\
+                & \text{(5') } grad (\phi \cdot \psi)= \phi \cdot grad \psi + \psi \cdot grad \phi \\
+            \end{aligned}
+        \end{equation*}
+        Desweiteren kann man durch den Gradienten anayliseren wie sich die Funktionswerte ändern, wenn man in eine bestimmte Richtung fortschreitet. Dazu nummt man den
+        Vektor \(\vec{a}\) als Richtungsvektor. Dieser wird normiert und dann mit dem Gradientenvektor skalar multipliziert. Das Ergebnis ist dementscprechend ein Skalar. 
+        \begin{equation*}
+            \frac{\partial \phi}{\partial \vec{a}} = (grad \phi) \cdot \vec{e_a} = \frac{1}{|\vec{a}|} (grad \phi) \cdot \vec{a}
+        \end{equation*}
+        
+        \subsection{Divergenz}
+        Bei der Divergenz nimmt man einen Vektor und differenziert dessen Komponenten einzeln (nach \(x_1, x_2,\) etc.), und addiert diese zusammen. 
+        \begin{equation*}
+            div \vec{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} +\frac{\partial F_z}{\partial z}
+        \end{equation*} 
+        \begin{itemize}
+            \item div \(\vec{F}\) > 0: Quelle
+            \item div \(\vec{F}\) < 0: Senke
+            \item div \(\vec{F}\) = 0: quellenfrei 
+        \end{itemize}
+
+        \subsubsection*{Rechenregeln}
+        \begin{equation*}
+            \begin{aligned}
+                & \text{(1) } div \vec{a} = 0 \\
+                & \text{(2) } div (c \vec{A}) = c div(\vec{A}) \\
+                & \text{(3) } div (\vec{A} + \vec{B}) = div \vec{A} + \vec{B} \\
+                & \text{(4) } div (\vec{A} \vec{a}) = \vec{A} \\
+                & \text{(5) } div (\phi \vec{A})= (grad \phi) \cdot \vec{A} + \phi(div \vec{A}) \\
+                & \text{(5') } div (\phi \vec{A})= (grad \phi) \cdot \vec{A} + \phi \cdot div \vec{A} \\
+            \end{aligned}
+        \end{equation*}
+
+        \subsection{Rotation}
+        Die Rotation ist das Kreuzpdorukt zwischen einem Vektor \(\vec{F}\) und \(\nabla\). 
+        \begin{equation*}
+            \text{rot } \vec{F} = \begin{pmatrix}
+                \frac{\partial F_z}{\partial y}  - \frac{ \partial F_y}{\partial z}
+            \end{pmatrix} \vec{e}_x + 
+            \begin{pmatrix}
+                \frac{\partial F_x}{\partial z}  - \frac{ \partial F_z}{\partial x}
+            \end{pmatrix} \vec{e}_y +
+            \begin{pmatrix}
+                \frac{\partial F_y}{\partial x}  - \frac{ \partial F_x}{\partial y}
+            \end{pmatrix} \vec{e}_z =            
+            \begin{pmatrix}
+                \frac{\partial F_z}{\partial y}  - \frac{ \partial F_y}{\partial z} \\
+                \frac{\partial F_x}{\partial z}  - \frac{ \partial F_z}{\partial x} \\
+                \frac{\partial F_y}{\partial x}  - \frac{ \partial F_x}{\partial y}
+            \end{pmatrix}
+        \end{equation*}
 
 \end{document}
