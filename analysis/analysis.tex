@@ -82,6 +82,7 @@ pdftitle={Analysis 1}
         \end{equation}
         Hier wird \(g(x)\) acuh als Störfunktion bezeichnet. Ist \(g(x) = 0\) ist die DGL homgen, ansonten ist sie inhomogen. Eine homogene DGL lässt sich 
         durch Trennung der Variabeln lösen. Dazu gibt es auch eine allgemein Lösungsform:
+        %nochmals nachschauen TODO
         \begin{equation}    
             \begin{aligned}
                 & y' + f(x) \cdot y = 0 \Rightarrow \frac{dy}{dx} = -f(x) \cdot y \Rightarrow \frac{dy}{y} = -f(x) \; dx\\
@@ -172,15 +173,12 @@ pdftitle={Analysis 1}
     
         \section{Differentialgleichungen n-ter Ordnung}
         \subsection*{Homgene Lösung}
-        Für die Lösung wird wieder das Prinzip aus der DGL 2. Ordnugn genommen. Bei der homogonen Lösung wird nu eine Linearkombination aus \(C_n \cdot \lambda^n \) und 
-        zwar aus allen \(n\) gebildet. Sind die Nullstellen geunden, werden diese dann in den Ansatz eingefügt. Mehrfache Nullstellen werden zusammengefasst: \\
-        Hat man eine \(r\)-Fache Nullstelle multipliziert. Das Ergebnis ist dementscprechend ein Skalar. 
-        \begin{equation*}
-            \frac{\partial \phi}{\partial \vec{a}} = (grad \phi) \cdot \vec{e_a} = \frac{1}{|\vec{a}|} (grad \phi) \cdot \vec{a}
-        \end{equation*} man den \(e^{\lambda x}\) Teil mit einem Polym (\(r-1\))-sten Grades. Beispiel: \\
-        Man hat eine DGL 5. Grades und eine 4-Fache Nullstelle. Somit ergibt sich der Ansatz: 
+        Für die Lösung wird wieder das Prinzip aus der DGL 2. Ordnugn genommen. Bei der homogonen Lösung wird nun eine Linearkombination aus \(C_n \cdot \lambda^n \) und 
+        zwar aus allen \(n\) gebildet. Sind die Nullstellen gefunden, werden diese dann in den Ansatz eingefügt.
+        Hat man eine \(r\)-Fache Nullstelle wird ein Polynom \(r-1\)sten grades mit \(e^{x \cdot \lambda_{m/n/o/...}}\) multipliziert .\\        
+        Man hat eine DGL 5. Grades und eine 4-Fache Nullstelle ergibt sich folgender Ansatz: 
         \begin{equation}
-            y = C_1 \cdot e^{\lambda_1} + (C_2 + C_3x + C_4x^2 + c_5x^3) \cdot e^{x \lambda_{2/3/4/5}}
+            y = C_1 \cdot e^{\lambda_1} + (C_2 + C_3x + C_4x^2 + c_5x^3) \cdot e^{x \cdot \lambda_{2/3/4/5}}
         \end{equation}   
 
         \subsection*{Inhomgene Lösung}
@@ -256,7 +254,7 @@ pdftitle={Analysis 1}
         \subsection*{Bogenlänge}
         Die Bogenlänge einer Vektorkurve ist definiert durch das Integral des Betrages des abgeleiteten Vektor:
         \begin{equation*}
-            s = {\int_{t2}}^{t2} | \vec{\dot{r}} | dt = {\int_{t2}}^{t2}  \sqrt{{\dot{x}^2} +{\dot{y}^2}} dt 
+            s = {\int_{t1}}^{t2} | \vec{\dot{r}} | dt = {\int_{t1}}^{t2}  \sqrt{{\dot{x}}^2 +{\dot{y}}^2} dt 
         \end{equation*} 
         Um den Tangentenvektor (\(T\)) von \(\vec{r}\) zu berechnen, muss dieser nur normaliesiert werden. Der Hauptnormaleinheitsvektor ist der der 
         Vektor \(T\) nur wird dieser nochmals normaliesiert.
@@ -268,47 +266,47 @@ pdftitle={Analysis 1}
         Der Gradient (kurz: grad) ist das Produkt aus \(\nabla\) und einem Skalar \(\phi\). Als Ergebnis erhält man einen Vektor, dessen Komponenten aus dem Differentialen 
         von \(\phi\) nach \(x_1, x_2,\cdot,x_n\) besteht. 
         \begin{equation*}
-            grad \phi = \vec{\nabla} \phi = \begin{pmatrix} \frac{\partial}{\partial x} \\ \frac{\partial}{\partial y} \\ \frac{\partial}{\partial z} \end{pmatrix} \phi = 
+            \text{grad } \phi = \vec{\nabla} \phi = \begin{pmatrix} \frac{\partial}{\partial x} \\ \frac{\partial}{\partial y} \\ \frac{\partial}{\partial z} \end{pmatrix} \phi = 
             \begin{pmatrix} \frac{\partial \phi}{\partial x} \\ \frac{\partial \phi}{\partial y} \\ \frac{\partial \phi}{\partial z} \end{pmatrix} 
         \end{equation*}
 
         \subsubsection*{Rechenregeln}
         \begin{equation*}
             \begin{aligned}
-                & \text{(1) } grad c = 0 \\
-                & \text{(2) } grad (c\phi) = c grad(\phi) \\
-                & \text{(3) } grad (\phi + \psi) = grad \phi + grad \psi \\
-                & \text{(4) } grad (\phi c) = grad \phi \\
-                & \text{(5) } grad (\phi \cdot \psi)= \phi(grad \psi) + \psi(grad \phi) \\
-                & \text{(5') } grad (\phi \cdot \psi)= \phi \cdot grad \psi + \psi \cdot grad \phi \\
+                & \text{(1) } \text{grad } c = 0 \\
+                & \text{(2) } \text{div } (c \cdot \phi) = c \cdot \text{div }\phi \\
+                & \text{(3) } \text{div } (\phi + \psi) = \text{div } \phi + \text{div } \psi \\
+                & \text{(4) } \text{div } (\phi c) = \text{div } \phi \\
+                & \text{(5) } \text{div } (\phi \cdot \psi)= \phi(\text{div } \psi) + \psi(\text{div } \phi) \\
+                & \text{(5') } \text{div } (\phi \cdot \psi)= \phi \cdot \text{div } \psi + \psi \cdot \text{div } \phi \\
             \end{aligned}
         \end{equation*}
         Desweiteren kann man durch den Gradienten anayliseren wie sich die Funktionswerte ändern, wenn man in eine bestimmte Richtung fortschreitet. Dazu nummt man den
         Vektor \(\vec{a}\) als Richtungsvektor. Dieser wird normiert und dann mit dem Gradientenvektor skalar multipliziert. Das Ergebnis ist dementscprechend ein Skalar. 
         \begin{equation*}
-            \frac{\partial \phi}{\partial \vec{a}} = (grad \phi) \cdot \vec{e_a} = \frac{1}{|\vec{a}|} (grad \phi) \cdot \vec{a}
+            \frac{\partial \phi}{\partial \vec{a}} = (\text{grad}  \phi) \cdot \vec{e_a} = \frac{1}{|\vec{a}|} (\text{grad } \phi) \cdot \vec{a}
         \end{equation*}
         
         \subsection{Divergenz}
         Bei der Divergenz nimmt man einen Vektor und differenziert dessen Komponenten einzeln (nach \(x_1, x_2,\) etc.), und addiert diese zusammen. 
         \begin{equation*}
-            div \vec{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} +\frac{\partial F_z}{\partial z}
+            \text{div } \vec{F} = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} +\frac{\partial F_z}{\partial z}
         \end{equation*} 
         \begin{itemize}
-            \item div \(\vec{F}\) > 0: Quelle
-            \item div \(\vec{F}\) < 0: Senke
+            \item div \(\vec{F}\) \(>\) 0: Quelle
+            \item div \(\vec{F}\) \(<\) 0: Senke
             \item div \(\vec{F}\) = 0: quellenfrei 
         \end{itemize}
 
         \subsubsection*{Rechenregeln}
         \begin{equation*}
             \begin{aligned}
-                & \text{(1) } div \vec{a} = 0 \\
-                & \text{(2) } div (c \vec{A}) = c div(\vec{A}) \\
-                & \text{(3) } div (\vec{A} + \vec{B}) = div \vec{A} + div \vec{B} \\
-                & \text{(4) } div (\vec{A} \vec{a}) = div \vec{A} \\
-                & \text{(5) } div (\phi \vec{A})= (grad \phi) \cdot \vec{A} + \phi(div \vec{A}) \\
-                & \text{(5') } div (\phi \vec{A})= (grad \phi) \cdot \vec{A} + \phi \cdot div \vec{A} \\
+                & \text{(1) } \text{div } \vec{a} = 0 \\
+                & \text{(2) } \text{div } (c \cdot \vec{A}) = c \cdot \text{div } \vec{A} \\
+                & \text{(3) } \text{div } (\vec{A} + \vec{B}) = \text{div } \vec{A} + \text{div } \vec{B} \\
+                & \text{(4) } \text{div } (\vec{A} \vec{a}) = \text{div } \vec{A} \\
+                & \text{(5) } \text{div } (\phi \vec{A})= (\text{grad } \phi) \cdot \vec{A} + \phi(\text{div } \vec{A}) \\
+                & \text{(5') } \text{div } (\phi \vec{A})= (\text{grad } \phi) \cdot \vec{A} + \phi \cdot \text{div } \vec{A} \\
             \end{aligned}
         \end{equation*}
 
@@ -334,15 +332,12 @@ pdftitle={Analysis 1}
         \subsection*{Rechenregeln}
         \begin{equation*}
             \begin{aligned}
-                & \text{(1) } rot \vec{a} = \vec{0} \\
-                & \text{(2) } rot (c \vec{A}) = c \; rot(\vec{A}) \\
-                & \text{(3) } rot (\vec{A} + \vec{B}) = rot \vec{A} + rot \vec{B} \\
-                & \text{(4) } rot (\vec{A} \vec{a}) = rot \vec{A} \\
-                & \text{(5) } rot (\phi \vec{A})= (grad \phi) \times \vec{A} + \phi(rot \vec{A}) \\
-                & \text{(5') } rot (\phi \vec{A})= (grad \phi) \times \vec{A} + \phi \cdot rot \vec{A} \\
+                & \text{(1) rot }  \vec{a} = \vec{0} \\
+                & \text{(2) rot }  (c \cdot \vec{A}) = c \cdot \text{rot } \vec{A} \\
+                & \text{(3) rot }  (\vec{A} + \vec{B}) = \text{rot } \vec{A} + \text{rot } \vec{B} \\
+                & \text{(4) rot }  (\vec{A} \vec{a}) = \text{rot } \vec{A} \\
+                & \text{(5) rot }  (\phi \vec{A})= (\text{grad }  \phi) \times \vec{A} + \phi(\text{rot } \vec{A}) \\
+                & \text{(5') rot }  (\phi \vec{A})= (\text{grad }  \phi) \times \vec{A} + \phi \cdot \text{rot } \vec{A} \\
             \end{aligned}
         \end{equation*}
-
-       
-
 \end{document}

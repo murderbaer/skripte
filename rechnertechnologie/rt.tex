@@ -6,6 +6,8 @@
 \usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
 \usepackage[english]{babel} % english grammar so words can go in two lines  
 
+\usepackage[colorinlistoftodos]{todonotes}
+
 \usepackage{amsmath}
 \usepackage{circuitikz}
 \usepackage{longtable}
@@ -280,7 +282,63 @@
             copies the data into memory. If there are parameters thy will also be copied into memory. The registers of the processor are initilized and the stack pointer is set to the
             first free location. At last it branches to a start up routine which initilizes the argumetn registers with parameters and then calls the main routine. If the main routine is done
             the programm terminates with an 'exit' system call.
-     
+    \section{Peripherals}
+        A computer system needs to be able to support different kinds of peripherals. 
+            \subsection{Bus System}
+            Bus-Systemen in computers are there so differnent components are able to talk to each other. Typically the critical components (cpu, ram,...) have 
+            their own bus system (AHP or ASP bus system) and peripherals or none critical components (keyboard, interrupt time,...) share another bus syetem (APB bus system).
+            They are connected via so called 'bridge', which connects (bridges) both bus systems if needed (if the keyboard input needs to be porcessed by the cpu). 
+            \subsection{Interrupt, Exceptions, Trap}
+            Sometimes the flow of a programm needs to be interruputed, for example when a button is pressed. A programm could see in a while loop if a button was pressed and react 
+            accordingly, but this wastes ressources and as long as the while loop is active, the programm can't do anything else. Beacuse a programm is determanistic (if everything stays the
+            same, the programm will always behave in the same way), it can be interrupted. If the interrupt is done (interrupt function is done) the pre interrupt state needs to be 
+            restored so the prgramm can work as it did before. \\
+            What an interrupt is and what an expceptions is defined by the processor manufacture. Interrupts and exceptions can occure internal or external though.
+            Internal means that an invalid instructions is requested (user wants to access admin ressources, div by zero) and external typicall means that an 
+            the programm is influenced from outside of the computer (usb stick is pluggedn in, power button is pressed). \\
+            If an exception occurs, a branch will happen. The adress of the branch target can either be fixed (division by zero interrupt has an own constant adress, and other
+            exceptions also have constant adresses ) or the branch adress is saved in a exception table where the processor first reads the adress (depending on the exception) 
+            and then jumos to the given adress.
+            %vector and register based exception handlers
+            Context switches (when registers need to be saved so another (part of a) programm can be executed): 
+            \begin{enumerate}
+                \item process change
+                \item expceptions
+                \item sub-programm calls
+            \end{enumerate}   
+
+    \section{Bus Systems}
+        There are many different kinds off bus systems and they can be classified in multiple categories:
+        \begin{itemize}
+            \item on/off chip busses
+            \item parallel/serial busses
+            \item synchronus/asynchronus busses 
+            \item automotive busses
+            \item (and more)
+        \end{itemize}
+        In general, busses consists of a couple of wires and is designed to allow computer components to communicate to each other. Parallel busses couple at least to 
+        wire to transfer information in (nearly) the same direction (example: cpu uses 5 wires to write to a disc). There are often multiple data sources (sender)
+        and data sink (reciever) on a bus (a sink can also be a source and vice versa). Other problems are that it needs to be defined how data can travel from source to 
+        sink so there also must be a well defined timing behavior.
+        \subsection{General Definitions}
+            See slide in moodle, too compact to summarize here.
+        \subsection{UART, RS232}
+            Before the data can be send, sender and reciever need to agree on some paramters of the transfer:
+            \begin{itemize}
+                \item full or half duplex
+                \item number of bts per character
+                \item baud rate speed 
+                \item use parity or not
+                \item if paritiy is used, how many bits
+                \item number of stop bits (at least the number reciever needs)
+                \item mark and space symbols %look this up
+            \end{itemize}
+            8N1 was a common impelemtation. 8 data bits, one stop bit and no parity bit (+ 1 start bit \todo{i think})
+            . 
+        \subsection{I\(^2\)C}     
+            I\(^2\)C(also called 'I two C') is a multi master bus and is commonly used for low speed peripherals. Multi master means that any component on the bus can be a
+            master and communicate with the other components on the bus (they are called slaves). Masters can also switch as soon the current master is finished with its
+            operations. SMBbus is a subset of I\(^2\)C and defines stricter protocols and electrical conventions to promote robustness and interoperability.
     
     
     
