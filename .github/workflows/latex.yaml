@@ -1,5 +1,11 @@
 name: Build LaTeX document
-on: [push]
+on: 
+  push:
+    branches: 
+      - master
+    paths:
+      - '**.tex'
+  workflow_dispatch:
 jobs:
   build_latex:
     runs-on: ubuntu-latest
@@ -15,3 +21,13 @@ jobs:
              ginf/ginf.tex
              rechnertechnologie/rt.tex
              wirtshaftsmathe/wirtschaftsmathe.tex
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: Compiled new PDFs
+          title: Neue PDFs
+          body: |
+            Neue PDFs wurden automatisch erzeugt. Mergen, um die neusten PDFs zu haben. 
+            Dies ist ein automatischer Pull Request.
+          labels: latex, automated pr
+          branch: latex-compile
