@@ -176,12 +176,8 @@ pdftitle={Analysis 1}
         
         Für die Lösung wird wieder das Prinzip aus der DGL 2. Ordnung genommen. Bei der homogonen Lösung wird nun eine Linearkombination aus \(C_n \cdot \lambda^n \) und 
         zwar aus allen \(n\) gebildet. Sind die Nullstellen gefunden, werden diese dann in den Ansatz eingefügt. Mehrfache Nullstellen werden zusammengefasst: \\
-        Hat man eine \(r\)-Fache Nullstelle multipliziert man den \(e^{\lambda x}\) Teil mit einem Polym (\(r-1\))-sten Grades. Das Ergebnis ist dementscprechend ein Skalar. 
-        \begin{equation*}
-            \frac{\partial \phi}{\partial \vec{a}} = (grad \phi) \cdot \vec{e_a} = \frac{1}{|\vec{a}|} (grad \phi) \cdot \vec{a}
-        \end{equation*} Beispiel: \\
-        Man hat eine DGL 5. Grades und eine 4-Fache Nullstelle. Somit ergibt sich der Ansatz: 
-
+        Hat man eine \(r\)-Fache Nullstelle multipliziert man den \(e^{\lambda x}\) Teil mit einem Polym (\(r-1\))-sten Grades. \\
+        Als besispiel: Man hat eine DGL 5. Grades und eine 4-Fache Nullstelle. Somit ergibt sich der Ansatz 
         \begin{equation}
             y = C_1 \cdot e^{\lambda_1} + (C_2 + C_3x + C_4x^2 + c_5x^3) \cdot e^{x \cdot \lambda_{2/3/4/5}}
         \end{equation}   
