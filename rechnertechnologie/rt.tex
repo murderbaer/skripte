@@ -344,13 +344,14 @@
             A master is initially in master transmit mode. It sends a start bit, followed by the salve adress the master wants to communicate followed by one bit which 
             represents if the master wants to read(1) or write (0). If the slave exists it sends an ACK (acknowledge) bit and as soon the master recieves it, the master changes
             it mode to transfer/recieve (depending what the master wants to do) and the slave changes to its complementary mode. \\
-            I\(^2\)C defines three basic messagin types, while each begin with START and end with a STPO:
+            I\(^2\)C defines three basic messagin types, while each begin with START and end with a STOP:
             \begin{enumerate}
                 \item single message where master writes to slave
                 \item single message where master reads from slave
                 \item 'combined' message where master reads or writes at least 2 times to one or more slaves
             \end{enumerate}
-    
+        %TODO Arbitration and policies 
+        %PIPELINING
     
     
     
