@@ -1,10 +1,5 @@
 name: Build LaTeX document
 on: 
-  push:
-    branches: 
-      - master
-    paths:
-      - '**.tex'
   workflow_dispatch:
 jobs:
   build_latex:
