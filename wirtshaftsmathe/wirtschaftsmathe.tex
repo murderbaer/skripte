@@ -6,6 +6,7 @@
 \usepackage[german]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{enumitem}
 \begin{document}
     \maketitle
     \newpage
@@ -251,9 +252,9 @@
             können oder nicht. 
         \subsection{Permutation}
             Eine Anordnung von n unterscheidbaren Objekten (es können nicht zwei oder mehr gleiche Objekte auftreten) heißt Permutation ohne Wiederholung (\(P_n\))
-            \begin{equation}
+            \begin{equation*}
                 P_n = n!
-            \end{equation} 
+            \end{equation*} 
             Wobei \(n\) die Anzahl der ausgewählten Objekte ist. \\
             Bei der Permutation mit Wiederholung können verschiedene Sorten auftreten (Sorten sind Mengen mit gleichen Objekten). Für \(n\) Objekte und \(k\) Sorten gilt:
             \begin{equation*}
@@ -302,25 +303,194 @@
             Zufallsexperimente haben endlich viele Ereignisse. Um jetzt die Wahrscheinlichkeit eines bestimmten Ereignis mit anderen einfacher vergleichen zu können
             teilt man die Wahrscheinlichkeit \(A\) durch die Anzahl der Elemente aus \(\Omega\)\footnote{Bei Laplace wird angenommen dass alle Ereignisse die selbe Wahrscheinlichkeit haben}.
             Die Wahrscheinlichkeit ist jetzt in einem Intervall zwischen \(1\) und \(0\). Es gilt:
-            \begin{equation}
+            \begin{equation*}
                 p(A) = \frac{|A|}{n} = \frac{\text{Anzahl der Elemente aus }A}{\text{Anzahl der Elemente aus } \Omega}
-            \end{equation}
+            \end{equation*}
         \subsection{Axiome von Kolmogorow}
+            Möchte man Zufallsexperimente durchführen, wobei die Ergebnisse verschiedene Wahrscheinlichkeiten haben, könnte man einen Versuch sehr oft durchführen um eine Näherung 
+            einer Wahrscheinlichkeit zu bekommen. Dies kann oft nicht durchgeführt werden, weshalb man Eigenschaften definiert hat, fie Wahrscheinlichkeiten erfüllen müssen. \\
+            Ein Zufallsexperiment hat der Ereignismenge \(\Omega\), wobei  \(A\) eine Ereignisalgebra auf \(\Omega\) ist. Nun heißt die Abbildung \(p: A \mathbb{R} \) Wahrscheinlichkeit oder
+            afuch Wahrscheinlichkeitsmaß wenn gilt:
+            \begin{enumerate}
+                \item 0 \(\le\) \(p(A)\) \(\le\) 1
+                \item \(p(\Omega) = 1\)
+                \item Sind die Ereignisse \(A_1,A_2,\cdots,A_n\) paarweise verschieden gilt \(\bigcup\limits_{i=1}^{n} A_i = \sum\limits_{i=1}^n p(A_i) \)
+            \end{enumerate} 
+            Für das Wahrscheinlichkeitsmaß gilt außerdem: 
+            \begin{enumerate}[label=\alph*)]
+                \item \(p(\{ \; \}) = 0\)
+                \item \(A\) und \(B\) sind Ereignisse: \((A \cap B) = \{ \; \} = p( A \cup B) = p(A) + p(B)\)
+                \item \(p(A) + p(\overline{A}) = 1\)
+                \item \(A\) und \(B\) sind Ereignisse: \(p(A \cup B) = p(A) + p(B) - p(A \cap B)\)
+                \item \(A\) und \(B\) sind Ereignisse: \(A \subset B \Rightarrow p(A) \le p(B)\)
+            \end{enumerate}
         \subsection{Bedingte Wahrscheinlichkeit}
-        \subsection{Formel von Bayes}
+            Beingte Wahrscheinlichkeiten setzen vorraus dass eine bestimmtes Ereignis schon eingetroffen und man nun die Wahrscheinlichkeit der 'nächsten' Wahrscheinlichkeit berechnen möchte. \\
+            Wenn \(A\) und \(B\) Ereignisse sind, \(p(B) \neq 0\) dann heißt 
+            \begin{equation*}
+                p_B(A) = p(A|B) := \cfrac{p (A \cap B)}{p(B)}
+            \end{equation*} 
+            bedingte Wahrscheinlichkeit von \(A\) unter der Bedingung von \(B\). Daraus folgt 
+            \begin{equation*}
+                p(A \cap B) = p(B) \cdot p(A|B) = p(A) \cdot p(B|A) 
+            \end{equation*}
+            Satz der totalen Wahrscheinlichkeit:\\
+            \(B\) sein ein Ereignis. \(A_1,A_2,\cdots,A_3\) sind paarweise diskunkte Ereignisse die zusammenn \(\Omega\) ergeben \(\Omega = \bigcup\limits_{i=1}^n A_i \), dann gilt: 
+            \begin{equation*}
+                p(B) = \sum\limits_{i=1}^n p(B|A_i) \cdot p(A_i)
+            \end{equation*}
+        \subsection{Satz von Bayes}
+            \(A_1,A_2,\cdots,A_3\) sind paarweise disjunkte Erignisse, \(\Omega = \bigcup\limits_{i=1}^n A_i\), \(B\) ist ein Ereignis und es gilt \(p(B) > 0\) außerdem ist \(i,j \; \epsilon \; \mathbb{N}\), so gilt:
+            \begin{equation*}
+                P(A_i|B) = \cfrac{p(B|A_i) \cdot A_i}{\sum\limits_{j=1}^n p(B|A_j) \cdot p(A_j)} %TODO
+            \end{equation*}
         \subsection{Unabhängigkeit von Ereignissen}
+            \(A, B\) seien Ereignisse, \(A\) ist Unabhängig von \(B\) wenn gilt:
+            \begin{equation*}
+                p(A) = p(A|B)
+            \end{equation*}
+            Daraus folgt, dass auch gelten muss: 
+            \begin{equation*}
+                p(B) = p(B|A)
+            \end{equation*}
     \section{Zufallsvariable und statistische Verteilung}
         \subsection{Zufallsvariable}
-            
-        \subsection{Diskrete Zufallsvariable}
-        \subsection{Diskrete Gleichverteilung und Bernoulli-Verteilung}
-        \subsection{Binomialverteilung}
-        \subsection{Geometrische Verteilung}
-        \subsection{Hypergeometrische Verteilung}
-        \subsection{Poisson-Verteilung}
+            Eine Zufallsvariable ist eine Funktion die jedem Ereignis aus \(\Omega\) eine Zahl in \(\mathbb{R}\) zuordnet. Die Zufallsvariable \(X\) is somit eine Funktion und kein Wert.
+            \begin{equation*}
+                X: \Omega \rightarrow \mathbb{R}, x=X(\omega)
+            \end{equation*}
+            \(X\) heißst diskrete Zufallsvariable, wenn deren Wertebereich endlich oder abzählbar undendlich ist. \\
+            Die Funktion  \(f(X): \mathbb{R} \rightarrow \mathbb{R}\) mit 
+            \[f(X)=
+                \begin{cases}
+                    p_i & \text{wenn } x=x_i\\
+                    0 & \text{für den Rest} 
+                \end{cases}
+            \] 
+            heißt Wahrscheinlichkeitsfunktion bzw. Dichtefunktion der diskreten Zufallsvariablen \(X\). \\
+            Die Verteilung von \(X\) ist definiert als 
+            \begin{equation*}
+                p_X(A) = \sum\limits_{x_i \varepsilon A} f_x(x_i)
+            \end{equation*}
+            wobei \(p_X = 2^{W_x} \rightarrow [0;1] \), also die Potenzmenge des Wertebereichs. Weiter ist die Verteilungsfunktion definiert als 
+            \begin{equation*}
+                F_X: \mathbb{R} \rightarrow \mathbb{R} \text{ mit } F_X (x) = p(X \le x) = \sum\limits_{x_i < X} f_X(x_i)
+            \end{equation*}
+            Erwartungswert:
+            \begin{equation*}
+                E(X) = \sum\limits_{x_i \epsilon W_X} x_i \cdot f_X (x_i)
+            \end{equation*}
+            Varianz:
+            \begin{equation*}
+                \sum\limits_{x_i \epsilon W_X} (x_i - E(X))^2 \cdot f_X(x_i)
+            \end{equation*}
+            Varianz und Erwartungswert sind linear, dh. wenn eine neue Zufallsvariable gemacht wird, die (wie folgt) abhängig von Konstanten ist (\(Z_n := a \cdot X + b\)) dann gilt
+            \begin{equation*}
+                \begin{aligned}
+                    E(Z_n) = a \cdot E(X) + b & \text{ | für den Erwartungswert}\\
+                    Var(z) = a^2 \cdot Var(X) & \text{ | für die Varianz}
+                \end{aligned}
+            \end{equation*}  
+
+        \subsection{Spezielle disktret Verteilungen}
+            \subsubsection{Gleichverteilung}
+                Eine Verteilung mit der Dichte 
+                \[f(x)=
+                    \begin{cases}
+                        \frac{1}{n} & \text{wenn } x \; \epsilon \; W_X (|W_X| = n)\\
+                        0 & \text{für den Rest} 
+                    \end{cases}
+                \] 
+                heißt Gleichverteilung. Für den Erwartungswert gilt 
+                \begin{equation*}:
+                    E(X) = \frac{1}{n} \sum\limits_{x\epsilon W_X} x
+                \end{equation*}
+                Ist  \(W_x = 1,2,3, \cdots ,n\) gilt: 
+                \begin{equation*}
+                    E(X) = \frac{n+1}{2}
+                \end{equation*} 
+            \subsubsection{Bernoulli-Verteilung}
+                Wenn die Zufallsvariable nur 2 Werte liefern kann, spircht man von einer Bernoulli-Verteilung, es gilt:
+                \begin{itemize}
+                    \item Dichte: \[f(x)=
+                                                        \begin{cases}
+                                                            p     & \text{für } x = 1 \\
+                                                            1 - p & \text{für } x = 0 \\
+                                                            0     & \text{für den Rest} 
+                                                        \end{cases}
+                                                        \] 
+                    \item Erwartungswert: \(E(X) = \sum\limits_{x \epsilon W_X} x \cdot f(x) \)
+                    \item Varianz: \(V(X) = pq = p (1 - q)\) \footnote{\(p = p(X=1), q = p(X=0)\)} % TODO aus wikipedia, in VL nachschauen
+                \end{itemize}
+            \subsubsection{Binomialverteilung}
+                Die Binomialverteilung ist die Bernoulli-Verteilung \(n\) Mal durchgeführt.
+                \begin{itemize}
+                    \item Dichte: \[f(x)=
+                                                        \begin{cases}
+                                                            \begin{pmatrix} n \\ x \end{pmatrix} p^x \cdot q^{n - x} & \text{für } x \; \epsilon \; \{0,1,2,\cdots, m\} \\
+                                                            0     & \text{für den Rest} 
+                                                        \end{cases}
+                                                        \] 
+                    \item Erwartungswert: \(E(X) = \sum\limits_{x =0}^n x \begin{pmatrix} n \\ x \end{pmatrix} \cdot p^x \cdot q^{n - x} = n \cdot p ) \)
+                    \item Varianz: \(V(X) = \sum\limits_{x=0}^n (x - n \cdot p)^2 \cdot \begin{pmatrix} n \\ x \end{pmatrix} \cdot p^x \cdot q^{n - x} = n \cdot p \cdot q\) 
+                \end{itemize}
+            \subsubsection{Geometrische Verteilung}
+            Anzahl der Versuche die gebraucht werden bis der 1. Erfolg bei einem Bernoulli-Experiment eintritt. 
+            \begin{itemize}
+                \item Dichte: \[f(x)=
+                                                    \begin{cases}
+                                                        q^xp     & \text{für } x \; \epsilon \; \mathbb{N}_0 \\
+                                                        0     & \text{für den Rest} 
+                                                    \end{cases}
+                                                    \] 
+                \item Erwartungswert: \(E(X) = \cfrac{q}{p}\)
+                \item Varianz: \(V(X) = \cfrac{q}{p^2}\) 
+            \end{itemize}
+            \subsubsection{Hypergeometrische Verteilung}
+                Bei der Binomialverteilung wird ein Bernoulli-Experiment mehrfach ausgeführt und die Wahrscheinlichkeit bleibt bei jedem Durchgang gleich. Wenn sich die Wahrscheinlichkeit
+                aber ändern können soll nimmt man die Hypergeometrische Vertielung (Möchte man ein Prdoukt 100 mal testen, geht man davon aus, dass es bei jedem Versuch immer ein Stück mehr kaputt geht).\\
+                Sei \(N\) die Anzahl der Elemente und \(S \subset N\) und \(n\) die Anzahl, wie oft ein Verusch durchgeführt wird, so gilt: 
+                \begin{itemize}
+                    \item Erwartungswert: \(E(X) = n \cdot \cfrac{S}{N}\)
+                    \item Varianz: \(V(X) = n \cfrac{S}{N} \Bigg(1 - \cfrac{S}{M} \Bigg) \cfrac{N - n}{N - 1} \)
+                \end{itemize}
+            \subsubsection{Poisson-Verteilung}
+            %TODO
         \subsection{stetige Zufallsvariable}
-        \subsection{stetige Gleichverteilung}
-        \subsection{Normalverteilung}
-        \subsection{Exponentiallverteilung}
+            Eine Zufallsvariable heißt stetig wenn \(W_X\) ein Intervall in \(\mathbb{R}\), die Dichtefunktion \(f_X\) gilt, dass sie nie negativ ist und und die Verteilfunktion 
+            \(F_X(x)\) das Integral aus \(f_X\), also \(F_X(x) = \int\limits_{-\infty }^x f_X(u) \; du\).
+            \begin{itemize}
+                \item Erwartungswert: \(E(X) = \int\limits_{-\infty}^{\infty} x \cdot (f_X(x)) \; dx \)
+                \item Varianz: \(V(X) = \int\limits_{-\infty}^{\infty} (x - E(X))^2 \cdot f_x(x) \; dx = E(X^2) - E(X)^2 \)
+            \end{itemize}
+        \subsection{Spezielle stetige Verteilungen}
+            \subsubsection{Gleichverteilung}
+            \begin{itemize}
+                \item Dichte: \[f(x) = f(x,a,b)=
+                                \begin{cases}
+                                    \frac{1}{b - a}     & \text{für } x \; \epsilon [a, b] \\
+                                    0     & \text{für den Rest} 
+                                \end{cases}
+                            \] 
+                \item Erwartungswert: \(E(X) = \cfrac{a+b}{2} \)
+                \item Varianz: \(V(X) = \cfrac{(b-a)^2}{12} \)
+            \end{itemize}
+            \subsubsection{Normalverteilung}
+                Die Normalverteilung ist die häufigste Verteilung in der Praxis.\\
+                Dabei ist  \(W_X = \mathbb{R}, \mu \; \epsilon \; \mathbb{R}, \sigma \; \epsilon \; \mathbb{R}^+ \), somit gilt: 
+                \begin{itemize}
+                    \item Dichte: \( f(x, \mu, \sigma)  = \varphi(x, \mu, \sigma) = \cfrac{1}{\sqrt{2\pi} \sigma} \cdot e^{- \frac{(x - \mu)^2}{2 \sigma^2}} \) 
+                    \item Erwartungswert: \(E(X) = \mu\)
+                    \item Varianz: \(V(X) = \sigma^2\)
+                    \item Standardnormalverteilung (\(\mu = 0, \sigma = 1\)):  \(\varPhi(x) = \varPhi(x,0,1) = \cfrac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^xe^{\ - \frac{u^2}{2}} \; du\)
+                \end{itemize}
+                Ist \(X, \mu, \sigma\) normalverteil, dann ist \(Y := \cfrac{x - \mu}{\sigma}\) tandardnormalverteilt.
+            \subsubsection{Exponentiallverteilung}
+                Die Exponentiallverteilung ist ein Model für die Lebensdauer für Produkte.
+                \begin{itemize}
+                    \item Dichte: \(f(x) = f(x, \lambda) = \lambda e^{-\lambda x}\) \text{ für \(x \ge 0\); ansonsten 0 für \(x < 0 \) }
+                    \item Erwartungswert: \(E(X) = \cfrac{1}{\lambda} \)
+                    \item Varianz: \(Var(X) =  \cfrac{1}{\lambda^2} \)
+                \end{itemize}
     \section{Induktive Statistik und statistische Tests}
-\end{document}Stichproben
+\end{document}
