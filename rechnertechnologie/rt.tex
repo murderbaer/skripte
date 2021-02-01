@@ -20,30 +20,30 @@
     \section{Intro}
         \subsection{Representation of numbers characters}
         Numbers and characters are saved in the memory and need a binary representation. There are different ways how one can represent numbers and charachters,
-        depending on the needs the program has. Having a programm which needs a counter, only nedds positive integers so there is no need for saving decimals.  Also the 
-        range is important. Is the programm counting to 100 or 100 milion. Different datatypes need less bytes to store data, but then the range or (Genauigketi) suffers.
+        depending on the needs the program has. Having a programm which needs a counter, only needs positive integers so there is no need for saving decimals.  Also the 
+        range is important. Is the program counting to 100 or 100 milion. Different datatypes need less bytes to store data, but then the range or precision (Genauigkeit) suffers.
         
         \subsubsection*{Integers}
-        With unsigned (only positive) integers only differ in how many bits they use. Typicall sizes are  8-bit (short), 16-bit (half word), 32-bit (word) and 64-bit (double word). \\
+        Unsigned (only positive) integers only differ in how many bits they use. Typical sizes are  8-bit (short), 16-bit (half word), 32-bit (word) and 64-bit (double word). \\
         Signed integers need to save the minus symbol somewhere. There are several options to "save the minus". One is just saying if the MSB is 1, the number is negative. The problem
         is that \(0000\) and \(1000\) are both \(0\), but one is a positive and one is a negative \(0\) which isn't very effictive. \\
         Another implementation is the one-complement.
         Here you just invert every bit to get the "negative version" of the number. Again the \(\pm 0\) is possible, but the one-complement 
-        creates a symmetrie with negative and ppostive numbers and is needed for the two-complement. 
-        The two-complement takes the result from the one complement and adds \(+1\) to it. The symmetrie is gone but the \(\pm 0\) is gone (only positve 0) and an extra negative numebr is won. \\
+        creates a symmetry with negative and postive numbers and is needed for the two-complement. 
+        The two-complement takes the result from the one complement and adds \(+1\) to it. The symmetry is gone but the \(\pm 0\) is gone (only positve 0) and an extra negative numebr is won. \\
         One other way to create negative nummber is by using a bias/offset. One needs to define the offset first. Now every number in the memory will be read nad the offset will be 
         subtracted from it. An offset of 128 means that the postive numbers will start at \(1000.0000_b \)\footnote{\(1000.0000_b \equiv 0\)}. The offset is used in floating point numbers for the exponent.
 
         \subsection*{Decimal numbers}
         Decimal numbers also have different possible representation. An easy with a fixed point. The number is treated as an integer but at a specific bit, the point is 
-        set. The position of the point needs to be definded first. If there are 8-bit to save the number and the point is defined at bit 3, there will be 5 bits for the integer
-        and 3 bits for the mantissa\footnote{Nachkommastellen}. The probelm is, that very big numbers or very small numbers aren't possible. \\
-        Floating point numbers fix this by introducing an exponent to the number. The exponetn has an offset, so it can be negativ. A neagtive exponent makes very small numbers
-        possible, but because the exponent can be positive aswell big numbers are possible too. The formular fot calculating a normalized flaot is:
+        set. The position of the point needs to be defined first. If there are 8-bit to save the number and the point is defined at bit 3, there will be 5 bits for the integer
+        and 3 bits for the mantissa\footnote{Nachkommastellen}. The problem is, that very big numbers or very small numbers aren't possible. \\
+        Floating point numbers fix this by introducing an exponent to the number. The exponent has an offset, so it can be negativ. A neagtive exponent makes very small numbers
+        possible, but because the exponent can be positive aswell big numbers are possible too. The formular for calculating a normalized float is:
         \begin{equation*}
             f = (-1)^{\text{sign}} \cdot 1.\text{mantissa} \cdot 2^{\text{exponent}}
         \end{equation*}  
-        Depening on how many bits the float uses, different values need to be inserted into the formular.
+        Depenfing on how many bits the float uses, different values need to be inserted into the formular.
         \begin{center}\begin{tabular}{|c|c|c|c|c|}
             \hline
              & sign & mantissa & offset & exponent \\
@@ -84,16 +84,16 @@
     \section{Instruction Set Archetecture (ISA)}
         The ISA contains defintions how a processor can be programmed. It defines...
         \begin{itemize}
-            \item ..the descrtiption of instructions (semantics etc)
-            \item ..how the data beahves (how and were the data will be stored and processed)
-            \item ..operation modi (usermod, supervisor mode etc)
+            \item ..the description of instructions (semantics etc)
+            \item ..how the data behaves (how and were the data will be stored and processed)
+            \item ..operation modi (user mode, supervisor mode etc)
             \item ..and the handling of traps, errors and interupts 
         \end{itemize}
     %
     %   Defintion of numbers are above, may need to go in to more detail though TODO
     %
-        \subsection{Adreesses}
-            Adresses are used to store/load data and can be the target of a (un)conditional jump. %Adressing mode TODO
+        \subsection{addresses}
+            addresses are used to store/load data and can be the target of a (un)conditional jump. %addressing mode TODO
             It is typically divided into 3 categories: 
             \begin{itemize}
                 \item register storage space: fast, but small and often only a limited number of registers are avaiable  
@@ -102,29 +102,29 @@
             \end{itemize}
 
             % May be wrong
-            \subsection*{Adressing Modes}
+            \subsection*{Addressing Modes}
             \begin{itemize}
-                \item immedeiate adressing: The instruction recieves the data directly (adding a constant to teh Accumulator)
-                \item direct adressing: The adress for the instruction is hard coded () 
-                \item register direct adressing: The instruction adresses the register directly (adress is constant) 
-                \item indirect adressing: first the adress is laoded form a specific register and then the memory address is used to processed (register only stores adress instead of value)
-                \item indexed indirect adressing: two registers are used to get the adress form the value. One is contains the adress and one is a counter. Adding both together resluts in the actual adress (arrays)
-                \item programm counter realtive adressing: like indexed indirect access but the programm counter functions as the adress counter
-                %TODO pre/post modifying indirect adressing TODO 134 has some inforamtion which may be usefull
+                \item immediate addressing: The instruction recieves the data directly (adding a constant to the Accumulator)
+                \item direct addressing: The address for the instruction is hard coded
+                \item register direct addressing: The instruction addresses the register directly (address is constant) 
+                \item indirect addressing: first the address is laoded from a specific register and then the memory address is used to processed (register only stores address instead of value)
+                \item indexed indirect addressing: two registers are used to get the address from the value. One is contains the address and one is a counter. Adding both together results in the actual address (arrays)
+                \item program counter relative addressing: like indexed indirect access but the programm counter functions as the address counter
+                %TODO pre/post modifying indirect addressing TODO 134 has some inforamtion which may be usefull
             \end{itemize}
 
         \subsection{Instructions}
-            Processors work after the control flow principle. The basic idea is that an operations takes operands and generates a result. In order for an processor to run 
+            Processors work after the control flow principle. The basic idea is that an operation takes operands and generates a result. In order for an processor to run 
             algorithms, the processor needs to be able to process different kinds of operations:
             \begin{itemize}
                 \item algorithmic operations: add, subtract, ...
-                \item comaprisons: if (greater, lower, equal, ...)
+                \item comparisons: if (greater, lower, equal, ...)
                 \item logic operations: boolean algebra
                 \item shift operations: rotate the byte left/right (multiply/divide by 2)
                 \item control the control-flow: jumps
             \end{itemize}
-            Instruction can be classified into differnent types, looking at how many adresses are used. Monadic operations only use one adress (NOT for example), dyadic 
-            operations use 2 adresses. ADD A,B for example adds A and B together and saves the result in A. Some operations use 0 adresses by adressing implicitly for example the 
+            Instruction can be classified into different types, looking at how many addresses are used. Monadic operations only use one address (NOT for example), dyadic 
+            operations use 2 addresses. ADD A,B for example adds A and B together and saves the result in A. Some operations use 0 addresses by addressing implicitly for example the 
             registers or programm counter. 
         \subsection{States}
             An processor need to be able to handle expceptions. Expceptions are differentiated in two groups:
@@ -133,16 +133,16 @@
                 \item interrupts: asynchronus event, occure when something external from the programm needs to be executed (button press, timer)
             \end{itemize}  
             Operation modes disconnect sensitive areas and none sensitive areas from a computer. A programm for viewing pictures doesn't need full access to the whole
-            comptuter and it's resources. The most basic case is implemting a user-mode which has acess to its own files and supervisor mode which can access everything when needed.
+            computer and it's resources. The most basic case is implementing a user-mode which has access to its own files and supervisor mode which can access everything when needed.
             
     \section{ISA-ARM}
         The ARM archetecture uses the stored-prgramm concept. Instructions and data are both stored in memory (as numbers). This results into a great bit of flexibility and
-        leads to the stroed-prgramm computer.
+        leads to the stored-prgramm computer.
         %Table of ARM instructions TODO:maybe
         \subsection{Operations}
-            Creating a programm typically involves using a programming language instead of assembly langeues for conveniance reasons. Processors only understand compiled code and
+            Creating a programm typically involves using a programming language instead of assembly languages for conveniance reasons. Processors only understand compiled code and
             depending on the processor the compiled code will look different. Let's say f = (a + b) - (c + d) is c code we awant to compile for ARM. ARM only allows 
-            arithmetic operations using registers, so first all values of the variables need to be loaded into register. ARM also only allows 2 adresses for adding and subtracting at once
+            arithmetic operations using registers, so first all values of the variables need to be loaded into register. ARM also only allows 2 addresses for adding and subtracting at once
             so the results need to split into pieces and then stiched together at the end. 
     
         \subsection{Operands}
@@ -153,7 +153,7 @@
             
         \subsection{Instructions}
             ARMv8 uses its own assembly language. It's pretty close to the machine code but it still needs to be converted to proper machine code. 'ADD x9, x20, x21'
-            would be translated into '1112 21 0 20 9'. It is divided as following tabling shows (a R Format isntruction): 
+            would be translated into '1112 21 0 20 9'. It is divided as following tabling shows (a R Format instruction): 
             \begin{center}
             \begin{tabular}{|p{5cm}|c|c|c|c|}
                 \hline
@@ -178,7 +178,7 @@
                     \hline
                     \multicolumn{5}{|c|}{D-Format} \\
                     \hline
-                    opcode & adress & op2 & Rn & Rt \\
+                    opcode & address & op2 & Rn & Rt \\
                     \hline
                     11 bits & 9 bits & 2 bits & 5 bits & 5 bits \\
                     \hline \hline
@@ -190,7 +190,7 @@
                     \hline
                 \end{tabular}
             \end{center}
-            R-Format is often used for arithmetic instructions using adresses or for shifting a register (and savin it to another),
+            R-Format is often used for arithmetic instructions using addresses or for shifting a register (and saving it to another),
             while I-Format is often used for immediate instructions. D-Format is used for loading and storing values from/to register to/from memory.
 
             \begin{center}
@@ -246,64 +246,64 @@
                 Procedures are subroutines of a program and are good for implementating abstracion in the program. For a procedures to work the hardware needs to be able to perform the following steps:
                 \begin{enumerate}
                     \item save parameters in a place where the procedures can access them (X0 - X7)
-                    \item give procedure the contorl
+                    \item give procedure the control
                     \item acquire storage resources for the procedure
                     \item do the task
                     \item put the result in a place where the main programm can access it (X0 - X7)
-                    \item return control the previous procedure (return adress saved in LR(X30) ) 
+                    \item return control the previous procedure (return address saved in LR(X30) ) 
                 \end{enumerate}
-                ARMv8 supports the branch-and-link instruction (BL). It branches to the procedure adress and writes the return adress in X30. This is needed because if a procedure
+                ARMv8 supports the branch-and-link instruction (BL). It branches to the procedure address and writes the return address in X30. This is needed because if a procedure
                 is called by different parts of the programm so the return doesn't have to be hardcoded.%not 100% sure
-                The caller callculates the return adress by adding 4 to the programm counter. The current programm counter points to the branch so it need to go one step fourther.
+                The caller calculates the return address by adding 4 to the programm counter. The current programm counter points to the branch so it need to go one step fourther.
                 The registers should hold the same value after the branch back so registers are saved into a stack before the program branches off. This is called spilling. 
                 Here the stack pointer (SP) is needed.
-                Its a register which saves the last spilled adress. The operations push and pop, adds or retrieves elements to/from the stack. The stack grows from high to low, so if an
+                Its a register which saves the last spilled address. The operations push and pop, adds or retrieves elements to/from the stack. The stack grows from high to low, so if an
                 element is pushed to the stack, the value in the stack pointer needs to be decreased. \\
                 X9 - X17 are registers which aren't preserved by a procedure calle, X19 - x28 will be restored if neccesarray.\\
                 C classifies variables into automatic and static, static variables are those declared outside a procedure. In ARMv8 
                 a so called global pointer points to the static area. A lot of ARMv8 compilers reserve X27 as the GP (global pointer).\\
                 The stack can be also used to store variables which don't have space in the registers. It a segment in the stack acalled procedure frame or activation record.  
                 % STACK POINTER FRAME POINTER TODO
-        \subsection{Adresses}
-            Basically nothing to compared to the the already done adressing section.
+        \subsection{addresses}
+            Basically nothing to compared to the the already done addressing section.
         \subsection{Programm}
             A programming language like c compiles it's code into assembly code. Assembly code is a symbolic language which will be translated into machine code. It uses the 
-            symbol table which matches the naems of labels to the corresponding adresses in memory. It creates an object file which typically exsist in 6 pieces:
+            symbol table which matches the names of labels to the corresponding addresses in memory. It creates an object file which typically exsist in 6 pieces:
             \begin{enumerate}
                 \item file header which describes size and position of the other pieces in the object file
                 \item text segment which contains the machine language code 
                 \item static data segment (UNIX allows static data which is allocated throughout the programm and dynamic data which can grow and shrink as needed)
-                \item relocation information indentifies instructiosn and data which rely on absolute adresses (and probably adjusts them accordingly)
+                \item relocation information indentifies instructions and data which rely on absolute addresses (and probably adjusts them accordingly)
                 \item symbol table contains not defined labels like external references
-                \item debuging information containsa descriptions on how a the modules were compiled 
+                \item debugging information contains descriptions on how a the modules were compiled 
             \end{enumerate}
             The linker or link editor that links the independent compiled modules and resolves the undefined labels to create one executable file. The executable is loaded 
-            by the loader (at least in UNIX). It reads the file header to determine the size of the text and data segments. Then creates an adress space large enough to fit all and
-            copies the data into memory. If there are parameters thy will also be copied into memory. The registers of the processor are initilized and the stack pointer is set to the
+            by the loader (at least in UNIX). It reads the file header to determine the size of the text and data segments. Then creates an address space large enough to fit all and
+            copies the data into memory. If there are parameters they will also be copied into memory. The registers of the processor are initilized and the stack pointer is set to the
             first free location. At last it branches to a start up routine which initilizes the argumetn registers with parameters and then calls the main routine. If the main routine is done
             the programm terminates with an 'exit' system call.
     \section{Peripherals}
         A computer system needs to be able to support different kinds of peripherals. 
             \subsection{Bus System}
-            Bus-Systemen in computers are there so differnent components are able to talk to each other. Typically the critical components (cpu, ram,...) have 
+            Bus-Systems in computers are there so differnent components are able to talk to each other. Typically the critical components (cpu, ram,...) have 
             their own bus system (AHP or ASP bus system) and peripherals or none critical components (keyboard, interrupt time,...) share another bus syetem (APB bus system).
-            They are connected via so called 'bridge', which connects (bridges) both bus systems if needed (if the keyboard input needs to be porcessed by the cpu). 
+            They are connected via so called 'bridge', which connects (bridges) both bus systems if needed (if the keyboard input needs to be processed by the cpu). 
             \subsection{Interrupt, Exceptions, Trap}
             Sometimes the flow of a programm needs to be interruputed, for example when a button is pressed. A programm could see in a while loop if a button was pressed and react 
-            accordingly, but this wastes ressources and as long as the while loop is active, the programm can't do anything else. Beacuse a programm is determanistic (if everything stays the
+            accordingly, but this wastes ressources and as long as the while loop is active, the programm can't do anything else. Because a programm is determanistic (if everything stays the
             same, the programm will always behave in the same way), it can be interrupted. If the interrupt is done (interrupt function is done) the pre interrupt state needs to be 
             restored so the prgramm can work as it did before. \\
-            What an interrupt is and what an expceptions is defined by the processor manufacture. Interrupts and exceptions can occure internal or external though.
-            Internal means that an invalid instructions is requested (user wants to access admin ressources, div by zero) and external typicall means that an 
+            What an interrupt is and what an expceptions is defined by the processor manufacturer. Interrupts and exceptions can occure internal or external though.
+            Internal means that an invalid instructions is requested (user wants to access admin ressources, div by zero) and external typically means that an 
             the programm is influenced from outside of the computer (usb stick is pluggedn in, power button is pressed). \\
-            If an exception occurs, a branch will happen. The adress of the branch target can either be fixed (division by zero interrupt has an own constant adress, and other
-            exceptions also have constant adresses ) or the branch adress is saved in a exception table where the processor first reads the adress (depending on the exception) 
-            and then jumos to the given adress.
+            If an exception occurs, a branch will happen. The address of the branch target can either be fixed (division by zero interrupt has an own constant address, and other
+            exceptions also have constant addresses ) or the branch address is saved in a exception table where the processor first reads the address (depending on the exception) 
+            and then jumps to the given address.
             %vector and register based exception handlers
             Context switches (when registers need to be saved so another (part of a) programm can be executed): 
             \begin{enumerate}
                 \item process change
-                \item expceptions
+                \item exceptions
                 \item sub-programm calls
             \end{enumerate}   
 
@@ -316,8 +316,8 @@
             \item automotive busses
             \item (and more)
         \end{itemize}
-        In general, busses consists of a couple of wires and is designed to allow computer components to communicate to each other. Parallel busses couple at least to 
-        wire to transfer information in (nearly) the same direction (example: cpu uses 5 wires to write to a disc). There are often multiple data sources (sender)
+        In general, busses consists of a couple of wires and are designed to allow computer components to communicate to each other. Parallel busses couple at least two 
+        wires to transfer information in (nearly) the same direction (example: cpu uses 5 wires to write to a disc). There are often multiple data sources (sender)
         and data sink (reciever) on a bus (a sink can also be a source and vice versa). Other problems are that it needs to be defined how data can travel from source to 
         sink so there also must be a well defined timing behavior.
         \subsection{General Definitions}
@@ -327,31 +327,30 @@
             \begin{itemize}
                 \item full or half duplex
                 \item number of bts per character
-                \item baud rate speed 
+                \item band rate speed 
                 \item use parity or not
                 \item if paritiy is used, how many bits
                 \item number of stop bits (at least the number reciever needs)
                 \item mark and space symbols %look this up
             \end{itemize}
-            8N1 was a common impelemtation. 8 data bits, one stop bit and no parity bit (+ 1 start bit)%I think
-            . If the baud rate is set to then, then one just needs 
+            8N1 was a common implementation. 8 data bits, one stop bit and no parity bit (+ 1 start bit)%I think
+            . If the band rate is set to then, then one just needs 
             divide the signal rate by ten to get how many character were sent per second.  
         \subsection{I\(^2\)C}     
             I\(^2\)C(also called 'I two C') is a multi master bus and is commonly used for low speed peripherals. Multi master means that any component on the bus can be a
             master and communicate with the other components on the bus (they are called slaves). Masters can also switch as soon the current master is finished with its
             operations. SMBbus is a subset of I\(^2\)C and defines stricter protocols and electrical conventions to promote robustness and interoperability. A master is 
             the component who issues the clock for the timing while the slave recieves the clock. \\
-            A master is initially in master transmit mode. It sends a start bit, followed by the salve adress the master wants to communicate followed by one bit which 
+            A master is initially in master transmit mode. It sends a start bit, followed by the salve address the master wants to communicate followed by one bit which 
             represents if the master wants to read(1) or write (0). If the slave exists it sends an ACK (acknowledge) bit and as soon the master recieves it, the master changes
             it mode to transfer/recieve (depending what the master wants to do) and the slave changes to its complementary mode. \\
-            I\(^2\)C defines three basic messaging types, while each begin with START and end with a STOP:
+            I\(^2\)C defines three basic messagin types, while each begin with START and end with a STPO:
             \begin{enumerate}
                 \item single message where master writes to slave
                 \item single message where master reads from slave
                 \item 'combined' message where master reads or writes at least 2 times to one or more slaves
             \end{enumerate}
-        %TODO Arbitration and policies 
-        %PIPELINING
+    
     
     
     
