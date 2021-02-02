@@ -16,27 +16,27 @@
     \newpage
 
     \section{Lineare Optimierung}
-    Unter Linerare Optimierung versteht man, dass eine bestimmte Funktion durch einstellen bestimmter 'Parameter' möglichst groß (oft für Gewinn benutzt) oder möglichst klein (für Verluste) wird.
-    Dafür wird die öineare Zielfunktion: 
+    Unter Lineare Optimierung versteht man, dass eine bestimmte Funktion durch einstellen bestimmter 'Parameter' möglichst groß (oft für Gewinn benutzt) oder möglichst klein (für Verluste) wird.
+    Dafür wird die lineare Zielfunktion: 
     \begin{equation*}
         g(\vec{x}) = g_0 + g_1x_1 \ldots g_nx_n
     \end{equation*}
-    hergenommen. Zum Beispiel ist \(g_i\) dann der Preis für die Herstellung eines Produkts und \(x_i\) dann die Anzahl wie oft das Produkt hersgetellt werden soll und \(x_i\) sind eben die 
+    hergenommen. Zum Beispiel ist \(g_i\) dann der Preis für die Herstellung eines Produkts und \(x_i\) dann die Anzahl wie oft das Produkt hergestellt werden soll und \(x_i\) sind eben die 
     Parameter die eingestellt werden sollen. Dazu sind idR. Randbedingungen gegeben, wie '\(x_1\) darf höchstens doppelt so oft hergestellt werden wie \(x_2\)'. Dann gibt es noch triviale 
-    Randbedingungen. Da man nicht negativ produzieren kann gilt meistens auch \(x_i \ge 0\). Somit erhält man einige Ungleichungen und Gleichung. Zuerst schriebt man alle (Un)Hleichungen 
-    untereinander auf und drhet jedes Ungleichungszeichen (Multiplikation mit -1) um damit alle Ungleichungszeichen in die selbe Richtung zeigen. Nun versucht man Variablen zu eliminieren
+    Randbedingungen. Da man nicht negativ produzieren kann gilt meistens auch \(x_i \ge 0\). Somit erhält man einige Ungleichungen und Gleichung. Zuerst schriebt man alle (Un)Gleichungen 
+    untereinander auf und dreht jedes Ungleichungszeichen (Multiplikation mit -1) um damit alle Ungleichungszeichen in die selbe Richtung zeigen. Nun versucht man Variablen zu eliminieren
     indem man de GLeichungen die man hat nach einer Variable umstellt und dann diese Variable in den Ungleichungen ersetzt. Beispiel:
     \begin{equation*}
         x_1 + x_2 = 0 \Rightarrow x_1 = -x_2    
     \end{equation*}
     \(x_1\) kan in diesem Beispiel mit \(-x_2\) in den Ungleichungen ersetzt werden. Wenn man die ganzen Gleichungen in ein Diagramm einzeichnet erhält man ein Vieleck mit Kanten die eben 
-    von den Ungleichungen darsgetellt werden. Man kann jetzt jeden Schnittpunkt anschauen, die Werte berechnen die herauskommen wenn man die x-Koordianten in die Gewinngleichung einsetzt und
-    vergleicht wie jeden Wert und sucht sich den höchsten/nidrigsten Wert als Lösung heraus. Bei vielen Parametern kann das schnell viele Berechnungen benötigen. Man kann auch das Diagramm wieder
-    hernehmen. Hier sucht man sich einen geigneten Startpunkt (eine Punkt an einer Kante) und schaut ob man ob die Kante ansteigt oder waagrecht verläuft und folgt dieser Kante bis man 
-    einen Schnittpunkt findet. Hier wird wiederum geschaut ob es eine Kante hǵibt die ansteigt oder waagrecht verläuft. Dies wird wiederholt bis das nicht mehr möglich ist. Der Letzt gefundene
+    von den Ungleichungen dargestellt werden. Man kann jetzt jeden Schnittpunkt anschauen, die Werte berechnen die herauskommen wenn man die x-Koordinaten in die Gewinngleichung einsetzt und
+    vergleicht wie jeden Wert und sucht sich den höchsten/niedrigsten Wert als Lösung heraus. Bei vielen Parametern kann das schnell viele Berechnungen benötigen. Man kann auch das Diagramm wieder
+    hernehmen. Hier sucht man sich einen geeigneten Startpunkt (eine Punkt an einer Kante) und schaut ob man ob die Kante ansteigt oder waagrecht verläuft und folgt dieser Kante bis man 
+    einen Schnittpunkt findet. Hier wird wiederum geschaut ob es eine Kante gibt die ansteigt oder waagrecht verläuft. Dies wird wiederholt bis das nicht mehr möglich ist. Der Letzt gefundene
     Schnittpunkt, welcher noch das Vieleck umspannt, erhält dann die Parameter für die Lösung. 
     \subsection{Simplexalgorihmus}
-    Da man schwer vier, fünf oder sechs Dimensionen zeichnen kann gibt es den Simplexalgorihmus welcher den Optimalwert rechnerisch ermitteln kann. Hier muss zuerst ein Tabloet erstellt werden.
+    Da man schwer vier, fünf oder sechs Dimensionen zeichnen kann gibt es den Simplexalgorihmus welcher den Optimalwert rechnerisch ermitteln kann. Hier muss zuerst ein Tablot erstellt werden.
     Die Form des Tablots ist wie folgt:
     \(
         \begin{pmatrix}
@@ -55,12 +55,12 @@
             \end{matrix}   
         \end{pmatrix}
     \)
-    Wobei Die Matrix A Die Ungleichungen ind Marixform ist, \(\vec{g} = G\) eine Lösung ist von der man weiß, dass sie die Gewinnfunktion erfüllt und sich \(\vec{k} = A\vec{u} - \vec{b}\). Dabei ist
+    Wobei Die Matrix A Die Ungleichungen ind Matrixform ist, \(\vec{g} = G\) eine Lösung ist von der man weiß, dass sie die Gewinnfunktion erfüllt und sich \(\vec{k} = A\vec{u} - \vec{b}\). Dabei ist
     \(\vec{u}\) auch der Vektor der die Gewinnfunktion erfüllt. 
 
     \section{Finanzmathematik}
         \subsection{Folgen und Reihen}
-        Eine Zahlenfolge ist eine Abbildung, welche wie folgt defineiert ist:
+        Eine Zahlenfolge ist eine Abbildung, welche wie folgt definiert ist:
         \begin{equation*}
             a = \mathbb{N} \rightarrow \mathbb{R}
         \end{equation*}
@@ -82,11 +82,11 @@
         \end{equation*}
 
         \subsection{Einfache Verzinsung}
-        Sollen Zinsen nicht miteinander Verzinst werden (Zinsen werden auf ein anderes Konto ausgezahlt) spircht ma nvon einfacher Verzinsung. Es gilt folgenden Formel:
+        Sollen Zinsen nicht miteinander Verzinst werden (Zinsen werden auf ein anderes Konto ausgezahlt) spricht man von einfacher Verzinsung. Es gilt folgenden Formel:
         \begin{equation*}
             K_n = K_0(1 + n \cdot i)
         \end{equation*}
-        Wobei \(K_n\) das Kapitale nach \(n\) Zinsperioden dasrstellt. \(K_0\) ist dabei das Startkapital, \(i\) die Zinsrate\footnote{\(i \cdot 100 \equiv Zinsrate in Prozent\)} und \(n\)
+        Wobei \(K_n\) das Kapitale nach \(n\) Zinsperioden darstellt. \(K_0\) ist dabei das Startkapital, \(i\) die Zinsrate\footnote{\(i \cdot 100 \equiv Zinsrate in Prozent\)} und \(n\)
         eben die Laufzeit in Zinsperioden (meistens Monate oder Jahre).
             \subsubsection{Verzinsung mit Zinseszins}
             Hier werden die Zinsen mitverzinst (Zinsen werden aufs selbe Konto ausgezahlt). Die Formel lautet: 
@@ -95,29 +95,29 @@
             \end{equation*} 
 
             \subsubsection{Stetige Verzinsung}
-            Unter stetiger Verzinsung versteht man, dass die Zinsen nicht jeden Monat oder jeden Tag angerechnet werden sondern zu jedem Augenblick. Dafür wird folgende Fromel werwendet: 
+            Unter stetiger Verzinsung versteht man, dass die Zinsen nicht jeden Monat oder jeden Tag angerechnet werden sondern zu jedem Augenblick. Dafür wird folgende Formel werwendet: 
             \begin{equation*}
                 K_n = K_0 e^{i \cdot n}
             \end{equation*}
 
             \subsubsection{Gemischte Verzinsung}
-            Wenn man als Zisnperiode ein gnazes Jahr hat aber man die Verzinsung miiten in der Zinsperiode 'abbrechen' will wird folgende Formel benutzt:
+            Wenn man als Zinsperiode ein ganzes Jahr hat aber man die Verzinsung mitten in der Zinsperiode 'abbrechen' will wird folgende Formel benutzt:
             \begin{equation*}
                 K_n = K_0(1 + i)^{\lfloor n \rfloor} 
-                \cdot (1 + i (n - \lfloor n \rfloor)\footnote{Die Klammern sind Gaussche Rundungsklammern. Sind sie wie hier nach unten gerichtet, wird abgerundet und wenn sie nach oben gerichtet sind, wird aufgerundet})
+                \cdot (1 + i (n - \lfloor n \rfloor)\footnote{Die Klammern sind Gaußsche Rundungsklammern. Sind sie wie hier nach unten gerichtet, wird abgerundet und wenn sie nach oben gerichtet sind, wird aufgerundet})
             \end{equation*}
 
             \subsubsection{Freigeld}
             Die Idee hinter Freigeld ist dass Geld nicht wir Lebensmittel oä. verderben kann. Um das zu korrigieren kann man die Formel für einfache Verzinsung (wenn man Bargeld hat) bzw. 
             die Formel für den Zinseszins hernehmen (Girokonto). Hier nimmt man als Zinsrate einfach den Negativwert. 
         \subsection{Investitions- und Finanzrechnung}
-        Die Investionsrechnung wird verwendet um zu bestimmen ob sich eine Investions im Laufe der Zeit lohnen wird. Zuerst zieht man die Kosten der Investions vom Kapital ab.
-        Gegenfalls schaut man ob es periodische Zahlungen gibt die man leisten muss (Wartungsarbeiten, Kreditszinsen etc.) und zieht diese auch ab. Man schätz nun den Gewinn den die Investion im Monat/Jahr etc.
+        Die Investitionsrechnung wird verwendet um zu bestimmen ob sich eine Investitions im Laufe der Zeit lohnen wird. Zuerst zieht man die Kosten der Investitions vom Kapital ab.
+        Gegenfalls schaut man ob es periodische Zahlungen gibt die man leisten muss (Wartungsarbeiten, Kreditszinsen etc.) und zieht diese auch ab. Man schätz nun den Gewinn den die Investition im Monat/Jahr etc.
         macht, zieht noch eventuelle Zahlungen ab und erhält den Monats/Jahresgewinn. Dies macht man für alle Monate für die eine Schätzung machbar ist, verzinst diese dementsprechend und vergleicht den 
         Gesamtgewinn mit dem Gewinn den man erhält wenn man nicht investiert mit dem über dem selben verzinsten Kapital, das man hat wenn man nicht investiert.
 
         \subsection{Rentenrechnung}
-        Unter einer Renter versteht man im Allgemeinem eine regelmäßige Ein- oder Auszahlung. Es wird zwischen auch noch eine Unterschiedung getroffen wenn die Zinsperiode der Rentenperiode gleicht
+        Unter einer Rente versteht man im Allgemeinem eine regelmäßige Ein- oder Auszahlung. Es wird zwischen auch noch eine Unterscheidung getroffen wenn die Zinsperiode der Rentenperiode gleicht
         (man zahl jeden Monat einen gewissen Betrag aufs Sparbuch und bekommt jeden Monat auch Zinsen auf das Geld) und wenn die  Rentenperiode kleiner der Zinsperiode ist (man zahlt monatlich ein 
         bekommt aber nur jährlich Zinsen).
             \subsubsection{Zinsperiode = Ratenperiode}
@@ -125,7 +125,7 @@
                 \begin{equation*}
                     R_n = r \cdot q \cdot \frac{q^n - 1}{q-1}
                 \end{equation*}
-                \(r\) ist die Ratenzahlung, \(n\) wieder die Anzhal der Ratenperioden, \(q\) berechnet sich durch \(q = 1 +i\), wobei \(i\) wieder der Zins ist. Die Formel gilt für vorschüssige Ratenzahlungen und nachschüssige Zinszahlungen.
+                \(r\) ist die Ratenzahlung, \(n\) wieder die Anzahl der Ratenperioden, \(q\) berechnet sich durch \(q = 1 +i\), wobei \(i\) wieder der Zins ist. Die Formel gilt für vorschüssige Ratenzahlungen und nachschüssige Zinszahlungen.
                 Für die nachschüssige Ratenzahlung gilt: 
                 \begin{equation*}
                     R_n = r \cdot \frac{q^n - 1}{q - 1}
@@ -139,10 +139,10 @@
                 Wobei das \(m\) die Anzahl der Ratenzahlungen pro Zinsperiode ist.
         
         \subsection{Tilgungsrechnung}
-        Bei der Tilgunsrechnung geht es idR. umd die Rückzahlung eines Krdited (bzw. allgemein Schulden). Die Annuität bezeichnet damit den Betrag, der periodisch zurückgezahlt werden muss.
+        Bei der Tilgungsrechnung geht es idR. umd die Rückzahlung eines Kredit (bzw. allgemein Schulden). Die Annuität bezeichnet damit den Betrag, der periodisch zurückgezahlt werden muss.
         Die Annuität setzt sich wiederum aus der Tilgungsrate (Betrag der zurückgezahlt werden soll) und dem Zinsbestandteil (Zinsen die pro Periode von den Restschulden dazukommen).
             \subsubsection{jährliche Ratentilgung}
-            Soll die Tilgunsrate jedes Jahr (Periode) gleich bleiben ergibt sich folgende Formel:
+            Soll die Tilgungsrate jedes Jahr (Periode) gleich bleiben ergibt sich folgende Formel:
             \begin{equation*}
                 T = \frac{S}{n}
             \end{equation*}
@@ -151,7 +151,7 @@
             \begin{equation*}
                 Z_r = T \cdot (n - r + 1) \cdot i
             \end{equation*} 
-            \(i\) ist dabei wieder der Zinsatz, n Die Kreditlaufzeit und \(T\) die Tilgungsrate. \\
+            \(i\) ist dabei wieder der Zinssatz, n Die Kreditlaufzeit und \(T\) die Tilgungsrate. \\
             Die Annuität ergibt sich dann wenn man die beiden speziellen Formeln nun in die allgemeine Formel von oben einsetzt und umformt: 
             \begin{equation*}
                 A = T \cdot (1 + (n - r + 1)i)
@@ -164,11 +164,11 @@
         \subsection{Stichproben}
             Bei der Statistik versucht man allgemeine Aussagen über einen bestimmten Datensatz zu erheben. Bei Millionen von Daten ist es oft nicht sinnvoll alle 
             Daten einzeln zu betrachten. Die Datenmenge wird auch als Beobachtungsmenge (B) bezeichnet. Jedem Element aus B wird dann ein bestimmtes Merkmal zugeordnet.
-            Die Merkmale können disktret\footnote{\(\mathbb{N}_0\) also alles was abzählbar ist wie Gehalt oder Anzahl von Besuchern etc.} oder stetig\footnote{Intervalle in \(\mathbb{R}\), beleibig genau ermittelbare Werte
+            Die Merkmale können disktret\footnote{\(\mathbb{N}_0\) also alles was abzählbar ist wie Gehalt oder Anzahl von Besuchern etc.} oder stetig\footnote{Intervalle in \(\mathbb{R}\), beliebig genau ermittelbare Werte
             wie Zeit Länge} sein. Weiter ist Urliste eine Teilmenge aus B mit den zugehörigen Merkmalswerten. Die Merkmalswerte aus der Urliste bilden dann die Stichprobe, welche 
-            geordnet oder ungeordnet sein kann. Der Stichprobenumganf (n) ist dann diue Kardinalität der Stichprobenmenge.
+            geordnet oder ungeordnet sein kann. Der Stichprobenumfang (n) ist dann die Kardinalität der Stichprobenmenge.
         \subsection{Häufigkeiten, empirische Verteilungsfunktion}
-            Bei Häufigketien wird zwischen der absoluten und relativen Haüfigkeiten unterschieden. Dafür nimmt man die zuerst die Funktion \(g(x)\) her, welche zählt wie oft
+            Bei Häufigkeiten wird zwischen der absoluten und relativen Häufigkeiten unterschieden. Dafür nimmt man die zuerst die Funktion \(g(x)\) her, welche zählt wie oft
             ein Element \(x\) in der Stichprobe vorkommt. Dies ist dann die absolute Häufigkeit. Teilt man die absolute Häufigkeit durch \(n\)\footnote{Stichprobenumfang}.
             \begin{equation*}
                 \begin{aligned}
@@ -184,10 +184,10 @@
                     & \text{relative Summenhäufigkeit:} & H(x) = \frac{1}{n} G(x) &  
                 \end{aligned}
             \end{equation*}  
-            Die realtive Summenhäufigkeit wird auch die empirische Verteilfunktion genannt. Durch die Summenhüfigkeit werden Häufigkeiten zusammengefasst und man kann
-            allgemeinere Aussagen für die zusammengefassten Häufigketien machen.
+            Die relative Summenhäufigkeit wird auch die empirische Verteilfunktion genannt. Durch die Summenhäufigkeit werden Häufigkeiten zusammengefasst und man kann
+            allgemeinere Aussagen für die zusammengefassten Häufigkeiten machen.
         \subsection{Klasseneinteilung}
-            Oft ist es sinnvoll Stichporbenwerte in Klassen einzuteilen. Dafür wählt man zuerst die Anzahl an Klassen die man haben möchte (hie: \(l\)). Nun teilt man die
+            Oft ist es sinnvoll Stichprobenwerte in Klassen einzuteilen. Dafür wählt man zuerst die Anzahl an Klassen die man haben möchte (hie: \(l\)). Nun teilt man die
             den Stichprobenumfang durch \(l\). Dadurch erhält man die Klassenbreite \(w\) (ggf. muss gerundet werden). Die Klassenbreite gibt an wie viele Einzelemenet zusammengefasst werden
             soll (durch Addition). Hat man alle Klassen zusammengefasst kann man nun allgemeinere Aussagen über bestimmte Teile der Stichprobe machen (Aussagen über den Verdienst von 
             Personen die weniger als 20h, zwischen 20h und 40h und mehr als 40h die Woche arbeiten als Beispiel). \\
@@ -201,7 +201,7 @@
             \end{itemize}  
         \subsection{Statistische Parameter}
             Desto allgemeiner man eine Stichprobe behandelt, desto übersichtlicher  aber auch desto ungenauer werden die Informationen.
-            Es gibt statistische Paramter welche die Stichprobe in eine einzelne Zahl zusammenfassen: 
+            Es gibt statistische Parameter welche die Stichprobe in eine einzelne Zahl zusammenfassen: 
             \begin{equation*}
                 \begin{aligned}
                     & \text{arithmetisches Mittel/Stichprobenmitte: } & \overline{x} = \frac{1}{n} \sum_{i=1}^n x_i \\
@@ -213,8 +213,8 @@
                 \end{aligned}
             \end{equation*}
         \subsection{Zweidimensionale Stichproben}
-            Eine Zweidimensionale Stiichprobe ist wie eine normale Stichporbe nur dass da jetzt noch ein weiteres Merkmal auftritt, wodurch Zahlenpaare entstehen 
-            (zB. Antatt nur Einkommen als Mekrmal wird jetzt Einkommen und Steuern untersuch). Für zweidimensionale Stichproben gelten (mit kleinen Änderungen) die
+            Eine Zweidimensionale Stichprobe ist wie eine normale Stichprobe nur dass da jetzt noch ein weiteres Merkmal auftritt, wodurch Zahlenpaare entstehen 
+            (zB. Anstatt nur Einkommen als Merkmal wird jetzt Einkommen und Steuern untersuch). Für zweidimensionale Stichproben gelten (mit kleinen Änderungen) die
             selben Definitionen:
             \begin{equation*}
                 \begin{aligned}
@@ -222,15 +222,15 @@
                     & \text{absolute Häufigkeit: } & g(x,y) \neq 0 \Leftrightarrow x,y \in \{ (x_1,y_1),(x_2,y_2),..., (x_n,y_n)\} \\
                     & \text{relative Häufigkeit: } & h(x,y) = \frac{1}{n} g(x,y) \\
                     & \text{Summenhäufigkeit: } & G(x,y) = \sum_{\{ (a,b): a\leq x, b\leq y \}} g(a,b) \\
-                    & \text{empirische Vertielungsunktion: } & H(x,y) = \sum_{\{ (a,b): a\leq x, b\leq y \}} h(a,b) \\
+                    & \text{empirische Verteilungsfunktion: } & H(x,y) = \sum_{\{ (a,b): a\leq x, b\leq y \}} h(a,b) \\
                     & \text{Klassenhäufigkeiten: } & \tilde{h_{ij}} = \sum_{x \in KX_i, y \in KY_j} = h(x,y) \\
                     & \text{Randhäufikeiten für ein festes x/y: } & h_{x/y} (x/y) = \sum_{x/y \in \mathbb{R}} h(x,y) \footnote{Mit x/y ist x oder y gemeint} \\
                \end{aligned}
             \end{equation*}
             
             \subsection{Lineare Regression}
-                Zeichnet man die Stichprobenwerte in ein Diagramm ein erählt man eineige Punkt in einem Diagramm. Mit der linearen Regression sucht man eine Funtion, welche ungefähr
-                der Richtung der Punkten entspricht. Für die Funktion \(y = ax + b\) müssen \(a\) und \(b\) so gewählt werden, damit der Abstand von der Geraden zu den Punkten mäglichst klein wird.
+                Zeichnet man die Stichprobenwerte in ein Diagramm ein erhält man einige Punkt in einem Diagramm. Mit der linearen Regression sucht man eine Funktion, welche ungefähr
+                der Richtung der Punkten entspricht. Für die Funktion \(y = ax + b\) müssen \(a\) und \(b\) so gewählt werden, damit der Abstand von der Geraden zu den Punkten möglichst klein wird.
                 Die einzelnen Abstände \(\Delta \) werden dann quadriert und danach zusammenaddiert. \(a\) und \(b\) sollen so gewählt werden, dass \(\Delta ^2\) möglichst klein wird.
                 Diese Methode zur Ermittlung der Regressionsgeraden heißt "Methode der kleinsten Quadrate". Die Kovarianz bei zweidimensionalen Stichproben wird wie folgt ermittelt:
                 \begin{equation*}
@@ -244,7 +244,7 @@
                 \begin{itemize}
                     \item \(-1 \leq r_{xy} \leq 1\)
                     \item Wenn \(r_{xy} = 1\) oder \(r_{xy} = -1\) liegen die Messpunkte direkt auf einer Geraden
-                    \item Wenn \(r_{xy} = 0\) dann haben die Mekrmale \(X\) und \(Y\) keinen Zusammenhang
+                    \item Wenn \(r_{xy} = 0\) dann haben die Merkmale \(X\) und \(Y\) keinen Zusammenhang
                     \item Gibt es mehr als 2 Merkmale kann man selber Paare bilden und sieht dadurch wie stark Merkmale direkt miteinander zusammenhängen 
                 \end{itemize} 
 
@@ -291,11 +291,11 @@
 
     \section{Wahrscheinlichkeitstheorie}
         \subsection{Zufallsexperimente}
-            Ein Zufallsexperimente ist ein bleiebig wiederholbarer Verusch, bei dem eine bestimmte Menge als Ausgang möglich ist, die auch bei jeder Wiederholung gleich bleiben muss.
-            Der Ausgang kann dabei auch nicht vohergesagt werden.
+            Ein Zufallsexperimente ist ein beliebig wiederholbarer Versuch, bei dem eine bestimmte Menge als Ausgang möglich ist, die auch bei jeder Wiederholung gleich bleiben muss.
+            Der Ausgang kann dabei auch nicht vorhergesagt werden.
             \begin{itemize}
-                \item Jeder einezelene Ausgang heißt Ergebnis (oa. Elemtareignis) und wird mit \(\omega\) bezeichnet.
-                \item Die Menge aller Ereignise heißt \(\Omega\)
+                \item Jeder einzelnen Ausgang heißt Ergebnis (oa. Elementarereignis) und wird mit \(\omega\) bezeichnet.
+                \item Die Menge aller Ereignisse heißt \(\Omega\)
                 \item Eine Teilmenge von \(\Omega\) heißt Ereignis
                 \item Ist \(A\) eine Teilmenge von \(\Omega\) so ist \(\overline{A}\) das komplementäre Ereignis zu \(A\). \(\overline{A}\) beinhält alle Ergebnisse die nicht in \(A\)
                     vorkommen \(\Rightarrow \overline{A} = \Omega \setminus A\)
@@ -312,7 +312,7 @@
             Möchte man Zufallsexperimente durchführen, wobei die Ergebnisse verschiedene Wahrscheinlichkeiten haben, könnte man einen Versuch sehr oft durchführen um eine Näherung 
             einer Wahrscheinlichkeit zu bekommen. Dies kann oft nicht durchgeführt werden, weshalb man Eigenschaften definiert hat, fie Wahrscheinlichkeiten erfüllen müssen. \\
             Ein Zufallsexperiment hat der Ereignismenge \(\Omega\), wobei  \(A\) eine Ereignisalgebra auf \(\Omega\) ist. Nun heißt die Abbildung \(p: A \mathbb{R} \) Wahrscheinlichkeit oder
-            afuch Wahrscheinlichkeitsmaß wenn gilt:
+            auch Wahrscheinlichkeitsmaß wenn gilt:
             \begin{enumerate}
                 \item 0 \(\le\) \(p(A)\) \(\le\) 1
                 \item \(p(\Omega) = 1\)
@@ -327,7 +327,7 @@
                 \item \(A\) und \(B\) sind Ereignisse: \(A \subset B \Rightarrow p(A) \le p(B)\)
             \end{enumerate}
         \subsection{Bedingte Wahrscheinlichkeit}
-            Beingte Wahrscheinlichkeiten setzen vorraus dass eine bestimmtes Ereignis schon eingetroffen und man nun die Wahrscheinlichkeit der 'nächsten' Wahrscheinlichkeit berechnen möchte. \\
+            Bedingte Wahrscheinlichkeiten setzen vorraus dass eine bestimmtes Ereignis schon eingetroffen und man nun die Wahrscheinlichkeit der 'nächsten' Wahrscheinlichkeit berechnen möchte. \\
             Wenn \(A\) und \(B\) Ereignisse sind, \(p(B) \neq 0\) dann heißt 
             \begin{equation*}
                 p_B(A) = p(A|B) := \cfrac{p (A \cap B)}{p(B)}
@@ -337,12 +337,12 @@
                 p(A \cap B) = p(B) \cdot p(A|B) = p(A) \cdot p(B|A) 
             \end{equation*}
             Satz der totalen Wahrscheinlichkeit:\\
-            \(B\) sein ein Ereignis. \(A_1,A_2,\cdots,A_3\) sind paarweise diskunkte Ereignisse die zusammenn \(\Omega\) ergeben \(\Omega = \bigcup\limits_{i=1}^n A_i \), dann gilt: 
+            \(B\) sein ein Ereignis. \(A_1,A_2,\cdots,A_3\) sind paarweise diskunkte Ereignisse die zusammen \(\Omega\) ergeben \(\Omega = \bigcup\limits_{i=1}^n A_i \), dann gilt: 
             \begin{equation*}
                 p(B) = \sum\limits_{i=1}^n p(B|A_i) \cdot p(A_i)
             \end{equation*}
         \subsection{Satz von Bayes}
-            \(A_1,A_2,\cdots,A_3\) sind paarweise disjunkte Erignisse, \(\Omega = \bigcup\limits_{i=1}^n A_i\), \(B\) ist ein Ereignis und es gilt \(p(B) > 0\) außerdem ist \(i,j \; \epsilon \; \mathbb{N}\), so gilt:
+            \(A_1,A_2,\cdots,A_3\) sind paarweise disjunkte Ereignisse, \(\Omega = \bigcup\limits_{i=1}^n A_i\), \(B\) ist ein Ereignis und es gilt \(p(B) > 0\) außerdem ist \(i,j \; \epsilon \; \mathbb{N}\), so gilt:
             \begin{equation*}
                 P(A_i|B) = \cfrac{p(B|A_i) \cdot A_i}{\sum\limits_{j=1}^n p(B|A_j) \cdot p(A_j)} %TODO
             \end{equation*}
@@ -361,7 +361,7 @@
             \begin{equation*}
                 X: \Omega \rightarrow \mathbb{R}, x=X(\omega)
             \end{equation*}
-            \(X\) heißst diskrete Zufallsvariable, wenn deren Wertebereich endlich oder abzählbar undendlich ist. \\
+            \(X\) heißt diskrete Zufallsvariable, wenn deren Wertebereich endlich oder abzählbar undendlich ist. \\
             Die Funktion  \(f(X): \mathbb{R} \rightarrow \mathbb{R}\) mit 
             \[f(X)=
                 \begin{cases}
@@ -412,7 +412,7 @@
                     E(X) = \frac{n+1}{2}
                 \end{equation*} 
             \subsubsection{Bernoulli-Verteilung}
-                Wenn die Zufallsvariable nur 2 Werte liefern kann, spircht man von einer Bernoulli-Verteilung, es gilt:
+                Wenn die Zufallsvariable nur 2 Werte liefern kann, spricht man von einer Bernoulli-Verteilung, es gilt:
                 \begin{itemize}
                     \item Dichte: \[f(x)=
                                                         \begin{cases}
@@ -450,8 +450,8 @@
             \end{itemize}
             \subsubsection{Hypergeometrische Verteilung}
                 Bei der Binomialverteilung wird ein Bernoulli-Experiment mehrfach ausgeführt und die Wahrscheinlichkeit bleibt bei jedem Durchgang gleich. Wenn sich die Wahrscheinlichkeit
-                aber ändern können soll nimmt man die Hypergeometrische Vertielung (Möchte man ein Prdoukt 100 mal testen, geht man davon aus, dass es bei jedem Versuch immer ein Stück mehr kaputt geht).\\
-                Sei \(N\) die Anzahl der Elemente und \(S \subset N\) und \(n\) die Anzahl, wie oft ein Verusch durchgeführt wird, so gilt: 
+                aber ändern können soll nimmt man die Hypergeometrische Verteilung (Möchte man ein Produkt 100 mal testen, geht man davon aus, dass es bei jedem Versuch immer ein Stück mehr kaputt geht).\\
+                Sei \(N\) die Anzahl der Elemente und \(S \subset N\) und \(n\) die Anzahl, wie oft ein Versuch durchgeführt wird, so gilt: 
                 \begin{itemize}
                     \item Erwartungswert: \(E(X) = n \cdot \cfrac{S}{N}\)
                     \item Varianz: \(V(X) = n \cfrac{S}{N} \Bigg(1 - \cfrac{S}{M} \Bigg) \cfrac{N - n}{N - 1} \)
@@ -488,7 +488,7 @@
                 \end{itemize}
                 Ist \(X, \mu, \sigma\) normalverteil, dann ist \(Y := \cfrac{x - \mu}{\sigma}\) tandardnormalverteilt.
             \subsubsection{Exponentiallverteilung}
-                Die Exponentiallverteilung ist ein Model für die Lebensdauer für Produkte.
+                Die Exponentialverteilung ist ein Model für die Lebensdauer für Produkte.
                 \begin{itemize}
                     \item Dichte: \(f(x) = f(x, \lambda) = \lambda e^{-\lambda x}\) \text{ für \(x \ge 0\); ansonsten 0 für \(x < 0 \) }
                     \item Erwartungswert: \(E(X) = \cfrac{1}{\lambda} \)

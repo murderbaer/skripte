@@ -25,12 +25,12 @@ pdftitle={Analysis 1}
     \tableofcontents
     \newpage
 
-    \section{Differentialgelichungen allgemein}
+    \section{Differentialgleichungen allgemein}
         Eine Differentialgleichung (DGL) ist eine Funktion in der Ableitung von genau dieser Funktion auftreten können und hat die Form: 
         \begin{equation}
             y' + a(x) \cdot y = b(x) 
         \end{equation}
-        Ist \(b(x) = 0\) nennt man die DGL eine homgene DGL, ansonsten hat man eine inhomogene DGL. Die Ordnung einer DGL ist gleich der höchsten Ableitung,
+        Ist \(b(x) = 0\) nennt man die DGL eine homogene DGL, ansonsten hat man eine inhomogene DGL. Die Ordnung einer DGL ist gleich der höchsten Ableitung,
         welche in der DGL zu finden ist. \\
         Löst man eine DGL nach der höchsten Ableitung auf\footnote{Falls überhaupt möglich} hat man die DGL in die explizite Form gebracht; ansonsten hat
         man die implizite Form. \\
@@ -40,7 +40,7 @@ pdftitle={Analysis 1}
         auch \(n\) Werte gebraucht. 
 
     \section{Differentialgleichungen 1. Ordnung}
-        \subsection{Trennung der Variabeln}
+        \subsection{Trennung der Variablen}
         Ein relatives einfaches Verfahren zum Lösen von DGLs 1. Ordnung nennt sich "Trennung der Variablen". Damit man das Verfahren anwenden kann muss die DGL aber
         separabel sein, also alle \(x\)-Werte und alle \(y\)-Werte müssen jeweils auf einer Seite stehen können. \\
         Da man ein DGL erster Ordnung hat, ist die höchste vorkommende Ableitung \(y'\), was man aber auch als \(\frac{dy}{dx}\) schreiben kann. Wenn man jetzt sowohl alle 
@@ -59,18 +59,18 @@ pdftitle={Analysis 1}
         Die zwei Typen sind \(y' = f(ax + bx + c)\) und \(y' = \frac{y}{x}\).
         \subsubsection{Typ: linear}
         Sei \(u\) die Variabel die zur Substitution genommen wird. Zuerst wird \(u\) der Gleichung gleichgesetzt: \(u = ax + by +c\). Wenn man \(u\) nun
-        differenziert erhält man \(u' = a + by'\). \(u\) ist von x abhängig, da \(u\) nur von den variabeln \(x\) und \(y\) abhängig ist und \(y\) wiederum 
+        differenziert erhält man \(u' = a + by'\). \(u\) ist von x abhängig, da \(u\) nur von den Variablen \(x\) und \(y\) abhängig ist und \(y\) wiederum 
         nur von \(x\) abhängig ist. Daraus folgt, dass \(u' = \cfrac{du}{dx}\) gilt. 
         \begin{equation}
             u' = \frac{du}{dx} = a + b \cdot y'
         \end{equation}
-        \(y'\) kann man wiederum durch \(f(u)\) ersezten, wodurch man eine DGL erhält, welche nur noch von \(u\) abhängig ist: 
+        \(y'\) kann man wiederum durch \(f(u)\) ersetzen, wodurch man eine DGL erhält, welche nur noch von \(u\) abhängig ist: 
         \begin{equation}
             u' = \frac{du}{dx} = a + b \cdot f(u)
         \end{equation}
-        Diese DGL kann man dann durch Trennung der Variabeln lösen und rücksubstituiert das \(u\) mit den ursprünglichen Werten.
+        Diese DGL kann man dann durch Trennung der Variablen lösen und rücksubstituiert das \(u\) mit den ursprünglichen Werten.
         \subsubsection{Typ: quotient}
-        Es gilt dasselbe Prinzip wie bei der linearen Funktion. Man substitutiert nun \(\frac{y}{x} = u\). Dementsprechend gilt auch \(y = x \cdot u\). \\
+        Es gilt dasselbe Prinzip wie bei der linearen Funktion. Man substituiert nun \(\frac{y}{x} = u\). Dementsprechend gilt auch \(y = x \cdot u\). \\
         Wird dies nun differenziert erhält man \(y' = u + x \cdot u'\). Dabei gilt wiederum \(y' = f(\frac{y}{x}) = f(u)\). Wird dies entsprechend eingesetzt gilt:
         \begin{equation}
             u' = \frac{du}{dx} = \frac{f(u) - u}{x}     
@@ -82,7 +82,7 @@ pdftitle={Analysis 1}
             y' + f(x) \cdot y = g(x)
         \end{equation}
         Hier wird \(g(x)\) auch als Störfunktion bezeichnet. Ist \(g(x) = 0\) ist die DGL homogen, ansonsten ist sie inhomogen. Eine homogene DGL lässt sich 
-        durch Trennung der Variabeln lösen. Dazu gibt es auch eine allgemein Lösungsform:
+        durch Trennung der Variablen lösen. Dazu gibt es auch eine allgemein Lösungsform:
         %nochmals nachschauen TODO
         \begin{equation}    
             \begin{aligned}
@@ -104,7 +104,7 @@ pdftitle={Analysis 1}
         \begin{equation}
             y = y_h + y_p
         \end{equation}
-        Zuerst wird die homogene Lösung berechnent. Nun muss noch der richtige Ansatz gewählt werden um die partikuläre Lösung zu finden. \\
+        Zuerst wird die homogene Lösung berechnet. Nun muss noch der richtige Ansatz gewählt werden um die partikuläre Lösung zu finden. \\
         \begin{tabular}{|p{6cm}|p{6cm}|}
             \hline
             Störfunktion \(g(x)\) & Lösungsansatz \(y_p(x)\)  \\
@@ -128,8 +128,8 @@ pdftitle={Analysis 1}
             
             \hline
         \end{tabular}\\
-        Um nun die partikulöre Lösung zu finden nimmt den gefundenen Ansatz her und leitet diesen ab. \(y_p'\) und \(y_p\) werden nun in die ursprüngliche, inhomogene
-        Gleichung eingesetzt. Nun muss man nur noch umformen und einen Koeffizientenvergleich vornehmen um die unbestimmeten Konstanten\footnote{Damit sind die \(C_n\) aus der Tabelle gemeint} zu finden. \\
+        Um nun die partikuläre Lösung zu finden nimmt den gefundenen Ansatz her und leitet diesen ab. \(y_p'\) und \(y_p\) werden nun in die ursprüngliche, inhomogene
+        Gleichung eingesetzt. Nun muss man nur noch umformen und einen Koeffizientenvergleich vornehmen um die unbestimmten Konstanten\footnote{Damit sind die \(C_n\) aus der Tabelle gemeint} zu finden. \\
         Beim Koeffizientenvergleich schaut man auf beiden Seiten, was als Vorfaktoren bei den \(x\)-Werten steht. Beispiel: 
         \begin{equation*}
             2C_1x^2 + (2C_1 + 2C_2)x + (C_2+ 3C_3) = 2x^2 + 0 \cdot x - 4 
@@ -137,7 +137,7 @@ pdftitle={Analysis 1}
         Auf beiden Seiten steht ein \(x^2\). Hier sieht man auch, dass \(C_1 = 1\) sein muss damit die Koeffizienten auf beiden Seiten übereinstimmen. Den "Vergleich" führt man 
         nun mit allen \(C_n\) durchgeführt. Zum Schluss werden die \(C_n\)-Werte in den zuvor gewählten Ansatz eingefügt und man erhält die partikuläre Lösung.  
     \section{Lineare Differentialgleichungen 2. Ordnung}
-        Eine DGL 2. Ordnung löst man weitesgehend wie eine eine DGL 1. Ordnung, indem man wieder die homgene und die partikuläre Lösung findet und aus diesen  die Summe bildet:
+        Eine DGL 2. Ordnung löst man weitesgehend wie eine eine DGL 1. Ordnung, indem man wieder die homogene und die partikuläre Lösung findet und aus diesen  die Summe bildet:
         \begin{equation}
             \begin{aligned}
                 & y'' + ay' + by = g(x) \\
@@ -174,12 +174,12 @@ pdftitle={Analysis 1}
         %TODO: Tabelle mit Störfunktionen 
     
         \section{Differentialgleichungen n-ter Ordnung}
-        \subsection*{Homgene Lösung}
+        \subsection*{Homogene Lösung}
         
-        Für die Lösung wird wieder das Prinzip aus der DGL 2. Ordnung genommen. Bei der homogonen Lösung wird nun eine Linearkombination aus \(C_n \cdot \lambda^n \) und 
+        Für die Lösung wird wieder das Prinzip aus der DGL 2. Ordnung genommen. Bei der homogenen Lösung wird nun eine Linearkombination aus \(C_n \cdot \lambda^n \) und 
         zwar aus allen \(n\) gebildet. Sind die Nullstellen gefunden, werden diese dann in den Ansatz eingefügt. Mehrfache Nullstellen werden zusammengefasst: \\
-        Hat man eine \(r\)-Fache Nullstelle multipliziert man den \(e^{\lambda x}\) Teil mit einem Polym (\(r-1\))-sten Grades. \\
-        Als besispiel: Man hat eine DGL 5. Grades und eine 4-Fache Nullstelle. Somit ergibt sich der Ansatz 
+        Hat man eine \(r\)-Fache Nullstelle multipliziert man den \(e^{\lambda x}\) Teil mit einem Polynom (\(r-1\))-sten Grades. \\
+        Als beispiel: Man hat eine DGL 5. Grades und eine 4-Fache Nullstelle. Somit ergibt sich der Ansatz 
         \begin{equation}
             y = C_1 \cdot e^{\lambda_1} + (C_2 + C_3x + C_4x^2 + c_5x^3) \cdot e^{x \cdot \lambda_{2/3/4/5}}
         \end{equation}   
@@ -188,7 +188,7 @@ pdftitle={Analysis 1}
         %TODO: Tabelle
 
         \section{Systeme linearer Differentialgleichungen}
-        Systeme von Differentialgleichungen sind DGLen mit verschiedenen \(y\) (Es extistieren  \(y_1, y_2, y_3\) etc.), die aber miteiander verkoppelt sind.
+        Systeme von Differentialgleichungen sind DGLen mit verschiedenen \(y\) (Es extstieren  \(y_1, y_2, y_3\) etc.), die aber miteinander verkoppelt sind.
         \begin{equation*}
             \begin{aligned}
                 & y_1' = a_{11}y_1 + a_{12}y_2 + g_1(x) \\
@@ -226,9 +226,9 @@ pdftitle={Analysis 1}
             berechnen. Man erhält dann \(\lambda_{1/2}\) und muss wieder eine Fallunterscheidung wie bei normalen DGLs durchführen.  
 
         \subsection*{Inhomogene Lösung durch Einsetzverfahren}
-            Ein weiteres Verfahren ist das Einsetzverfahren. Man löst besipielsweise die Gleichung von \(y_1\) nach y
+            Ein weiteres Verfahren ist das Einsetzverfahren. Man löst beispielsweise die Gleichung von \(y_1\) nach y
             \(y_2\) auf und differenziert \(y_2\) nach \(x\). Die Ergebnisse von \(y_2\) und \(y_2'\) kann man in die 2. Gleichung einsetzen.
-            Man erhält eine DGL die nur noch von \(y_1\) abghänging ist und löst diese DGL wie eine inhomogene DGL n-ter Ordnung. Man 
+            Man erhält eine DGL die nur noch von \(y_1\) abhängig ist und löst diese DGL wie eine inhomogene DGL n-ter Ordnung. Man 
             erhält dann das Ergebnis für \(y_1\), und dieses Ergebnis kann man dann in die andere DGL einsetzen und hat somit das ganze System gelöst.
             
             \begin{equation*}
@@ -239,15 +239,15 @@ pdftitle={Analysis 1}
                     & \Rightarrow y_2' = \frac{1}{a_{12}} (y_1'' - a_{11}y_1' - g_1(x)') & (3') \\
                 \end{aligned}
             \end{equation*}
-            (3) und (3') werden in (2) eingesetzt und (2) wird wie eine normale DGL behandet. Das Ergebnis vonn (2) wird dann in (1) eingesetzt.
+            (3) und (3') werden in (2) eingesetzt und (2) wird wie eine normale DGL behandelt. Das Ergebnis von (2) wird dann in (1) eingesetzt.
     
     \section{Vektoralgebra}
-        \subsection{Vektordastellung einer Kurve}
+        \subsection{Vektordarstellung einer Kurve}
         Kurven in einer Ebene können in der Form: 
         \begin{equation*}
             C: x = x(t); y = y(t)
         \end{equation*}
-        Können durch den Kurvenpunkt P (bestimmt durch x(t), y(t)) und durch den Ortsvektor auch as Vektor darsgestellt werden:
+        Können durch den Kurvenpunkt P (bestimmt durch x(t), y(t)) und durch den Ortsvektor auch as Vektor dargestellt werden:
         \begin{equation*}
             \vec{r} = x(t)\vec{e}_x + y(t)\vec{e}_y = \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}
         \end{equation*}
@@ -258,10 +258,10 @@ pdftitle={Analysis 1}
         \begin{equation*}
             s = {\int_{t1}}^{t2} | \vec{\dot{r}} | dt = {\int_{t1}}^{t2}  \sqrt{{\dot{x}}^2 +{\dot{y}}^2} dt 
         \end{equation*} 
-        Um den Tangentenvektor (\(T\)) von \(\vec{r}\) zu berechnen, muss dieser nur normaliesiert werden. Der Hauptnormaleinheitsvektor ist der der 
+        Um den Tangentenvektor (\(T\)) von \(\vec{r}\) zu berechnen, muss dieser nur normalisiert werden. Der Hauptnormaleinheitsvektor ist der der 
         Vektor \(T\) nur wird dieser nochmals normalisiert.
-    \subsection{Partielle Differentation}
-        Bei der partiellen Differentation liegt eine Funktion vor, die von mehr als einer Variabeln abhängig ist. Man wählt nun eine Variable, nach der differenziert
+    \subsection{Partielle Differentiation}
+        Bei der partiellen Differentiation liegt eine Funktion vor, die von mehr als einer Variablen abhängig ist. Man wählt nun eine Variable, nach der differenziert
         werden soll, die anderen Variablen werden wie Konstanten behandelt. Ein wichtiger Operator ist der \(\nabla\) (Nabla) Operator. Wird dieser angewendet wird nach jeder 
         Variabel abgeleitet.
         \subsubsection{Gradient}
@@ -284,7 +284,7 @@ pdftitle={Analysis 1}
             \end{aligned}
         \end{equation*}
         Desweiteren kann man durch den Gradienten analysieren wie sich die Funktionswerte ändern, wenn man in eine bestimmte Richtung fortschreitet. Dazu nimmt man den
-        Vektor \(\vec{a}\) als Richtungsvektor. Dieser wird normiert und dann mit dem Gradientenvektor skalar multipliziert. Das Ergebnis ist dementscprechend ein Skalar. 
+        Vektor \(\vec{a}\) als Richtungsvektor. Dieser wird normiert und dann mit dem Gradientenvektor skalar multipliziert. Das Ergebnis ist dementsprechend ein Skalar. 
         \begin{equation*}
             \frac{\partial \phi}{\partial \vec{a}} = (\text{grad}  \phi) \cdot \vec{e_a} = \frac{1}{|\vec{a}|} (\text{grad } \phi) \cdot \vec{a}
         \end{equation*}

@@ -19,15 +19,15 @@
     \section{Datenobjekte und -typen}
         \subsection{Definition}
         \subsection*{Datenobjekte}
-            Bei Datenobjekten unterschiedet man zwischen zwei verschiedenen Kategorien, varibale und konstante Datenobjekte. Der Unterschied ist dass sich variable Datnobjekte währen der Laufzeit
+            Bei Datenobjekten unterschiedet man zwischen zwei verschiedenen Kategorien, variable und konstante Datenobjekte. Der Unterschied ist dass sich variable Datenobjekte währen der Laufzeit
             des Programms ändern können, während konstante Datenobjekte sich eben nicht ändern können.
         \subsection*{Datentypen}
             Bei Datentypen unterschiedet man zwischen 3 Arten: 
             \begin{description}
                 \item[Elemtare Datentypen] \hfill \\
-                    Nicht weitere zerlegbare (auch atomar genannt), int, char flaot etc
+                    Nicht weitere zerlegbare (auch atomar genannt), int, char float etc
                 \item[Strukturierte Datentypen] \hfill \\
-                    Weisen eine Struktur auf und lassen sich 'ausseinanderbauer', string lässt sich in chars zerlegen
+                    Weisen eine Struktur auf und lassen sich 'ausseinanderbauen', string lässt sich in chars zerlegen
                 \item[Referenzen] \hfill \\
                     Weißen auf andere Daten hin (pointer)  
             \end{description}
@@ -35,7 +35,7 @@
         \subsection{Kommazahlen}
         \subsubsection{Festkomma}
             Bei festkommazahlen wird die komplette Kommazahl (Vor- und Nachkommastelle) abgespeichert. Wo sich das Komma befindet wird nicht in der Zahl angeben, sondern vom Rechner 
-            inteptretiert. So kann
+            interpretiert. So kann
             \begin{equation}
                 11111111_2 = 1111111.1_{2,1}  = 127.5_{10}
             \end{equation}
@@ -43,16 +43,16 @@
             \begin{equation}
                 11111111_2 = 1111.1111_{2,4} = 15.9375_{10}        
             \end{equation}
-            Das Problem mit Festkommazhalen ist, dass die Bits nicht effizient genutzt werden können. Hat man 8 Bit zu Verfügung und und setzt das Komma in der Mitter kann eine 
-            Zahl wie 100 nicht abgespeichert werden, da nur 4 Bit für die Vorkammazahl verfügbar sind, obwohl die Nackommabits nicht gebraucht werden.
+            Das Problem mit Festkommazahlen ist, dass die Bits nicht effizient genutzt werden können. Hat man 8 Bit zu Verfügung und und setzt das Komma in der Mitte kann eine 
+            Zahl wie 100 nicht abgespeichert werden, da nur 4 Bit für die Vorkommazahl verfügbar sind, obwohl die Nachkommabits nicht gebraucht werden.
         \subsubsection{Gleitkommazahlen}
             Bei Gleitkommazahlen gibt es 2 Standards: float(32 Bit) und double (64 Bit). 
             Das MSB beim float ist die Angabe des Vorzeichen, darauf folgen 8 Bit für den Exponenten und die restlichen 27 Bit sind die Mantisse \footnote{double: 1 Bit VZ, 11 Bit Exponent, 52 Bit Mantisse}. \\
             Ist das Vorzeichenbit gesetzt so ist die Zahl negativ. Bei Exponenten muss man noch mit einem offset/bias von 127 (1023 bei double). Dies sorgt dafür, dass auch negative Exponenten
-            möglich sind, wodurch eben auch sehr kleine Zahlen möglich. Ist das MSB bei Exponenten eine 1, weiß man direkt dass der Exponenten \(\geq\) 1. Die Mantnisse ist im Endeffekt die Zahl, die man
+            möglich sind, wodurch eben auch sehr kleine Zahlen möglich. Ist das MSB bei Exponenten eine 1, weiß man direkt dass der Exponenten \(\geq\) 1. Die Mantisse ist im Endeffekt die Zahl, die man
             darstellen will. Diese wird zuerst normalisiert, dh. solange verschoben, bis die komplette Zahl rechts hinter dem Komma steht\footnote{Durch den Exponenten wird die Zahl wieder in den 'Normalzustand' verschoben}.
-            Zudem wird vor der Mantisse eine 1 gespeichert. Diese ist immer implizit angegeben und wird für eine korrekte Berechnug der Kommazahl benötigt.\\
-            Daraus folgt die folgende Fomel zur Berechnug der eine Gleitkommazahl: 
+            Zudem wird vor der Mantisse eine 1 gespeichert. Diese ist immer implizit angegeben und wird für eine korrekte Berechnung der Kommazahl benötigt.\\
+            Daraus folgt die folgende Formel zur Berechnung der eine Gleitkommazahl: 
             \begin{equation}
                 2^{Vorzeichen} \cdot 1.Mantisse \cdot 2^{Exponent - Offset} 
             \end{equation}
@@ -62,48 +62,48 @@
                     Vor der Mantisse steht nun eine Null anstatt einer 1, wodurch man auch eine Null darstellen kann. Der offset beträgt jetzt auch 126 um die '0' vor der Mantisse
                     auszugleichen. (Exp = 000000000 \(\equiv \) -126)
                 \item Exp = 0 und Mantisse = 0 : \hfill \\
-                    Representiert \(\pm \infty\), je nachdem wie das Vorzeichenbit gesetzt ist. Passiert wenn man zB. durch 0 teilt 
+                    Repräsentiert \(\pm \infty\), je nachdem wie das Vorzeichenbit gesetzt ist. Passiert wenn man zB. durch 0 teilt 
                 \item Exp = 0: \hfill \\
-                    Representiert  NaN. Tritt oft wenn Rechenoperationen nicht definiert sind zB. \(\infty - \infty\)
+                    Repräsentiert  NaN. Tritt oft wenn Rechenoperationen nicht definiert sind zB. \(\infty - \infty\)
             \end{description}
             
         \subsection{Speicherung von Datentypen}
             \subsubsection{Definitionen}  
             \subsubsection*{sequentiell}
-                Elemente werden im Speicher direkt hintereinander gespiechert. Der Vorteil ist eine schnelle Zugriffszeit, da man die Position der anderen Elemente berechnen kann jedoch ist das 
-                Einfügen bzw. Löschen aufwendig, da meisten ein Teil der Datenstruktur zwischengeispeichert wird, das Element hinzugefügt/gelöscht wird und dann der Rest wieder angehängt werden muss\footnote{Beipiel: Arrays}.
+                Elemente werden im Speicher direkt hintereinander gespeichert. Der Vorteil ist eine schnelle Zugriffszeit, da man die Position der anderen Elemente berechnen kann jedoch ist das 
+                Einfügen bzw. Löschen aufwendig, da meisten ein Teil der Datenstruktur zwischengespeichert wird, das Element hinzugefügt/gelöscht wird und dann der Rest wieder angehängt werden muss\footnote{Beispiel: Arrays}.
             \subsubsection*{verkettet}
                 Elemente haben hier nicht nur den Wert den sie speichern wollen, sondern haben noch eine Referenz zum nächsten Wert. Die Zugriffszeit leidet hier, da man nicht weiß wo sich die Elemente befinden.
                 Außerdem wird mehr Speicher verbraucht, da die ganzen Referenzen auch noch gespeichert werden müssen. Der Vorteil ist, dass man Objekte einfach einfügen/löschen kann da man hier nur die Referenzen
                 auf ein anderes Element 'umleiten' muss\footnote{Beispiel: Linked List}.
         \subsection{Strukturierte Datentypen}
-                Strukturierte Datentypen haben wie der Name schon sagt eine Struktur, dh. dass die aus anderen Datenstrukturen oder auch aus atomaren Datenobjekten bestehen können (Ein String ist zum Beipiel
+                Strukturierte Datentypen haben wie der Name schon sagt eine Struktur, dh. dass die aus anderen Datenstrukturen oder auch aus atomaren Datenobjekten bestehen können (Ein String ist zum Beispiel
                 ein strukturierter Datentyp der aus chars besteht). Hier unterschiedet wiederum zwischen 2 verschiedenen Datentypen.
             \subsubsection*{Arrays (oa. Felder)}
-                Ein Array speichert seine Elemente sequenziell. Der Zugriff folgt über einen Index und die Anzahl der Elemte ist fix. Außerdem müssen die Elemte des Arrays den selben Typ haben.
-                Zudem kann ein Array eine oa. mehrer Dimensionen haben. Der Unterschied ist eigentlich nur der Zugriff auf die Elemente. Bei zwei Dimensionen ist kann man sich ein Array mit Zeilen und Spalten vorstellen.
-                Die Spalten werde dann einfach nur hintereinander agespeichert.
-            \subsubsection*{Compund}
-                Ein Compund speichert seine Elemnte auch sequenziell, jedoch können die Elemente verschiene Datentypen haben. Die Anzahl ist auch fix und der zugriff verläuft ebnenso durch einen Index.
+                Ein Array speichert seine Elemente sequenziell. Der Zugriff folgt über einen Index und die Anzahl der Elemente ist fix. Außerdem müssen die Elemente des Arrays den selben Typ haben.
+                Zudem kann ein Array eine oa. mehrere Dimensionen haben. Der Unterschied ist eigentlich nur der Zugriff auf die Elemente. Bei zwei Dimensionen ist kann man sich ein Array mit Zeilen und Spalten vorstellen.
+                Die Spalten werde dann einfach nur hintereinander gespeichert.
+            \subsubsection*{Compound}
+                Ein Compound speichert seine Elemente auch sequenziell, jedoch können die Elemente verschiedene Datentypen haben. Die Anzahl ist auch fix und der zugriff verläuft ebenso durch einen Index.
                 Hier kann aber die Position der anderen Elemente nicht berechnet werden, da ja verschieden Datentypen vorkommen können und diese nicht immer gleich viel Speicher brauchen. \\
-                Ein Beispiel ist die Datenstrukturen Dictonary (oa. Assoziatives Datenfeld). Der Zugriff von den Werten verläuft durch Angabe eines sogenannten Keys, wie wenn man in einem Wörtebuch 
+                Ein Beispiel ist die Datenstrukturen Dictionary (oa. Assoziatives Datenfeld). Der Zugriff von den Werten verläuft durch Angabe eines sogenannten Keys, wie wenn man in einem Wörtebuch 
                 eine Definition eines Wortes haben will. 
             
         \subsection{Dynamische Datenstrukturen}
             Dynamische Datenstrukturen können ihren Inhalt, Beziehung zueinander und auch ihre Größe während der Laufzeit ändern.
             
             \subsubsection*{Listen}  
-            Objeklte von Listen speichern ihre Daten und eine Referenz zu einem ander Objket in der Liste. \\            
+            Objekte von Listen speichern ihre Daten und eine Referenz zu einem andere Objekte in der Liste. \\            
             \underline{Linked List} \hfill \\
             Bei einer Linked ist das erste Objekt nur ein Dummyobjekt. Das Dummyobjekt speichert an sich  keine Daten sondern nur die Referenz aufs nächste Objekt.
-            Dadurch tritt nie der Sodnerfall auf, dass die Liste leer. Dies ist besonders bei Doubly Linked List hilfreich (Objekt hat zusätzliche Referenz auf
+            Dadurch tritt nie der Sonderfall auf, dass die Liste leer. Dies ist besonders bei Double Linked List hilfreich (Objekt hat zusätzliche Referenz auf
             den Vorgänger). Bei einer DLL ist dann das Dummyobjekt Anfang und Ende der Liste.\\
             \underline{Stack} \hfill \\
             Eine Stack ist eine Liste die Nach dem LIFO (Last In First Out) Prinzip arbeitet. Zur Änderung der Datenstruktur stehen nur push (Objekt hinzugefügen) und  pull (Objekt wieder runternehmen)
             als Methoden zur Verfügung welche sich immer auf zuletzt geänderte Element des Stacks beziehen. \\
             \underline{Queue} \hfill \\
             Ähnlich wie der Stack nur wird hier nach dem FIFO (First In First Out) Prinzip gearbeitet, d.h das Objekt welches als erstes hinzugefügt wurde ist das erste Objekt, welches 
-            verarbeite wird. Die Methoden sind dementsprechen enqueue und decqueue 
+            verarbeite wird. Die Methoden sind dementsprechen enqueue und dequeue 
 
             \subsubsection*{\large{Bäume}}
             Ein Baum besteht aus Knoten welche auf weitere Knoten zeigen können, einer Wurzel (Knoten ohne Vorgänger) und Blätter (Knoten ohne Nachfolger). 
@@ -119,9 +119,9 @@
                     \item[Perfekter Binärbaum] Alle Blätter sind auf der selben Ebene 
                 \end{description}
                 TODO Zugriffszeit etc
-                Ein degenertieter ist ein (Teil-)Baum welcher nur einen Nachfolger hat und somit im Prinzip zur einer Liste wird. Dadurch gehen einige Vorteile der Baumstruktur verloren.
+                Ein degenerierter ist ein (Teil-)Baum welcher nur einen Nachfolger hat und somit im Prinzip zur einer Liste wird. Dadurch gehen einige Vorteile der Baumstruktur verloren.
                 Außerdem gibt es noch den ausgewogener Baum (auch AVL-Baum genannt). Hier darf der Höhenunterschied der Teilbäume eines Knotens maximal 1 sein. \\
-                Möchte man auf die Elemte eines Baumes zugreifen wurden verschiedene Ansätze ausgearbeitet: 
+                Möchte man auf die Elemente eines Baumes zugreifen wurden verschiedene Ansätze ausgearbeitet: 
                 \begin{description}
                     \item[pre   order:] Wurzel \(\rightarrow\) linkes Kind \(\rightarrow\) rechtes Kind
                     \item[in    order:] linkes Kind \(\rightarrow\) Wurzel \(\rightarrow\) rechtes Kind
@@ -129,17 +129,17 @@
                     \item[level order:]    
                 \end{description} 
     \section{Laufzeitkomplexität}
-        \subsection{Defintion}
+        \subsection{Definition}
         Bei der Laufzeitkomplexität untersucht man wie schnell ein Algorithmus ein bestimmtes Problem lösen kann. Hier schaut man nicht wie viele Sekunden ein Algorithmus braucht sondern eher
-        wie sich ein ALgorithmus verhält, wenn man die Problemgröße erhöt (zB.: ein Problem ist das Sortieren und die Problemgröße wären die Anzahl der Zahlen die man sortieren möchte).
+        wie sich ein ALgorithmus verhält, wenn man die Problemgröße erhöht (zB.: ein Problem ist das Sortieren und die Problemgröße wären die Anzahl der Zahlen die man sortieren möchte).
         Die Problemgröße wird dabei als 'n' bezeichnet. \\
         Das n bildet dann die Zeitfunktion
         \begin{equation}
             t = f(n)
         \end{equation} 
-        Hier muss aber noch eine Fallunterschiedung gemacht werden. Manche Algorithmen verhalten sich unter bestimmten Umständen anders (und somit auch ihr Laufzeitverhalten). Man unterschiedet 
+        Hier muss aber noch eine Fallunterscheidung gemacht werden. Manche Algorithmen verhalten sich unter bestimmten Umständen anders (und somit auch ihr Laufzeitverhalten). Man unterschiedet 
         zwischen Best Case (minimale Anzahl an benötigten Schritten), Worst Case (minimale Anzahl an benötigten Schritten) und den Average Case (durchschnittliche Anzahl an benötigten Schritten).
-        Manche Sortieralgorithem können brechen dass sortieren ab, wenn die Daten schon sortiert sind, womit sie ein besseres Best Case Szenario haben als im Average und Worst Case. 
+        Manche Sortieralgorithmen können brechen dass sortieren ab, wenn die Daten schon sortiert sind, womit sie ein besseres Best Case Szenario haben als im Average und Worst Case. 
         \subsection{Klassenbildung}
         Um jetzt die Laufzeitkomplexität eines Algorithmus zu spezifizieren hat man sogenannte Kassen gebildet in die man einen Algorithmus klassifiziert:
         \begin{description}
@@ -180,21 +180,21 @@
             \item Als erstes muss der Rekursionsbaumaufgestellt werden. Man schaut sich das \(f(n)\) an und arbeitet mit diesem weiter. Zuerst wird das \(f(n)\) zur Wurzel des Baumes.
                 In der Nächsten ebene gibt kommen dann 'a'-fach neue Knoten zu der Wurzel hinzu. Die Werte der neuen Knoten ist dann jeweils \(\frac{n}{b}\). Dies wird wiederholt bis
                 man auf \(T(1)\) kommt.
-            \item Nun untersuhct man den Baum und schätzt wieder die Höhe, Anzahl der Knoten der Ebene udn die 'Kosten' der Knoten. Ein Knoten ist dabei ein Teilproblem des gesmaten Problems.
+            \item Nun untersucht man den Baum und schätzt wieder die Höhe, Anzahl der Knoten der Ebene udn die 'Kosten' der Knoten. Ein Knoten ist dabei ein Teilproblem des gesamten Problems.
                 Durchs Aufsummieren aller Knoten einer Ebene erhält man den Aufwand pro Ebene. Wenn man nun jede Ebene Aufsummiert erhält man den Gesamtbedarf. 
             \item Für die Letzte Ebene wird dann eine Allgemeine Formel aufgestellt
-            \item DIe Allgemeine Formel muss mit Vollständiger Induktion bewisen werden
+            \item DIe Allgemeine Formel muss mit Vollständiger Induktion bewiesen werden
         \end{enumerate}\footnote{Bsp.: Kapitel 3 Folie 131(101)}
 
         \subsubsection*{Mastertheorem}
-        Das Mastertheorem ist eine relativ schnelle Methdode um die Laufzeit eines rekursiven Algorithmus zu ernitteln, da man hier nur mit Formeln arbeitet. Dabei sind drei Fälle zu 
+        Das Mastertheorem ist eine relativ schnelle Methode um die Laufzeit eines rekursiven Algorithmus zu ermitteln, da man hier nur mit Formeln arbeitet. Dabei sind drei Fälle zu 
         beachten: 
         \begin{enumerate}
             \item \(f(n) \in \mathcal{0}(n^{E - \epsilon}), \epsilon > 0 \Rightarrow T(n) \in \mathcal{0}(n^E) \), obere Abschätzung
             \item \(f(n) \in \Theta(n^{E}) \Rightarrow T(n) \in \mathcal(n^E \cdot \log n) \), exakte Abschätzung
             \item \(f(n) \in \Omega(n^{E + \epsilon}), \epsilon > 0, a \cdot f(\frac{n}{b}) \le c \cdot f(n), 0 < c < 1 \Rightarrow T(n) \in \mathcal(n^E) \), untere Abschätzung
         \end{enumerate} 
-        Dabei kann es auch vorkommen dass keine der 3 Fälle anwandbar sind, weshalb ma dann Die Substitutionsmethode bversuchen könnte und dann die 
+        Dabei kann es auch vorkommen dass keine der 3 Fälle anwendbar sind, weshalb man dann Die Substitutionsmethode versuchen könnte und dann die 
     
     \section{Sortieralgorithmen}
     \begin{tabular}{|c|c|c|c|}
@@ -210,9 +210,9 @@
         \hline
     \end{tabular}
 
-    \subsection{Defintionen}
+    \subsection{Definitionen}
         \begin{description}
-            \item[stabil] Die Reihenfolge von 2 gleichen Elemnten ist anch dem Sortieren gleich (wenn das i-te und j-te Element also gleich sind gilt nach dem Sortieren immer noch i < j)
+            \item[stabil] Die Reihenfolge von 2 gleichen Elementen ist nach dem Sortieren gleich (wenn das i-te und j-te Element also gleich sind gilt nach dem Sortieren immer noch i < j)
             \item[instabil] Gegensatz zu stabil, Algorithmus achtet nicht auf Reihenfolge von gleichen Elementen
             \item[in place] Es wir direkt im Datensatz sortiert
             \item[out of place] Es wird extern sortiert  
@@ -222,63 +222,62 @@
             Das kleinste Element wird gesucht und mit dem Element der ersten Stelle getauscht. Das erste Element gilt als sortiert und man fährt mit diesem Prinzip
             für die restlichen ELemente fort. In place und stabil. Laufzeit ist \(\mathcal{O}(n^2)\).
         \subsection{Insertion Sort} 
-            Das erste Elem,ent wird vorerst als sortiert betrachtet. Das Nächste Element wird je nach seinem Wert vor oder hinter dem ersten eingefügt. Analog werden die nächsten
+            Das erste Element wird vorerst als sortiert betrachtet. Das Nächste Element wird je nach seinem Wert vor oder hinter dem ersten eingefügt. Analog werden die nächsten
             Felder bearbeitet. Dabei ist noch zu beachten, dass eine Felde immer nur um eine Stelle verschoben wird
             Stabil und In-Place. Worst/Average case \(\mathcal{O}(n^2)\), best case \(\mathcal{O}(n)\)
         \subsection{Bubblesort}
-            Das Feld durchloffen und benachbarte Felder werden verglichen und ggf. getauscht. Dies wird solange wiederholt, bis das Feld sortiert ist. Da es im Normalfall
-            keine Fallunterscheidung im Bubblesort exisitert, wird das Feld n mal durchloffen und bei jedem Durchlauf werden n ELemente bearabeitet \(\rightarrow\) 
+            Das Feld durchlaufen und benachbarte Felder werden verglichen und ggf. getauscht. Dies wird solange wiederholt, bis das Feld sortiert ist. Da es im Normalfall
+            keine Fallunterscheidung im Bubblesort existiert, wird das Feld n mal durchlaufen und bei jedem Durchlauf werden n ELemente bearbeitet \(\rightarrow\) 
             Laufzeit ist \(\mathcal{O}(n^2)\). Die Laufzeit kann verbessert werden, da Bubblesort bei jedem Durchlauf immer da Größte Element ans Ende bringt, 
             kann mna den Endbereich auch also sortiert betrachtet und muss nicht mehr überprüfen ob der Bereich sortiert ist.  Worst und Average case sind weiterhin
-            \(\mathcal{O}(n^2)\) ber der Best case ist jetzt \(\mathcal{O}(n)\). Außerdem ist der verbessterte Bubblesort idR. schneller als der normale Bubblesort
+            \(\mathcal{O}(n^2)\) ber der Best case ist jetzt \(\mathcal{O}(n)\). Außerdem ist der verbesserte Bubblesort idR. schneller als der normale Bubblesort
             obwohl beide den selben Average Case haben.
         \subsection{Quicksort}
-            Quicksort arbeite nach dem divide and conqure Prinzip. Das Feld wird aufgeteilt und die Teilfelder werden einzeln sortiert. Dabei wird ein
-            beliebiges Element hergenommen, das sogenannte Pivotelement. Alle Elemnte mit niedirgere Wertigkeit als das Pivotelement werden links,
+            Quicksort arbeite nach dem divide and conquer Prinzip. Das Feld wird aufgeteilt und die Teilfelder werden einzeln sortiert. Dabei wird ein
+            beliebiges Element hergenommen, das sogenannte Pivotelement. Alle Elemente mit niedrigerer Wertigkeit als das Pivotelement werden links,
             die mit höherer rechts vom Pivotelement gespeichert. Der Vorgang wird solange wiederholt, bis nicht mehr geteilt werden kann. 
-            Das ständige Teilen deutet meistens auf ein logarithmesische Laufzeitverhalten hin, was beim best und average case auch der Fall ist \(\mathcal{O}(n \log n)\)
+            Das ständige Teilen deutet meistens auf ein logarithmisches Laufzeitverhalten hin, was beim best und average case auch der Fall ist \(\mathcal{O}(n \log n)\)
             Der Worst case kann aber \(\mathcal{O}(n^2)\) sein, wenn das Pivotelement schlecht gewählt wurde (ganz links oder ganz rechts), das Problem wird 
-            auch Als Degeneration bezeichnet.
+            auch als Degeneration bezeichnet.
             \subsubsection{Pivotelement}
             Ein gutes Pivotelement zu suchen ist relativ schwer, da  das Pivotelement möglichst nah an der Mitte des Medians des Feldes sein sollte. Hierführ könnte
-            man theoretisch erst das ganze Feld durchsuchen, was aber recht auchfwändig sein kann. Verschiedene Ansätze wurden hier heraudgearbeitet:
+            man theoretisch erst das ganze Feld durchsuchen, was aber recht aufwändig sein kann. Verschiedene Ansätze wurden hier herausgearbeitet:
             \begin{description}
                 \item[Wahl des mitteleren Elements] \(\cfrac{Letztes Element - Erstes Element}{2}\), relativ schlecht da Pivot immernoch an erster bzw. letzter Stelle stehen kann
-                \item[Iteratives löschen der Minima] TODO
+                \item[Iteratives Löschen der Minima] Die n kleinsten Werte werden an das Ende des Arrays getauscht. Dieser Schritt hat schon eine Laufzeit von \(\mathcal{O}(n^2)\), ist also viel zu aufwändig
                 \item[Sortieren des Feldes] Macht Quicksort überflüssig
-                \item[Partielle Sortierung mit Quicksort] Pivot wird zufällig gewählt, nun wird vorerst nur eine Hälfte sortiert. Verringert die Wahrscheinlichkeit des Worst Case
-                    ist aber weiterhin möglich.
-                \item[Media of k] Es werden k Elemente zufällig ausgewählt und aus denen wird dann der das Mittlere genommen um somit das Pivotelement zu bestimmen.
+                \item[Partielle Sortierung mit Quicksort (Tony Hoare)] Pivot wird zufällig gewählt, nun wird vorerst nur eine Hälfte sortiert. Verringert die Wahrscheinlichkeit des Worst Case ist aber weiterhin möglich.
+                \item[Median of k] Es werden k Elemente zufällig ausgewählt und aus denen wird dann der das Mittlere genommen um somit das Pivotelement zu bestimmen.
                 k muss dabei ungerade sein. Verringert wieder nur die Wahrscheinlichkeit des worst case.
-                \item[SELECT Algorithmus] Das Feld wird in fünfer Grupper aufgeteilt. Aus jeder Fünfergruppe wird dann das mittlere Element herausgezogen. Aus allen 
+                \item[SELECT Algorithmus] Das Feld wird in fünfer Gruppen aufgeteilt. Aus jeder Fünfergruppe wird dann das mittlere Element herausgezogen. Aus allen 
                 mittleren Element wird wieder das mittlere Element herausgenommen was dann zum Pivotelement wird. Worst case ist immer \(\mathcal{O}(n \log n)\) aber
-                aufgrund der Komplexität wird das Verfahren nur bei großen Mengen verwednet (oder bei zeitkritischen Systemen).
+                aufgrund der Komplexität wird das Verfahren nur bei großen Mengen verwendet (oder bei zeitkritischen Systemen).
             \end{description} 
 
         \subsection{Mergesort}
-            Wie beim Quicksort wird nach dem divide and conqure Prinzip gearbeitet, nur sortiert Mergesort erst aufgeteilt wurde. Dabei werden die Felder je nach 
-            ihrer Wertigkeit an geigneter Stelle eingefügt. Dadurch entetshen je nach Iteration Teilfelder die sortiert sind. Teilfelder können auch 
-            in die mitte (bzw. nicht nur am Anfang/Ende) eingefügt werden. Hat ein Laufzeitverhalten von \(\mathcal{O}(n \log n)\). Dabei sollte man 
+            Wie beim Quicksort wird nach dem divide and conquer Prinzip gearbeitet, nur sortiert Mergesort erst wenn aufgeteilt wurde. Das Feld wird rekursiv in der Mitte geteilt. Dann werden je 2 Felder rekursiv gemerged (=zusammensortiert). Dadurch entstehen je nach Iteration Teilfelder die sortiert sind. Teilfelder können auch 
+            in die Mitte (bzw. nicht nur am Anfang/Ende) eingefügt werden. Hat ein Laufzeitverhalten von \(\mathcal{O}(n \log n)\). Dabei sollte man 
             aber darauf achten dass man nicht zu oft teil (am Anfang), da sich hier die Laufzeit auf \(\mathcal{O}(n^2)\) erhöht.
         \subsection{Heapsort}
-            Selectiopnsort sucht das kleinse/größte Element und hängt es dementsprecheend an eine Liste. Die Suche ist aber relativ zeitaufwändig. Um die 
-            Suche zu beschleunigen baut man sich als Datenstruktur einen Heap auf. Ein Heap ist ein binärer Baum undhat die Eigenschaften, dass Die Kinder 
+            Selectionsort sucht das kleinste/größte Element und hängt es dementsprecheend an eine Liste. Die Suche ist aber relativ zeitaufwändig. Um die 
+            Suche zu beschleunigen baut man sich als Datenstruktur einen Heap auf. Ein Heap ist ein binärer Baum und hat die Eigenschaften, dass die Kinder 
             eines Knotens immer kleiner/größer /je nachdem obs ein Min/Max-Heap ist). Außerdem muss gelten dass die Blätter des Baumes linksbündig sind.
-            Es werden für den Heapsort drei Mehtoden gebraucht:
+            Es werden für den Heapsort drei Methoden gebraucht:
             \begin{itemize}
                 \item BUILD-MAX-HEAP: Baue einen Max-Heap aus den Daten
                 \item HEAP-EXTRACT-MAX: Nimm das größte Element aus dem Heap
-                \item MAX-HEAPIFY: Nach der entanahme muss der Heap wieder 'geflickt' werden
-            \end{itemize} \footnote{Analaog gilt dasselbe für Min-Heap}
-            Build-Heap nimmt einen Datensatz und erstelllt damit erstmal einen binären Baum. Wenn ein Array vorliegt kann man direkt einen Baum erstellen
-            da ein Baum ja nur ein Array mit spezieelen Zugriffsverfahren. Nun wird aus dem Baum das größte Element exttrahiert. Dazu geht man in die unterste Ebene
-            des Baume und vergleicht ob die Knoten größer sind als der Elternknoten. Ist das Element nicht größer wird zur nächsten wird der nächste Teilbaum in der Ebene
+                \item MAX-HEAPIFY: Nach der entnahme muss der Heap wieder 'geflickt' werden
+            \end{itemize} \footnote{Analog gilt dasselbe für Min-Heap}
+            Build-Heap nimmt einen Datensatz und erstellt damit erstmal einen binären Baum. Wenn ein Array vorliegt kann man direkt einen Baum erstellen
+            da ein Baum ja nur ein Array mit speziellen Zugriffsverfahren ist. Nun wird aus dem Baum das größte Element extrahiert. Dazu geht man in die unterste Ebene
+            des Baumes und vergleicht ob die Knoten größer sind als der Elternknoten. Ist das Element nicht größer wird zur nächsten wird der nächste Teilbaum in der Ebene
             analysiert. Wenn irgendwo der Kindknoten größer als der Elternknoten ist, wird getauscht. So wird Ebene für Ebene analysiert bis die Wurzel erreicht ist. Hier muss
             aber noch beachtet werden, dass wenn ein Knoten getauscht wurde auch der Ast nochmals betrachtet werden muss. Wenn ein Kindknoten zum Elternknoten wird, kann
-            es ja sein dass der getauschte Knoten größer als sein Elternknoten ist. Der größte Knoten ist jetzt na der Wurzelpostition. Dieser wird dann durch Extrakt-Max
-            ans Ende des Baumes (oa. Array) vertauscht. Das größte Element ist nun am Ende des Baumes (Array), wodurch man auch weiß dass das letze Element sortiert ist.
-            Da die Wurzel aber einen neuen Wert hat muss max-heapify aufgerufen werden, um die Bedingungen zu erfüllen. Nun wird aber das letze Element ignoriert, da es ja
-            schon sortiert ist. Es wird weider extract-max aufgerufen, und dann wieder max heapify bis der komplette Baum sorteirt ist.  
+            es ja sein dass der getauschte Knoten größer als sein Elternknoten ist. Der größte Knoten ist jetzt an der Wurzelposition. Dieser wird dann durch Extrakt-Max
+            ans Ende des Baumes (oa. Array) vertauscht. Das größte Element ist nun am Ende des Baumes (Array), wodurch man auch weiß dass das letzte Element sortiert ist.
+            Da die Wurzel aber einen neuen Wert hat muss max-heapify aufgerufen werden, um die Bedingungen zu erfüllen. Nun wird aber das letzte Element ignoriert, da es ja
+            schon sortiert ist. Es wird wieder extract-max aufgerufen, und dann wieder max heapify bis der komplette Baum sortiert ist.
+        \subsection{Shellsort}
     \section{Glossar}
         Bytespeicherung in Big-Endian(höchstes bit an erster (also  ganz links) Stelle ) bzw Little-Endian
         NIL Not in List
