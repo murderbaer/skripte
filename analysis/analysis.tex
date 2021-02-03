@@ -11,9 +11,10 @@
 \pdfinfoomitdate=1
 \pdftrailerid{}
 \title{Analysis}
+\date{WS 20/21}
 \pagestyle{headings}
 \hypersetup{                % ‘texdoc hyperref‘ for options
-pdftitle={Analysis 1}
+pdftitle={Analysis 2}
 }
 
 \author{Arif Hasanic}
@@ -342,4 +343,176 @@ pdftitle={Analysis 1}
                 & \text{(5') rot }  (\phi \vec{A})= (\text{grad }  \phi) \times \vec{A} + \phi \cdot \text{rot } \vec{A} \\
             \end{aligned}
         \end{equation*}
+
+    \section{Koordinatendarstellungen}
+        \subsection{Polarkoordinaten}
+        Anstatt dass zwei Punkt (\(x \text{ und } y\)) gegeben  sind, kann auch jeder Punkt in einem Koordinatensystem durch einen Radius \(r\) und 
+        einem Winkel \(\varphi\) bestimmt werden.
+        \subsection*{Polarkoordinaten \(\rightarrow\) Kartesisch Koordinaten}
+            \begin{equation*}
+                x = r \cdot \cos \varphi\text{, } y = r \cdot \sin \varphi  
+            \end{equation*}
+        \subsection*{Polarkoordinaten \(\rightarrow\) Kartesische Koordinaten}
+            \begin{equation}
+                r = \sqrt{x^2 + y^2} \text{, } \sin \varphi = \cfrac{y}{r} \text{, } \cos \varphi = \cfrac{x}{r} \text{, } \tan \varphi = \cfrac{y}{x} 
+            \end{equation}
+        \subsubsection{Vektorform}
+        Ein Vektor in der Form \(\vec{a} a_x\vec{e}_x a_y\vec{e}_y\) (kartesische Form) kann auch durch Polarkoordinaten dargestellt werden.
+        Das Resultat ist dann der Vektor der sich durch \(\vec{a} = r\vec{e}_r + a_{\varphi}\vec{e}_{\varphi} \) darstellen lässt. Man erhält den
+        Vektor, wenn man eine Transformationsmatrix \(A\) mit ihm multipliziert: 
+        \begin{equation*}
+            \begin{pmatrix} a_x \\ a_y \end{pmatrix} = \begin{pmatrix} \cos \varphi & \sin \varphi \\ 
+                -\sin \varphi & \cos \varphi  \end{pmatrix} 
+                \begin{pmatrix} a_x \\ a_y \end{pmatrix} = 
+                A \begin{pmatrix} a_x \\ a_y \end{pmatrix}
+        \end{equation*}
+        Ohne Matrixmultiplikation: 
+        \begin{equation*}
+            \begin{aligned}
+                & a_r = a_x \cdot \cos \varphi + a_y \cdot \sin \varphi \\
+                & a_{\varphi} = -a_x \cdot \sin + a_y \cos \varphi \\
+                & \Rightarrow a = a_r + a_{\varphi}
+            \end{aligned}
+        \end{equation*}
+        \(A^{-1}\) multipliziert mit dem Polarvektor ergibt wieder den Vektor in kartesischer Form, bzw. kann man auch die Gleichungen nach \(x\) und 
+        \(y\) umstellen.
+
+        \subsubsection{Gradient, Divergenz, Rotation und Laplace Operator in Polarkoordinaten}
+        Ein Skalarfeld in Polarform ist gegeben durch \(\phi = \phi(r; \varphi)\) und ein Vektorfeld in Polarform ist gegeben durch \(\vec{F} =
+        \vec{F}(r;\varphi) = F_r(r;\varphi)\vec{e}_r + F_{\varphi} (r;\varphi)\vec{e}_{\varphi}\), dann gilt für Gradient, Divergenz, Rotation und 
+        den Laplace-Operator folgendes: 
+        \begin{itemize}
+            \item grad \(\phi(r;\varphi) = \cfrac{\partial \phi}{\partial r}\vec{e}_r + \cfrac{1}{r} \cdot \cfrac{\partial \phi}{\partial \phi}\vec{e}_{\varphi}\) 
+            \item div \(\vec{F}(r;\varphi) = \cfrac{\partial}{\partial r}(r \cdot F_r) + \cfrac{1}{r} \cdot \cfrac{\partial F_{\varphi}}{\partial \varphi}  \)
+            \item rot \(\vec{F}(r;\varphi) = \cfrac{1}{r} \cdot \cfrac{\partial}{\partial r} (r \cdot F_{\varphi}) - \cfrac{1}{r} \cdot \cfrac{\partial F_r}{\partial \varphi} \)
+            \item \(\varDelta \phi (r;\varphi)\footnote{\(\varDelta\) (Laplace) ist \(\nabla\)(Nabla) 2 mal ausgeführt} = \cfrac{\partial^2\phi}{\partial r^2} + \cfrac{1}{r} \cdot \cfrac{\partial \phi}{\partial r} + \cfrac{1}{r^2} \cdot \cfrac{\partial^2 \phi}{\partial \varphi^2} \)
+        \end{itemize}
+        \subsection{Zylinderkoordinaten}
+            Zylinderkoordinaten sind Polarkoordinaten mit einer weiteren Dimension \(z\), wodurch ein Zylinderform entsteht. \(\varrho\) beschreibt den Abstand des eines Punktes zur z-Achse :
+            \subsubsection*{Zylinderkoordinaten \(\rightarrow\) Kartesische Koordinaten}
+                \begin{equation*}
+                    x = \varrho \cdot \cos \varphi \text{, } y = \varrho \cdot \sin \varphi \text{, } z = z
+                \end{equation*}
+            \subsubsection*{Kartesische Koordinaten \(\rightarrow\) Zylinderkoordinaten}
+            \begin{equation}
+                \begin{aligned}
+                    & \varrho = \sqrt{x^2 + y^2} \\
+                    & \sin \varphi = \cfrac{y}{\varrho} \text{, } \cos \varphi = \cfrac{x}{\varrho} \text{, } \tan \varphi = \cfrac{y}{x} \\
+                    & z = z
+                \end{aligned}
+            \end{equation}
+
+            \subsubsection*{Spezielle Werte}
+            \begin{itemize}
+                \item Linienelement: \(ds\footnote{Das \(d\) ist dann der Abstand zweier Punkte} = \sqrt{(d\varrho)^2 + \varrho^2(d\varphi) + (dz)^2} \)
+                \item Flächenelement: \(dA = \varrho \; d\varphi \; dz\)
+                \item Volumenelement: \(dV = \varrho \; d\varrho \; d\varphi \; dz\)
+            \end{itemize}
+
+            \subsubsection{Vektorform}
+                Ein Vektor in kartesischer Form (\( \vec{a}= a_x\vec{e}_x + a_y\vec{e}_y + a_z\vec{e}_z \)) lässt sich durch \( \vec{a}= a_\varrho\vec{e}_\varrho + a_\varphi\vec{e}_\varphi + a_z\vec{e}_z \)
+                in Zylinderkoordinatenform darstellen, wobei man \(a_\varrho, a_\varphi, a_z\) wie folgt bestimmen kann: 
+                \begin{equation*}
+                    \begin{aligned}
+                        & a_\varrho = a_x \cdot \cos \varphi + a_y \cdot \sin \varphi \\
+                        & a_\varphi = -a_x \cdot \sin \varphi + a_y \cos \varphi \\
+                        & a_z = a_z
+                    \end{aligned}
+                \end{equation*}
+                Möchte man das mit einer Matrix lösen gilt folgendes:   
+                \begin{equation*}
+                    \begin{pmatrix}
+                        a_\varrho \\ a_\varphi \\ a_z
+                    \end{pmatrix} = 
+                    \begin{pmatrix}
+                        \cos \varphi & \sin \varphi & 0 \\
+                        -\sin \varphi & \cos \varphi & 0 \\
+                        0 & 0 & 1
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        a_x \\ a_y \\ a_z
+                    \end{pmatrix} = A 
+                    \begin{pmatrix}
+                        a_x \\ a_y \\ a_z
+                    \end{pmatrix}
+                \end{equation*}     
+            
+            \subsubsection{Gradient, Divergenz, Rotation und Laplace Operator in Zylinderkoordinaten}
+            Ein Skalarfeld ind Zylinderkoordinatenform ist gegeben durch \(\phi = \phi(\varrho; \varphi; z)\) und ein Vektorfeld in Zylinderkoordinatenform ist gegeben durch \(\vec{F} =
+            \vec{F}(\varrho; \varphi; z) = F_\varrho(\varrho; \varphi; z)\vec{e}_\varrho + F_\varphi(\varrho; \varphi; z)\vec{e}_\varphi + F_z(\varrho; \varphi; z)\vec{e}_z \), dann gilt für Gradient, Divergenz, Rotation und 
+            den Laplace-Operator folgendes: 
+            \begin{itemize}
+                \item grad \(\phi(\varrho; \varphi; z) = \cfrac{\partial \phi}{\partial \varrho}\vec{e}_\varrho + \cfrac{1}{\varrho} \cdot \cfrac{\partial \phi}{\partial \varphi} \vec{e}_\varphi + \cfrac{\partial \phi}{\partial z} \vec{e}_z \) 
+                \item div \(\vec{F}(\varrho; \varphi; z) = \cfrac{1}{\varrho} \cdot \cfrac{\partial}{\partial \varrho}(\varrho \cdot F_\varrho) + \cfrac{1}{\varrho} \cdot \cfrac{\partial F_\varphi}{\partial \varphi} + \cfrac{\partial F_z}{\partial z} \)
+                
+                \item rot \(\vec{F}(\varrho; \varphi; z) = 
+                \Bigg(  \cfrac{1}{\varrho} \cdot \cfrac{\partial F_z}{\partial \varphi} - \cfrac{\partial F_\varphi}{\partial z} \Bigg)\vec{e}_\varrho + 
+                \Bigg(  \cfrac{\partial F_\varrho}{\partial z} - \cfrac{\partial F_z}{\partial \varrho}  \Bigg)\vec{e}_\varphi + 
+                \cfrac{1}{\varrho} \Bigg(  \cfrac{\partial}{\partial \varrho}  (\varrho \cdot F_\varphi) - \cfrac{\partial F_\varrho}{\partial \varphi}  \Bigg)\vec{e}_z \)
+                
+                \item \(\varDelta \phi = \cfrac{1}{\varrho} \cdot \cfrac{\partial}{\partial \varrho} \Bigg( \varrho \cdot \cfrac{\partial \phi}{\partial \varrho} \Bigg) + 
+                \cfrac{1}{\varrho^2} \cdot \cfrac{\partial^2 \phi}{\partial \varphi^2} + \cfrac{\partial^2 \phi}{\partial z^2} \)
+            \end{itemize}
+            
+        \subsection{Kugelkoordinaten}
+            Kugelkoordinaten sind durch \(r\) (Abstand vom Punkt zum Ursprung), \(\varphi\) (Winkel auf der \(x,y\)-Ebene) und durch \(\vartheta\) (Winkel auf der \(y,z\)-Ebene) definiert.
+            \subsubsection*{Zylinderkoordinaten \(\rightarrow\) Kartesische Koordinaten}
+                \begin{equation*}
+                    x = r \cdot \sin \vartheta \cdot \cos \varphi \text{, } y = r \cdot \sin \vartheta \cdot \sin \varphi \text{, } z = r \cdot \cos \vartheta
+                \end{equation*}
+            \subsubsection*{Kartesische Koordinaten \(\rightarrow\) Zylinderkoordinaten}
+            \begin{equation}
+                \begin{aligned}
+                    & \varrho = \sqrt{x^2 + y^2 + z^2} \\
+                    & \vartheta = \arccos \cfrac{z}{r} = \Bigg( \cfrac{z}{\sqrt{x^2 + y^2 + z^2}} \Bigg) \\
+                    & \sin \varphi = \cfrac{y}{\sqrt{x^2 + y^2}} \text{, } \cos \varphi = \cfrac{x}{\sqrt{x^2 + y^2}} \text{, } \tan \varphi = \cfrac{y}{x}  
+                \end{aligned}
+            \end{equation}
+            
+            \subsubsection*{Spezielle Werte}
+            \begin{itemize}
+                \item Linienelement: \(ds = \sqrt{(dr)^2 + r^2(d\vartheta)^2 + r^2 \cdot \sin^2 \vartheta (d\varphi)^2} \)
+                \item Flächenelement: \(dA = r^2 \cdot \sin \vartheta \; d\vartheta \; d\varphi \)
+                \item Volumenelement: \(dV = dA \; = r^2 \cdot \sin \vartheta \; dr \; d\vartheta \; d\varphi\)
+            \end{itemize}
+            Um einen Vektor in kartesischer Form (\(\vec{a} = a_x\vec{e}_x + a_y \vec{e}_y + a_z \vec{e}_z \)) umzuwandeln in einen Vektor in Kugelkoordinatenform 
+            (\(\vec{a} = a_r\vec{e}_r + a_\vartheta\vec{e}_\vartheta + a_\varphi\vec{e}_\varphi\)) kann folgender Ansatz genommen werden:
+            \begin{equation*}
+                \begin{aligned}
+                    & a_r = a_x \cdot \sin \vartheta \cdot \cos \varphi + a_y \sin \vartheta \cdot \sin \varphi + a_z \cdot \cos \vartheta \\
+                    & a_\vartheta = a_x \cos \vartheta \cdot \cos \varphi + a_y \cdot \cos \vartheta \cdot \sin \varphi - a_z \cdot \sin \vartheta \\
+                    & a_\varphi = -a_x \cdot \sin \varphi + a_y \cdot \cos \varphi
+                \end{aligned}
+            \end{equation*}
+            bzw. mit Matrixmultiplikation: 
+            \begin{equation*}
+                \begin{pmatrix}
+                    \vec{e}_r \\ \vec{e}_\vartheta \\ \vec{e}_\varphi 
+                \end{pmatrix} = 
+                \begin{pmatrix}
+                    \sin \vartheta \cdot \cos \varphi & \sin \vartheta \cdot \sin \varphi & \cos \vartheta \\
+                    \cos \vartheta \cdot \cos \varphi & \cos \vartheta \cdot \sin \varphi & - \sin \vartheta \\
+                    -\sin \varphi & \cos \varphi & 0
+                \end{pmatrix}
+                \begin{pmatrix}
+                    \vec{e}_x \\ \vec{e}_y \\ \vec{e}_z
+                \end{pmatrix} = A
+                \begin{pmatrix}
+                    \vec{e}_x \\ \vec{e}_y \\ \vec{e}_z
+                \end{pmatrix}
+            \end{equation*}
+
+            \subsubsection{Gradient, Divergenz, Rotation und Laplace Operator in Kugelkoordinaten}
+            Ein Skalarfeld in Kugelkoordinaten ist gegeben durch \(\phi = \phi(r; \vartheta; \varphi)\) und ein Vektorfeld in Kugelkoordinaten ist gegeben durch \(\vec{F} =
+            \vec{F}(r; \vartheta; \varphi) = F_r(r; \vartheta; \varphi)\vec{e}_r + F_\vartheta(r; \vartheta; \varphi)\vec{e}_\vartheta + F_\varphi(r; \vartheta; \varphi)\vec{e}_\varphi \), dann gilt für Gradient, Divergenz, Rotation und 
+            den Laplace-Operator folgendes: 
+            \begin{itemize}
+                \item grad \(\phi = \cfrac{\partial \phi}{\partial r}\vec{e}_r + \cfrac{1}{r} \cdot \cfrac{\partial \phi}{\partial \vartheta}\vec{e}_\vartheta + \cfrac{1}{r \cdot \sin \vartheta} \cdot \cfrac{\partial \phi}{\partial \varphi}\vec{e}_\varphi\)  
+                \item div \(\vec{F} = \cfrac{1}{r^2} \cdot \cfrac{\partial}{\partial r} (r^2 \cdot F_r) + \cfrac{1}{r \cdot \sin \vartheta} \Bigg[  \cfrac{\partial}{\partial \vartheta} (\sin \vartheta \cdot F_\vartheta) + \cfrac{\partial F_\varphi}{\partial \varphi} \Bigg] \)
+                \item rot \(\vec{F} = \cfrac{1}{r \cdot \sin \varphi} \Bigg(  \cfrac{\partial}{\partial \vartheta}(\sin \vartheta \cdot F_\varphi) - \cfrac{\partial F_\vartheta}{\partial \varphi}  \Bigg)\vec{e}_r +
+                \cfrac{1}{r} \Bigg(  \cfrac{1}{\sin \vartheta} \cdot \cfrac{\partial F_r}{\partial \varphi} - \cfrac{\partial}{\partial r}(r \cdot F_\varphi) \Bigg) \vec{e}_\vartheta + 
+                \cfrac{1}{r} \Bigg(   \cfrac{\partial}{\partial r}(r \cdot F_\vartheta) - \cfrac{\partial F_r}{\partial \vartheta}  \Bigg)  \)
+                \item \(\varDelta \phi = \cfrac{1}{r^2}\Bigg\{  \cfrac{\partial}{\partial r} \Bigg( r^2 \cdot \cfrac{\partial \phi}{\partial r}  \Bigg) + \cfrac{1}{\sin \vartheta} \cdot 
+                \cfrac{\partial}{\partial \vartheta} \Bigg(  \sin \vartheta \cdot \cfrac{\partial \phi}{\partial \vartheta}  \Bigg)  + \cfrac{1}{\sin^2 \vartheta} \cdot \cfrac{\partial^2 \phi}{\partial \varphi^2}  \Bigg \}\)
+            \end{itemize}
 \end{document}
