@@ -515,4 +515,38 @@ pdftitle={Analysis 2}
                 \item \(\varDelta \phi = \cfrac{1}{r^2}\Bigg\{  \cfrac{\partial}{\partial r} \Bigg( r^2 \cdot \cfrac{\partial \phi}{\partial r}  \Bigg) + \cfrac{1}{\sin \vartheta} \cdot 
                 \cfrac{\partial}{\partial \vartheta} \Bigg(  \sin \vartheta \cdot \cfrac{\partial \phi}{\partial \vartheta}  \Bigg)  + \cfrac{1}{\sin^2 \vartheta} \cdot \cfrac{\partial^2 \phi}{\partial \varphi^2}  \Bigg \}\)
             \end{itemize}
+    \section{Linien- und Kurvenintegrale}
+        Das Linienintegral ist angelehnt an der physikalischen Arbeit. Die Arbeit kann sich oft ändern, je nachdem wie der Weg gewählt wurde. Zum Beispiel kann eine Box diagonal im Raum verschoben werden
+        oder entlang 2 Wänden also von x: 0 \(\rightarrow\) 1, y: 0 \(\rightarrow\) 1. Das Resultat ist dasselbe aber die Arbeit ist unterschiedlich. \\
+        Der Weg wird allgemein als \(C\) beschrieben. Die Arbeit ist dann das Integral aus dem Skalarprodukt und dem Weg (vektorielle dargestellt) und einer Kraft/einem Kraftfeld. Die Integralgrenzen
+        sind dann die Punkte die der Weg durchlaufen soll.
+        \begin{equation*}
+            \begin{aligned}
+                & \text{1. Weg C bestimmen und als Vektor \(\vec{r}\) darstellen. } \\
+                & \text{2. \(x\) mit \(t\) in \(\vec{r}\) substituieren und \(y\) dementsprechend anpassen} \\
+                & \text{3. \(x(t)\) und \(y(t)\) in den Kraftvektor \(\vec{F}\) einsetzen.  } \\
+                & \text{4. \(\vec{r(t)}\) ableiten } \\
+                & \text{5. Das Integral bilden durch: } {\int\limits_C} \vec{F} \cdot d\vec{r} = {\int\limits_{t1}}^{t2} \vec{F} \cdot \dot{\vec{r}} \; dt
+            \end{aligned}
+        \end{equation*}
+        Analog gilt dasselbe für Vektoren mit drei Komponenten. Wenn rot\((\vec{F} = 0)\)\footnote{rot(grad(\(\phi)) = \vec{0} \)} gilt (Vektorfeld ist konservativ),
+        dann ist das Linienintegral wegunabhängig dh. der Weg kann frei gewählt werden.
+    \section{Oberflächenintegral}
+        Das Oberflächenintegral wird auch oft Flussintegral genannt, da man durch das Oberflächenintegral oft den Fluss durch eine Fläche bestimmen kann. Dafür muss eben der Fluss (Vektorfedl \(\vec{F}\)) 
+        und die Fläche (\(\vec{v}\)) bestimmt sein. Für \(\vec{v}\) bietet sich meistens oft an die \(z\)-Komponente durch \(x\) und \(y\) (\(r, \varphi\) etc.) darzustellen. \(\vec{v}\) wird nun nach 
+        \(x\) und \(y\) abgeleitet und aus dem Kreuzproukt der beiden Vektoren entsteht dann der Normalenvektor \(\vec{n}\). Das Skalarprodukt aus \(\vec{F}\) und \(\vec{v}\) wird nun doppelt integriert
+        nach \(x\) und \(y\) (die Grenzen müssen gegebenenfalls durch die Anfangsfläche erst bestimmt werden). Das Ergebnis ist dann das Oberflächenintegral:
+        \begin{equation*}
+            \begin{aligned}
+                & \text{1. Fläche und Vektorfeld bestimmen und parametriesieren (polar, kartesische, etc.)} \\
+                & \text{2. Fläche als Vektor \(\vec{v}\) darstellen und \(z\) durch \(x\) und \(y\) darstellen} \\
+                & \text{3. \(\vec{v}\) nach \(x\) und \(y\) ableiten und das Kreuzprodukt bilden} \\
+                & \vec{n} = \cfrac{\vec{v}}{dx} \times \cfrac{\vec{v}}{dy} \\
+                & \text{4. Skalarprodukt aus \(\vec{F}\) und \(\vec{n}\) bilden} \\
+                & \text{5. Ergebnis doppelt nach dx und dy integrieren.}\footnote{Integrat<ionsgrenzen müssen ggf. berechnet werden} \\
+                & \iint\limits_{M} \vec{F} \cdot \vec{n} \; dxdy
+            \end{aligned}
+        \end{equation*}
+        Es kann auch vorkommen, dass zum Beispiel das Oberflächenintegral von einer geschlossenen Halbkugeln berechnet werden soll. Hier muss die 'Bodenfläche' extra berechnet werden und zur 
+        Mantelfläche später dazuaddiert werden. 
 \end{document}
