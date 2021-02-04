@@ -278,6 +278,61 @@
             Da die Wurzel aber einen neuen Wert hat muss max-heapify aufgerufen werden, um die Bedingungen zu erfüllen. Nun wird aber das letzte Element ignoriert, da es ja
             schon sortiert ist. Es wird wieder extract-max aufgerufen, und dann wieder max heapify bis der komplette Baum sortiert ist.
         \subsection{Shellsort}
+            Wie Insertionsort, allerdings wird über eine größere Distanz verglichen. Die Distanz wird mit jedem Durchgang verringert, bis man am Ende einen Durchgang Insertionsort hat. Erst vorteilhaft bei einer großen Zahl an Elementen, bei 9 Elementen ist normaler Insertionsort besser. Die Folge, wie groß die Distanz reduziert werden soll, hat großen Einfluss auf die Laufzeit
+        \subsection{Combsort}
+            Combsort wendet die Vergleiche über eine größere Distanz aus Shellsort auf Bubblesort an. Die Distanz wird immer weiter verringert bis im letzten Schritt mit Bubblesort sortiert wird.
+        \subsection{Weirdsort}
+            Nur bei gleicher Verteilung, kein echtes Sortierproblem.
+        \subsection{Bucketsort}
+            Die Elemente werden entsprechend ihrer Wertigkeit in Buckets aufgeteilt. Die Buckets werden mit einem anderen Sortieralgorithmus sortiert und wieder aneinander gefügt.
+        \subsection{Radixsort}
+            Für jede Stelle in der Zahl wird ein Bucketsort durchgeführt (hinten anfangend).
+        \subsection{Countingsort}
+            Es wird die Anzahl der Vorkommen jedes Wertes gezählt und dann in einem nächsten Schritt das Array wieder aufgebaut. Sinnvoll wenn viele gleiche Werte vorkommen.
+    \section{Sprachen und Automaten}
+        \subsection{Alphabet}
+            Das Alphabet $\sum$ ist eine endliche, nicht leere Menge, die alle Zeichen enthält, die im Alphabet erlaubt sind. Die Kleenesche Hülle $\sum*$ umfasst alle Wörter, die man mit dem Alphabet erzeugen kann, inklusive dem leeren Wort ($\epsilon$). Die Transitive Hülle $\sum+$ enthält alle Wörter außer dem leeren Wort.
+
+            $|\omega|$ = Länge des Wortes (=Anzahl der Zeichen)
+
+            $\sum n$ = Menge der Wörter der Länge n
+
+            $x=101, y = 010, xy = 101010$ Konkatenation
+
+            Eine Teilmenge aus $\sum*$ wird als Sprache bezeichnet. Eine Sprache muss nicht alle Zeichen verwenden. Die Verkettung von 2 Sprachen enthält alle möglichen Verkettungen der Worte der Sprachen. Die Kleensche Hülle einer Sprache enthält alle Zeichenkombinationen, die durch Kombination von Zeichenfolgen der Sprache erzeugt werden können.
+        \subsection{Formale Sprache}
+            Eine formale Sprache ist eine Teilmenge über einem endlichen Alphabet. Eine Sprache ist definiert durch Grammatik. Eine Grammatik beschreibt Ersatzinstruktionen für jedes Zeichen, bis am Ende nur noch Terminalsymbole übrig sind (Vorrausgesetzt es ist endlich). Die Ersetzung beginnt beim Startsymbol S.
+
+            $$ P = { S\rightarrow aA,
+                     A\rightarrow aS | a}$$
+
+            Das Beispiel erzeugt jedes Wort, das aus einer geraden Anzahl aus a erzeugt werden kann.
+
+            \begin{description}
+                \item[Allgemeine Sprache] Alle Worte können rekursiv aufgezählt werden, ein Automat kann alle Worte bestätigen. Es gibt keine Grammatik die alle Wörter aufzählt, die nicht zur Sprache gehören. Links vom Pfeil mindestens ein nichtterminal, rechts vom Pfeil beliebig.
+                \item[Kontextsensitive Sprache] Variable darf nur im Kontext einer Zeichenkette ersetzt werden, der Kontext selbst bleibt unverändert. Links vom Pfeil mindestens ein nichtterminal und nie mehr Zeichen als rechts vom Pfeil, Rechts beliebig.
+                \item[Kontextfreie Sprache] Links vom Pfeil immer nur ein einzelnes nichtterminal, rechts beliebig. Alle Programmiersprachen können so beschrieben werden.
+                \item[Reguläre Grammatik] Ein nichtterminal wird gegen ein Terminal und optional ein nichtterminal ersetzt.  
+            \end{description}
+            Für jede dieser Sprachen kann man einen Automaten konstruieren, der entscheiden kann, ob ein Wort zu einer Sprache gehört.
+        \subsection{Automat}
+            $$A = (Q, \sum, \delta, q_0, F)$$
+            \begin{description}
+                \item[Q:] Menge von Zuständen
+                \item[$\sum$: ] Menge von Eingabesymbolen
+                \item[$\delta$: ] Übergangsfunktion
+                \item[$q_0$: ] Startzustand
+                \item[F: ] Menge der akzeptierter/finaler Zustände 
+            \end{description}
+            Die Übergangsfunktion $\delta$ ordnet jedem  paar $(q_i, \sigma_j)$ aus Zustand $q_i$ und Eingabezeichen $\sigma_j$ einen neuen Folgezustand $q_k$ zu. $\delta(q_i, \sigma_j) \rightarrow q_k$. Kann auch als Tabelle oder Diagram dargestellt werden. Die erweiterte Übergangsfunktion $\tilde{\delta}$ beschreibt, was mit dem Zustand bei der Eingabe eines Wortes passiert.
+
+            Ein Automat gilt als endlich, wenn die Zustandsmenge Q und das Alphabet $\sum$ endlich ist.
+            
+            Ein deterministisch endlicher Automat akzeptiert eine Eingabe, wenn der letzte Zustand in F enthalten ist.
+
+            Bei nicht deterministischen Automaten bildet die Übergangsfunktion auf mehrere mögliche Folgezustände ab.
+
+            Die Sprache eines Automaten enthält alle Zeichenketten, die der Automat akzeptiert.
     \section{Glossar}
         Bytespeicherung in Big-Endian(höchstes bit an erster (also  ganz links) Stelle ) bzw Little-Endian
         NIL Not in List

@@ -57,7 +57,7 @@ pdftitle={Analysis 2}
         
         \subsection{Substitutionsmethode}
         Bei der Lösung durch Substitution muss man zuerst wieder die Gleichung nach \(y'\) auflösen. Nun schaut man, von welchen Typ die DGL ist.
-        Die zwei Typen sind \(y' = f(ax + bx + c)\) und \(y' = \frac{y}{x}\).
+        Die zwei Typen sind \(y' = f(ax + by + c)\) und \(y' = \frac{y}{x}\).
         \subsubsection{Typ: linear}
         Sei \(u\) die Variabel die zur Substitution genommen wird. Zuerst wird \(u\) der Gleichung gleichgesetzt: \(u = ax + by +c\). Wenn man \(u\) nun
         differenziert erhält man \(u' = a + by'\). \(u\) ist von x abhängig, da \(u\) nur von den Variablen \(x\) und \(y\) abhängig ist und \(y\) wiederum 
@@ -137,6 +137,12 @@ pdftitle={Analysis 2}
         \end{equation*}
         Auf beiden Seiten steht ein \(x^2\). Hier sieht man auch, dass \(C_1 = 1\) sein muss damit die Koeffizienten auf beiden Seiten übereinstimmen. Den "Vergleich" führt man 
         nun mit allen \(C_n\) durchgeführt. Zum Schluss werden die \(C_n\)-Werte in den zuvor gewählten Ansatz eingefügt und man erhält die partikuläre Lösung.  
+    \subsection{Bernoulli DGL}
+        Bernoulli Differentialgleichungen haben die Form 
+        $$y' = f(x)\cdot y + g(x) \cdot y^\alpha$$
+        Dabei substituiert man $z = y^{1-\alpha}$ , was zu 
+        $$z' = (1-\alpha)\cdot f(x)\cdot z + (1-\alpha)\cdot g(x)$$
+        führt und als inhomogene DGL gelöst werden kann.
     \section{Lineare Differentialgleichungen 2. Ordnung}
         Eine DGL 2. Ordnung löst man weitesgehend wie eine eine DGL 1. Ordnung, indem man wieder die homogene und die partikuläre Lösung findet und aus diesen  die Summe bildet:
         \begin{equation}
