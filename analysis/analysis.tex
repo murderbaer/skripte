@@ -376,6 +376,10 @@ pdftitle={Analysis 2}
                 \begin{pmatrix} a_x \\ a_y \end{pmatrix} = 
                 A \begin{pmatrix} a_x \\ a_y \end{pmatrix}
         \end{equation*}
+        \begin{equation*}
+            A^{-1} = \begin{pmatrix} \cos \varphi & -\sin \varphi \\ 
+                \sin \varphi & \cos \varphi  \end{pmatrix}
+        \end{equation*}
         Ohne Matrixmultiplikation: 
         \begin{equation*}
             \begin{aligned}
@@ -446,7 +450,11 @@ pdftitle={Analysis 2}
                         a_x \\ a_y \\ a_z
                     \end{pmatrix}
                 \end{equation*}     
-            
+                \begin{equation*}
+                    A^{-1} = \begin{pmatrix} \cos \varphi & -\sin \varphi & 0 \\ 
+                        \sin \varphi & \cos \varphi & 0 \\
+                        0 & 0 & 1  \end{pmatrix}
+                \end{equation*}
             \subsubsection{Gradient, Divergenz, Rotation und Laplace Operator in Zylinderkoordinaten}
             Ein Skalarfeld ind Zylinderkoordinatenform ist gegeben durch \(\phi = \phi(\varrho; \varphi; z)\) und ein Vektorfeld in Zylinderkoordinatenform ist gegeben durch \(\vec{F} =
             \vec{F}(\varrho; \varphi; z) = F_\varrho(\varrho; \varphi; z)\vec{e}_\varrho + F_\varphi(\varrho; \varphi; z)\vec{e}_\varphi + F_z(\varrho; \varphi; z)\vec{e}_z \), dann gilt für Gradient, Divergenz, Rotation und 
@@ -511,7 +519,22 @@ pdftitle={Analysis 2}
                     \vec{e}_x \\ \vec{e}_y \\ \vec{e}_z
                 \end{pmatrix}
             \end{equation*}
-
+            \begin{equation*}
+                \begin{pmatrix}
+                    \vec{e}_x \\ \vec{e}_y \\ \vec{e}_z 
+                \end{pmatrix} = 
+                \begin{pmatrix}
+                    \sin \vartheta \cdot \cos \varphi & \cos \vartheta \cdot \cos \varphi & -\sin \varphi \\
+                    \sin \vartheta \cdot \sin \varphi & \cos \vartheta \cdot \sin \varphi & \cos \varphi \\
+                    \cos \vartheta & -\sin \vartheta & 0
+                \end{pmatrix}
+                \begin{pmatrix}
+                    \vec{e}_r \\ \vec{e}_\vartheta \\ \vec{e}_\varphi 
+                \end{pmatrix} = A^{-1}
+                \begin{pmatrix}
+                    \vec{e}_r \\ \vec{e}_\vartheta \\ \vec{e}_\varphi 
+                \end{pmatrix}
+            \end{equation*}
             \subsubsection{Gradient, Divergenz, Rotation und Laplace Operator in Kugelkoordinaten}
             Ein Skalarfeld in Kugelkoordinaten ist gegeben durch \(\phi = \phi(r; \vartheta; \varphi)\) und ein Vektorfeld in Kugelkoordinaten ist gegeben durch \(\vec{F} =
             \vec{F}(r; \vartheta; \varphi) = F_r(r; \vartheta; \varphi)\vec{e}_r + F_\vartheta(r; \vartheta; \varphi)\vec{e}_\vartheta + F_\varphi(r; \vartheta; \varphi)\vec{e}_\varphi \), dann gilt für Gradient, Divergenz, Rotation und 
