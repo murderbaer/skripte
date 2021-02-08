@@ -1,6 +1,5 @@
 *
 !*.md
-!*.pdf
 !*.tex
 !*.gitignore
 !*.png
