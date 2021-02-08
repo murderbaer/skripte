@@ -283,11 +283,11 @@ pdftitle={Analysis 2}
         \begin{equation*}
             \begin{aligned}
                 & \text{(1) } \text{grad } c = 0 \\
-                & \text{(2) } \text{div } (c \cdot \phi) = c \cdot \text{div }\phi \\
-                & \text{(3) } \text{div } (\phi + \psi) = \text{div } \phi + \text{div } \psi \\
-                & \text{(4) } \text{div } (\phi c) = \text{div } \phi \\
-                & \text{(5) } \text{div } (\phi \cdot \psi)= \phi(\text{div } \psi) + \psi(\text{div } \phi) \\
-                & \text{(5') } \text{div } (\phi \cdot \psi)= \phi \cdot \text{div } \psi + \psi \cdot \text{div } \phi \\
+                & \text{(2) } \text{grad } (c \cdot \phi) = c \cdot \text{grad }\phi \\
+                & \text{(3) } \text{grad } (\phi + \psi) = \text{grad } \phi + \text{grad } \psi \\
+                & \text{(4) } \text{grad } (\phi + c) = \text{grad } \phi \\
+                & \text{(5) } \text{grad } (\phi \cdot \psi)= \phi(\text{grad } \psi) + \psi(\text{grad } \phi) \\
+                & \text{(5') } \text{grad } (\phi \cdot \psi)= \phi \cdot \text{grad } \psi + \psi \cdot \text{grad } \phi \\
             \end{aligned}
         \end{equation*}
         Desweiteren kann man durch den Gradienten analysieren wie sich die Funktionswerte ändern, wenn man in eine bestimmte Richtung fortschreitet. Dazu nimmt man den
@@ -313,7 +313,7 @@ pdftitle={Analysis 2}
                 & \text{(1) } \text{div } \vec{a} = 0 \\
                 & \text{(2) } \text{div } (c \cdot \vec{A}) = c \cdot \text{div } \vec{A} \\
                 & \text{(3) } \text{div } (\vec{A} + \vec{B}) = \text{div } \vec{A} + \text{div } \vec{B} \\
-                & \text{(4) } \text{div } (\vec{A} \vec{a}) = \text{div } \vec{A} \\
+                & \text{(4) } \text{div } (\vec{A} + \vec{a}) = \text{div } \vec{A} \\
                 & \text{(5) } \text{div } (\phi \vec{A})= (\text{grad } \phi) \cdot \vec{A} + \phi(\text{div } \vec{A}) \\
                 & \text{(5') } \text{div } (\phi \vec{A})= (\text{grad } \phi) \cdot \vec{A} + \phi \cdot \text{div } \vec{A} \\
             \end{aligned}
@@ -338,13 +338,17 @@ pdftitle={Analysis 2}
                 \cfrac{\partial F_y}{\partial x}  - \cfrac{ \partial F_x}{\partial y}
             \end{pmatrix}
         \end{equation*}
+        Im ebenen Vektorfeld gilt:
+        \begin{equation*}
+            \text{rot }\vec{F} = \left(\frac{\partial F_y}{\partial x} - \frac{\partial F_x}{\partial y}\right)\cdot \vec{e}_z
+        \end{equation*}
         \subsection*{Rechenregeln}
         \begin{equation*}
             \begin{aligned}
                 & \text{(1) rot }  \vec{a} = \vec{0} \\
                 & \text{(2) rot }  (c \cdot \vec{A}) = c \cdot \text{rot } \vec{A} \\
                 & \text{(3) rot }  (\vec{A} + \vec{B}) = \text{rot } \vec{A} + \text{rot } \vec{B} \\
-                & \text{(4) rot }  (\vec{A} \vec{a}) = \text{rot } \vec{A} \\
+                & \text{(4) rot }  (\vec{A} + \vec{a}) = \text{rot } \vec{A} \\
                 & \text{(5) rot }  (\phi \vec{A})= (\text{grad }  \phi) \times \vec{A} + \phi(\text{rot } \vec{A}) \\
                 & \text{(5') rot }  (\phi \vec{A})= (\text{grad }  \phi) \times \vec{A} + \phi \cdot \text{rot } \vec{A} \\
             \end{aligned}
