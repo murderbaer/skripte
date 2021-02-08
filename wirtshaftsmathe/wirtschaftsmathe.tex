@@ -156,10 +156,14 @@
             \begin{equation*}
                 A = T \cdot (1 + (n - r + 1)i)
             \end{equation*}
-
+            Für die Annuitätentilgung gilt folgende Formel: 
+            \begin{equation*}
+                A = S \cdot q^n \cfrac{q - 1}{q^n - 1}
+            \end{equation*}
             \subsubsection{unterjährliche Ratentilgung}
             Soll mehrmals im Jahr getilgt werden muss der jährliche Zinssatz durch die Anzahl der Tilgungen im Jahr geteilt werden. Weiter beschreibt das \(n\) nicht mehr das ahr sondern die Anzahl
             der Zinsperioden.  
+
     \section{Deskriptive Statistik}
         \subsection{Stichproben}
             Bei der Statistik versucht man allgemeine Aussagen über einen bestimmten Datensatz zu erheben. Bei Millionen von Daten ist es oft nicht sinnvoll alle 
@@ -238,7 +242,7 @@
                 \end{equation*}
                 Teilt man die Kovarianz durch die Standardabweichung von jeweils \(x\) und \(y\) erhält man den empirischen Korrelationskoeffizienten:
                 \begin{equation*}
-                    r_{xy} = \frac{s_{xy}}{s_x \cdot s_x}
+                    r_{xy} = \frac{s_{xy}}{s_x \cdot s_y}
                 \end{equation*}
                 Weiter gilt für den Korrelationskoeffizienten \(r_{xy}\): 
                 \begin{itemize}
@@ -321,7 +325,7 @@
             Für das Wahrscheinlichkeitsmaß gilt außerdem: 
             \begin{enumerate}[label=\alph*)]
                 \item \(p(\{ \; \}) = 0\)
-                \item \(A\) und \(B\) sind Ereignisse: \((A \cap B) = \{ \; \} = p( A \cup B) = p(A) + p(B)\)
+                \item \(A\) und \(B\) sind Ereignisse: \((A \cap B) = \{ \; \}  \Rightarrow p( A \cup B) = p(A) + p(B)\)
                 \item \(p(A) + p(\overline{A}) = 1\)
                 \item \(A\) und \(B\) sind Ereignisse: \(p(A \cup B) = p(A) + p(B) - p(A \cap B)\)
                 \item \(A\) und \(B\) sind Ereignisse: \(A \subset B \Rightarrow p(A) \le p(B)\)
@@ -436,6 +440,7 @@
                     \item Erwartungswert: \(E(X) = \sum\limits_{x =0}^n x \begin{pmatrix} n \\ x \end{pmatrix} \cdot p^x \cdot q^{n - x} = n \cdot p ) \)
                     \item Varianz: \(V(X) = \sum\limits_{x=0}^n (x - n \cdot p)^2 \cdot \begin{pmatrix} n \\ x \end{pmatrix} \cdot p^x \cdot q^{n - x} = n \cdot p \cdot q\) 
                 \end{itemize}
+                \(p\) ist dabei  die Wahrscheinlichkeit für's Eintreten des Ereignis. \(q\) ist definiert durch \(q = 1 - p\) und \(x\) ist die Anzahl wie oft das Ereignis eintreten soll.  
             \subsubsection{Geometrische Verteilung}
             Anzahl der Versuche die gebraucht werden bis der 1. Erfolg bei einem Bernoulli-Experiment eintritt. 
             \begin{itemize}
@@ -460,7 +465,7 @@
             %TODO
         \subsection{stetige Zufallsvariable}
             Eine Zufallsvariable heißt stetig wenn \(W_X\) ein Intervall in \(\mathbb{R}\), die Dichtefunktion \(f_X\) gilt, dass sie nie negativ ist und und die Verteilfunktion 
-            \(F_X(x)\) das Integral aus \(f_X\), also \(F_X(x) = \int\limits_{-\infty }^x f_X(u) \; du\).
+            \(F_X(x)\) das Integral aus \(f_X\), also \(F_X(x) = \int\limits_{-\infty }^x f_X(u) \; du\). 
             \begin{itemize}
                 \item Erwartungswert: \(E(X) = \int\limits_{-\infty}^{\infty} x \cdot (f_X(x)) \; dx \)
                 \item Varianz: \(V(X) = \int\limits_{-\infty}^{\infty} (x - E(X))^2 \cdot f_x(x) \; dx = E(X^2) - E(X)^2 \)
@@ -486,7 +491,7 @@
                     \item Varianz: \(V(X) = \sigma^2\)
                     \item Standardnormalverteilung (\(\mu = 0, \sigma = 1\)):  \(\varPhi(x) = \varPhi(x,0,1) = \cfrac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^xe^{\ - \frac{u^2}{2}} \; du\)
                 \end{itemize}
-                Ist \(X, \mu, \sigma\) normalverteil, dann ist \(Y := \cfrac{x - \mu}{\sigma}\) tandardnormalverteilt.
+                Ist \(X, \mu, \sigma\) normalverteil, dann ist \(Y := \cfrac{x - \mu}{\sigma}\) standardnormalverteilt.
             \subsubsection{Exponentiallverteilung}
                 Die Exponentialverteilung ist ein Model für die Lebensdauer für Produkte.
                 \begin{itemize}
@@ -494,5 +499,19 @@
                     \item Erwartungswert: \(E(X) = \cfrac{1}{\lambda} \)
                     \item Varianz: \(Var(X) =  \cfrac{1}{\lambda^2} \)
                 \end{itemize}
+            \subsection{Notizen}
+                Das Intervall wird durch die Integration der Dichtefunktion ermittelt. \\
+                Varianz und Erwartungswert haben den Wert 0 wenn das die Intervallgrenzen gleich sind (bzw. wenn nur ein Punkt gegeben ist und nicht zwei)
     \section{Induktive Statistik und statistische Tests}
+        \subsection{Parameterschätzung}
+            Bei der Parameterschätzung ist die Verteilung \(X\) bekannt, aber die Parameter wie der Mittelwert \(\mu\) oder die Varianz \(\sigma^2\).
+            Diese Parameter werden dann durch Stichproben geschätzt. Die Stichproben werden dann im Vektor \(\vec{X}\) erfasst. Hat \(\vec{X}\)
+            200 Komponenten, so wurden 200 Stichproben erstellt und jedes einzelne Element aus \(\vec{X}\) also \(X_i\) enthält wiederum alle Werte
+            einer einzelnen Stichprobe (jedes \(X_i\) hat die gleiche Anzahl an Werte, die Werte selbst können sich aber unterscheiden). Zudem ist
+            jedes \(X_i\) eine 'Kopie' von \(X\). Dies soll zeigen, dass alle Stichprobenwerte unabhängig von einander ermittelt wurde. \\
+            Die Schätzfunktion \(\overline{X}\) ist wie folgt definiert: 
+            \begin{equation*}
+                \overline{X} = \cfrac{1}{n} \sum^n_{i=1} X_i
+            \end{equation*}
+            Wenn \(E(X) = E(\overline{X})\) gilt, so ist die Schätzfunktion \(\overline{X})\) für \(E(X)\) erwartungstreu.
 \end{document}
