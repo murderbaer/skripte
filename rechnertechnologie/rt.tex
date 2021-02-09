@@ -29,11 +29,12 @@
         Unsigned (only positive) integers only differ in how many bits they use. Typical sizes are  8-bit (short), 16-bit (half word), 32-bit (word) and 64-bit (double word). \\
         Signed integers need to save the minus symbol somewhere. There are several options to "save the minus". One is just saying if the MSB is 1, the number is negative. The problem
         is that \(0000\) and \(1000\) are both \(0\), but one is a positive and one is a negative \(0\) which isn't very effective. \\
-        Another implementation is the one-complement.
+        Another implementation is the \textbf{one-complement}.
         Here you just invert every bit to get the "negative version" of the number. Again the \(\pm 0\) is possible, but the one-complement 
-        creates a symmetry with negative and positive numbers and is needed for the two-complement. 
-        The two-complement takes the result from the one complement and adds \(+1\) to it. The symmetry is gone but the \(\pm 0\) is gone (only positive 0) and an extra negative number is won. \\
-        One other way to create negative number is by using a bias/offset. One needs to define the offset first. Now every number in the memory will be read nad the offset will be 
+        creates a symmetry with negative and positive numbers and is needed for the two-complement. \\
+        The \textbf{two-complement} takes the result from the one complement and adds \(+1\) to it. The symmetry is gone but the \(\pm 0\) is gone (only positive 0) and an extra negative number is won. It can be calculated like this:
+        $$Y_z = -z_{N-1}*2^{N-1} + \sum_{i=0}^{N-2}z_i * 1^i, z_i \in \{0, 1\}$$
+        One other way to create negative number is by using a \textbf{bias/offset}. One needs to define the offset first. Now every number in the memory will be read nad the offset will be 
         subtracted from it. An offset of 128 means that the positive numbers will start at \(1000.0000_b \)\footnote{\(1000.0000_b \equiv 0\)}. The offset is used in floating point numbers for the exponent.
 
         \subsection*{Decimal numbers}
