@@ -48,13 +48,16 @@
         Depending on how many bits the float uses, different values need to be inserted into the formula.
         \begin{center}\begin{tabular}{|c|c|c|c|c|}
             \hline
-             & sign & mantissa & offset & exponent \\
+             & sign & exponent & mantissa & offset  \\
             \hline
-            32-bit & 1-bit & 23-bit & 127-bit & 8-bit \\
+            32-bit & 1-bit & 8-bit & 23-bit & 127-bit \\
             \hline
-            64-bit & 1-bit & 52-bit & 1023-bit & 11-bit \\
+            64-bit & 1-bit & 11-bit & 52-bit & 1023-bit \\
             \hline
         \end{tabular}\end{center}
+        $$Y = (-1)^s\cdot \left(1+\sum_{i=-1}^{-F}z_i\cdot 2^i\right)\cdot 2^{e-bias}$$
+        Besondere Werte wenn der Exponent nur aus 1 besteht.
+        $\pm \infty$ oder NaN (Wenn Mantissa Werte enthält)
         
     \section{Boolean Algebra}
         Boolean Algebra takes (binary) parameters and return a  binary result. There are different operands in boolean algebra: 
