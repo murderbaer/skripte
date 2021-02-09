@@ -165,7 +165,26 @@
                 \hline
             \end{tabular}
             \end{center}
-            
+            \begin{center}
+                \begin{tabular}{|p{5cm}|c|c|}
+                    \hline
+                    Instruction & Format & opcode  \\
+                    \hline
+                    ADD & R & $1112_{10}$ \\ 
+                    \hline
+                    SUB & R & $1624_{10}$ \\ 
+                    \hline
+                    ADDI & I & $580_{10}$ \\ 
+                    \hline
+                    SUBI & I & $836_{10}$ \\ 
+                    \hline
+                    LDUR & D & $1986_{10}$ \\ 
+                    \hline
+                    STUR & D & $1984_{10}$ \\ 
+                    \hline
+                \end{tabular}
+            \end{center}
+            Example: 1986 240 0 10 9 -> Load the address in register 10 with an offset of 30 bytes (240/8=30) into register 9
             \begin{itemize}
                 \item opcode: the numeric representation of the instruction
                 \item Rm: second register
