@@ -376,6 +376,10 @@ pdftitle={Analysis 2}
                 \begin{pmatrix} a_x \\ a_y \end{pmatrix} = 
                 A \begin{pmatrix} a_x \\ a_y \end{pmatrix}
         \end{equation*}
+        \begin{equation*}
+            A^{-1} = \begin{pmatrix} \cos \varphi & -\sin \varphi \\ 
+                \sin \varphi & \cos \varphi  \end{pmatrix}
+        \end{equation*}
         Ohne Matrixmultiplikation: 
         \begin{equation*}
             \begin{aligned}
@@ -392,8 +396,8 @@ pdftitle={Analysis 2}
         \vec{F}(r;\varphi) = F_r(r;\varphi)\vec{e}_r + F_{\varphi} (r;\varphi)\vec{e}_{\varphi}\), dann gilt für Gradient, Divergenz, Rotation und 
         den Laplace-Operator folgendes: 
         \begin{itemize}
-            \item grad \(\phi(r;\varphi) = \cfrac{\partial \phi}{\partial r}\vec{e}_r + \cfrac{1}{r} \cdot \cfrac{\partial \phi}{\partial \phi}\vec{e}_{\varphi}\) 
-            \item div \(\vec{F}(r;\varphi) = \cfrac{\partial}{\partial r}(r \cdot F_r) + \cfrac{1}{r} \cdot \cfrac{\partial F_{\varphi}}{\partial \varphi}  \)
+            \item grad \(\phi(r;\varphi) = \cfrac{\partial \phi}{\partial r}\vec{e}_r + \cfrac{1}{r} \cdot \cfrac{\partial \phi}{\partial \varphi}\vec{e}_{\varphi}\) 
+            \item div \(\vec{F}(r;\varphi) = \cfrac{1}{r} \cdot \cfrac{\partial}{\partial r}(r \cdot F_r) + \cfrac{1}{r} \cdot \cfrac{\partial F_{\varphi}}{\partial \varphi}  \)
             \item rot \(\vec{F}(r;\varphi) = \cfrac{1}{r} \cdot \cfrac{\partial}{\partial r} (r \cdot F_{\varphi}) - \cfrac{1}{r} \cdot \cfrac{\partial F_r}{\partial \varphi} \)
             \item \(\varDelta \phi (r;\varphi)\footnote{\(\varDelta\) (Laplace) ist \(\nabla\)(Nabla) 2 mal ausgeführt} = \cfrac{\partial^2\phi}{\partial r^2} + \cfrac{1}{r} \cdot \cfrac{\partial \phi}{\partial r} + \cfrac{1}{r^2} \cdot \cfrac{\partial^2 \phi}{\partial \varphi^2} \)
         \end{itemize}
@@ -446,7 +450,11 @@ pdftitle={Analysis 2}
                         a_x \\ a_y \\ a_z
                     \end{pmatrix}
                 \end{equation*}     
-            
+                \begin{equation*}
+                    A^{-1} = \begin{pmatrix} \cos \varphi & -\sin \varphi & 0 \\ 
+                        \sin \varphi & \cos \varphi & 0 \\
+                        0 & 0 & 1  \end{pmatrix}
+                \end{equation*}
             \subsubsection{Gradient, Divergenz, Rotation und Laplace Operator in Zylinderkoordinaten}
             Ein Skalarfeld ind Zylinderkoordinatenform ist gegeben durch \(\phi = \phi(\varrho; \varphi; z)\) und ein Vektorfeld in Zylinderkoordinatenform ist gegeben durch \(\vec{F} =
             \vec{F}(\varrho; \varphi; z) = F_\varrho(\varrho; \varphi; z)\vec{e}_\varrho + F_\varphi(\varrho; \varphi; z)\vec{e}_\varphi + F_z(\varrho; \varphi; z)\vec{e}_z \), dann gilt für Gradient, Divergenz, Rotation und 
@@ -473,7 +481,7 @@ pdftitle={Analysis 2}
             \subsubsection*{Kartesische Koordinaten \(\rightarrow\) Zylinderkoordinaten}
             \begin{equation}
                 \begin{aligned}
-                    & \varrho = \sqrt{x^2 + y^2 + z^2} \\
+                    & r = \sqrt{x^2 + y^2 + z^2} \\
                     & \vartheta = \arccos \cfrac{z}{r} = \Bigg( \cfrac{z}{\sqrt{x^2 + y^2 + z^2}} \Bigg) \\
                     & \sin \varphi = \cfrac{y}{\sqrt{x^2 + y^2}} \text{, } \cos \varphi = \cfrac{x}{\sqrt{x^2 + y^2}} \text{, } \tan \varphi = \cfrac{y}{x}  
                 \end{aligned}
@@ -483,7 +491,7 @@ pdftitle={Analysis 2}
             \begin{itemize}
                 \item Linienelement: \(ds = \sqrt{(dr)^2 + r^2(d\vartheta)^2 + r^2 \cdot \sin^2 \vartheta (d\varphi)^2} \)
                 \item Flächenelement: \(dA = r^2 \cdot \sin \vartheta \; d\vartheta \; d\varphi \)
-                \item Volumenelement: \(dV = dA \; = r^2 \cdot \sin \vartheta \; dr \; d\vartheta \; d\varphi\)
+                \item Volumenelement: \(dV = dA \; dr = r^2 \cdot \sin \vartheta \; dr \; d\vartheta \; d\varphi\)
             \end{itemize}
             Um einen Vektor in kartesischer Form (\(\vec{a} = a_x\vec{e}_x + a_y \vec{e}_y + a_z \vec{e}_z \)) umzuwandeln in einen Vektor in Kugelkoordinatenform 
             (\(\vec{a} = a_r\vec{e}_r + a_\vartheta\vec{e}_\vartheta + a_\varphi\vec{e}_\varphi\)) kann folgender Ansatz genommen werden:
@@ -511,7 +519,22 @@ pdftitle={Analysis 2}
                     \vec{e}_x \\ \vec{e}_y \\ \vec{e}_z
                 \end{pmatrix}
             \end{equation*}
-
+            \begin{equation*}
+                \begin{pmatrix}
+                    \vec{e}_x \\ \vec{e}_y \\ \vec{e}_z 
+                \end{pmatrix} = 
+                \begin{pmatrix}
+                    \sin \vartheta \cdot \cos \varphi & \cos \vartheta \cdot \cos \varphi & -\sin \varphi \\
+                    \sin \vartheta \cdot \sin \varphi & \cos \vartheta \cdot \sin \varphi & \cos \varphi \\
+                    \cos \vartheta & -\sin \vartheta & 0
+                \end{pmatrix}
+                \begin{pmatrix}
+                    \vec{e}_r \\ \vec{e}_\vartheta \\ \vec{e}_\varphi 
+                \end{pmatrix} = A^{-1}
+                \begin{pmatrix}
+                    \vec{e}_r \\ \vec{e}_\vartheta \\ \vec{e}_\varphi 
+                \end{pmatrix}
+            \end{equation*}
             \subsubsection{Gradient, Divergenz, Rotation und Laplace Operator in Kugelkoordinaten}
             Ein Skalarfeld in Kugelkoordinaten ist gegeben durch \(\phi = \phi(r; \vartheta; \varphi)\) und ein Vektorfeld in Kugelkoordinaten ist gegeben durch \(\vec{F} =
             \vec{F}(r; \vartheta; \varphi) = F_r(r; \vartheta; \varphi)\vec{e}_r + F_\vartheta(r; \vartheta; \varphi)\vec{e}_\vartheta + F_\varphi(r; \vartheta; \varphi)\vec{e}_\varphi \), dann gilt für Gradient, Divergenz, Rotation und 
@@ -540,9 +563,10 @@ pdftitle={Analysis 2}
             \end{aligned}
         \end{equation*}
         Analog gilt dasselbe für Vektoren mit drei Komponenten. Wenn rot\((\vec{F} = 0)\)\footnote{rot(grad(\(\phi)) = \vec{0} \)} gilt (Vektorfeld ist konservativ),
-        dann ist das Linienintegral wegunabhängig dh. der Weg kann frei gewählt werden.
+        dann ist das Linienintegral wegunabhängig dh. der Weg kann frei gewählt werden. Dabei darf $\vec{F}$ keine Singularitäten
+        enthalten.
     \section{Oberflächenintegral}
-        Das Oberflächenintegral wird auch oft Flussintegral genannt, da man durch das Oberflächenintegral oft den Fluss durch eine Fläche bestimmen kann. Dafür muss eben der Fluss (Vektorfedl \(\vec{F}\)) 
+        Das Oberflächenintegral wird auch oft Flussintegral genannt, da man durch das Oberflächenintegral oft den Fluss durch eine Fläche bestimmen kann. Dafür muss eben der Fluss (Vektorfeld \(\vec{F}\)) 
         und die Fläche (\(\vec{v}\)) bestimmt sein. Für \(\vec{v}\) bietet sich meistens oft an die \(z\)-Komponente durch \(x\) und \(y\) (\(r, \varphi\) etc.) darzustellen. \(\vec{v}\) wird nun nach 
         \(x\) und \(y\) abgeleitet und aus dem Kreuzproukt der beiden Vektoren entsteht dann der Normalenvektor \(\vec{n}\). Das Skalarprodukt aus \(\vec{F}\) und \(\vec{v}\) wird nun doppelt integriert
         nach \(x\) und \(y\) (die Grenzen müssen gegebenenfalls durch die Anfangsfläche erst bestimmt werden). Das Ergebnis ist dann das Oberflächenintegral:
