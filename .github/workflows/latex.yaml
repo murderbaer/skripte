@@ -15,14 +15,13 @@ jobs:
              betriebssysteme/os.tex
              ginf/ginf.tex
              rechnertechnologie/rt.tex
-             rechnertechnologie/rt_misc.tex
              wirtshaftsmathe/wirtschaftsmathe.tex
       - name: Move PDF Files
         run: |
           mv analysis.pdf analysis/
           mv os.pdf betriebssysteme/
           mv ginf.pdf ginf/
-          mv rt.pdf rt_misc.pdf rechnertechnologie/
+          mv rt.pdf rechnertechnologie/
           mv wirtschaftsmathe.pdf wirtshaftsmathe/
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
