@@ -1,7 +1,7 @@
 *
 !*.md
 !*.tex
-!*rt_misc.pdf
+!*.pdf
 !*.gitignore
 !*.png
 !*/
