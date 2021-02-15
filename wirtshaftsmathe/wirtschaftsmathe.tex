@@ -1,7 +1,8 @@
 \documentclass[a4paper]{scrartcl}
 \pdfinfoomitdate=1
 \pdftrailerid{}
-\author{Me}
+\author{}
+\date{WS 20/21}
 \title{Grundlagen der Informatik}
 \usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
 \usepackage[T1]{fontenc}    % avoid garbled Unicode text in pdf
@@ -425,11 +426,12 @@
                                                             0     & \text{für den Rest} 
                                                         \end{cases}
                                                         \] 
-                    \item Erwartungswert: \(E(X) = \sum\limits_{x \epsilon W_X} x \cdot f(x) \)
+                    \item Erwartungswert: \(E(X) = p \)
                     \item Varianz: \(V(X) = pq = p (1 - q)\) \footnote{\(p = p(X=1), q = p(X=0)\)} % TODO aus wikipedia, in VL nachschauen
                 \end{itemize}
             \subsubsection{Binomialverteilung}
-                Die Binomialverteilung ist die Bernoulli-Verteilung \(n\) Mal durchgeführt.
+                Die Binomialverteilung ist die Bernoulli-Verteilung \(n\) Mal durchgeführt, bzw. \(n\) Objekte aus denen \(x\) untersucht werden wenn
+                nur eine Wahrscheinlichkeit \(p\) vorhanden ist. 
                 \begin{itemize}
                     \item Dichte: \[f(x)=
                                                         \begin{cases}
@@ -437,16 +439,17 @@
                                                             0     & \text{für den Rest} 
                                                         \end{cases}
                                                         \] 
-                    \item Erwartungswert: \(E(X) = \sum\limits_{x =0}^n x \begin{pmatrix} n \\ x \end{pmatrix} \cdot p^x \cdot q^{n - x} = n \cdot p ) \)
+                    \item Erwartungswert: \(E(X) = \sum\limits_{x =0}^n x \begin{pmatrix} n \\ x \end{pmatrix} \cdot p^x \cdot q^{n - x} = n \cdot p \)
                     \item Varianz: \(V(X) = \sum\limits_{x=0}^n (x - n \cdot p)^2 \cdot \begin{pmatrix} n \\ x \end{pmatrix} \cdot p^x \cdot q^{n - x} = n \cdot p \cdot q\) 
                 \end{itemize}
                 \(p\) ist dabei  die Wahrscheinlichkeit für's Eintreten des Ereignis. \(q\) ist definiert durch \(q = 1 - p\) und \(x\) ist die Anzahl wie oft das Ereignis eintreten soll.  
             \subsubsection{Geometrische Verteilung}
-            Anzahl der Versuche die gebraucht werden bis der 1. Erfolg bei einem Bernoulli-Experiment eintritt. 
+            Anzahl der Versuche die gebraucht werden bis der 1. Erfolg bei einem Bernoulli-Experiment eintritt. n ist dabei die Anzahl der Versuche (Wie hoch ist die 
+            Wahrscheinlichkeit, dass das Ereignis buis zum n-ten Versuch eintritt).
             \begin{itemize}
                 \item Dichte: \[f(x)=
                                                     \begin{cases}
-                                                        q^xp     & \text{für } x \; \epsilon \; \mathbb{N}_0 \\
+                                                        q^np     & \text{für } n \; \epsilon \; \mathbb{N}_0 \\
                                                         0     & \text{für den Rest} 
                                                     \end{cases}
                                                     \] 
@@ -454,15 +457,24 @@
                 \item Varianz: \(V(X) = \cfrac{q}{p^2}\) 
             \end{itemize}
             \subsubsection{Hypergeometrische Verteilung}
-                Bei der Binomialverteilung wird ein Bernoulli-Experiment mehrfach ausgeführt und die Wahrscheinlichkeit bleibt bei jedem Durchgang gleich. Wenn sich die Wahrscheinlichkeit
-                aber ändern können soll nimmt man die Hypergeometrische Verteilung (Möchte man ein Produkt 100 mal testen, geht man davon aus, dass es bei jedem Versuch immer ein Stück mehr kaputt geht).\\
-                Sei \(N\) die Anzahl der Elemente und \(S \subset N\) und \(n\) die Anzahl, wie oft ein Versuch durchgeführt wird, so gilt: 
+                Aus einer Grundmenge (Gesamtmenge) N werden erfüllen N Elemente eine bestimmte Eigenschaft (Aus 10 (N) Lampen sind 2 (M) defekt).
+                Aus N werden nun n Elemente betrachtet. f gibt dann die Wahrscheinlichkeit für x auftauchende Elemnte an (Aus 10 Lampen sind 2 defekt,
+                es werden 5(n) Lampen untersucht. Wie Wahrscheinlich ist es dass eine (x) aus den 5 Lampen kaputt ist).
                 \begin{itemize}
-                    \item Erwartungswert: \(E(X) = n \cdot \cfrac{S}{N}\)
-                    \item Varianz: \(V(X) = n \cfrac{S}{N} \Bigg(1 - \cfrac{S}{M} \Bigg) \cfrac{N - n}{N - 1} \)
+                    \item Dichte: \(\cfrac{\begin{pmatrix} M \\ x \end{pmatrix} \cdot \begin{pmatrix} N - M \\ n - x \end{pmatrix}}{\begin{pmatrix} N \\ n \end{pmatrix}}\)
+                    \item Erwartungswert: \(E(X) = n \cdot \cfrac{M}{N}\)
+                    \item Varianz: \(V(X) = n \cfrac{M}{N} \Bigg(1 - \cfrac{M}{N} \Bigg) \cfrac{N - n}{N - 1} \)
                 \end{itemize}
             \subsubsection{Poisson-Verteilung}
-            %TODO
+                Bei der Poisson-Verteilung ist der Erwartungswert \(\lambda\) oft schon gegeben, da man gerade ihn zur Berechnung für die Dichte benötigt. 
+                Poisson eignet sich für Stichproben mit hohem Umfang (\(n = 100, 1000,\) etc) aber niedrigem Erwartungswert (\(\lambda = 2\)) Es gilt:
+                \begin{itemize}
+                    \item Dichte: \(f(x) = \cfrac{\lambda^k}{k!} \cdot e^\lambda\)
+                    \item Erwartungswert: \(E(X) = \lambda\)
+                    \item Varianz: \(V(X) = \lambda\)
+                \end{itemize} 
+                Dabei ist \(k\) zum Beispiel Anzahl der defekten Geräte.
+            
         \subsection{stetige Zufallsvariable}
             Eine Zufallsvariable heißt stetig wenn \(W_X\) ein Intervall in \(\mathbb{R}\), die Dichtefunktion \(f_X\) gilt, dass sie nie negativ ist und und die Verteilfunktion 
             \(F_X(x)\) das Integral aus \(f_X\), also \(F_X(x) = \int\limits_{-\infty }^x f_X(u) \; du\). 
@@ -491,7 +503,10 @@
                     \item Varianz: \(V(X) = \sigma^2\)
                     \item Standardnormalverteilung (\(\mu = 0, \sigma = 1\)):  \(\varPhi(x) = \varPhi(x,0,1) = \cfrac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^xe^{\ - \frac{u^2}{2}} \; du\)
                 \end{itemize}
-                Ist \(X, \mu, \sigma\) normalverteil, dann ist \(Y := \cfrac{x - \mu}{\sigma}\) standardnormalverteilt.
+                Umrechnung von \(X\) ins Standardnormalverteilung \(Z\): 
+                \begin{equation*}
+                    Z(X) = \cfrac{X - \mu}{\sigma}  = \cfrac{X - E(X)}{\sqrt{Var(x)}} 
+                \end{equation*}
             \subsubsection{Exponentiallverteilung}
                 Die Exponentialverteilung ist ein Model für die Lebensdauer für Produkte.
                 \begin{itemize}
@@ -502,16 +517,79 @@
             \subsection{Notizen}
                 Das Intervall wird durch die Integration der Dichtefunktion ermittelt. \\
                 Varianz und Erwartungswert haben den Wert 0 wenn das die Intervallgrenzen gleich sind (bzw. wenn nur ein Punkt gegeben ist und nicht zwei)
+                \subsubsection*{Auswahltabelle}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    \; & diskret? & stetig? \\
+                    \hline
+                    anzahl? & Binomial/Hypergeometrische & Poisson \\
+                    \hline
+                    erstes Mal? & geometrisch & Exponential \\
+                    \hline     
+                \end{tabular}
     \section{Induktive Statistik und statistische Tests}
-        \subsection{Parameterschätzung}
-            Bei der Parameterschätzung ist die Verteilung \(X\) bekannt, aber die Parameter wie der Mittelwert \(\mu\) oder die Varianz \(\sigma^2\).
-            Diese Parameter werden dann durch Stichproben geschätzt. Die Stichproben werden dann im Vektor \(\vec{X}\) erfasst. Hat \(\vec{X}\)
-            200 Komponenten, so wurden 200 Stichproben erstellt und jedes einzelne Element aus \(\vec{X}\) also \(X_i\) enthält wiederum alle Werte
-            einer einzelnen Stichprobe (jedes \(X_i\) hat die gleiche Anzahl an Werte, die Werte selbst können sich aber unterscheiden). Zudem ist
-            jedes \(X_i\) eine 'Kopie' von \(X\). Dies soll zeigen, dass alle Stichprobenwerte unabhängig von einander ermittelt wurde. \\
-            Die Schätzfunktion \(\overline{X}\) ist wie folgt definiert: 
+        \subsection{Schätzfunktion}
+            Die Schätzfunktion \(\overline{X}\) gibt dann einen Wert für bestimmte Parameter(zB. Erwartungswert) Nun Werden verschiedene Stichproben erhoben
+            und (unter Beachtung der vermuteten Verteilung) werden dann die Parameter (zB. Erwartungswert) ausgerechnet. Ist zB. \(\overline{X} = E(X)\) ist \(\overline{X}\)
+            erwartungstreu für \(E(X)\). Allgemein ist jede Funktion \(U = g(X_1,X_2,...,X_n)\) eine Schätzfunktion für einen Parameter \(a\) einer Verteilung \(X\) (\(a\) darf aber nicht in \(X\) 
+            vorkommen). \\
+            Wenn ()\(E(U) = a\)) gilt, so ist die Schätzfunktion \(U)\) erwartungstreu.
+        \subsection{Maximum Likelihood Methode}
+            Für den Erwartungswert eignete sich das arithmetische Mittel über alle Kopien von \(X\) also aus allen \(X_i\).
+            Da aber es aber viele Parameter und diese auch verschieden in anderen Verteilungen sein können, nutzt man die Maximum-Likelihood-Methode um bestimmte Parameter zu bestimmen.   
+            Es gilt folgende Formel: 
             \begin{equation*}
-                \overline{X} = \cfrac{1}{n} \sum^n_{i=1} X_i
+                L (\vec{x},a) = \Pi_{i=1}^n f(x_i,a)
             \end{equation*}
-            Wenn \(E(X) = E(\overline{X})\) gilt, so ist die Schätzfunktion \(\overline{X})\) für \(E(X)\) erwartungstreu.
+            Das Ergebnis wird nach \(a\) abgeleitet und auf Nullstellen untersucht, da sich dort die Extremstellen befinden. Ggfs. muss noch einmal abgeleitet werden um den Höhepunkt 
+            zu bekommen. Zu beachten ist, dass das \(a\) ein beliebiger Parameter einer Verteilung sein kann. Die verschiedenen \(x_i\) Werte sind Realisierungen von \(a\).
+        \subsection{Hypothesentest}
+            Bei einem Hypothesentest wird eine Aussage (Hypothese) auf ihre Wahrscheinlichkeit überprüft. Zum Beispiel Erwartungswert (Erwartungswert der Größe von Männern ist 1.72m). \\
+            Dabei unterscheidet man zwischen einseitigen und symmetrischen Tests. Erwartungswert von Größen ist symmetrisch da wenn die Hypothese 'links oder rechts' abweicht verworfen wird.
+            Einseitige Test schauen ob ein bestimmter Wert nicht überschritten worden ist ('Anzahl' defekter Smartphones bei eine Shop, '90\%' von Akkus gehen nach 2 Jahren kaputt). \\
+            Ferner muss noch die Irrtumswahrscheinlichkeit \(\alpha\) festgelegt werden (oft 0.1, 0.05, 0.01). Eine Hypothese kann zu 70\% zutreffen, aber die restlichen 30\% bieten ein hohes 
+            Risiko (Smartphones werden zurückgeschickt, Stichprobe vom Hersteller ist aber in Ordnung). \(\alpha\) ist daher meist klein. \(1 - \alpha\) ist die Sicherheitswahrscheinlichkeit. \\
+            Symmetrisch Test haben zwei Grenzen (\(g_u, g_o\)). Die zwei Grenzbereiche werden links und rechts gleich (durch \(\alpha\)) aufgeteilt.
+            \subsubsection*{Berechnung}
+            \begin{enumerate}
+                \item Eine Hypothese für \(X\) aufstellen
+                \item Irrtumswahrscheinlichkeit \(\alpha\) festlegen, wenn nicht schon gegeben
+                \item Grenzen berechnen. Für einseitige Test entweder Obergrenze oder Untergrenze, für symmetrische Tests Ober- und Untergrenze festlegen. 
+                      Allgemein muss gelten: \(p(X < g_u) + p(X > g_o) = 1 \). Die Grenzen berechnet man aus der Umkehrung der Verteilfunktion:
+                      \begin{itemize}
+                          \item Einseitig: \(g_u = {F_X}^{-1} \Bigg( \alpha \Bigg) \) oder \(g_o = {F_X}^{-1} \Bigg(1 - \alpha \Bigg)\)
+                          \item Symmetrisch: \(g_u = {F_X}^{-1} \Bigg( \cfrac{\alpha}{2} \Bigg) \) und \(g_o = {F_X}^{-1} \Bigg(1 - \cfrac{\alpha}{2} \Bigg) \)
+                      \end{itemize} 
+                \item Stichprobe wird durchgeführt und mit den Grenzen verglichen. Ist das beobachtete Merkmal in der Stichprobe wird die Hypothese angenommen. 
+            \end{enumerate}   
+            Bei einer Normalverteilung hilft es die Normalverteilung ind die Standardnormalverteilung tzu bringe, da man dadurch die Grenzwerte oft in einer Tabelle gegeben sind.
+        \subsection{Zentraler Grenzwertsatz}
+            Der zentrale Grenzwertsatz sagt aus, dass wenn \(n\) Zufallsvariablen (alle \(n\) Zufallsvariable sind Kopien voneinander) mit beliebiger Verteilung miteinander addiert werden (\(Y_n = X_1 + X_2 + ... + X_n\)),
+            sich aus der Summe annähernd eine Normalverteilung bildet. Außerdem ist die Wahl des \(n\) wichtig (somit auch die Anzahl an Stichproben).
+            Die Faustregel lautet:
+            \begin{equation*}
+                n = \cfrac{9}{p \cdot (1- p)}
+            \end{equation*} 
+            Für Varianz und Erwartungswert gilt noch folgendes:
+            \begin{itemize}
+                \item Erwartungswert: \(E(Y_n) = n \cdot E(X)\)
+                \item Varianz: \(Var(Y_n) = n \cdot Var(X)\)
+            \end{itemize} 
+        \subsection{Varianztest}
+            Um bei der Normalverteilung die Varianz überprüfen zu können, nutzt man die \(\chi^2\)-Verteilung. Diese setzt sich aus der Summe von \(m\) unabhängigen, standardnormalverteilten 
+            Zufallsvariablen, welche alle jeweils einzeln quadriert werden:
+            \begin{equation}
+                X:= Z_1^2 + Z_2^2 + ... + Z_m^2
+            \end{equation}
+            Man spricht von einer \(\chi^2\)-Verteilung mit \(m\) Freiheitsgraden. Für Varianz und Erwartungswert gilt noch folgendenes:
+            \begin{itemize}
+                \item Erwartungswert: \(E(X) = m\)
+                \item Varianz: \(Var(X) = 2m\)
+            \end{itemize}
+            Eine Zufallsvariable der Form
+            \begin{equation*}
+                Y:=\sum\limits_{i=1}^n \cfrac{(x_i - \overline{x})^2}{\sigma^2} = \cfrac{(n-1) s^2}{\sigma^2}
+            \end{equation*}
+            heißt \(\chi^2\)-verteilt mit \(m = n-1\) Freiheitsgraden. \(s^2\) ist dabei die empirische Varianz und \(\overline{x}\) der Mittelwerte der Stichprobe.\\
+            Ablauf: Skript extra Seiten zu \(\chi^2\) ist schon gut zusammengefasst.
 \end{document}
