@@ -11,19 +11,21 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-             analysis/analysis.tex
-             betriebssysteme/os.tex
-             ginf/ginf.tex
-             rechnertechnologie/rt.tex
-             wirtshaftsmathe/wirtschaftsmathe.tex
+            datenbank/datenbank.tex
+            gui/gui.tex
+            internet/internet.tex
+            nachhaltigkeit/nachhaltigkeit.tex
+            software/software.tex
+            sysprog/sysprog.tex
       - name: Move PDF Files
         run: |
-          mv analysis.pdf analysis/
-          mv os.pdf betriebssysteme/
-          mv ginf.pdf ginf/
-          mv rt.pdf rechnertechnologie/
-          mv wirtschaftsmathe.pdf wirtshaftsmathe/
       - name: Create Pull Request
+            mv datenbank/datenbank.tex
+            mv gui/gui.tex
+            mv internet/internet.tex
+            mv nachhaltigkeit/nachhaltigkeit.tex
+            mv software/software.tex
+            mv sysprog/sysprog.tex
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: Compiled new PDFs
