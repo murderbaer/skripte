@@ -9,6 +9,8 @@
     - [Multimedia-Datenbanken](#multimedia-datenbanken)
   - [Externe Sichten](#externe-sichten)
   - [Benutzergruppen](#benutzergruppen)
+  - [Relationen](#relationen)
+    - [Produktmenge / Kartesisches Produkt](#produktmenge--kartesisches-produkt)
 # Einführung
 
 Datenbanken sind ein zentraler Speicherort für Daten, die einfach abgerufen werden können. 
@@ -61,19 +63,42 @@ Jedes Text-Objekt besteht aus unstrukturiertem Prosatext und kann ganz unterschi
 Große Datenbanken werden unübersichtlich, deshalb dürfen verschiedene Benutzergruppen nur bestimmte Ausschnitte sehen. Gesamte Konzeptsicht bleibt verborgen.
 
 ## Benutzergruppen
-**DB-Entwickler**
+**DB-Entwickler** -
 Entwerfen die Struktur der DB und setzen es im DBMS um
 
-**DB-Administrator**
+**DB-Administrator** -
 Verwaltet die DB, führt Strukturänderungen durch und installiert neue Versionen, Tools...
 
-**DB-Programmierer**
+**DB-Programmierer** -
 Programmieren Programme und Tools, die auf die Datenbank zugreifen
 
-**DB-Nutzer**
+**DB-Nutzer** -
 Trägt Daten ein, löscht/ändert Daten, stellt Abfragen.
 - Naiver Zugriff: Immer ähnliche Zugriffe
 - Seltener Zugriff, unterschiedlichste Abfragen (Manager)
 - Komplexe Zugriffe, genaue Kenntnis der DB
 
+## Relationen
+Es bestehen Beziehungen zwischen Objekten. Zweistellige Relationen sind eine Menge von Paaren.
 
+### Produktmenge / Kartesisches Produkt
+Menge aller Paare, die sich aus x und y bilden lassen.
+$$A \times B = \{(x, y): x \in A, y \in B\}$$
+
+Eine Relation ist eine Teilmenge des Kartesischen Produkts $R \subset A\times B$. Für $(x, y) \in R$ schreibt man auch $x R y$. 
+
+Die Menge aller $x \in A$, die in R vorkommen, heißen *Vorbereich*.
+
+Die Menge aller $y \in B$, die in R vorkommen, heißen *Nachbereich*.
+
+**1:1-Relation**
+
+Bei ein-eindeutigen Relationen darf je nur ein Element der Menge A auf jedes Element aus Menge B zeigen. (verheiratet)
+
+**1:N-Relation**
+
+Ein Element der Menge A zeigt auf mehrere Elemente der Menge B, aber kein Element in B ist mehrfach belegt (Ausgeliehene Bücher)
+
+**M:N-Relation**
+
+Beliebige Relationen (Beispiel ein Autor kann viele Bücher schreiben und ein Buch kann mehrere Autoren haben)
