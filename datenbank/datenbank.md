@@ -102,3 +102,13 @@ Ein Element der Menge A zeigt auf mehrere Elemente der Menge B, aber kein Elemen
 **M:N-Relation**
 
 Beliebige Relationen (Beispiel ein Autor kann viele Bücher schreiben und ein Buch kann mehrere Autoren haben)
+
+## Entity-Relationship-Modell
+- Einsatz für den **logischen** Datenbankenentwurf bei **strukturierten** Datenbanken
+- Ziel ist ein gut strukturierter, normalisierter DB-Entwurf
+- Grafische Veranschaulichung, CASE-Tool (Computer Aided Software Engineering)
+- Besteht aus Entities und Relationen zwischen Entities
+- Entity-Set = Objektmenge gleichartiger Objekte
+- Erweiterung Enhanced Entity Relationship (EER)- Modell
+
+### Prozess- und Datenmodellierung
