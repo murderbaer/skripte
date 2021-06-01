@@ -117,3 +117,96 @@ Asynchrones Kommunikationsmedium: Der Sender versendet die Nachricht unabhängig
 - POP3: Abrufen von E-Mails am Mailserver
 - IMAP: Zugreifen auf Postfächer und verwalten von E-Mails
 - SMAP: Weiterentwicklung vom IMAP im experiementellen Stadium
+
+## Multimedia Netzwerke
+Quality of Service: Netzwerk liefert die Dienstgüte, welche für die jeweilige Anwendung notwendig ist.
+- Zuverlässiges/schnelles verbinden und trennen
+- Probleme beim Verbindungsaufbau sollen schnellstmöglich mitgeteilt werden
+- Stabile, vollständige, fehlerfreie und möglichst originalgetreue Übertragung
+- Geringe Wartezeiten
+- Abrechnung der Kommunikation sollte dem korrekten Zeit- und Datenumfang entsprechen.
+
+- Latenzzeit: Verzögerung der Ende-zu-Ende Übertragung
+- Jitter: Abweichung der Latenzzeit vom Mittelwert
+- Paketverlustrate: Anteil der verlorenen/verspäteten Pakete
+- Durchsatz: Übertragene Datenmenge pro Zeiteinheit
+
+**Media Streaming**
+- von gespeicherten Medien, Live-Medien oder Interaktiv
+- Nur temporäre Kopie beim Endnutzer
+- Verzügerung und Jitter (Verzögerungsschwankung) wichtige Kriterien
+- Tolerant gegenüber Paketverlust
+- Client spielt das Medium bereits ab, während der Server immer noch weitere Teile des Videos an den Client überträgt
+- Puffer im Client, um Jitter auszugleichen
+- Oft UDP statt TCP für geringeren Overhead
+- Kompression und Error Concealment
+
+**Ansatz 1:**
+Datei in Teilen per HTTP runterladen und abspielen, während weitere Teile laden.
+
+**Ansatz 2:**
+Streamen von einem dedizierten Streamingserver. Dabei kann ein extra Protokoll auf Grundlage von UDP verwendet werden, in der Regel effizienter.
+
+**UDP vs TCP**
+- UDP sendet mit einer konstanten Rate ohne auf Überlast Rücksicht zu nehmen
+- TCP sendet mit maximaler TCP-Rate, verzögert wegen Übertragungswiederholungen, braucht größeren Puffer. Aber weniger Probleme mit Firewalls als UDP
+
+**Best-Effort-Dienste**
+
+Multimedia-Anwendungen verwenden Techniken auf der Anwendungsschicht, um die Auswirkungen von Verzögerungen und Verlusten zu minimieren.
+
+**Internettelefonie**
+- Während dem Sprechen werden Daten erzeugt und Übertragen, zum Beispiel Stücke von 20ms mit 8kByte/s = 160Byte
+- Header für die Anwendungsschicht, die zur Übertragung der  Audiodaten verwendet wird
+- Paketverlust durch Netzwerküberlastung möglich
+- Paket kann verzögert sein und dann nicht mehr gebraucht werden.
+- Je nach Kodierung können Verlustraten von 1-10% toleriert werden
+- Abspielverzögerung: Groß = weniger verworfene Pakete, Klein = Interaktiver
+- Adaptive Bestimmung der Wiedergabeverzögerung
+- Exponentielle Glättung mit kontante u: $d_i = (1-u)d_{i-1} + u*\text{Verzögerung}_i$
+- durchschnittliche Abweichung von der geschätzten Verzögerung: $v_i = (1-u)v_{i-1} + u|r\text{Verzögerung} - d_i|$
+- $p_i = t_i + d_i + K * v_i$
+
+**Paketverluste**
+1. Forwärtskorrektur: Für jede Gruppe von n Paketen wird ein Redundanzpaket erstellt (XOR).Maximal 1 Paket kann verloren gehen.Höhere Wiedergabeverzögerung weil alle Pakete eingegangen sein müssen bevor abgespielt wird.
+2. zweiter Strom mit niedriger Qualität. Wenn nicht beide Pakete verloren werden kann der Verlust verborgen werden.
+3. Interleaving: Samples werden in kleinere Einheiten zerlegt und ein Paket enthält Daten von mehreren Samples. Bei einem verlorenen Paket entstehen keine "Lücken". Keine Redundaz, höhere Abspielverzögerung
+
+**CDN Content-Distribution-Netzwerk**
+- viele CDN-Server im Internet in der Nähe der Nutzer
+- Verzögerung minimalisieren, Redundanz
+- Der CDN Provider erstellt eine Karte mit den Distanzen aller IP-Adressen zu den eigenen Servern. Beim Eintreffen einer DNS-Anfrage wird der nächste Server verwendet.
+
+### Dienstklassen
+Manche Anwendungen haben höhere Anforderungen. Zum Beispiel sollte ein VoIP Anruf nicht stocken, wenn eine Datei hochgeladen wird.
+1. Pakete markieren, um Verkehrsklassen zu unterscheiden
+2. Isolation der einzelnen Netzwerkströme und beschränken durch policy
+3. Trotz Isolation müssen die Ressourcen so gut wie möglich ausgenutzt werden.
+
+**Scheduling**
+
+1. FIFO: Bearbeitung in der Reihenfolge der Ankunft. Discard-Policy: letztes, nach Priorität oder zufällig
+2. Prioritätswarteschlange: Übertragen des Paketes mit der höchsten Prio. Prio kann aus den Headerinformationen bestimmt werden.
+3. Round-Robin-Scheduling: Verschiedene Klassen an Paketen und je eine Warteschlange pro Klasse. Abwechselndes Bedienen des ersten Paketes jeder Warteschlange.
+4. Weighted Fair Queuing: Wie Round Robin, aber jede Warteschlange hat ein Gewicht, nach dem sie bedient wird
+
+**Überwachung (Policing)**
+Beschränken nach:
+- Durchschnittliche Rate
+- Maximale Rate
+- Burst-Größe
+
+Methonde Leaky Bucket: Es wird mit konstanter Geschwindigkeit Tokens bis zu einem Limit generiert. Das Übertragen eines Pakets kostet einen Token. Eine Kombination von Weighted Fair Queueing + Leaky Bucket führt zu einer oberen Grenze für die Verzögerung.
+
+### IETF Differentiated Services
+- Dienstklassen mit unterschiedlicher Priorität
+- Router am Rand des Netzwerks markieren die Priorität der Pakete
+- Die Router im Inneren Puffern und Schedulen auf Basis der Markierung
+- Markierung von Dienstklassen oder Profilen
+- Eingangsverkehr kann entsprechend des Profils begrenzt und überwacht werden.
+- Wird im TOS Feld (IPv4) oder im Traffic-Class-Feld (IPv6) markiert
+- 6 Bits für Differentiated Service Code Point DSCP, 2 Bits ungenutzt.
+- Es können verschiedene Mechanismen verwendet werden, zum Beispiel Bandbreite für eine Klasse festlegen oder Priorisierung beim Scheduling
+
+**Rufzulassung**
+Ein Netzwerkstrom  meldet seinen Bedarf an. Er muss abgewiesen werden,  wenn keine ausreichenden Ressourcen bereit stehen. Ressourcen werden dafür reserviert.
