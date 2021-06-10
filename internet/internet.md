@@ -210,3 +210,73 @@ Methonde Leaky Bucket: Es wird mit konstanter Geschwindigkeit Tokens bis zu eine
 
 **Rufzulassung**
 Ein Netzwerkstrom  meldet seinen Bedarf an. Er muss abgewiesen werden,  wenn keine ausreichenden Ressourcen bereit stehen. Ressourcen werden dafür reserviert.
+
+## Kommunikation in verteilten Netzwerken
+### Remote Procedure Call RPC
+Ermöglicht den Aufruf von Funktionen in anderen Adressräumen. Verschiedene Implementierungen sind meist nicht kompatibel.
+
+Für den Aufruf sind Name der Prozedur (oder ID) und zugehörige Parameter notwendig.
+
+**Remote Method Invocation**
+Aufruf einer Methode eines entfernten Java-Objekts. Andere JVM auf beliebigem anderem Computer. Aufruf sieht gleich aus wie normaler Aufruf, es müssen nur extra Exceptions gefangen werden. Die Verbindung wird mit dem Stub realisiert. Für die Verbindung braucht man die Serveradresse und einen Bezeichner von einem Namensdienst.
+
+**Webservice**
+Schnittstelle über HTTP(S) für Maschine-zu-Maschine Kommunikation, zum Beispiel REST-APIs. Kommunikation oft im XML oder JSON Format
+
+**SOAP** besteht aus 3 Teilen, UDDI als Verzeichnisdienst zur Registrierung von Webservices, WSDL zur Beschreibung der Methoden und SOAP zur Kommunikation. SOAP ist auf HTTP(S) aufgebaut und benutzt XML in einem speziellen Namensraum. Eine Nachricht besteht aus einem `Envelope`, in dem ein `Header` und ein `Body` sind.
+```
+<?xml version="1.0"?>
+
+<soap:Envelope
+xmlns:soap="http://www.w3.org/2003/05/soap-envelope/"
+soap:encodingStyle="http://www.w3.org/2003/05/soap-encoding">
+
+<soap:Header>
+...
+</soap:Header>
+
+<soap:Body>
+...
+  <soap:Fault>
+  ...
+  </soap:Fault>
+</soap:Body>
+
+</soap:Envelope>
+```
+
+**WSDL** erlaubt einem Client die Funktionen eines Webservice bei einem Webserver abzufragen. Alle verwendeten speziellen Datentypen sind in der WSDL-Datei in XML-Form eingebunden. Der Quellcode, der zum Zusammensetzen der gesendeten Objekte auf der Client-Seite notwendig ist, kann automatisiert aus der WSDL-Datei generiert werden. Der Client kann nun SOAP verwenden, um eine in WSDL gelistete Funktion letztlich aufzurufen.
+
+| Element    | Description                                                               |
+| ---------- | ------------------------------------------------------------------------- |
+| <types>    | Defines the (XML Schema) data types used by the web service               |
+| <message>  | Defines the data elements for each operation                              |
+| <portType> | Describes the operations that can be performed and the messages involved. |
+| <binding>  | Defines the protocol and data format for each port type                   |
+
+```
+<message name="getTermRequest">
+  <part name="term" type="xs:string"/>
+</message>
+
+<message name="getTermResponse">
+  <part name="value" type="xs:string"/>
+</message>
+
+<portType name="glossaryTerms">
+  <operation name="getTerm">
+    <input message="getTermRequest"/>
+    <output message="getTermResponse"/>
+  </operation>
+</portType>
+
+<binding type="glossaryTerms" name="b1">
+   <soap:binding style="document"
+   transport="http://schemas.xmlsoap.org/soap/http" />
+   <operation>
+     <soap:operation soapAction="http://example.com/getTerm"/>
+     <input><soap:body use="literal"/></input>
+     <output><soap:body use="literal"/></output>
+  </operation>
+</binding>
+```
