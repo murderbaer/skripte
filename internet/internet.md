@@ -280,3 +280,22 @@ soap:encodingStyle="http://www.w3.org/2003/05/soap-encoding">
   </operation>
 </binding>
 ```
+## Cloud Computing
+- Direkten und schnellen Zugriff auf einen Pool von geteilten Ressourcen (Netzwerke, Speicherplatz, Rechenleistung, Anwendungen) über ein Netzwerk ohne menschliche Interaktion. Wichtig ist ständige Verfügbarkeit.
+
+![](x-as-a-service.jpg)
+
+Cloud wird auch oft als Hybrid-Cloud verwendet, zum Beispiel zur Integration von alten und neuen Systemen oder zur besseren Skalierung (bei peaks) und Backups. Eine hybrid Cloud hat aber auch Nachteile durch den komplexeren Aufbau und die damit verbundene Administration.
+
+Beim Cloud Computing werden Applikationen virtualisiert, zum Beispiel mit Docker. Sie teilen dann das Betriebssystem (und je nach dem libraries). Ein beliebtes Konzept sind Microservices, mit denen ein großes Programm in viele kleine Unterteilt wird, die untereinander kommunizieren und besser skalieren. Die Runtime Optionen sind VPS, Containers oder Serverless
+
+### Container vs VM
+Container verwenden den Kernel des Host OS und verwenden nur eigene Bins/Libs für ihre Programme. So können Container von allen Linux-Distributionen auf einem Linux-Server laufen, da sie den Kernel teilen können.
+
+VMs haben jeweils ein komplettes Gast OS mit eigenem Kernel, was zu mehr overhead führt und die Performance reduziert.
+
+Container sind normalerweise schneller und lassen sich leichter deployen und restarten.
+
+### Microservices
+Microservices sind eine Alternative zu einem großen zentralen Programm. Der Webservice besteht aus vielen unabhängigen Programmen, die untereinander mit APIs kommunizieren. So können die einzelnen Bestandteile besser skaliert werden und es kann leichter auf bestehende Code-Bestandteile zugegriffen werden. EIn Nachteil ist, dass schon beim Ausfall eines einzelnen Webservice alles andere nicht mehr funktioniert.
+
