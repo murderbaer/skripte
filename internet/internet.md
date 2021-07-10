@@ -2,7 +2,7 @@
 # Einführung
 Vor Internet: Leitungsvermittlung zwischen Sender und Empfänger
 
-Im Internet: Paketvermittlung zwischen Sender und Empfänger
+Im Internet: Paketvermittlung zwischen Sender und Empfänger. Längere Nachrichten werden in einzelne Datenpakete aufgeteilt ung entweder verbindungslos oder verbindungsorientiert übertragen.
 
 Paketvermittlung hat eine höhere Kapazität, weil mehrere mögliche Pfade bestehen
 
@@ -49,12 +49,15 @@ Bei Einfamilienhäusern ist die Anschlussdose immer hinter der Hauseinführung. 
 
 **Internet-Schichtenmodell**
 
-Bitübertragungsschicht -> Sicherungsschicht -> Netzwerkschicht -> Transportschicht -> (Kommunikationssteuerungsschicht) -> (Darstellungsschicht) -> Anwendungsschicht
+Bitübertragungsschicht _Kabel_ -> Sicherungsschicht _Bridge, Switch_ -> Netzwerkschicht/Vermittlungsschicht _IP, Router_ -> Transportschicht _TCP/UDP_ -> (Kommunikationssteuerungsschicht) -> (Darstellungsschicht) -> Anwendungsschicht
 
 **TCP Transmission Control Protocol**
 - Baut eine Verbindung zwischen 2 Endpunkten her
 - Baut auf IP auf
 - Datenverluste werden erkannt und automatisch behoben
+
+**Client-Server vs Peer to Peer**
+Bei Client-Server kann der Client einen Dienst beim Server anfordern, der üblicherweise für viele Clients arbeitet. Bei Peer to Peer kommunizieren mehrere gleichberechtigte Computer untereinander, keine Unterscheidung zwischen C/S, jede Node hat die Daten selbst.
 
 ## Kapitel 2
 **Websocket**
@@ -68,7 +71,7 @@ Unterschiedliche Services haben unterschiedliche Anforderungen, vor allem in Sac
 ### HTTP Hypertext Transfer Protocol
 
 Zustandsloses Protokoll zur Übertragung von Daten auf der Anwendungsschicht auf TCP, vor allem für Webseiten. HTTPS ist zusätzlich noch verschlüsselt. Sitzungsinformationen müssen jedes Mal mitgeführt werden, zum Beispiel als Cookie in den Header-Informationen. 
-
+![](img/http.png)
 ```
 GET /infotext.html HTTP/1.1
 Host: www.example.com
@@ -178,7 +181,7 @@ Multimedia-Anwendungen verwenden Techniken auf der Anwendungsschicht, um die Aus
 - Der CDN Provider erstellt eine Karte mit den Distanzen aller IP-Adressen zu den eigenen Servern. Beim Eintreffen einer DNS-Anfrage wird der nächste Server verwendet.
 
 ### Dienstklassen
-Manche Anwendungen haben höhere Anforderungen. Zum Beispiel sollte ein VoIP Anruf nicht stocken, wenn eine Datei hochgeladen wird.
+Manche Anwendungen haben höhere Anforderungen. Zum Beispiel sollte ein VoIP Anruf nicht stocken, wenn eine Datei hochgeladen wird. Grundprinzipien von QoS:
 1. Pakete markieren, um Verkehrsklassen zu unterscheiden
 2. Isolation der einzelnen Netzwerkströme und beschränken durch policy
 3. Trotz Isolation müssen die Ressourcen so gut wie möglich ausgenutzt werden.
@@ -249,10 +252,10 @@ soap:encodingStyle="http://www.w3.org/2003/05/soap-encoding">
 
 | Element    | Description                                                               |
 | ---------- | ------------------------------------------------------------------------- |
-| <types>    | Defines the (XML Schema) data types used by the web service               |
-| <message>  | Defines the data elements for each operation                              |
-| <portType> | Describes the operations that can be performed and the messages involved. |
-| <binding>  | Defines the protocol and data format for each port type                   |
+| `<types>`    | Defines the (XML Schema) data types used by the web service               |
+| `<message>`  | Defines the data elements for each operation                              |
+| `<portType>` | Describes the operations that can be performed and the messages involved. |
+| `<binding>`  | Defines the protocol and data format for each port type                   |
 
 ```
 <message name="getTermRequest">
@@ -283,7 +286,7 @@ soap:encodingStyle="http://www.w3.org/2003/05/soap-encoding">
 ## Cloud Computing
 - Direkten und schnellen Zugriff auf einen Pool von geteilten Ressourcen (Netzwerke, Speicherplatz, Rechenleistung, Anwendungen) über ein Netzwerk ohne menschliche Interaktion. Wichtig ist ständige Verfügbarkeit.
 
-![](x-as-a-service.jpg)
+![](img/x-as-a-service.jpg)
 
 Cloud wird auch oft als Hybrid-Cloud verwendet, zum Beispiel zur Integration von alten und neuen Systemen oder zur besseren Skalierung (bei peaks) und Backups. Eine hybrid Cloud hat aber auch Nachteile durch den komplexeren Aufbau und die damit verbundene Administration.
 
@@ -299,3 +302,63 @@ Container sind normalerweise schneller und lassen sich leichter deployen und res
 ### Microservices
 Microservices sind eine Alternative zu einem großen zentralen Programm. Der Webservice besteht aus vielen unabhängigen Programmen, die untereinander mit APIs kommunizieren. So können die einzelnen Bestandteile besser skaliert werden und es kann leichter auf bestehende Code-Bestandteile zugegriffen werden. EIn Nachteil ist, dass schon beim Ausfall eines einzelnen Webservice alles andere nicht mehr funktioniert.
 
+## IPv6
+Adressraum von IPv4 ist erschöpft und das normale Internetwachstum nicht mehr adressierbar. NAT als temporärer Fix. Unterstützung neuer Services mühsam.
+- 128 Bit lange Adressen mit Adresshirarchie für einfacheres Backbone-Routing
+- Mehrere Adressen pro IP-Interface üblich
+- Autokonfiguration auch ohne DHCPv6 vorgesehen
+- Fließende Netzmasken, Renumbering durch Präfixänderung
+- Security Header Extension für Authentisierung, Integrität und Verschlüsselung
+- Schlankerer Header zur schnelleren Verarbeitung und optional zusätzlich eingeschobene Header
+- Verzicht auf Header Checksum und Fragmentierung
+- Multicast beginnt mit FF00, kein Broadcast mehr
+- Adresse besteht aus Global Routing Prefix, Subnet ID und Interface ID. Alle globalen Unicast-Adressen, die nicht mit 000 (binär) beginnen, besitzen eine 64 bit Interface ID
+
+**Autokonfiguration**
+- Interface bildet lokale Adresse aus Hardwareadresse
+- Interface sendet router solicitation um nicht warten zu müssen
+- Router sendet router advertisement (Präfix, Default Gateway)
+- Interface bildet aus Präfix und link-lokaler Adresse eine globale Adresse
+- Zur Verifikation der Eindeutigkeit wird noch eine ICMP neighbor solicitation versandt (Duplicate Adress Detection).
+
+![](img/ipv6.png)
+
+Optionsheader für:
+- Routing: Erweiterte Routinginformationen
+- Fragmentation: Fragmentierungsinformationen
+- Authentication: Sicherheitsinformationen Authentizität und Integrität
+- Encapsulation: Tunneling für vertrauliche Daten
+- Hop-by-Hop Option: Spezielle Optionen, die an jedem Router verarbeitet werden
+- Destination Option: Informationen für den Empfänger-Host
+
+**Migration**
+- Dual-Stack Techniken, welche die Koexistenz von IPv4 und IPv6 für dieselben Geräte und Netze erlauben
+- Tunnel, welche IPv6 Regionen über IPv4 Regionen hinweg verbinden
+- Protokollübersetzer, welche IPv6 Geräte mit IPv4 Geräten sprechen lassen
+
+## Kryptografie
+**Confidentiality**. Only the sender and intended receiver should be able to understand the contents of the transmitted message.
+
+**Message integrity**. Alice and Bob want to ensure that the content of their communication is not altered, either maliciously or by accident, in transit
+
+**End-point authentication**. Both the sender and receiver should be able to confirm their respective identity
+
+**Operational security**. Almost all organizations (companies, universities, and so on) today have networks that are attached to the public Internet. These networks therefore can potentially be compromised by the other party involved in the communication
+
+**Kernprinzipien von Kryptografie**
+- Maskieren von Daten (Verschlüsselung)
+- Potentieller Eindringling kann keine Informationen von abgefangenen Daten interpretieren
+- Empfänger kann aus den maskierten Daten die Original-Daten wiederherstellen
+- Um den Ciphertext  KA(M) zu erzeugen , werden Schlüssel benötigt. (KA Verschlüsselungs-Schlüssel, KB Entschlüsselungs-Schlüssel). Entschlüsselung erfolgt demnach beim Empfänger mit KB(KA(m)) Symmetrische Schlüssel sind gegeben wenn K(A) = K(B)
+
+**Symmetrische Schlüssel**: Sender und Empfänger müssen den Schüssel vorher kennen.
+
+**Asymmetrische Verschlüsselung**: Öffentlicher Schlüssel für die Verschlüsselung, privater Schlüssel für die Entschlüsselung.
+
+Integrität kann über Hash Funktionen sichergestellt werden. Ein Message Authentication Code dient dazu, Gewissheit über den Ursprung von Daten oder Nachrichten zu erhalten und ihre Integrität zu überprüfen. MAC-Algorithmen erfordern zwei Eingabeparameter, erstens die zu schützenden Daten und zweitens einen geheimen Schlüssel, und berechnen aus beidem eine Prüfsumme, den Message Authentication Code.
+
+Eine digitale Unterschrift attestiert, dass man mit dem Inhalt des digitalen Dokuments einverstanden ist. Es muss durch die digitale Signatur nachvollziehbar sein, dass der Unterzeichner unterschrieben hat. Certification Authorities sollen Keys zu Entities zuordnen und verifizieren. Sie sind eine Trusted Party.
+
+PGP (Pretty Good Privacy) ist Standard für die Verschlüsselung von E-Mails.
+
+SSL (Secure Socket Layer) ist technisch gesehen Teil der Anwendungsschicht, aus Sicht des Entwicklers ein Transportschichtprotokoll. Nachfolger ist TLS (Transport Layer Security). Es gelten die Prinzipien Vertraulichkeit (Verschlüsselung), Integrität der Daten und Authentizität der Daten.
